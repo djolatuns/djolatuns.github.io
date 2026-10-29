@@ -1,6 +1,7 @@
+
 {
   "id": "/",
-  "name": "DJ OLATUNS \u2014 Official DJ App",
+  "name": "DJ OLATUNS - Official DJ App",
   "short_name": "DJ OLATUNS",
   "description": "Official DJ OLATUNS mixtapes, bookings and music updates.",
   "start_url": "/",
@@ -9,18 +10,18 @@
   "orientation": "portrait",
   "background_color": "#080808",
   "theme_color": "#080808",
-  
-"icons": [
-  {
-    "src": "/icon-192.png",
-    "sizes": "192x192",
-    "type": "image/png",
-    "purpose": "any"
-  },
-  {
-    "src": "/icon-512.png",
-    "sizes": "512x512",
-    "type": "image/png",
-    "purpose": "any"
-  }
-]
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
