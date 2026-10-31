@@ -1,276 +1,192 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080808">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
 
-  <title>DJ OLATUNS Members Club | Official Membership Portal</title>
+<title>DJ OLATUNS Members Club</title>
+<meta name="description" content="Join the official DJ OLATUNS Members Club. Register, log in and receive official music and membership updates.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://djolatuns.github.io/members.html">
 
-  <meta name="description" content="Welcome to the official DJ OLATUNS Members Club. Discover exclusive DJ mixtapes, music updates, early releases and membership information. Register or log in to your account.">
+<meta property="og:title" content="DJ OLATUNS Members Club">
+<meta property="og:description" content="Join the official DJ OLATUNS community.">
+<meta property="og:url" content="https://djolatuns.github.io/members.html">
+<meta property="og:type" content="website">
 
-  <meta name="keywords" content="DJ OLATUNS, DJ Olatuns Members Club, DJ Olatuns membership, Nigerian DJ, exclusive mixtapes, DJ Olatuns official website">
+<style>
+* { box-sizing: border-box; }
 
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://djolatuns.github.io/members.html">
+html { scroll-behavior: smooth; }
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="DJ OLATUNS Members Club">
-  <meta property="og:description" content="Join the official DJ OLATUNS community. Explore membership, music updates and exclusive content.">
-  <meta property="og:url" content="https://djolatuns.github.io/members.html">
-  <meta property="og:site_name" content="DJ OLATUNS Official">
+body {
+  margin: 0;
+  background: #080808;
+  color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+}
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="DJ OLATUNS Members Club">
-  <meta name="twitter:description" content="The official DJ OLATUNS membership portal.">
+a { color: #d9b45b; }
 
-  <link rel="icon" href="/favicon.ico">
+header {
+  text-align: center;
+  padding: 45px 18px;
+  background: linear-gradient(135deg,#111,#080808);
+  border-bottom: 1px solid #b99036;
+}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "DJ OLATUNS Members Club",
-    "url": "https://djolatuns.github.io/members.html",
-    "description": "The official DJ OLATUNS Members Club membership information and account portal.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "DJ OLATUNS Official",
-      "url": "https://djolatuns.github.io/"
-    },
-    "about": {
-      "@type": "Organization",
-      "name": "DJ OLATUNS"
-    }
-  }
-  </script>
+header h1 {
+  color: #d9b45b;
+  letter-spacing: 4px;
+  margin: 0;
+  font-size: 38px;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+header p { color: #bbb; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+.hero {
+  padding: 35px 20px;
+  text-align: center;
+  background: radial-gradient(ellipse at top,#30230c,#080808 70%);
+}
 
-    body {
-      margin: 0;
-      background: #080808;
-      color: #f5f5f5;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
-    }
+.hero h2 {
+  color: #e0bd69;
+  font-size: 30px;
+}
 
-    a {
-      color: #d9b45b;
-    }
+.hero p {
+  max-width: 720px;
+  margin: 15px auto;
+  color: #ccc;
+}
 
-    header {
-      text-align: center;
-      padding: 45px 18px;
-      background: linear-gradient(135deg, #111, #080808);
-      border-bottom: 1px solid #b99036;
-    }
+main {
+  max-width: 850px;
+  margin: 25px auto;
+  padding: 15px;
+}
 
-    header h1 {
-      color: #d9b45b;
-      letter-spacing: 4px;
-      margin: 0;
-      font-size: clamp(28px, 6vw, 42px);
-    }
+.card {
+  background: #151515;
+  border: 1px solid #393024;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
 
-    header p {
-      color: #bbb;
-      margin: 8px 0 0;
-    }
+h2, h3 {
+  color: #d9b45b;
+}
 
-    .hero {
-      padding: 35px 20px;
-      text-align: center;
-      background: radial-gradient(ellipse at top, #30230c, #080808 70%);
-    }
+.muted {
+  color: #aaa;
+  font-size: 14px;
+}
 
-    .hero h2 {
-      color: #e0bd69;
-      font-size: clamp(25px, 5vw, 38px);
-      line-height: 1.3;
-    }
+.price {
+  font-size: 32px;
+  font-weight: bold;
+  color: #e2bd62;
+}
 
-    .hero p {
-      max-width: 720px;
-      margin: 15px auto;
-      color: #ccc;
-    }
+.feature-list {
+  padding-left: 22px;
+  color: #ddd;
+}
 
-    main {
-      max-width: 850px;
-      margin: 25px auto;
-      padding: 15px;
-    }
+.feature-list li { margin: 8px 0; }
 
-    .card {
-      background: #151515;
-      border: 1px solid #393024;
-      border-radius: 14px;
-      padding: 22px;
-      margin-bottom: 20px;
-    }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+  gap: 12px;
+}
 
-    h2, h3 {
-      color: #d9b45b;
-      line-height: 1.35;
-    }
+.step {
+  padding: 15px;
+  border: 1px solid #393024;
+  border-radius: 10px;
+  background: #101010;
+}
 
-    h2 {
-      font-size: 23px;
-    }
+.step strong { color: #d9b45b; }
 
-    h3 {
-      font-size: 18px;
-    }
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  background: #080808;
+  color: white;
+  border: 1px solid #51452f;
+  border-radius: 8px;
+  font-size: 15px;
+}
 
-    .muted {
-      color: #aaa;
-      font-size: 14px;
-    }
+button, .gold-link {
+  display: inline-block;
+  padding: 13px 18px;
+  margin: 5px 4px 5px 0;
+  border: 0;
+  border-radius: 8px;
+  background: #d9b45b;
+  color: #111;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-    .gold {
-      color: #d9b45b;
-    }
+button.secondary {
+  background: #333;
+  color: white;
+}
 
-    .price {
-      font-size: 32px;
-      font-weight: bold;
-      color: #e2bd62;
-      margin: 10px 0;
-    }
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
 
-    .feature-list {
-      padding-left: 22px;
-      color: #ddd;
-    }
+.notice {
+  padding: 13px;
+  background: #252014;
+  border: 1px solid #51452f;
+  border-radius: 8px;
+  margin: 10px 0;
+}
 
-    .feature-list li {
-      margin: 8px 0;
-    }
+.hidden { display: none !important; }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 12px;
-    }
+.status {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
 
-    .step {
-      padding: 15px;
-      border: 1px solid #393024;
-      border-radius: 10px;
-      background: #101010;
-    }
+.faq-item {
+  border-bottom: 1px solid #393024;
+  padding: 12px 0;
+}
 
-    .step strong {
-      color: #d9b45b;
-    }
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 14px;
-      margin: 8px 0;
-      background: #080808;
-      color: white;
-      border: 1px solid #51452f;
-      border-radius: 8px;
-      font-size: 15px;
-    }
+footer {
+  text-align: center;
+  padding: 28px 15px;
+  color: #888;
+  font-size: 13px;
+  border-top: 1px solid #302817;
+}
 
-    button, .gold-link {
-      display: inline-block;
-      padding: 13px 18px;
-      margin: 5px 4px 5px 0;
-      border: 0;
-      border-radius: 8px;
-      background: #d9b45b;
-      color: #111;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    button.secondary {
-      background: #333;
-      color: white;
-    }
-
-    button:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
-
-    .notice {
-      padding: 13px;
-      background: #252014;
-      border: 1px solid #51452f;
-      border-radius: 8px;
-      margin: 10px 0;
-      line-height: 1.6;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .status {
-      overflow-wrap: anywhere;
-      font-size: 14px;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid #393024;
-      padding: 12px 0;
-    }
-
-    .faq-item:last-child {
-      border-bottom: 0;
-    }
-
-    .faq-item h3 {
-      margin-bottom: 5px;
-    }
-
-    .faq-item p {
-      color: #bbb;
-      margin-top: 5px;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 28px 15px;
-      color: #888;
-      font-size: 13px;
-      border-top: 1px solid #302817;
-    }
-
-    @media (max-width: 600px) {
-      main {
-        padding: 12px;
-      }
-
-      .card {
-        padding: 17px;
-      }
-
-      header {
-        padding: 35px 12px;
-      }
-    }
-  </style>
+@media(max-width:600px) {
+  main { padding: 12px; }
+  .card { padding: 17px; }
+}
+</style>
 </head>
 
 <body>
@@ -282,335 +198,194 @@
 
 <section class="hero">
   <h2>Welcome to the DJ OLATUNS Members Club</h2>
-
   <p>
     More than music. Become part of the official DJ OLATUNS
     community and stay connected with the latest mixtapes,
     music updates, announcements and exclusive experiences.
   </p>
-
   <a class="gold-link" href="#membership">Explore Membership</a>
   <a class="gold-link" href="#member-account">Member Login</a>
 </section>
 
 <main>
 
-  <section class="card">
-    <h2>About the Members Club</h2>
-
-    <p>
-      The DJ OLATUNS Members Club is the official online
-      membership community of DJ OLATUNS.
-    </p>
-
-    <p>
-      It is designed to bring music lovers and supporters
-      closer to the DJ OLATUNS brand through membership
-      updates, announcements, music releases and planned
-      premium experiences.
-    </p>
-
-    <p>
-      Whether you discovered DJ OLATUNS through a mixtape,
-      social media or a live DJ performance, this is your
-      place to stay connected.
-    </p>
-  </section>
-
-  <section class="card">
-    <h2>What Members Can Look Forward To</h2>
-
-    <ul class="feature-list">
-      <li>Updates about new DJ OLATUNS mixtapes and releases.</li>
-      <li>Members' announcements and important updates.</li>
-      <li>Information about planned exclusive music content.</li>
-      <li>Early-release opportunities when available.</li>
-      <li>A personal account for membership information.</li>
-      <li>Direct access to membership support.</li>
-    </ul>
-
-    <p class="muted">
-      Availability of premium benefits will depend on the
-      official membership programme and its launch.
-    </p>
-  </section>
-
-  <section class="card" id="membership">
-    <h2>Membership Information</h2>
-
-    <p class="muted">
-      Official DJ OLATUNS Members Club membership.
-    </p>
-
-    <div class="price">₦1,000 / Month</div>
-
-    <div class="notice">
-      <strong class="gold">Payment activation coming soon</strong>
-      <p>
-        Account registration is available. Online payment
-        checkout and paid membership activation have not
-        yet been launched.
-      </p>
-      <p>
-        Creating an account does not automatically activate
-        a paid membership.
-      </p>
-    </div>
-
-    <a class="gold-link" href="#member-account">
-      Create Your Account
-    </a>
-  </section>
-
-  <section class="card">
-    <h2>How to Join</h2>
-
-    <div class="steps">
-      <div class="step">
-        <strong>01. Register</strong>
-        <p class="muted">
-          Enter your email address and create a password.
-        </p>
-      </div>
-
-      <div class="step">
-        <strong>02. Confirm</strong>
-        <p class="muted">
-          Check your email for an account confirmation
-          message if confirmation is required.
-        </p>
-      </div>
-
-      <div class="step">
-        <strong>03. Log In</strong>
-        <p class="muted">
-          Use your registered email and password to access
-          your account.
-        </p>
-      </div>
-
-      <div class="step">
-        <strong>04. Membership</strong>
-        <p class="muted">
-          Check your membership information and follow
-          official announcements about payment activation.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Explore DJ OLATUNS Music</h2>
-
-    <p>
-      Discover music and mixtapes from DJ OLATUNS on Audiomack.
-    </p>
-
-    <div class="button-row">
-      <a class="gold-link"
-         href="https://audiomack.com/dj_olatuns1"
-         target="_blank"
-         rel="noopener noreferrer">
-        Official Audiomack
-      </a>
-
-      <a class="gold-link"
-         href="https://audiomack.com/dj_olatuns1/song/new-wave-2026-mixtape?share-user-id=153478386"
-         target="_blank"
-         rel="noopener noreferrer">
-        New Wave 2026
-      </a>
-
-      <a class="gold-link"
-         href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-dance-mix?share-user-id=153478386"
-         target="_blank"
-         rel="noopener noreferrer">
-        2026 Dance Mix
-      </a>
-
-      <a class="gold-link"
-         href="https://audiomack.com/dj_olatuns1/song/undefeatable-dj-olatuns-faaja-mixtape?share-user-id=153478386"
-         target="_blank"
-         rel="noopener noreferrer">
-        Faaja Mixtape
-      </a>
-
-      <a class="gold-link"
-         href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386"
-         target="_blank"
-         rel="noopener noreferrer">
-        Movement Mixtape
-      </a>
-    </div>
-  </section>
-
-  <section class="card" id="member-account">
-    <h2>Member Account</h2>
-
-    <p class="muted">
-      Already a member? Log in. New here? Create your account.
-    </p>
-
-    <input
-      id="email"
-      type="email"
-      placeholder="Your email address"
-      autocomplete="email"
-    >
-
-    <input
-      id="password"
-      type="password"
-      placeholder="Password (minimum 8 characters)"
-      autocomplete="current-password"
-    >
-
-    <button id="signupBtn">Create Account</button>
-    <button id="loginBtn" class="secondary">Log In</button>
-
-    <p id="authMessage"
-       class="muted status"
-       aria-live="polite"></p>
-  </section>
-
-  <section class="card hidden" id="accountCard">
-    <h2>Your Account</h2>
-
-    <p id="accountEmail" class="muted"></p>
-
-    <div id="membershipStatus" class="notice status">
-      Checking membership...
-    </div>
-
-    <button id="logoutBtn" class="secondary">Log Out</button>
-  </section>
-
-  <section class="card">
-    <h2>Members' Announcements</h2>
-
-    <p class="muted">
-      Stay informed about official DJ OLATUNS updates.
-    </p>
-
-    <div id="announcements">
-      <p class="muted">Loading announcements...</p>
-    </div>
-  </section>
-
-  <section class="card hidden" id="adminCard">
-    <h2>Administrator Dashboard</h2>
-
-    <p class="muted">
-      Official DJ OLATUNS administration.
-    </p>
-
-    <div class="notice" id="adminStats">
-      Loading dashboard...
-    </div>
-
-    <h3>Publish Announcement</h3>
-
-    <input
-      id="announcementTitle"
-      placeholder="Announcement title"
-    >
-
-    <textarea
-      id="announcementMessage"
-      rows="4"
-      placeholder="Write your announcement"
-    ></textarea>
-
-    <button id="publishBtn">Publish Announcement</button>
-
-    <p id="adminMessage"
-       class="muted status"
-       aria-live="polite"></p>
-  </section>
-
-  <section class="card">
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item">
-      <h3>What is the DJ OLATUNS Members Club?</h3>
-      <p>
-        It is the official online membership community
-        where supporters can register, access their accounts
-        and receive official membership updates.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>How much does membership cost?</h3>
-      <p>
-        The listed membership price is ₦1,000 per month.
-        Payment checkout and paid membership activation
-        are still being prepared.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Can I create an account now?</h3>
-      <p>
-        Yes. You can register using your email address
-        and a password of at least eight characters.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Does account registration activate membership?</h3>
-      <p>
-        No. Registration creates an account. Paid membership
-        activation will require the official payment system
-        once it becomes available.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Where can I listen to DJ OLATUNS mixtapes?</h3>
-      <p>
-        Visit the official DJ OLATUNS Audiomack profile
-        using the link on this page.
-      </p>
-    </div>
-
-    <div class="faq-item">
-      <h3>How can I contact DJ OLATUNS?</h3>
-      <p>
-        You can contact the official support channel
-        through WhatsApp using the link below.
-      </p>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Need Help?</h2>
-
-    <p>
-      For membership questions, account assistance and
-      official enquiries, contact DJ OLATUNS.
-    </p>
-
-    <a class="gold-link"
-       href="https://wa.me/2348103327836"
-       target="_blank"
-       rel="noopener noreferrer">
-      Chat on WhatsApp
-    </a>
-
-    <p class="muted">
-      Official website:
-      <a href="https://djolatuns.github.io/">
-        djolatuns.github.io
-      </a>
-    </p>
-  </section>
-
-  <p class="muted" style="text-align:center">
-    <a href="https://djolatuns.github.io/">
-      Back to DJ OLATUNS Official Website
-    </a>
+<section class="card">
+  <h2>About the Members Club</h2>
+  <p>
+    The DJ OLATUNS Members Club is the official online
+    membership community of DJ OLATUNS.
   </p>
+  <p>
+    It brings music lovers and supporters closer to the
+    DJ OLATUNS brand through membership updates,
+    announcements, music releases and premium experiences.
+  </p>
+</section>
+
+<section class="card">
+  <h2>What Members Can Look Forward To</h2>
+  <ul class="feature-list">
+    <li>Updates about new DJ OLATUNS mixtapes.</li>
+    <li>Members' announcements and important updates.</li>
+    <li>Exclusive music content when available.</li>
+    <li>Early-release opportunities when available.</li>
+    <li>A personal membership account.</li>
+    <li>Direct access to membership support.</li>
+  </ul>
+</section>
+
+<section class="card" id="membership">
+  <h2>Membership Information</h2>
+  <div class="price">₦1,000 / Month</div>
+  <div class="notice">
+    <strong>Payment activation coming soon</strong>
+    <p>
+      Account registration is available. Online payment
+      checkout and paid membership activation have not
+      yet been launched.
+    </p>
+    <p>
+      Creating an account does not automatically activate
+      a paid membership.
+    </p>
+  </div>
+  <a class="gold-link" href="#member-account">Create Your Account</a>
+</section>
+
+<section class="card">
+  <h2>How to Join</h2>
+  <div class="steps">
+    <div class="step">
+      <strong>01. Register</strong>
+      <p class="muted">Enter your email and create a password.</p>
+    </div>
+    <div class="step">
+      <strong>02. Confirm</strong>
+      <p class="muted">Check your email if confirmation is required.</p>
+    </div>
+    <div class="step">
+      <strong>03. Log In</strong>
+      <p class="muted">Use your registered email and password.</p>
+    </div>
+    <div class="step">
+      <strong>04. Membership</strong>
+      <p class="muted">Check your membership information.</p>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Explore DJ OLATUNS Music</h2>
+  <div class="button-row">
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Official Audiomack</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/new-wave-2026-mixtape?share-user-id=153478386" target="_blank" rel="noopener">New Wave 2026</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-dance-mix?share-user-id=153478386" target="_blank" rel="noopener">2026 Dance Mix</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/undefeatable-dj-olatuns-faaja-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Faaja Mixtape</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Movement Mixtape</a>
+  </div>
+</section>
+
+<!-- MEMBER ACCOUNT -->
+<section class="card" id="member-account">
+  <h2>Member Account</h2>
+  <p class="muted">
+    Already a member? Log in. New here? Create your account.
+  </p>
+
+  <div id="authCard">
+    <input id="email" type="email"
+      placeholder="Your email address"
+      autocomplete="email">
+
+    <input id="password" type="password"
+      placeholder="Password (minimum 8 characters)"
+      autocomplete="current-password">
+
+    <button id="signupBtn" type="button">Create Account</button>
+    <button id="loginBtn" class="secondary" type="button">Log In</button>
+  </div>
+
+  <p id="authMessage" class="muted status" aria-live="polite"></p>
+</section>
+
+<!-- ACCOUNT INFORMATION -->
+<section class="card hidden" id="accountCard">
+  <h2>Your Account</h2>
+  <p id="accountEmail" class="muted"></p>
+
+  <div id="membershipStatus" class="notice">
+    Checking membership...
+  </div>
+
+  <button id="logoutBtn" class="secondary" type="button">Log Out</button>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section class="card">
+  <h2>Members' Announcements</h2>
+  <p class="muted">Stay informed about official DJ OLATUNS updates.</p>
+  <div id="announcements">
+    <p class="muted">Loading announcements...</p>
+  </div>
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section class="card hidden" id="adminCard">
+  <h2>Administrator Dashboard</h2>
+  <p class="muted">Official DJ OLATUNS administration.</p>
+
+  <div class="notice" id="adminStats">Loading dashboard...</div>
+
+  <h3>Publish Announcement</h3>
+  <input id="announcementTitle" placeholder="Announcement title">
+  <textarea id="announcementMessage" rows="4"
+    placeholder="Write your announcement"></textarea>
+
+  <button id="publishBtn" type="button">Publish Announcement</button>
+  <p id="adminMessage" class="muted status"></p>
+</section>
+
+<section class="card">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <h3>What is the DJ OLATUNS Members Club?</h3>
+    <p>It is the official online membership community where supporters can register, access their accounts and receive official updates.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How much does membership cost?</h3>
+    <p>The listed membership price is ₦1,000 per month. Payment activation is still being prepared.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Can I create an account now?</h3>
+    <p>Yes. Register using your email address and a password of at least eight characters.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Does registration activate paid membership?</h3>
+    <p>No. Paid membership activation will require the official payment system once available.</p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Need Help?</h2>
+  <p>For membership questions and account assistance, contact DJ OLATUNS.</p>
+  <a class="gold-link" href="https://wa.me/2348103327836" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  <p class="muted">
+    Official website:
+    <a href="https://djolatuns.github.io/">djolatuns.github.io</a>
+  </p>
+</section>
+
+<p class="muted" style="text-align:center">
+  <a href="https://djolatuns.github.io/">Back to DJ OLATUNS Official Website</a>
+</p>
 
 </main>
 
@@ -622,19 +397,21 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+// VERIFIED SUPABASE PROJECT CONFIGURATION
 const SUPABASE_URL =
   "https://tiqracqtgggoctyvtuqo.supabase.co";
 
 const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXAiLCJyZWYiOiJ0aXJhY3F0Z2dnb2N0eXZ0dXFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDM0MzgsImV4cCI6MjEwOTAxOTQzOH0.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
+  "sb_publishable_9UYttF-UC-2xgb6KBYvLQ_4rCob3LO";
 
 const $ = id => document.getElementById(id);
 
 let db = null;
 let announcementChannel = null;
 
-function showMessage(id, text) {
-  $(id).textContent = text;
+function showMessage(id, message) {
+  const element = $(id);
+  if (element) element.textContent = message;
 }
 
 async function loadAnnouncements() {
@@ -648,14 +425,13 @@ async function loadAnnouncements() {
   area.replaceChildren();
 
   if (error) {
-    area.textContent =
-      "Announcements are temporarily unavailable.";
+    area.textContent = "Announcements are temporarily unavailable.";
+    console.error(error);
     return;
   }
 
   if (!data || data.length === 0) {
-    area.textContent =
-      "No announcements yet. Check back soon.";
+    area.textContent = "No announcements yet. Check back soon.";
     return;
   }
 
@@ -664,13 +440,12 @@ async function loadAnnouncements() {
     box.className = "notice";
 
     const title = document.createElement("h3");
-    title.className = "gold";
     title.textContent = item.title || "DJ OLATUNS Update";
 
-    const body = document.createElement("p");
-    body.textContent = item.message || "";
+    const message = document.createElement("p");
+    message.textContent = item.message || "";
 
-    box.append(title, body);
+    box.append(title, message);
     area.append(box);
   });
 }
@@ -682,15 +457,11 @@ function watchAnnouncements() {
 
   announcementChannel = db
     .channel("public-announcements")
-    .on(
-      "postgres_changes",
-      {
-        event: "*",
-        schema: "public",
-        table: "site_notifications"
-      },
-      loadAnnouncements
-    )
+    .on("postgres_changes", {
+      event: "*",
+      schema: "public",
+      table: "site_notifications"
+    }, loadAnnouncements)
     .subscribe();
 }
 
@@ -699,12 +470,9 @@ async function loadAccount(user) {
   $("accountCard").classList.remove("hidden");
 
   $("accountEmail").textContent =
-    "Signed in as: " + user.email;
+    "Signed in as: " + (user.email || "");
 
-  showMessage(
-    "membershipStatus",
-    "Checking your membership..."
-  );
+  showMessage("membershipStatus", "Checking your membership...");
 
   const { data: memberships, error } = await db
     .from("memberships")
@@ -750,22 +518,23 @@ async function loadAccount(user) {
 
 async function loadAdminStats() {
   const [members, events] = await Promise.all([
-    db
-      .from("memberships")
-      .select("*", { count: "exact", head: true }),
+    db.from("memberships").select("*", {
+      count: "exact",
+      head: true
+    }),
 
-    db
-      .from("admin_events")
-      .select("*", { count: "exact", head: true })
+    db.from("admin_events").select("*", {
+      count: "exact",
+      head: true
+    })
   ]);
 
   $("adminStats").textContent =
-    "Membership records: " +
-    (members.count ?? "Unavailable") +
-    " | Account events: " +
-    (events.count ?? "Unavailable");
+    "Membership records: " + (members.count ?? "Unavailable") +
+    " | Account events: " + (events.count ?? "Unavailable");
 }
 
+// CREATE ACCOUNT
 $("signupBtn").onclick = async () => {
   const email = $("email").value.trim();
   const password = $("password").value;
@@ -778,35 +547,43 @@ $("signupBtn").onclick = async () => {
     return;
   }
 
-  const { error } = await db.auth.signUp({
+  $("signupBtn").disabled = true;
+
+  const { data, error } = await db.auth.signUp({
     email,
     password
   });
+
+  $("signupBtn").disabled = false;
 
   showMessage(
     "authMessage",
     error
       ? error.message
-      : "Account request submitted. Check your email for confirmation if required."
+      : (data.session
+        ? "Account created successfully. You can now log in."
+        : "Registration submitted. Check your email for confirmation if required.")
   );
 };
 
+// LOGIN
 $("loginBtn").onclick = async () => {
   const email = $("email").value.trim();
   const password = $("password").value;
 
   if (!email || !password) {
-    showMessage(
-      "authMessage",
-      "Enter your email and password."
-    );
+    showMessage("authMessage", "Enter your email and password.");
     return;
   }
+
+  $("loginBtn").disabled = true;
 
   const { data, error } = await db.auth.signInWithPassword({
     email,
     password
   });
+
+  $("loginBtn").disabled = false;
 
   if (error) {
     showMessage("authMessage", error.message);
@@ -814,10 +591,10 @@ $("loginBtn").onclick = async () => {
   }
 
   showMessage("authMessage", "Login successful.");
-
   await loadAccount(data.user);
 };
 
+// LOGOUT
 $("logoutBtn").onclick = async () => {
   const { error } = await db.auth.signOut();
 
@@ -833,23 +610,21 @@ $("logoutBtn").onclick = async () => {
   showMessage("authMessage", "You have logged out.");
 };
 
+// PUBLISH ANNOUNCEMENT
 $("publishBtn").onclick = async () => {
   const title = $("announcementTitle").value.trim();
-  const body = $("announcementMessage").value.trim();
+  const message = $("announcementMessage").value.trim();
 
-  if (!title || !body) {
-    showMessage(
-      "adminMessage",
-      "Enter both a title and announcement."
-    );
+  if (!title || !message) {
+    showMessage("adminMessage", "Enter both a title and announcement.");
     return;
   }
 
   const { error } = await db
     .from("site_notifications")
     .insert({
-      title: title,
-      message: body,
+      title,
+      message,
       is_published: true
     });
 
@@ -858,10 +633,7 @@ $("publishBtn").onclick = async () => {
     return;
   }
 
-  showMessage(
-    "adminMessage",
-    "Announcement published successfully."
-  );
+  showMessage("adminMessage", "Announcement published successfully.");
 
   $("announcementTitle").value = "";
   $("announcementMessage").value = "";
@@ -869,6 +641,7 @@ $("publishBtn").onclick = async () => {
   await loadAnnouncements();
 };
 
+// START PORTAL
 async function startPortal() {
   if (!window.supabase) {
     showMessage(
@@ -898,7 +671,13 @@ async function startPortal() {
   }
 }
 
-startPortal();
+startPortal().catch(error => {
+  console.error("Portal startup error:", error);
+  showMessage(
+    "authMessage",
+    "The portal could not start. Refresh and try again."
+  );
+});
 </script>
 
 </body>
