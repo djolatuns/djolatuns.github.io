@@ -1,278 +1,944 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
+<meta name="description" content="Official DJ OLATUNS administration dashboard">
 <title>DJ OLATUNS | Admin Dashboard</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
-header{text-align:center;padding:28px 15px;background:#111;border-bottom:1px solid #d9b45b}
-h1,h2,h3{color:#d9b45b}
-main{max-width:950px;margin:25px auto;padding:15px}
-.card{background:#151515;border:1px solid #51452f;border-radius:12px;padding:18px;margin-bottom:18px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
-.stat{background:#080808;padding:16px;border-radius:9px}
-.stat strong{display:block;font-size:25px;color:#d9b45b;margin-top:8px}
-input{width:100%;padding:13px;margin:8px 0;background:#080808;color:white;border:1px solid #51452f;border-radius:7px}
-button{padding:12px 17px;background:#d9b45b;color:#111;border:0;border-radius:7px;font-weight:bold;margin:5px 3px;cursor:pointer}
-button:disabled{opacity:.6}
-.hidden{display:none!important}
-.muted{color:#aaa;font-size:14px;line-height:1.5}
-.status{color:#d9b45b;font-weight:bold}
-table{width:100%;border-collapse:collapse}
-td,th{text-align:left;padding:10px;border-bottom:1px solid #393024}
-.table-wrap{overflow-x:auto}
-a{color:#d9b45b}
+:root {
+  --gold:#d9b45b;
+  --gold-dark:#80652e;
+  --bg:#080808;
+  --panel:#151515;
+  --muted:#aaa;
+  --border:#393024;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+header {
+  text-align:center;
+  padding:28px 15px;
+  background:#111;
+  border-bottom:1px solid var(--gold);
+}
+header h1 {
+  color:var(--gold);
+  letter-spacing:4px;
+  margin:0;
+  font-size:29px;
+}
+header p { color:#bbb; margin-bottom:0; }
+main {
+  max-width:1150px;
+  margin:25px auto;
+  padding:15px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:19px;
+  margin-bottom:18px;
+}
+h2,h3 { color:var(--gold); }
+input,textarea,select {
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  background:#080808;
+  color:white;
+  border:1px solid #51452f;
+  border-radius:7px;
+  font-size:15px;
+}
+textarea { resize:vertical; }
+button {
+  padding:12px 16px;
+  background:var(--gold);
+  color:#111;
+  border:0;
+  border-radius:7px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:5px 4px 5px 0;
+}
+button.secondary {
+  background:#333;
+  color:white;
+}
+button.danger {
+  background:#8b2929;
+  color:white;
+}
+button:disabled {
+  opacity:.5;
+  cursor:not-allowed;
+}
+.hidden { display:none!important; }
+.muted {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+.status { color:var(--gold); }
+.stats {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:12px;
+}
+.stat {
+  background:#090909;
+  border:1px solid #302719;
+  border-radius:9px;
+  padding:16px;
+  color:#bbb;
+  font-size:13px;
+}
+.stat strong {
+  display:block;
+  color:var(--gold);
+  font-size:27px;
+  margin-top:9px;
+}
+.table-wrap {
+  overflow-x:auto;
+  width:100%;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+th,td {
+  text-align:left;
+  padding:12px 9px;
+  border-bottom:1px solid #393024;
+  font-size:14px;
+}
+th { color:var(--gold); }
+a { color:var(--gold); }
+.notice {
+  background:#211c11;
+  border-left:3px solid var(--gold);
+  padding:13px;
+  margin:10px 0;
+  border-radius:5px;
+}
+.pill {
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#292318;
+  color:var(--gold);
+  font-size:12px;
+}
+.actions { white-space:nowrap; }
+footer {
+  text-align:center;
+  color:#777;
+  padding:25px;
+  font-size:13px;
+}
+#message,#dashboardMessage,#announcementMessageStatus {
+  overflow-wrap:anywhere;
+}
+@media(max-width:600px) {
+  header h1 { font-size:23px; }
+  main { padding:10px; }
+  .card { padding:14px; }
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>DJ OLATUNS</h1>
-<p>OFFICIAL ADMINISTRATION PANEL</p>
+  <h1>DJ OLATUNS</h1>
+  <p>OFFICIAL ADMINISTRATION PANEL</p>
+  <p class="muted">UNDEFEATABLE • MEMBERS CLUB MANAGEMENT</p>
 </header>
 
 <main>
+
+<!-- ADMIN LOGIN -->
 <section class="card" id="login">
-<h2>Administrator Login</h2>
-<input id="email" type="email" placeholder="Administrator email" autocomplete="username">
-<input id="password" type="password" placeholder="Password" autocomplete="current-password">
-<button id="loginBtn" type="button">Log In</button>
-<p id="message" class="muted">Preparing secure login...</p>
+  <h2>Administrator Login</h2>
+  <p class="muted">Sign in with your authorised administrator account.</p>
+
+  <input id="email" type="email"
+    placeholder="Administrator email"
+    autocomplete="username">
+
+  <input id="password" type="password"
+    placeholder="Password"
+    autocomplete="current-password">
+
+  <button id="loginBtn" type="button">Log In</button>
+
+  <p id="message" class="muted" aria-live="polite">
+    Preparing secure login...
+  </p>
 </section>
 
+<!-- ADMIN DASHBOARD -->
 <section id="dashboard" class="hidden">
-<div class="card">
-<h2>Dashboard Overview</h2>
-<p id="welcome" class="muted"></p>
-<div class="stats">
-<div class="stat">Registered profiles<strong id="profileCount">—</strong></div>
-<div class="stat">Membership records<strong id="membershipCount">—</strong></div>
-<div class="stat">Active memberships<strong id="activeCount">—</strong></div>
-<div class="stat">Pending memberships<strong id="pendingCount">—</strong></div>
-</div>
-<button id="refreshBtn" type="button">Refresh Dashboard</button>
-<button id="logoutBtn" type="button">Log Out</button>
-<p id="dashboardMessage" class="muted"></p>
-</div>
 
-<div class="card">
-<h2>Registered Members</h2>
-<input id="search" placeholder="Search by member name or user ID">
-<div class="table-wrap">
-<table>
-<thead><tr><th>Member</th><th>Joined</th><th>Membership</th></tr></thead>
-<tbody id="members"></tbody>
-</table>
-</div>
-<p class="muted">Member passwords and private authentication details are never displayed here.</p>
-</div>
+  <div class="card">
+    <h2>Dashboard Overview</h2>
+    <p id="welcome" class="muted"></p>
+
+    <div class="stats">
+      <div class="stat">
+        Total Members
+        <strong id="profileCount">—</strong>
+      </div>
+
+      <div class="stat">
+        Membership Records
+        <strong id="membershipCount">—</strong>
+      </div>
+
+      <div class="stat">
+        Active Members
+        <strong id="activeCount">—</strong>
+      </div>
+
+      <div class="stat">
+        Pending Members
+        <strong id="pendingCount">—</strong>
+      </div>
+
+      <div class="stat">
+        Expired Memberships
+        <strong id="expiredCount">—</strong>
+      </div>
+    </div>
+
+    <button id="refreshBtn" type="button">Refresh Dashboard</button>
+    <button id="logoutBtn" class="secondary" type="button">Log Out</button>
+
+    <p id="dashboardMessage" class="muted" aria-live="polite"></p>
+  </div>
+
+  <!-- MEMBER MANAGEMENT -->
+  <div class="card">
+    <h2>Registered Members</h2>
+    <p class="muted">Search and inspect member records.</p>
+
+    <input id="search" type="search"
+      placeholder="Search by member name or user ID">
+
+    <select id="statusFilter">
+      <option value="all">All membership statuses</option>
+      <option value="Active">Active</option>
+      <option value="Pending">Pending</option>
+      <option value="Expired">Expired</option>
+      <option value="Inactive">Inactive</option>
+      <option value="No membership">No membership</option>
+    </select>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>User ID</th>
+            <th>Joined</th>
+            <th>Membership</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="members"></tbody>
+      </table>
+    </div>
+
+    <p class="muted">
+      Passwords and private authentication credentials are never displayed.
+    </p>
+
+    <div id="memberDetails" class="notice hidden"></div>
+  </div>
+
+  <!-- ANNOUNCEMENT MANAGEMENT -->
+  <div class="card">
+    <h2>Publish Announcement</h2>
+    <p class="muted">
+      Publish official updates for the DJ OLATUNS Members Portal.
+    </p>
+
+    <input id="announcementTitle"
+      maxlength="150"
+      placeholder="Announcement title">
+
+    <textarea id="announcementBody"
+      rows="5"
+      maxlength="5000"
+      placeholder="Write your announcement here..."></textarea>
+
+    <button id="publishBtn" type="button">
+      Publish Announcement
+    </button>
+
+    <p id="announcementMessageStatus"
+      class="muted"
+      aria-live="polite"></p>
+  </div>
+
+  <div class="card">
+    <h2>Manage Announcements</h2>
+    <p class="muted">
+      View published announcements, unpublish them or delete them.
+    </p>
+    <div id="announcementList">
+      <p class="muted">Loading announcements...</p>
+    </div>
+  </div>
+
 </section>
 
-<p><a href="https://djolatuns.github.io/members.html">Back to Members Portal</a></p>
+<div class="card">
+  <h3>Quick Links</h3>
+  <p><a href="https://djolatuns.github.io/">Official Website</a></p>
+  <p><a href="https://djolatuns.github.io/members.html">Members Portal</a></p>
+  <p><a href="https://audiomack.com/dj_olatuns1">Audiomack</a></p>
+  <p><a href="https://wa.me/2348103327836">WhatsApp Support</a></p>
+</div>
+
 </main>
+
+<footer>
+  © 2026 DJ OLATUNS. All rights reserved.
+</footer>
 
 <script>
 "use strict";
 
-const SUPABASE_URL="https://tiqracqtgggoctyvtuqo.supabase.co";
+/* SUPABASE CONNECTION */
+const SUPABASE_URL =
+  "https://tiqracqtgggoctyvtuqo.supabase.co";
 
-/* Original public Supabase anon key */
-const SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpcXJhY3F0Z2dnb2N0eXZ0dXFvIiwiaWF0IjoxNzkzNDQzNDM4LCJleHAiOjIxMDkwMTk0Mzh9.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
+const SUPABASE_KEY =
+  "sb_publishable_9UYttF-UC-2xgb6KBYvLQ";
 
-const $=id=>document.getElementById(id);
-let db=null;
-let allMembers=[];
+const $ = id => document.getElementById(id);
 
-function loadSupabaseLibrary(){
-  if(window.supabase?.createClient)return Promise.resolve();
+let db = null;
+let currentUser = null;
+let allMembers = [];
+let allMemberships = [];
+let allAnnouncements = [];
+let announcementChannel = null;
 
-  return new Promise((resolve,reject)=>{
-    const script=document.createElement("script");
-    script.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-    script.onload=()=>{
-      if(window.supabase?.createClient)resolve();
-      else reject(new Error("Supabase library did not initialise."));
-    };
-    script.onerror=()=>{
-      const backup=document.createElement("script");
-      backup.src="https://unpkg.com/@supabase/supabase-js@2";
-      backup.onload=()=>{
-        if(window.supabase?.createClient)resolve();
-        else reject(new Error("Supabase library is unavailable."));
+/* LOAD SUPABASE */
+function loadSupabaseLibrary() {
+  if (window.supabase?.createClient) {
+    return Promise.resolve();
+  }
+
+  return new Promise((resolve,reject) => {
+    const sources = [
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
+      "https://unpkg.com/@supabase/supabase-js@2"
+    ];
+
+    let index = 0;
+
+    function tryNext() {
+      if (window.supabase?.createClient) {
+        resolve();
+        return;
+      }
+
+      if (index >= sources.length) {
+        reject(new Error(
+          "Could not load Supabase. Check your internet connection."
+        ));
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = sources[index++];
+
+      script.onload = () => {
+        if (window.supabase?.createClient) {
+          resolve();
+        } else {
+          tryNext();
+        }
       };
-      backup.onerror=()=>reject(new Error("Could not load the login service. Check your internet connection."));
-      document.head.appendChild(backup);
-    };
-    document.head.appendChild(script);
+
+      script.onerror = tryNext;
+      document.head.appendChild(script);
+    }
+
+    tryNext();
   });
 }
 
-async function setupDatabase(){
+async function initialise() {
   await loadSupabaseLibrary();
-  db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth: {
+        autoRefreshToken:true,
+        persistSession:true,
+        detectSessionInUrl:true
+      }
+    }
+  );
+
+  const {data,error} = await db.auth.getSession();
+  if (error) throw error;
+
+  if (data.session) {
+    await openDashboard(data.session.user);
+  } else {
+    $("message").textContent = "Login system ready.";
+  }
+
+  db.auth.onAuthStateChange((event,session) => {
+    if (event === "SIGNED_OUT") {
+      showLogin("You have logged out.");
+    }
+  });
 }
 
-async function verifyAdmin(user){
-  const {data,error}=await db
+/* ADMIN AUTHORISATION */
+async function verifyAdmin(user) {
+  const {data,error} = await db
     .from("admin_users")
     .select("user_id")
     .eq("user_id",user.id)
     .maybeSingle();
 
-  if(error)throw new Error("Administrator check failed: "+error.message);
-  if(!data)throw new Error("This account is not authorised as an administrator.");
+  if (error) {
+    throw new Error("Administrator check failed: " + error.message);
+  }
+
+  if (!data) {
+    throw new Error(
+      "This account is not authorised as an administrator."
+    );
+  }
 }
 
-async function loadDashboard(){
-  $("dashboardMessage").textContent="Loading member records...";
+/* LOGIN */
+async function login() {
+  const button = $("loginBtn");
+  button.disabled = true;
 
-  const [profiles,memberships]=await Promise.all([
+  try {
+    if (!db) await initialiseDatabaseOnly();
+
+    const email = $("email").value.trim();
+    const password = $("password").value;
+
+    if (!email || !password) {
+      throw new Error("Enter your email and password.");
+    }
+
+    $("message").textContent = "Signing in...";
+
+    const {data,error} = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+
+    await openDashboard(data.user);
+
+  } catch(error) {
+    $("message").textContent =
+      error.message || "Login failed.";
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function initialiseDatabaseOnly() {
+  await loadSupabaseLibrary();
+
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+      auth: {
+        autoRefreshToken:true,
+        persistSession:true,
+        detectSessionInUrl:true
+      }
+    }
+  );
+}
+
+/* OPEN DASHBOARD */
+async function openDashboard(user) {
+  await verifyAdmin(user);
+
+  currentUser = user;
+
+  $("login").classList.add("hidden");
+  $("dashboard").classList.remove("hidden");
+
+  $("welcome").textContent =
+    "Administrator account: " + (user.email || "Authorised administrator");
+
+  $("dashboardMessage").textContent =
+    "Loading dashboard information...";
+
+  await loadDashboard();
+  await loadAnnouncements();
+  watchAnnouncements();
+}
+
+/* LOAD MEMBERS AND MEMBERSHIPS */
+async function loadDashboard() {
+  $("dashboardMessage").textContent =
+    "Loading member records...";
+
+  const [profilesResult,membershipsResult] = await Promise.all([
     db.from("profiles")
       .select("id,display_name,created_at")
       .order("created_at",{ascending:false}),
+
     db.from("memberships")
-      .select("user_id,status,starts_at,ends_at,created_at")
+      .select("user_id,status,plan_name,amount_kobo,currency,starts_at,ends_at,created_at")
   ]);
 
-  if(profiles.error)throw new Error("Profiles: "+profiles.error.message);
-  if(memberships.error)throw new Error("Memberships: "+memberships.error.message);
-
-  allMembers=profiles.data.map(profile=>{
-    const records=memberships.data.filter(item=>item.user_id===profile.id);
-    const active=records.some(item=>
-      item.status==="active"&&(!item.ends_at||new Date(item.ends_at)>new Date())
+  if (profilesResult.error) {
+    throw new Error(
+      "Could not load profiles: " + profilesResult.error.message
     );
-    const pending=records.some(item=>item.status==="pending");
+  }
+
+  if (membershipsResult.error) {
+    throw new Error(
+      "Could not load memberships: " + membershipsResult.error.message
+    );
+  }
+
+  allMemberships = membershipsResult.data || [];
+
+  const now = new Date();
+
+  allMembers = (profilesResult.data || []).map(profile => {
+    const records = allMemberships.filter(
+      item => item.user_id === profile.id
+    );
+
+    const active = records.some(item =>
+      item.status === "active" &&
+      (!item.ends_at || new Date(item.ends_at) > now)
+    );
+
+    const pending = records.some(
+      item => item.status === "pending"
+    );
+
+    const expired = records.some(item =>
+      item.status === "active" &&
+      item.ends_at &&
+      new Date(item.ends_at) <= now
+    );
+
+    let status = "No membership";
+
+    if (active) status = "Active";
+    else if (pending) status = "Pending";
+    else if (expired) status = "Expired";
+    else if (records.length) status = "Inactive";
 
     return {
       ...profile,
-      status:active?"Active":pending?"Pending":records.length?"Inactive":"No membership"
+      records,
+      status
     };
   });
 
-  $("profileCount").textContent=profiles.data.length;
-  $("membershipCount").textContent=memberships.data.length;
-  $("activeCount").textContent=memberships.data.filter(item=>
-    item.status==="active"&&(!item.ends_at||new Date(item.ends_at)>new Date())
-  ).length;
-  $("pendingCount").textContent=memberships.data.filter(item=>item.status==="pending").length;
+  $("profileCount").textContent = allMembers.length;
+  $("membershipCount").textContent = allMemberships.length;
+
+  $("activeCount").textContent =
+    allMemberships.filter(item =>
+      item.status === "active" &&
+      (!item.ends_at || new Date(item.ends_at) > now)
+    ).length;
+
+  $("pendingCount").textContent =
+    allMemberships.filter(item =>
+      item.status === "pending"
+    ).length;
+
+  $("expiredCount").textContent =
+    allMemberships.filter(item =>
+      item.status === "active" &&
+      item.ends_at &&
+      new Date(item.ends_at) <= now
+    ).length;
 
   renderMembers();
-  $("dashboardMessage").textContent="Dashboard updated successfully.";
+
+  $("dashboardMessage").textContent =
+    "Dashboard updated successfully.";
 }
 
-function renderMembers(){
-  const term=$("search").value.toLowerCase().trim();
-  const list=allMembers.filter(member=>
-    (member.display_name||"").toLowerCase().includes(term)||
-    member.id.toLowerCase().includes(term)
-  );
+/* MEMBER SEARCH AND FILTER */
+function renderMembers() {
+  const term = $("search").value.toLowerCase().trim();
+  const filter = $("statusFilter").value;
 
-  const body=$("members");
+  const filtered = allMembers.filter(member => {
+    const matchesSearch =
+      (member.display_name || "").toLowerCase().includes(term) ||
+      member.id.toLowerCase().includes(term);
+
+    const matchesStatus =
+      filter === "all" || member.status === filter;
+
+    return matchesSearch && matchesStatus;
+  });
+
+  const body = $("members");
   body.replaceChildren();
 
-  if(!list.length){
-    const row=document.createElement("tr");
-    const cell=document.createElement("td");
-    cell.colSpan=3;
-    cell.textContent="No matching members found.";
-    row.append(cell);
-    body.append(row);
+  if (!filtered.length) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 5;
+    cell.textContent = "No matching members found.";
+    row.appendChild(cell);
+    body.appendChild(row);
     return;
   }
 
-  list.forEach(member=>{
-    const row=document.createElement("tr");
-    const name=document.createElement("td");
-    name.textContent=member.display_name||"Member";
+  filtered.forEach(member => {
+    const row = document.createElement("tr");
 
-    const joined=document.createElement("td");
-    joined.textContent=member.created_at
-      ?new Date(member.created_at).toLocaleDateString()
-      :"—";
+    const name = document.createElement("td");
+    name.textContent = member.display_name || "Member";
 
-    const status=document.createElement("td");
-    status.textContent=member.status;
-    status.className="status";
+    const id = document.createElement("td");
+    id.textContent = member.id;
 
-    row.append(name,joined,status);
-    body.append(row);
+    const joined = document.createElement("td");
+    joined.textContent = member.created_at
+      ? new Date(member.created_at).toLocaleDateString()
+      : "—";
+
+    const status = document.createElement("td");
+    status.textContent = member.status;
+    status.className = "status";
+
+    const action = document.createElement("td");
+    const viewButton = document.createElement("button");
+    viewButton.textContent = "View";
+    viewButton.type = "button";
+    viewButton.addEventListener("click",() => showMemberDetails(member));
+
+    action.appendChild(viewButton);
+    row.append(name,id,joined,status,action);
+    body.appendChild(row);
   });
 }
 
-async function openDashboard(user){
-  await verifyAdmin(user);
-  $("login").classList.add("hidden");
-  $("dashboard").classList.remove("hidden");
-  $("welcome").textContent="Signed in as "+user.email;
-  await loadDashboard();
+/* MEMBER DETAILS */
+function showMemberDetails(member) {
+  const area = $("memberDetails");
+  area.replaceChildren();
+  area.classList.remove("hidden");
+
+  const heading = document.createElement("h3");
+  heading.textContent = member.display_name || "Member Details";
+
+  const id = document.createElement("p");
+  id.textContent = "User ID: " + member.id;
+
+  const joined = document.createElement("p");
+  joined.textContent = "Joined: " +
+    (member.created_at
+      ? new Date(member.created_at).toLocaleString()
+      : "Unknown");
+
+  const status = document.createElement("p");
+  status.textContent = "Membership status: " + member.status;
+
+  area.append(heading,id,joined,status);
+
+  if (!member.records.length) {
+    const empty = document.createElement("p");
+    empty.textContent = "No membership records.";
+    area.appendChild(empty);
+  }
+
+  member.records.forEach(record => {
+    const details = document.createElement("p");
+
+    const plan = record.plan_name || "Membership";
+    const end = record.ends_at
+      ? new Date(record.ends_at).toLocaleDateString()
+      : "Not specified";
+
+    details.textContent =
+      plan + " | " +
+      (record.status || "Unknown") +
+      " | Ends: " + end;
+
+    area.appendChild(details);
+  });
+
+  const close = document.createElement("button");
+  close.textContent = "Close Details";
+  close.className = "secondary";
+  close.addEventListener("click",() => {
+    area.classList.add("hidden");
+  });
+
+  area.appendChild(close);
 }
 
-$("loginBtn").addEventListener("click",async()=>{
-  const button=$("loginBtn");
-  button.disabled=true;
-  $("message").textContent="Connecting to secure login...";
+/* PUBLISH ANNOUNCEMENT */
+async function publishAnnouncement() {
+  const button = $("publishBtn");
+  button.disabled = true;
 
-  try{
-    if(!db)await setupDatabase();
+  try {
+    const title = $("announcementTitle").value.trim();
+    const message = $("announcementBody").value.trim();
 
-    $("message").textContent="Signing in...";
+    if (!title || !message) {
+      throw new Error("Enter an announcement title and message.");
+    }
 
-    const {data,error}=await db.auth.signInWithPassword({
-      email:$("email").value.trim(),
-      password:$("password").value
+    const {error} = await db
+      .from("site_notifications")
+      .insert({
+        title,
+        message,
+        is_published:true
+      });
+
+    if (error) throw error;
+
+    $("announcementTitle").value = "";
+    $("announcementBody").value = "";
+
+    $("announcementMessageStatus").textContent =
+      "Announcement published successfully.";
+
+    await loadAnnouncements();
+
+  } catch(error) {
+    $("announcementMessageStatus").textContent =
+      error.message || "Could not publish announcement.";
+  } finally {
+    button.disabled = false;
+  }
+}
+
+/* LOAD ANNOUNCEMENTS */
+async function loadAnnouncements() {
+  const {data,error} = await db
+    .from("site_notifications")
+    .select("*")
+    .order("created_at",{ascending:false});
+
+  if (error) {
+    $("announcementList").textContent =
+      "Could not load announcements: " + error.message;
+    return;
+  }
+
+  allAnnouncements = data || [];
+  renderAnnouncements();
+}
+
+/* ANNOUNCEMENT MANAGEMENT */
+function renderAnnouncements() {
+  const area = $("announcementList");
+  area.replaceChildren();
+
+  if (!allAnnouncements.length) {
+    area.textContent = "No announcements have been created yet.";
+    return;
+  }
+
+  allAnnouncements.forEach(item => {
+    const box = document.createElement("div");
+    box.className = "notice";
+
+    const title = document.createElement("h3");
+    title.textContent = item.title || "DJ OLATUNS Update";
+
+    const message = document.createElement("p");
+    message.textContent = item.message || "";
+
+    const date = document.createElement("p");
+    date.className = "muted";
+    date.textContent = item.created_at
+      ? new Date(item.created_at).toLocaleString()
+      : "";
+
+    const status = document.createElement("span");
+    status.className = "pill";
+    status.textContent = item.is_published
+      ? "Published"
+      : "Unpublished";
+
+    const toggle = document.createElement("button");
+    toggle.className = "secondary";
+    toggle.type = "button";
+    toggle.textContent = item.is_published
+      ? "Unpublish"
+      : "Publish";
+
+    toggle.addEventListener("click",() => {
+      updateAnnouncement(item.id,!item.is_published);
     });
 
-    if(error)throw error;
-    await openDashboard(data.user);
+    const remove = document.createElement("button");
+    remove.className = "danger";
+    remove.type = "button";
+    remove.textContent = "Delete";
 
-  }catch(error){
-    $("message").textContent=error.message||"Login failed. Please try again.";
-  }finally{
-    button.disabled=false;
+    remove.addEventListener("click",() => {
+      deleteAnnouncement(item.id);
+    });
+
+    box.append(title,message,date,status,toggle,remove);
+    area.appendChild(box);
+  });
+}
+
+/* PUBLISH OR UNPUBLISH */
+async function updateAnnouncement(id,published) {
+  if (!confirm(
+    published
+      ? "Publish this announcement?"
+      : "Unpublish this announcement?"
+  )) return;
+
+  const {error} = await db
+    .from("site_notifications")
+    .update({is_published:published})
+    .eq("id",id);
+
+  if (error) {
+    $("announcementMessageStatus").textContent = error.message;
+    return;
   }
+
+  $("announcementMessageStatus").textContent =
+    published ? "Announcement published." : "Announcement unpublished.";
+
+  await loadAnnouncements();
+}
+
+/* DELETE ANNOUNCEMENT */
+async function deleteAnnouncement(id) {
+  if (!confirm("Are you sure you want to delete this announcement?")) {
+    return;
+  }
+
+  const {error} = await db
+    .from("site_notifications")
+    .delete()
+    .eq("id",id);
+
+  if (error) {
+    $("announcementMessageStatus").textContent = error.message;
+    return;
+  }
+
+  $("announcementMessageStatus").textContent =
+    "Announcement deleted.";
+
+  await loadAnnouncements();
+}
+
+/* LIVE ANNOUNCEMENT UPDATES */
+function watchAnnouncements() {
+  if (announcementChannel) {
+    db.removeChannel(announcementChannel);
+  }
+
+  announcementChannel = db
+    .channel("admin-announcements")
+    .on(
+      "postgres_changes",
+      {
+        event:"*",
+        schema:"public",
+        table:"site_notifications"
+      },
+      () => loadAnnouncements()
+    )
+    .subscribe();
+}
+
+/* LOG OUT */
+async function logout() {
+  const {error} = await db.auth.signOut();
+
+  if (error) {
+    $("dashboardMessage").textContent = error.message;
+    return;
+  }
+
+  if (announcementChannel) {
+    await db.removeChannel(announcementChannel);
+    announcementChannel = null;
+  }
+
+  showLogin("You have logged out.");
+}
+
+function showLogin(message) {
+  currentUser = null;
+  $("dashboard").classList.add("hidden");
+  $("login").classList.remove("hidden");
+  $("password").value = "";
+  $("message").textContent = message;
+}
+
+/* BUTTON EVENTS */
+$("loginBtn").addEventListener("click",login);
+
+$("password").addEventListener("keydown",event => {
+  if (event.key === "Enter") login();
 });
 
-$("refreshBtn").addEventListener("click",async()=>{
-  try{
+$("refreshBtn").addEventListener("click",async() => {
+  try {
     await loadDashboard();
-  }catch(error){
-    $("dashboardMessage").textContent=error.message;
+    await loadAnnouncements();
+  } catch(error) {
+    $("dashboardMessage").textContent = error.message;
   }
 });
 
 $("search").addEventListener("input",renderMembers);
+$("statusFilter").addEventListener("change",renderMembers);
+$("publishBtn").addEventListener("click",publishAnnouncement);
+$("logoutBtn").addEventListener("click",logout);
 
-$("logoutBtn").addEventListener("click",async()=>{
-  try{
-    if(db)await db.auth.signOut();
-    $("dashboard").classList.add("hidden");
-    $("login").classList.remove("hidden");
-    $("password").value="";
-    $("message").textContent="You have logged out.";
-  }catch(error){
-    $("dashboardMessage").textContent=error.message;
-  }
+/* START */
+initialise().catch(error => {
+  $("message").textContent =
+    error.message || "Could not initialise the admin dashboard.";
 });
-
-(async()=>{
-  try{
-    await setupDatabase();
-    const {data,error}=await db.auth.getSession();
-    if(error)throw error;
-
-    if(data.session){
-      await openDashboard(data.session.user);
-    }else{
-      $("message").textContent="Login system ready.";
-    }
-  }catch(error){
-    $("message").textContent=error.message||"Could not initialise the admin page.";
-  }
-})();
 </script>
 
 </body>
