@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "dj-olatuns-pwa-v2";
+const CACHE_NAME = "dj-olatuns-pwa-v3";
 
 const APP_SHELL = [
   "/",
@@ -34,11 +34,26 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (new URL(event.request.url).origin !== self.location.origin) return;
 
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
+  // Always check the live site first for page navigations so installed PWAs
+  // do not keep showing an old homepage after a deployment.
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        })
+        .catch(async () => {
+          return (await caches.match(event.request)) || (await caches.match("/index.html"));
+        })
+    );
+    return;
+  }
 
-      return fetch(event.request);
-    })
+  event.respondWith(
+    caches.match(event.request).then((cached) => cached || fetch(event.request))
   );
 });
