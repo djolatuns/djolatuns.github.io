@@ -1,421 +1,155 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
-<meta name="description" content="Official DJ OLATUNS administration dashboard">
-<title>DJ OLATUNS | Admin Dashboard</title>
+<title>DJ OLATUNS | Admin</title>
 
 <style>
-:root {
-  --gold:#d9b45b;
-  --gold-dark:#80652e;
-  --bg:#080808;
-  --panel:#151515;
-  --muted:#aaa;
-  --border:#393024;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0;
-  background:var(--bg);
-  color:#fff;
-  font-family:Arial,sans-serif;
-}
-header {
-  text-align:center;
-  padding:28px 15px;
-  background:#111;
-  border-bottom:1px solid var(--gold);
-}
-header h1 {
-  color:var(--gold);
-  letter-spacing:4px;
-  margin:0;
-  font-size:29px;
-}
-header p { color:#bbb; margin-bottom:0; }
-main {
-  max-width:1150px;
-  margin:25px auto;
-  padding:15px;
-}
-.card {
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:19px;
-  margin-bottom:18px;
-}
-h2,h3 { color:var(--gold); }
-input,textarea,select {
-  width:100%;
-  padding:13px;
-  margin:7px 0;
-  background:#080808;
-  color:white;
-  border:1px solid #51452f;
-  border-radius:7px;
-  font-size:15px;
-}
-textarea { resize:vertical; }
-button {
-  padding:12px 16px;
-  background:var(--gold);
-  color:#111;
-  border:0;
-  border-radius:7px;
-  font-weight:bold;
-  cursor:pointer;
-  margin:5px 4px 5px 0;
-}
-button.secondary {
-  background:#333;
-  color:white;
-}
-button.danger {
-  background:#8b2929;
-  color:white;
-}
-button:disabled {
-  opacity:.5;
-  cursor:not-allowed;
-}
-.hidden { display:none!important; }
-.muted {
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.6;
-}
-.status { color:var(--gold); }
-.stats {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:12px;
-}
-.stat {
-  background:#090909;
-  border:1px solid #302719;
-  border-radius:9px;
-  padding:16px;
-  color:#bbb;
-  font-size:13px;
-}
-.stat strong {
-  display:block;
-  color:var(--gold);
-  font-size:27px;
-  margin-top:9px;
-}
-.table-wrap {
-  overflow-x:auto;
-  width:100%;
-}
-table {
-  width:100%;
-  border-collapse:collapse;
-  min-width:650px;
-}
-th,td {
-  text-align:left;
-  padding:12px 9px;
-  border-bottom:1px solid #393024;
-  font-size:14px;
-}
-th { color:var(--gold); }
-a { color:var(--gold); }
-.notice {
-  background:#211c11;
-  border-left:3px solid var(--gold);
-  padding:13px;
-  margin:10px 0;
-  border-radius:5px;
-}
-.pill {
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:#292318;
-  color:var(--gold);
-  font-size:12px;
-}
-.actions { white-space:nowrap; }
-footer {
-  text-align:center;
-  color:#777;
-  padding:25px;
-  font-size:13px;
-}
-#message,#dashboardMessage,#announcementMessageStatus {
-  overflow-wrap:anywhere;
-}
-@media(max-width:600px) {
-  header h1 { font-size:23px; }
-  main { padding:10px; }
-  .card { padding:14px; }
-}
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:white;font-family:Arial,sans-serif}
+header{text-align:center;background:#111;padding:30px 15px;border-bottom:1px solid #d9b45b}
+h1,h2{color:#d9b45b}
+header h1{letter-spacing:4px}
+main{max-width:950px;margin:25px auto;padding:15px}
+.card{background:#151515;border:1px solid #51452f;border-radius:12px;padding:20px;margin-bottom:18px}
+input{width:100%;padding:14px;margin:8px 0;background:#080808;color:white;border:1px solid #51452f;border-radius:7px;font-size:16px}
+button{padding:13px 18px;background:#d9b45b;color:#111;border:0;border-radius:7px;font-weight:bold;margin:5px 3px;cursor:pointer}
+button:disabled{opacity:.5}
+.secondary{background:#333;color:white}
+.hidden{display:none!important}
+.muted{color:#aaa;font-size:14px;line-height:1.6}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.stat{background:#080808;padding:15px;border-radius:8px;color:#aaa}
+.stat strong{display:block;color:#d9b45b;font-size:26px;margin-top:8px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:500px}
+td,th{text-align:left;padding:11px;border-bottom:1px solid #393024}
+th{color:#d9b45b}
+a{color:#d9b45b}
+.notice{padding:12px;background:#252014;border-radius:8px;margin:10px 0}
 </style>
 </head>
 
 <body>
-
 <header>
-  <h1>DJ OLATUNS</h1>
-  <p>OFFICIAL ADMINISTRATION PANEL</p>
-  <p class="muted">UNDEFEATABLE • MEMBERS CLUB MANAGEMENT</p>
+<h1>DJ OLATUNS</h1>
+<p>OFFICIAL ADMINISTRATION PANEL</p>
 </header>
 
 <main>
 
-<!-- ADMIN LOGIN -->
 <section class="card" id="login">
-  <h2>Administrator Login</h2>
-  <p class="muted">Sign in with your authorised administrator account.</p>
+<h2>Administrator Login</h2>
+<p class="muted">Sign in using your authorised admin email and password.</p>
 
-  <input id="email" type="email"
-    placeholder="Administrator email"
-    autocomplete="username">
+<form id="loginForm">
+<input id="email" type="email" placeholder="Administrator email" autocomplete="username" required>
+<input id="password" type="password" placeholder="Password" autocomplete="current-password" required>
+<button id="loginBtn" type="submit">Log In</button>
+</form>
 
-  <input id="password" type="password"
-    placeholder="Password"
-    autocomplete="current-password">
-
-  <button id="loginBtn" type="button">Log In</button>
-
-  <p id="message" class="muted" aria-live="polite">
-    Preparing secure login...
-  </p>
+<p id="message" class="muted" aria-live="polite">Connecting to login service...</p>
 </section>
 
-<!-- ADMIN DASHBOARD -->
 <section id="dashboard" class="hidden">
 
-  <div class="card">
-    <h2>Dashboard Overview</h2>
-    <p id="welcome" class="muted"></p>
+<div class="card">
+<h2>Welcome, Administrator</h2>
+<p id="adminEmail" class="muted"></p>
 
-    <div class="stats">
-      <div class="stat">
-        Total Members
-        <strong id="profileCount">—</strong>
-      </div>
+<div class="stats">
+<div class="stat">Total Members<strong id="profileCount">—</strong></div>
+<div class="stat">Membership Records<strong id="membershipCount">—</strong></div>
+<div class="stat">Active Memberships<strong id="activeCount">—</strong></div>
+<div class="stat">Pending Memberships<strong id="pendingCount">—</strong></div>
+</div>
 
-      <div class="stat">
-        Membership Records
-        <strong id="membershipCount">—</strong>
-      </div>
+<button id="refreshBtn">Refresh Dashboard</button>
+<button id="logoutBtn" class="secondary">Log Out</button>
+<p id="dashboardMessage" class="muted"></p>
+</div>
 
-      <div class="stat">
-        Active Members
-        <strong id="activeCount">—</strong>
-      </div>
+<div class="card">
+<h2>Registered Members</h2>
+<input id="search" type="search" placeholder="Search members by name or ID">
 
-      <div class="stat">
-        Pending Members
-        <strong id="pendingCount">—</strong>
-      </div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Name</th><th>User ID</th><th>Joined</th></tr>
+</thead>
+<tbody id="members"></tbody>
+</table>
+</div>
+</div>
 
-      <div class="stat">
-        Expired Memberships
-        <strong id="expiredCount">—</strong>
-      </div>
-    </div>
+<div class="card">
+<h2>Publish Announcement</h2>
+<input id="announcementTitle" placeholder="Announcement title">
+<input id="announcementBody" placeholder="Announcement message">
+<button id="publishBtn">Publish</button>
+<p id="announcementStatus" class="muted"></p>
+</div>
 
-    <button id="refreshBtn" type="button">Refresh Dashboard</button>
-    <button id="logoutBtn" class="secondary" type="button">Log Out</button>
-
-    <p id="dashboardMessage" class="muted" aria-live="polite"></p>
-  </div>
-
-  <!-- MEMBER MANAGEMENT -->
-  <div class="card">
-    <h2>Registered Members</h2>
-    <p class="muted">Search and inspect member records.</p>
-
-    <input id="search" type="search"
-      placeholder="Search by member name or user ID">
-
-    <select id="statusFilter">
-      <option value="all">All membership statuses</option>
-      <option value="Active">Active</option>
-      <option value="Pending">Pending</option>
-      <option value="Expired">Expired</option>
-      <option value="Inactive">Inactive</option>
-      <option value="No membership">No membership</option>
-    </select>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Member</th>
-            <th>User ID</th>
-            <th>Joined</th>
-            <th>Membership</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody id="members"></tbody>
-      </table>
-    </div>
-
-    <p class="muted">
-      Passwords and private authentication credentials are never displayed.
-    </p>
-
-    <div id="memberDetails" class="notice hidden"></div>
-  </div>
-
-  <!-- ANNOUNCEMENT MANAGEMENT -->
-  <div class="card">
-    <h2>Publish Announcement</h2>
-    <p class="muted">
-      Publish official updates for the DJ OLATUNS Members Portal.
-    </p>
-
-    <input id="announcementTitle"
-      maxlength="150"
-      placeholder="Announcement title">
-
-    <textarea id="announcementBody"
-      rows="5"
-      maxlength="5000"
-      placeholder="Write your announcement here..."></textarea>
-
-    <button id="publishBtn" type="button">
-      Publish Announcement
-    </button>
-
-    <p id="announcementMessageStatus"
-      class="muted"
-      aria-live="polite"></p>
-  </div>
-
-  <div class="card">
-    <h2>Manage Announcements</h2>
-    <p class="muted">
-      View published announcements, unpublish them or delete them.
-    </p>
-    <div id="announcementList">
-      <p class="muted">Loading announcements...</p>
-    </div>
-  </div>
+<div class="card">
+<h2>Published Announcements</h2>
+<div id="announcements"></div>
+</div>
 
 </section>
 
-<div class="card">
-  <h3>Quick Links</h3>
-  <p><a href="https://djolatuns.github.io/">Official Website</a></p>
-  <p><a href="https://djolatuns.github.io/members.html">Members Portal</a></p>
-  <p><a href="https://audiomack.com/dj_olatuns1">Audiomack</a></p>
-  <p><a href="https://wa.me/2348103327836">WhatsApp Support</a></p>
-</div>
+<p style="text-align:center">
+<a href="https://djolatuns.github.io/">Official Website</a> |
+<a href="https://djolatuns.github.io/members.html">Members Portal</a>
+</p>
 
 </main>
 
-<footer>
-  © 2026 DJ OLATUNS. All rights reserved.
-</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 "use strict";
 
-/* SUPABASE CONNECTION */
+/* YOUR EXISTING SUPABASE PROJECT */
 const SUPABASE_URL =
-  "https://tiqracqtgggoctyvtuqo.supabase.co";
+"https://tiqracqtgggoctyvtuqo.supabase.co";
 
+/* SAME CORRECT PUBLIC ANON KEY AS MEMBERS.HTML */
 const SUPABASE_KEY =
-  "sb_publishable_9UYttF-UC-2xgb6KBYvLQ";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpcXJhY3F0Z2dnb2N0eXZ0dXFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDM0MzgsImV4cCI6MjEwOTAxOTQzOH0.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
 
 const $ = id => document.getElementById(id);
+let db;
+let members = [];
 
-let db = null;
-let currentUser = null;
-let allMembers = [];
-let allMemberships = [];
-let allAnnouncements = [];
-let announcementChannel = null;
-
-/* LOAD SUPABASE */
-function loadSupabaseLibrary() {
-  if (window.supabase?.createClient) {
-    return Promise.resolve();
-  }
-
-  return new Promise((resolve,reject) => {
-    const sources = [
-      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
-      "https://unpkg.com/@supabase/supabase-js@2"
-    ];
-
-    let index = 0;
-
-    function tryNext() {
-      if (window.supabase?.createClient) {
-        resolve();
-        return;
-      }
-
-      if (index >= sources.length) {
-        reject(new Error(
-          "Could not load Supabase. Check your internet connection."
-        ));
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = sources[index++];
-
-      script.onload = () => {
-        if (window.supabase?.createClient) {
-          resolve();
-        } else {
-          tryNext();
-        }
-      };
-
-      script.onerror = tryNext;
-      document.head.appendChild(script);
-    }
-
-    tryNext();
-  });
+function showMessage(message) {
+  $("message").textContent = message;
 }
 
-async function initialise() {
-  await loadSupabaseLibrary();
+/* CONNECT TO SUPABASE */
+function initialise() {
+  if (!window.supabase || !window.supabase.createClient) {
+    throw new Error("Supabase library did not load. Check your internet.");
+  }
 
   db = window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-      auth: {
-        autoRefreshToken:true,
-        persistSession:true,
-        detectSessionInUrl:true
-      }
-    }
+    SUPABASE_KEY
   );
 
-  const {data,error} = await db.auth.getSession();
-  if (error) throw error;
+  showMessage("Login system ready.");
 
-  if (data.session) {
-    await openDashboard(data.session.user);
-  } else {
-    $("message").textContent = "Login system ready.";
-  }
-
-  db.auth.onAuthStateChange((event,session) => {
-    if (event === "SIGNED_OUT") {
-      showLogin("You have logged out.");
+  db.auth.getSession().then(({data,error}) => {
+    if (error) throw error;
+    if (data.session) {
+      openDashboard(data.session.user);
     }
-  });
+  }).catch(error => showMessage(error.message));
 }
 
-/* ADMIN AUTHORISATION */
+/* VERIFY ADMIN ACCOUNT */
 async function verifyAdmin(user) {
   const {data,error} = await db
     .from("admin_users")
@@ -424,32 +158,25 @@ async function verifyAdmin(user) {
     .maybeSingle();
 
   if (error) {
-    throw new Error("Administrator check failed: " + error.message);
+    throw new Error("Admin verification failed: " + error.message);
   }
 
   if (!data) {
-    throw new Error(
-      "This account is not authorised as an administrator."
-    );
+    throw new Error("Login successful, but this account is not registered as an administrator.");
   }
 }
 
 /* LOGIN */
-async function login() {
+$("loginForm").addEventListener("submit",async event => {
+  event.preventDefault();
+
   const button = $("loginBtn");
   button.disabled = true;
+  showMessage("Signing in...");
 
   try {
-    if (!db) await initialiseDatabaseOnly();
-
     const email = $("email").value.trim();
     const password = $("password").value;
-
-    if (!email || !password) {
-      throw new Error("Enter your email and password.");
-    }
-
-    $("message").textContent = "Signing in...";
 
     const {data,error} = await db.auth.signInWithPassword({
       email,
@@ -458,56 +185,32 @@ async function login() {
 
     if (error) throw error;
 
+    showMessage("Password accepted. Checking administrator access...");
+
     await openDashboard(data.user);
 
   } catch(error) {
-    $("message").textContent =
-      error.message || "Login failed.";
+    showMessage(error.message || "Login failed.");
   } finally {
     button.disabled = false;
   }
-}
+});
 
-async function initialiseDatabaseOnly() {
-  await loadSupabaseLibrary();
-
-  db = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-      auth: {
-        autoRefreshToken:true,
-        persistSession:true,
-        detectSessionInUrl:true
-      }
-    }
-  );
-}
-
-/* OPEN DASHBOARD */
+/* OPEN ADMIN DASHBOARD */
 async function openDashboard(user) {
   await verifyAdmin(user);
 
-  currentUser = user;
-
   $("login").classList.add("hidden");
   $("dashboard").classList.remove("hidden");
-
-  $("welcome").textContent =
-    "Administrator account: " + (user.email || "Authorised administrator");
-
-  $("dashboardMessage").textContent =
-    "Loading dashboard information...";
+  $("adminEmail").textContent = "Signed in as " + user.email;
 
   await loadDashboard();
   await loadAnnouncements();
-  watchAnnouncements();
 }
 
-/* LOAD MEMBERS AND MEMBERSHIPS */
+/* LOAD DASHBOARD DATA */
 async function loadDashboard() {
-  $("dashboardMessage").textContent =
-    "Loading member records...";
+  $("dashboardMessage").textContent = "Loading records...";
 
   const [profilesResult,membershipsResult] = await Promise.all([
     db.from("profiles")
@@ -515,110 +218,42 @@ async function loadDashboard() {
       .order("created_at",{ascending:false}),
 
     db.from("memberships")
-      .select("user_id,status,plan_name,amount_kobo,currency,starts_at,ends_at,created_at")
+      .select("user_id,status")
   ]);
 
-  if (profilesResult.error) {
-    throw new Error(
-      "Could not load profiles: " + profilesResult.error.message
-    );
-  }
+  if (profilesResult.error) throw profilesResult.error;
+  if (membershipsResult.error) throw membershipsResult.error;
 
-  if (membershipsResult.error) {
-    throw new Error(
-      "Could not load memberships: " + membershipsResult.error.message
-    );
-  }
+  members = profilesResult.data || [];
+  const memberships = membershipsResult.data || [];
 
-  allMemberships = membershipsResult.data || [];
-
-  const now = new Date();
-
-  allMembers = (profilesResult.data || []).map(profile => {
-    const records = allMemberships.filter(
-      item => item.user_id === profile.id
-    );
-
-    const active = records.some(item =>
-      item.status === "active" &&
-      (!item.ends_at || new Date(item.ends_at) > now)
-    );
-
-    const pending = records.some(
-      item => item.status === "pending"
-    );
-
-    const expired = records.some(item =>
-      item.status === "active" &&
-      item.ends_at &&
-      new Date(item.ends_at) <= now
-    );
-
-    let status = "No membership";
-
-    if (active) status = "Active";
-    else if (pending) status = "Pending";
-    else if (expired) status = "Expired";
-    else if (records.length) status = "Inactive";
-
-    return {
-      ...profile,
-      records,
-      status
-    };
-  });
-
-  $("profileCount").textContent = allMembers.length;
-  $("membershipCount").textContent = allMemberships.length;
-
+  $("profileCount").textContent = members.length;
+  $("membershipCount").textContent = memberships.length;
   $("activeCount").textContent =
-    allMemberships.filter(item =>
-      item.status === "active" &&
-      (!item.ends_at || new Date(item.ends_at) > now)
-    ).length;
-
+    memberships.filter(x => x.status === "active").length;
   $("pendingCount").textContent =
-    allMemberships.filter(item =>
-      item.status === "pending"
-    ).length;
-
-  $("expiredCount").textContent =
-    allMemberships.filter(item =>
-      item.status === "active" &&
-      item.ends_at &&
-      new Date(item.ends_at) <= now
-    ).length;
+    memberships.filter(x => x.status === "pending").length;
 
   renderMembers();
-
-  $("dashboardMessage").textContent =
-    "Dashboard updated successfully.";
+  $("dashboardMessage").textContent = "Dashboard loaded successfully.";
 }
 
-/* MEMBER SEARCH AND FILTER */
+/* DISPLAY MEMBERS */
 function renderMembers() {
   const term = $("search").value.toLowerCase().trim();
-  const filter = $("statusFilter").value;
-
-  const filtered = allMembers.filter(member => {
-    const matchesSearch =
-      (member.display_name || "").toLowerCase().includes(term) ||
-      member.id.toLowerCase().includes(term);
-
-    const matchesStatus =
-      filter === "all" || member.status === filter;
-
-    return matchesSearch && matchesStatus;
-  });
-
   const body = $("members");
   body.replaceChildren();
+
+  const filtered = members.filter(member =>
+    (member.display_name || "").toLowerCase().includes(term) ||
+    member.id.toLowerCase().includes(term)
+  );
 
   if (!filtered.length) {
     const row = document.createElement("tr");
     const cell = document.createElement("td");
-    cell.colSpan = 5;
-    cell.textContent = "No matching members found.";
+    cell.colSpan = 3;
+    cell.textContent = "No members found.";
     row.appendChild(cell);
     body.appendChild(row);
     return;
@@ -638,115 +273,42 @@ function renderMembers() {
       ? new Date(member.created_at).toLocaleDateString()
       : "—";
 
-    const status = document.createElement("td");
-    status.textContent = member.status;
-    status.className = "status";
-
-    const action = document.createElement("td");
-    const viewButton = document.createElement("button");
-    viewButton.textContent = "View";
-    viewButton.type = "button";
-    viewButton.addEventListener("click",() => showMemberDetails(member));
-
-    action.appendChild(viewButton);
-    row.append(name,id,joined,status,action);
+    row.append(name,id,joined);
     body.appendChild(row);
   });
 }
 
-/* MEMBER DETAILS */
-function showMemberDetails(member) {
-  const area = $("memberDetails");
-  area.replaceChildren();
-  area.classList.remove("hidden");
-
-  const heading = document.createElement("h3");
-  heading.textContent = member.display_name || "Member Details";
-
-  const id = document.createElement("p");
-  id.textContent = "User ID: " + member.id;
-
-  const joined = document.createElement("p");
-  joined.textContent = "Joined: " +
-    (member.created_at
-      ? new Date(member.created_at).toLocaleString()
-      : "Unknown");
-
-  const status = document.createElement("p");
-  status.textContent = "Membership status: " + member.status;
-
-  area.append(heading,id,joined,status);
-
-  if (!member.records.length) {
-    const empty = document.createElement("p");
-    empty.textContent = "No membership records.";
-    area.appendChild(empty);
-  }
-
-  member.records.forEach(record => {
-    const details = document.createElement("p");
-
-    const plan = record.plan_name || "Membership";
-    const end = record.ends_at
-      ? new Date(record.ends_at).toLocaleDateString()
-      : "Not specified";
-
-    details.textContent =
-      plan + " | " +
-      (record.status || "Unknown") +
-      " | Ends: " + end;
-
-    area.appendChild(details);
-  });
-
-  const close = document.createElement("button");
-  close.textContent = "Close Details";
-  close.className = "secondary";
-  close.addEventListener("click",() => {
-    area.classList.add("hidden");
-  });
-
-  area.appendChild(close);
-}
+$("search").addEventListener("input",renderMembers);
 
 /* PUBLISH ANNOUNCEMENT */
-async function publishAnnouncement() {
-  const button = $("publishBtn");
-  button.disabled = true;
+$("publishBtn").addEventListener("click",async () => {
+  const title = $("announcementTitle").value.trim();
+  const message = $("announcementBody").value.trim();
 
-  try {
-    const title = $("announcementTitle").value.trim();
-    const message = $("announcementBody").value.trim();
-
-    if (!title || !message) {
-      throw new Error("Enter an announcement title and message.");
-    }
-
-    const {error} = await db
-      .from("site_notifications")
-      .insert({
-        title,
-        message,
-        is_published:true
-      });
-
-    if (error) throw error;
-
-    $("announcementTitle").value = "";
-    $("announcementBody").value = "";
-
-    $("announcementMessageStatus").textContent =
-      "Announcement published successfully.";
-
-    await loadAnnouncements();
-
-  } catch(error) {
-    $("announcementMessageStatus").textContent =
-      error.message || "Could not publish announcement.";
-  } finally {
-    button.disabled = false;
+  if (!title || !message) {
+    $("announcementStatus").textContent = "Enter both fields.";
+    return;
   }
-}
+
+  const {error} = await db
+    .from("site_notifications")
+    .insert({
+      title,
+      message,
+      is_published:true
+    });
+
+  if (error) {
+    $("announcementStatus").textContent = error.message;
+    return;
+  }
+
+  $("announcementTitle").value = "";
+  $("announcementBody").value = "";
+  $("announcementStatus").textContent = "Announcement published.";
+
+  await loadAnnouncements();
+});
 
 /* LOAD ANNOUNCEMENTS */
 async function loadAnnouncements() {
@@ -755,172 +317,36 @@ async function loadAnnouncements() {
     .select("*")
     .order("created_at",{ascending:false});
 
-  if (error) {
-    $("announcementList").textContent =
-      "Could not load announcements: " + error.message;
-    return;
-  }
-
-  allAnnouncements = data || [];
-  renderAnnouncements();
-}
-
-/* ANNOUNCEMENT MANAGEMENT */
-function renderAnnouncements() {
-  const area = $("announcementList");
+  const area = $("announcements");
   area.replaceChildren();
 
-  if (!allAnnouncements.length) {
-    area.textContent = "No announcements have been created yet.";
+  if (error) {
+    area.textContent = error.message;
     return;
   }
 
-  allAnnouncements.forEach(item => {
+  if (!data.length) {
+    area.textContent = "No announcements yet.";
+    return;
+  }
+
+  data.forEach(item => {
     const box = document.createElement("div");
     box.className = "notice";
 
-    const title = document.createElement("h3");
-    title.textContent = item.title || "DJ OLATUNS Update";
+    const heading = document.createElement("h3");
+    heading.textContent = item.title || "Announcement";
 
-    const message = document.createElement("p");
-    message.textContent = item.message || "";
+    const body = document.createElement("p");
+    body.textContent = item.message || "";
 
-    const date = document.createElement("p");
-    date.className = "muted";
-    date.textContent = item.created_at
-      ? new Date(item.created_at).toLocaleString()
-      : "";
-
-    const status = document.createElement("span");
-    status.className = "pill";
-    status.textContent = item.is_published
-      ? "Published"
-      : "Unpublished";
-
-    const toggle = document.createElement("button");
-    toggle.className = "secondary";
-    toggle.type = "button";
-    toggle.textContent = item.is_published
-      ? "Unpublish"
-      : "Publish";
-
-    toggle.addEventListener("click",() => {
-      updateAnnouncement(item.id,!item.is_published);
-    });
-
-    const remove = document.createElement("button");
-    remove.className = "danger";
-    remove.type = "button";
-    remove.textContent = "Delete";
-
-    remove.addEventListener("click",() => {
-      deleteAnnouncement(item.id);
-    });
-
-    box.append(title,message,date,status,toggle,remove);
+    box.append(heading,body);
     area.appendChild(box);
   });
 }
 
-/* PUBLISH OR UNPUBLISH */
-async function updateAnnouncement(id,published) {
-  if (!confirm(
-    published
-      ? "Publish this announcement?"
-      : "Unpublish this announcement?"
-  )) return;
-
-  const {error} = await db
-    .from("site_notifications")
-    .update({is_published:published})
-    .eq("id",id);
-
-  if (error) {
-    $("announcementMessageStatus").textContent = error.message;
-    return;
-  }
-
-  $("announcementMessageStatus").textContent =
-    published ? "Announcement published." : "Announcement unpublished.";
-
-  await loadAnnouncements();
-}
-
-/* DELETE ANNOUNCEMENT */
-async function deleteAnnouncement(id) {
-  if (!confirm("Are you sure you want to delete this announcement?")) {
-    return;
-  }
-
-  const {error} = await db
-    .from("site_notifications")
-    .delete()
-    .eq("id",id);
-
-  if (error) {
-    $("announcementMessageStatus").textContent = error.message;
-    return;
-  }
-
-  $("announcementMessageStatus").textContent =
-    "Announcement deleted.";
-
-  await loadAnnouncements();
-}
-
-/* LIVE ANNOUNCEMENT UPDATES */
-function watchAnnouncements() {
-  if (announcementChannel) {
-    db.removeChannel(announcementChannel);
-  }
-
-  announcementChannel = db
-    .channel("admin-announcements")
-    .on(
-      "postgres_changes",
-      {
-        event:"*",
-        schema:"public",
-        table:"site_notifications"
-      },
-      () => loadAnnouncements()
-    )
-    .subscribe();
-}
-
-/* LOG OUT */
-async function logout() {
-  const {error} = await db.auth.signOut();
-
-  if (error) {
-    $("dashboardMessage").textContent = error.message;
-    return;
-  }
-
-  if (announcementChannel) {
-    await db.removeChannel(announcementChannel);
-    announcementChannel = null;
-  }
-
-  showLogin("You have logged out.");
-}
-
-function showLogin(message) {
-  currentUser = null;
-  $("dashboard").classList.add("hidden");
-  $("login").classList.remove("hidden");
-  $("password").value = "";
-  $("message").textContent = message;
-}
-
-/* BUTTON EVENTS */
-$("loginBtn").addEventListener("click",login);
-
-$("password").addEventListener("keydown",event => {
-  if (event.key === "Enter") login();
-});
-
-$("refreshBtn").addEventListener("click",async() => {
+/* REFRESH */
+$("refreshBtn").addEventListener("click",async () => {
   try {
     await loadDashboard();
     await loadAnnouncements();
@@ -929,17 +355,27 @@ $("refreshBtn").addEventListener("click",async() => {
   }
 });
 
-$("search").addEventListener("input",renderMembers);
-$("statusFilter").addEventListener("change",renderMembers);
-$("publishBtn").addEventListener("click",publishAnnouncement);
-$("logoutBtn").addEventListener("click",logout);
+/* LOG OUT */
+$("logoutBtn").addEventListener("click",async () => {
+  const {error} = await db.auth.signOut();
 
-/* START */
-initialise().catch(error => {
-  $("message").textContent =
-    error.message || "Could not initialise the admin dashboard.";
+  if (error) {
+    $("dashboardMessage").textContent = error.message;
+    return;
+  }
+
+  $("dashboard").classList.add("hidden");
+  $("login").classList.remove("hidden");
+  $("password").value = "";
+  showMessage("You have logged out.");
 });
-</script>
 
+/* START APPLICATION */
+try {
+  initialise();
+} catch(error) {
+  showMessage(error.message);
+}
+</script>
 </body>
 </html>
