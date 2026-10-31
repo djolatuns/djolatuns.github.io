@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en-NG">
 <head>
@@ -88,8 +89,13 @@
     .service span{display:block;color:var(--muted);font-size:12px}
     .socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
     .socials a{border:1px solid var(--line);padding:8px 12px;border-radius:10px;color:var(--gold2);font-size:13px}
+
+    /* Members portal section */
+    .members-card{border:1px solid #705728;border-radius:20px;background:linear-gradient(145deg,#211a0d,#11100e 70%);padding:18px}
+    .members-card p{color:var(--muted);font-size:14px;margin:10px 0 16px}
+
     footer{text-align:center;color:#807869;font-size:11px;padding:24px 0 8px}
-    .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#090909f2;border-top:1px solid #49381d;backdrop-filter:blur(18px)}
+    .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#090909f2;border-top:1px solid #49381d;backdrop-filter:blur(18px)}
     .bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#a69d8b;font-size:10px;font-weight:750;padding:4px 0}
     .bottomnav .ico{font-size:19px;line-height:1.2}
     .bottomnav a.active{color:var(--gold2)}
@@ -174,6 +180,26 @@
     </div>
   </section>
 
+  <!-- NEW: MEMBERS AND ADMIN PORTAL -->
+  <section class="section" id="members" aria-labelledby="members-heading">
+    <div class="sectionHead">
+      <div>
+        <h2 id="members-heading">OLATUNS <span>Members</span></h2>
+        <div class="sub">Your official DJ OLATUNS member area</div>
+      </div>
+    </div>
+
+    <div class="members-card">
+      <div class="eyebrow">Official community access</div>
+      <p>Join the DJ OLATUNS community, access your member account and receive official announcements.</p>
+
+      <div class="actions">
+        <a class="btn gold" href="/members.html">Open Member Portal ↗</a>
+        <a class="btn" href="/admin.html">Administrator Dashboard ↗</a>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="about" aria-labelledby="about-heading">
     <div class="sectionHead"><div><h2 id="about-heading">Meet <span>DJ OLATUNS</span></h2><div class="sub">Nigerian DJ · Mixtape curator</div></div></div>
     <div class="about">
@@ -189,6 +215,7 @@
   <a href="#mixtapes"><span class="ico" aria-hidden="true">♫</span>Mixtapes</a>
   <a href="#services"><span class="ico" aria-hidden="true">✦</span>Services</a>
   <a href="#contact"><span class="ico" aria-hidden="true">☏</span>Contact</a>
+  <a href="#members"><span class="ico" aria-hidden="true">♛</span>Members</a>
 </nav>
 
 <script>
@@ -228,5 +255,4 @@
   }));
 </script>
 </body>
-    </html>
-  
+</html>
