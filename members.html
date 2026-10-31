@@ -17,7 +17,6 @@
 
 <style>
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -77,9 +76,7 @@ main {
   margin-bottom: 20px;
 }
 
-h2, h3 {
-  color: #d9b45b;
-}
+h2, h3 { color: #d9b45b; }
 
 .muted {
   color: #aaa;
@@ -289,7 +286,6 @@ footer {
   </div>
 </section>
 
-<!-- MEMBER ACCOUNT -->
 <section class="card" id="member-account">
   <h2>Member Account</h2>
   <p class="muted">
@@ -312,7 +308,6 @@ footer {
   <p id="authMessage" class="muted status" aria-live="polite"></p>
 </section>
 
-<!-- ACCOUNT INFORMATION -->
 <section class="card hidden" id="accountCard">
   <h2>Your Account</h2>
   <p id="accountEmail" class="muted"></p>
@@ -324,7 +319,6 @@ footer {
   <button id="logoutBtn" class="secondary" type="button">Log Out</button>
 </section>
 
-<!-- ANNOUNCEMENTS -->
 <section class="card">
   <h2>Members' Announcements</h2>
   <p class="muted">Stay informed about official DJ OLATUNS updates.</p>
@@ -333,7 +327,6 @@ footer {
   </div>
 </section>
 
-<!-- ADMIN DASHBOARD -->
 <section class="card hidden" id="adminCard">
   <h2>Administrator Dashboard</h2>
   <p class="muted">Official DJ OLATUNS administration.</p>
@@ -397,12 +390,11 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-// VERIFIED SUPABASE PROJECT CONFIGURATION
 const SUPABASE_URL =
   "https://tiqracqtgggoctyvtuqo.supabase.co";
 
 const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpcXJhY3F0Z2dnb2N0eXZ0dXFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDM0MzgsImV4cCI6MjEwOTAxOTQzOH0.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpcXJhY3F0Z2dnb2N0eXZ0dXFvIiwiaWF0IjoxNzkzNDQzNDM4LCJleHAiOjIxMDkwMTk0Mzh9.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
 
 const $ = id => document.getElementById(id);
 
@@ -418,7 +410,7 @@ async function loadAnnouncements() {
   const { data, error } = await db
     .from("site_notifications")
     .select("*")
-    .eq("is_published", true)
+    .eq("published", true)
     .order("created_at", { ascending: false });
 
   const area = $("announcements");
@@ -534,7 +526,6 @@ async function loadAdminStats() {
     " | Account events: " + (events.count ?? "Unavailable");
 }
 
-// CREATE ACCOUNT
 $("signupBtn").onclick = async () => {
   const email = $("email").value.trim();
   const password = $("password").value;
@@ -566,7 +557,6 @@ $("signupBtn").onclick = async () => {
   );
 };
 
-// LOGIN
 $("loginBtn").onclick = async () => {
   const email = $("email").value.trim();
   const password = $("password").value;
@@ -594,7 +584,6 @@ $("loginBtn").onclick = async () => {
   await loadAccount(data.user);
 };
 
-// LOGOUT
 $("logoutBtn").onclick = async () => {
   const { error } = await db.auth.signOut();
 
@@ -610,7 +599,6 @@ $("logoutBtn").onclick = async () => {
   showMessage("authMessage", "You have logged out.");
 };
 
-// PUBLISH ANNOUNCEMENT
 $("publishBtn").onclick = async () => {
   const title = $("announcementTitle").value.trim();
   const message = $("announcementMessage").value.trim();
@@ -625,7 +613,7 @@ $("publishBtn").onclick = async () => {
     .insert({
       title,
       message,
-      is_published: true
+      published: true
     });
 
   if (error) {
@@ -641,7 +629,6 @@ $("publishBtn").onclick = async () => {
   await loadAnnouncements();
 };
 
-// START PORTAL
 async function startPortal() {
   if (!window.supabase) {
     showMessage(
