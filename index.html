@@ -1,34 +1,57 @@
-a<!doctype html>
-<html lang="en">
+<!doctype html>
+<html lang="en-NG">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080808">
-  <meta name="description" content="Official DJ OLATUNS website. Listen to New Wave 2026, discover Nigerian DJ mixtapes, follow updates and book DJ services.">
+  <meta name="description" content="DJ OLATUNS is a Nigerian DJ and mixtape curator from Lagos. Listen to New Wave 2026, Afrobeats and Amapiano mixes, explore releases and book DJ services.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://djolatuns.github.io/">
-  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DJ OLATUNS">
-  <meta property="og:title" content="DJ OLATUNS | Official Nigerian DJ Website">
-  <meta property="og:description" content="Listen to New Wave 2026 and more DJ OLATUNS mixtapes. Feel the vibe. Live the music.">
+  <meta property="og:title" content="DJ OLATUNS | Nigerian DJ, Mixtapes & Bookings">
+  <meta property="og:description" content="Discover DJ OLATUNS from Lagos, Nigeria. Listen to New Wave 2026, Afrobeats and Amapiano mixtapes, and enquire about DJ bookings.">
   <meta property="og:url" content="https://djolatuns.github.io/">
   <meta property="og:image" content="https://djolatuns.github.io/og-image.webp">
-  <meta property="og:image:alt" content="Official DJ OLATUNS black and gold crown and headphones logo">
+  <meta property="og:image:alt" content="DJ OLATUNS official black and gold logo">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DJ OLATUNS | Official Website">
-  <meta name="twitter:description" content="Listen to New Wave 2026 and more DJ OLATUNS mixtapes.">
+  <meta name="twitter:title" content="DJ OLATUNS | Nigerian DJ, Mixtapes & Bookings">
+  <meta name="twitter:description" content="Listen to New Wave 2026 and Nigerian DJ mixtapes by DJ OLATUNS. Explore releases and booking enquiries.">
   <meta name="twitter:image" content="https://djolatuns.github.io/og-image.webp">
-  <title>DJ OLATUNS | Official Nigerian DJ Website</title>
+
+  <title>DJ OLATUNS | Nigerian DJ, Mixtapes & Bookings</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "DJ OLATUNS",
+    "alternateName": "Ismail Olatunji Taiwo",
+    "jobTitle": "DJ and Mixtape Curator",
+    "description": "Nigerian DJ and mixtape curator from Lagos, sharing Afrobeats, Amapiano and Nigerian music mixes.",
+    "url": "https://djolatuns.github.io/",
+    "sameAs": [
+      "https://audiomack.com/dj_olatuns1",
+      "https://www.facebook.com/djolatuns1",
+      "https://www.tiktok.com/@djolatuns1"
+    ]
+  }
+  </script>
+
   <style>
     :root{color-scheme:dark;--bg:#080808;--panel:#12110e;--panel2:#19160f;--gold:#d8ad52;--gold2:#ffe6a0;--text:#f8f5ed;--muted:#b9b2a3;--line:#393020}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:85px}
     body{margin:0;background:radial-gradient(ellipse at 50% -15%,#38270b 0%,#11100d 32%,var(--bg) 70%);color:var(--text);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:calc(82px + env(safe-area-inset-bottom))}
-    a{color:inherit;text-decoration:none}button{font:inherit}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
     .wrap{width:min(100% - 28px,900px);margin:auto}
-    .topbar{position:sticky;top:0;z-index:20;background:#090909eF;backdrop-filter:blur(18px);border-bottom:1px solid #302719;padding:12px 0}
+    .topbar{position:sticky;top:0;z-index:20;background:#090909ef;backdrop-filter:blur(18px);border-bottom:1px solid #302719;padding:12px 0}
     .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1.4px}
     .brand img{width:40px;height:40px;border-radius:12px;border:1px solid var(--gold);object-fit:cover}
@@ -45,81 +68,147 @@ a<!doctype html>
     .btn.gold{background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;border:0}
     .section{padding:20px 0}
     .sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 2px 14px}
-    h2{font-size:22px;line-height:1.15;margin:0;letter-spacing:-.5px}h2 span{color:var(--gold)}
+    h2{font-size:22px;line-height:1.15;margin:0;letter-spacing:-.5px}
+    h2 span{color:var(--gold)}
     .sub{color:var(--muted);font-size:12px;margin-top:5px}
     .feature{display:grid;grid-template-columns:92px 1fr;gap:15px;align-items:center;padding:14px;border-radius:20px;background:linear-gradient(140deg,#211a0d,#12110e);border:1px solid #614b28}
     .cover{width:92px;aspect-ratio:1;border-radius:15px;object-fit:cover;border:1px solid #80652f;background:#080808}
     .tag{display:inline-block;color:#141006;background:var(--gold2);font-size:10px;font-weight:950;letter-spacing:1px;text-transform:uppercase;border-radius:6px;padding:4px 7px;margin-bottom:7px}
-    h3{font-size:17px;line-height:1.25;margin:0 0 5px}.feature p,.tile p{font-size:13px;color:var(--muted);margin:0 0 12px}
+    h3{font-size:17px;line-height:1.25;margin:0 0 5px}
+    .feature p,.tile p{font-size:13px;color:var(--muted);margin:0 0 12px}
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .tile{min-width:0;border:1px solid var(--line);border-radius:18px;padding:14px;background:linear-gradient(155deg,#1a1813,#0f0f0e);display:flex;flex-direction:column;align-items:flex-start}
-    .tile .disc{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#30230e;color:var(--gold2);font-size:22px;margin-bottom:12px}
+    .disc{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#30230e;color:var(--gold2);font-size:22px;margin-bottom:12px}
     .tile .btn{margin-top:auto;width:100%;padding:10px 8px;font-size:12px}
     .about,.contact{border:1px solid var(--line);border-radius:20px;background:#11100ddd;padding:18px}
     .about p,.contact p{color:var(--muted);font-size:14px;margin:10px 0 0}
     .serviceList{display:grid;grid-template-columns:1fr;gap:9px}
     .service{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:13px;background:#11100e}
-    .service b{display:block;font-size:14px}.service span{display:block;color:var(--muted);font-size:12px}
-    .socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.socials a{border:1px solid var(--line);padding:8px 12px;border-radius:10px;color:var(--gold2);font-size:13px}
+    .service b{display:block;font-size:14px}
+    .service span{display:block;color:var(--muted);font-size:12px}
+    .socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+    .socials a{border:1px solid var(--line);padding:8px 12px;border-radius:10px;color:var(--gold2);font-size:13px}
     footer{text-align:center;color:#807869;font-size:11px;padding:24px 0 8px}
     .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#090909f2;border-top:1px solid #49381d;backdrop-filter:blur(18px)}
     .bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#a69d8b;font-size:10px;font-weight:750;padding:4px 0}
-    .bottomnav .ico{font-size:19px;line-height:1.2}.bottomnav a.active{color:var(--gold2)}
+    .bottomnav .ico{font-size:19px;line-height:1.2}
+    .bottomnav a.active{color:var(--gold2)}
     @media(min-width:650px){body{padding-bottom:20px}.heroCard{padding:38px}.feature{grid-template-columns:120px 1fr}.cover{width:120px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.bottomnav{position:static;max-width:900px;margin:18px auto 0;border:1px solid var(--line);border-radius:18px;padding:10px}.bottomnav a{font-size:12px}}
     @media(max-width:360px){.grid{grid-template-columns:1fr}.heroCard{padding:20px 16px}.feature{grid-template-columns:76px 1fr}.cover{width:76px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
 <body>
-<header class="topbar"><div class="wrap toprow">
-  <a class="brand" href="#home"><img src="/icon-192.png" alt="DJ OLATUNS logo"> <span>DJ OLATUNS<small>UNDEFEATABLE</small></span></a>
-  <button class="pill" id="installBtn" hidden>＋ Install App</button>
-</div></header>
+<header class="topbar">
+  <div class="wrap toprow">
+    <a class="brand" href="#home" aria-label="DJ OLATUNS home">
+      <img src="/icon-192.png" alt="DJ OLATUNS logo" width="40" height="40">
+      <span>DJ OLATUNS<small>UNDEFEATABLE</small></span>
+    </a>
+    <button class="pill" id="installBtn" hidden type="button">＋ Install App</button>
+  </div>
+</header>
+
 <main class="wrap" id="home">
-  <section class="hero"><div class="heroCard">
-    <div class="eyebrow">Official DJ experience</div>
-    <h1>FEEL THE<br>VIBE.</h1>
-    <p>Welcome to the official home of DJ OLATUNS — mixtapes, music energy, bookings and the next wave, all in one place.</p>
-    <div class="actions"><a class="btn gold" href="#mixtapes">▶ Explore Mixtapes</a><a class="btn" href="https://wa.me/2348103327836">✦ Book DJ Olatuns</a></div>
-  </div></section>
-  <section class="section" id="mixtapes">
-    <div class="sectionHead"><div><h2>Featured <span>Release</span></h2><div class="sub">Your soundtrack starts here</div></div><span class="eyebrow">2026</span></div>
-    <article class="feature">
-      <img class="cover" src="/og-image.webp" alt="DJ OLATUNS black and gold logo">
-      <div><span class="tag">Now available</span><h3>New Wave 2026 Mixtape</h3><p>The new wave is here. Listen now on Audiomack and catch the vibe.</p><a class="btn gold" href="https://audiomack.com/dj_olatuns1/song/new-wave-2026-mixtape?share-user-id=153478386">▶ Listen on Audiomack</a></div>
-    </article>
-  </section>
-  <section class="section">
-    <div class="sectionHead"><div><h2>More <span>Mixtapes</span></h2><div class="sub">More sounds. More energy.</div></div></div>
-    <div class="grid">
-      <article class="tile"><div class="disc">♫</div><h3>2026 Dance Mix</h3><p>A dance-focused selection to keep the vibes alive.</p><a class="btn" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-dance-mix?share-user-id=153478386">Listen ↗</a></article>
-      <article class="tile"><div class="disc">♬</div><h3>Faaja Mixtape</h3><p>Undefeatable DJ Olatuns Faaja DJ mixtape.</p><a class="btn" href="https://audiomack.com/dj_olatuns1/song/undefeatable-dj-olatuns-faaja-mixtape?share-user-id=153478386">Listen ↗</a></article>
-      <article class="tile"><div class="disc">♫</div><h3>2026 Movement</h3><p>More sounds, movement and energy from DJ OLATUNS.</p><a class="btn" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386">Listen ↗</a></article>
-      <article class="tile"><div class="disc">♛</div><h3>All Releases</h3><p>Explore the DJ OLATUNS Audiomack profile.</p><a class="btn" href="https://audiomack.com/dj_olatuns1">Open Audiomack ↗</a></article>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="heroCard">
+      <div class="eyebrow">Official DJ experience · Lagos, Nigeria</div>
+      <h1 id="hero-title">FEEL THE<br>VIBE.</h1>
+      <p>Welcome to the official home of DJ OLATUNS — Nigerian DJ, mixtape curator and music entertainer. Discover releases, music energy, bookings and the next wave, all in one place.</p>
+      <div class="actions">
+        <a class="btn gold" href="#mixtapes">▶ Explore Mixtapes</a>
+        <a class="btn" href="https://wa.me/2348103327836" target="_blank" rel="noopener">✦ Book DJ Olatuns</a>
+      </div>
     </div>
   </section>
-  <section class="section" id="about"><div class="sectionHead"><div><h2>Meet <span>DJ OLATUNS</span></h2><div class="sub">Nigerian DJ • Mixtape curator</div></div></div>
-    <div class="about"><p><strong>Ismail Olatunji Taiwo</strong>, known as DJ OLATUNS, is a Nigerian DJ and mixtape curator with a passion for creativity, entertainment and bringing people together through music. Guided by the motto “Undefeatable,” he is building his identity through energetic mixes, consistency and a commitment to memorable musical experiences.</p></div>
+
+  <section class="section" id="mixtapes" aria-labelledby="featured-heading">
+    <div class="sectionHead">
+      <div><h2 id="featured-heading">Featured <span>Release</span></h2><div class="sub">Your soundtrack starts here</div></div>
+      <span class="eyebrow">2026</span>
+    </div>
+    <article class="feature">
+      <img class="cover" src="/og-image.webp" alt="DJ OLATUNS New Wave 2026 release artwork" width="120" height="120">
+      <div>
+        <span class="tag">Now available</span>
+        <h3>New Wave 2026 Mixtape</h3>
+        <p>The new wave is here. Listen now on Audiomack and catch the vibe.</p>
+        <a class="btn gold" href="https://audiomack.com/dj_olatuns1/song/new-wave-2026-mixtape?share-user-id=153478386" target="_blank" rel="noopener">▶ Listen on Audiomack</a>
+      </div>
+    </article>
   </section>
-  <section class="section" id="services"><div class="sectionHead"><div><h2>DJ <span>Services</span></h2><div class="sub">Let's create an unforgettable vibe</div></div></div>
-    <div class="serviceList"><div class="service"><span>🎧</span><div><b>Event DJ Sets</b><span>Music for celebrations and special occasions.</span></div></div><div class="service"><span>🎶</span><div><b>Mixtapes & Promotions</b><span>Curated mixes and music promotion enquiries.</span></div></div><div class="service"><span>🤝</span><div><b>Bookings & Collaborations</b><span>Reach out to discuss your event or project.</span></div></div></div>
+
+  <section class="section" aria-labelledby="more-heading">
+    <div class="sectionHead"><div><h2 id="more-heading">More <span>Mixtapes</span></h2><div class="sub">More sounds. More energy.</div></div></div>
+    <div class="grid">
+      <article class="tile"><div class="disc" aria-hidden="true">♫</div><h3>2026 Dance Mix</h3><p>A dance-focused selection to keep the vibes alive.</p><a class="btn" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-dance-mix?share-user-id=153478386" target="_blank" rel="noopener">Listen ↗</a></article>
+      <article class="tile"><div class="disc" aria-hidden="true">♬</div><h3>Faaja Mixtape</h3><p>Undefeatable DJ Olatuns Faaja DJ mixtape.</p><a class="btn" href="https://audiomack.com/dj_olatuns1/song/undefeatable-dj-olatuns-faaja-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Listen ↗</a></article>
+      <article class="tile"><div class="disc" aria-hidden="true">♫</div><h3>2026 Movement</h3><p>More sounds, movement and energy from DJ OLATUNS.</p><a class="btn" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Listen ↗</a></article>
+      <article class="tile"><div class="disc" aria-hidden="true">♛</div><h3>All Releases</h3><p>Explore the DJ OLATUNS Audiomack profile.</p><a class="btn" href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Open Audiomack ↗</a></article>
+    </div>
   </section>
-  <section class="section" id="contact"><div class="contact"><div class="eyebrow">Connect • Follow • Book</div><h2 style="margin-top:8px">Let's Make It <span>Move</span></h2><p>For bookings and enquiries, connect with DJ OLATUNS.</p><div class="actions" style="margin-top:16px"><a class="btn gold" href="https://wa.me/2348103327836">WhatsApp booking</a><a class="btn" href="tel:+2347068995706">Call DJ Olatuns</a></div><div class="socials"><a href="https://audiomack.com/dj_olatuns1">Audiomack</a><a href="https://www.tiktok.com/@djolatuns1">TikTok</a><a href="https://www.facebook.com/djolatuns1">Facebook</a></div></div></section>
-  <footer>© 2026 DJ OLATUNS · Feel the vibe. Live the music.</footer>
+
+  <section class="section" id="services" aria-labelledby="services-heading">
+    <div class="sectionHead"><div><h2 id="services-heading">DJ <span>Services</span></h2><div class="sub">Let's create an unforgettable vibe</div></div></div>
+    <div class="serviceList">
+      <div class="service"><span aria-hidden="true">🎧</span><div><b>Event DJ Sets</b><span>Music for celebrations and special occasions.</span></div></div>
+      <div class="service"><span aria-hidden="true">🎶</span><div><b>Mixtapes & Promotions</b><span>Curated mixes and music promotion enquiries.</span></div></div>
+      <div class="service"><span aria-hidden="true">🤝</span><div><b>Bookings & Collaborations</b><span>Reach out to discuss your event or project.</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-heading">
+    <div class="contact">
+      <div class="eyebrow">Connect · Follow · Book</div>
+      <h2 id="contact-heading" style="margin-top:8px">Let's Make It <span>Move</span></h2>
+      <p>For bookings and enquiries, connect with DJ OLATUNS.</p>
+      <div class="actions" style="margin-top:16px">
+        <a class="btn gold" href="https://wa.me/2348103327836" target="_blank" rel="noopener">WhatsApp booking</a>
+        <a class="btn" href="tel:+2347068995706">Call DJ Olatuns</a>
+      </div>
+      <div class="socials">
+        <a href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Audiomack</a>
+        <a href="https://www.tiktok.com/@djolatuns1" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.facebook.com/djolatuns1" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="sectionHead"><div><h2 id="about-heading">Meet <span>DJ OLATUNS</span></h2><div class="sub">Nigerian DJ · Mixtape curator</div></div></div>
+    <div class="about">
+      <p><strong>Ismail Olatunji Taiwo</strong>, known professionally as DJ OLATUNS, is a Nigerian DJ and mixtape curator with a passion for creativity, entertainment and bringing people together through music. Guided by the motto “Undefeatable,” he is building his identity through energetic mixes, consistency and a commitment to memorable musical experiences.</p>
+    </div>
+  </section>
+
+  <footer>© <span id="year">2026</span> DJ OLATUNS · Feel the vibe. Live the music.</footer>
 </main>
-<nav class="bottomnav" aria-label="App navigation">
-  <a class="active" href="#home"><span class="ico">⌂</span>Home</a><a href="#mixtapes"><span class="ico">♫</span>Mixtapes</a><a href="#services"><span class="ico">✦</span>Services</a><a href="#contact"><span class="ico">☏</span>Contact</a>
+
+<nav class="bottomnav" aria-label="Main navigation">
+  <a class="active" href="#home"><span class="ico" aria-hidden="true">⌂</span>Home</a>
+  <a href="#mixtapes"><span class="ico" aria-hidden="true">♫</span>Mixtapes</a>
+  <a href="#services"><span class="ico" aria-hidden="true">✦</span>Services</a>
+  <a href="#contact"><span class="ico" aria-hidden="true">☏</span>Contact</a>
 </nav>
+
 <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("/service-worker.js").catch(() => {}));
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js").catch(() => {});
+    });
   }
+
   let deferredPrompt;
   const installBtn = document.getElementById("installBtn");
+
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     deferredPrompt = event;
     installBtn.hidden = false;
   });
+
   installBtn.addEventListener("click", async () => {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
@@ -127,7 +216,11 @@ a<!doctype html>
     deferredPrompt = null;
     installBtn.hidden = true;
   });
-  window.addEventListener("appinstalled", () => { installBtn.hidden = true; });
+
+  window.addEventListener("appinstalled", () => {
+    installBtn.hidden = true;
+  });
+
   const navLinks = document.querySelectorAll(".bottomnav a");
   navLinks.forEach(link => link.addEventListener("click", () => {
     navLinks.forEach(item => item.classList.remove("active"));
@@ -135,4 +228,5 @@ a<!doctype html>
   }));
 </script>
 </body>
-</html>
+    </html>
+  
