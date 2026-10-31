@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>DJ OLATUNS | Members Portal</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#080808;color:#f5f5f5;font-family:Arial,sans-serif}
+    header{text-align:center;padding:35px 15px;background:#111;border-bottom:1px solid #b99036}
+    header h1{color:#d9b45b;letter-spacing:3px;margin:0}
+    header p{color:#bbb}
+    main{max-width:760px;margin:25px auto;padding:15px}
+    .card{background:#151515;border:1px solid #393024;border-radius:14px;padding:20px;margin-bottom:18px}
+    h2{color:#d9b45b;margin-top:0}
+    input,textarea{width:100%;padding:13px;margin:8px 0;background:#080808;color:white;border:1px solid #51452f;border-radius:8px}
+    button{padding:12px 18px;margin:5px 4px 5px 0;border:0;border-radius:8px;background:#d9b45b;color:#111;font-weight:bold;cursor:pointer}
+    button.secondary{background:#333;color:white}
+    .muted{color:#aaa;font-size:14px}
+    .hidden{display:none}
+    .notice{padding:12px;background:#252014;border-radius:8px;margin:10px 0}
+    .gold{color:#d9b45b}
+    footer{text-align:center;padding:25px;color:#888;font-size:13px}
+    a{color:#d9b45b}
+  </style>
+</head>
+<body>
+<header>
+  <h1>DJ OLATUNS</h1>
+  <p>UNDEFEATABLE • OFFICIAL MEMBERS PORTAL</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Welcome to the Members Club</h2>
+    <p>Join the DJ OLATUNS community for exclusive mixtapes, early releases and premium content.</p>
+    <h2 class="gold">₦1,000 / month</h2>
+    <p class="muted">Membership payment checkout is not yet enabled. Your membership will only become active after payment verification is connected.</p>
+  </section>
+
+  <section class="card" id="authCard">
+    <h2>Member Account</h2>
+    <input id="email" type="email" placeholder="Your email address" autocomplete="email">
+    <input id="password" type="password" placeholder="Password (minimum 8 characters)" autocomplete="current-password">
+    <button id="signupBtn">Create Account</button>
+    <button id="loginBtn" class="secondary">Log In</button>
+    <p id="authMessage" class="muted" aria-live="polite"></p>
+  </section>
+
+  <section class="card hidden" id="accountCard">
+    <h2>Your Account</h2>
+    <p id="accountEmail"></p>
+    <p id="membershipStatus" class="notice">Checking membership...</p>
+    <button id="logoutBtn" class="secondary">Log Out</button>
+  </section>
+
+  <section class="card">
+    <h2>Members' Announcements</h2>
+    <div id="announcements"><p class="muted">Loading announcements...</p></div>
+  </section>
+
+  <section class="card hidden" id="adminCard">
+    <h2>Administrator Dashboard</h2>
+    <p class="muted">Official DJ OLATUNS administration</p>
+    <div class="notice" id="adminStats">Loading dashboard...</div>
+    <h3 class="gold">Publish an Announcement</h3>
+    <input id="announcementTitle" placeholder="Announcement title">
+    <textarea id="announcementMessage" rows="4" placeholder="Write your announcement"></textarea>
+    <button id="publishBtn">Publish Announcement</button>
+    <p id="adminMessage" class="muted" aria-live="polite"></p>
+  </section>
+
+  <section class="card">
+    <h2>Need Help?</h2>
+    <p>Contact DJ OLATUNS for membership assistance.</p>
+    <a href="https://wa.me/2348103327836">Chat on WhatsApp</a>
+  </section>
+</main>
+
+<footer>© 2026 DJ OLATUNS. All rights reserved.</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://tiqracqtgggoctyvtuqo.supabase.co";
+const SUPABASE_KEY = "sb_publishable_9UYttF-UC-2xgb6KBYvLQ_4rCob3LO";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = id => document.getElementById(id);
+let announcementChannel = null;
+
+function message(id, text) {
+  $(id).textContent = text;
+}
+
+async function loadAnnouncements() {
+  const { data, error } = await db
+    .from("site_notifications")
+    .select("*")
+    .eq("is_published", true)
+    .order("created_at", { ascending: false });
+
+  const area = $("announcements");
+  area.replaceChildren();
+
+  if (error) {
+    area.textContent = "Announcements are temporarily unavailable.";
+    return;
+  }
+  if (!data || !data.length) {
+    area.textContent = "No announcements yet. Check back soon.";
+    return;
+  }
+
+  data.forEach(item => {
+    const box = document.createElement("div");
+    box.className = "notice";
+    const title = document.createElement("h3");
+    title.className = "gold";
+    title.textContent = item.title || "DJ OLATUNS Update";
+    const body = document.createElement("p");
+    body.textContent = item.message || "";
+    box.append(title, body);
+    area.append(box);
+  });
+}
+
+function watchAnnouncements() {
+  if (announcementChannel) db.removeChannel(announcementChannel);
+  announcementChannel = db.channel("public-announcements")
+    .on("postgres_changes", {
+      event: "*", schema: "public", table: "site_notifications"
+    }, loadAnnouncements)
+    .subscribe();
+}
+
+async function loadAccount(user) {
+  $("authCard").classList.add("hidden");
+  $("accountCard").classList.remove("hidden");
+  $("accountEmail").textContent = "Signed in as: " + user.email;
+  message("membershipStatus", "Checking your membership...");
+
+  const { data: memberships, error } = await db
+    .from("memberships")
+    .select("*")
+    .eq("user_id", user.id);
+
+  if (error) {
+    message("membershipStatus", "Your account is active. Membership details are currently unavailable.");
+  } else if (!memberships || memberships.length === 0) {
+    message("membershipStatus", "You do not have an active membership yet. Membership payment setup is coming soon.");
+  } else {
+    const active = memberships.some(m => m.status === "active");
+    message("membershipStatus", active
+      ? "Your membership is marked active. Welcome!"
+      : "A membership record exists, but it is not currently marked active.");
+  }
+
+  const { data: admin } = await db
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (admin) {
+    $("adminCard").classList.remove("hidden");
+    loadAdminStats();
+  } else {
+    $("adminCard").classList.add("hidden");
+  }
+}
+
+async function loadAdminStats() {
+  const [members, events] = await Promise.all([
+    db.from("memberships").select("*", { count: "exact", head: true }),
+    db.from("admin_events").select("*", { count: "exact", head: true })
+  ]);
+  $("adminStats").textContent =
+    "Membership records: " + (members.count ?? "Unavailable") +
+    " | Account events: " + (events.count ?? "Unavailable");
+}
+
+$("signupBtn").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+  if (!email || password.length < 8) {
+    message("authMessage", "Enter a valid email and a password of at least 8 characters.");
+    return;
+  }
+  const { error } = await db.auth.signUp({ email, password });
+  message("authMessage", error ? error.message :
+    "Account request submitted. Check your email for a confirmation link if required.");
+};
+
+$("loginBtn").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+  const { data, error } = await db.auth.signInWithPassword({ email, password });
+  if (error) {
+    message("authMessage", error.message);
+    return;
+  }
+  message("authMessage", "Login successful.");
+  await loadAccount(data.user);
+};
+
+$("logoutBtn").onclick = async () => {
+  const { error } = await db.auth.signOut();
+  if (error) {
+    message("membershipStatus", error.message);
+    return;
+  }
+  $("accountCard").classList.add("hidden");
+  $("adminCard").classList.add("hidden");
+  $("authCard").classList.remove("hidden");
+};
+
+$("publishBtn").onclick = async () => {
+  const title = $("announcementTitle").value.trim();
+  const body = $("announcementMessage").value.trim();
+  if (!title || !body) {
+    message("adminMessage", "Enter both a title and announcement.");
+    return;
+  }
+  const { error } = await db.from("site_notifications").insert({
+    title, message: body, is_published: true
+  });
+  message("adminMessage", error ? error.message : "Announcement published.");
+  if (!error) {
+    $("announcementTitle").value = "";
+    $("announcementMessage").value = "";
+    await loadAnnouncements();
+  }
+};
+
+async function start() {
+  await loadAnnouncements();
+  watchAnnouncements();
+  const { data } = await db.auth.getSession();
+  if (data.session) await loadAccount(data.session.user);
+}
+
+start();
+</script>
+</body>
+</html>
