@@ -322,7 +322,11 @@ footer {
 <section class="card">
   <h2>Members' Announcements</h2>
   <p class="muted">Stay informed about official DJ OLATUNS updates.</p>
-  <div id="announcements">
+  <p id="announcementStatus" class="muted status" aria-live="polite">Connecting to announcements...</p>
+  <div class="button-row">
+    <button id="refreshAnnouncementsBtn" class="secondary" type="button">Refresh Announcements</button>
+  </div>
+  <div id="announcements" aria-live="polite">
     <p class="muted">Loading announcements...</p>
   </div>
 </section>
@@ -394,7 +398,7 @@ const SUPABASE_URL =
   "https://tiqracqtgggoctyvtuqo.supabase.co";
 
 const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpcXJhY3F0Z2dnb2N0eXZ0dXFvIiwiaWF0IjoxNzkzNDQzNDM4LCJleHAiOjIxMDkwMTk0Mzh9.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
+  "sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO";
 
 const $ = id => document.getElementById(id);
 
@@ -417,15 +421,27 @@ async function loadAnnouncements() {
   area.replaceChildren();
 
   if (error) {
-    area.textContent = "Announcements are temporarily unavailable.";
-    console.error(error);
+    const details = [
+      error.message,
+      error.details,
+      error.hint,
+      error.code
+    ].filter(Boolean).join(" | ");
+    area.textContent =
+      "Announcements could not load: " +
+      (details || "Unknown Supabase error") +
+      ". Check the Supabase Data API settings, then refresh.";
+    showMessage("announcementStatus", "Announcement service returned an error.");
+    console.error("Announcement loading failed:", error);
     return;
   }
 
   if (!data || data.length === 0) {
     area.textContent = "No announcements yet. Check back soon.";
+    showMessage("announcementStatus", "Announcement service connected.");
     return;
   }
+  showMessage("announcementStatus", "Announcements are up to date.");
 
   data.forEach(item => {
     const box = document.createElement("div");
@@ -454,7 +470,17 @@ function watchAnnouncements() {
       schema: "public",
       table: "site_notifications"
     }, loadAnnouncements)
-    .subscribe();
+    .subscribe((status, error) => {
+      if (status === "SUBSCRIBED") {
+        showMessage("announcementStatus", "Live announcement updates connected.");
+      } else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+        showMessage(
+          "announcementStatus",
+          "Live updates are offline. Use Refresh Announcements to check manually."
+        );
+        if (error) console.error("Announcement realtime error:", error);
+      }
+    });
 }
 
 async function loadAccount(user) {
@@ -627,6 +653,15 @@ $("publishBtn").onclick = async () => {
   $("announcementMessage").value = "";
 
   await loadAnnouncements();
+};
+
+$("refreshAnnouncementsBtn").onclick = async () => {
+  const button = $("refreshAnnouncementsBtn");
+  button.disabled = true;
+  button.textContent = "Refreshing...";
+  await loadAnnouncements();
+  button.disabled = false;
+  button.textContent = "Refresh Announcements";
 };
 
 async function startPortal() {
