@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>DJ OLATUNS | Admin</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:28px;background:#111;border-bottom:1px solid #d9b45b}
+h1,h2,h3{color:#d9b45b}
+main{max-width:950px;margin:25px auto;padding:15px}
+.card{background:#151515;border:1px solid #51452f;border-radius:12px;padding:18px;margin-bottom:18px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.stat{background:#080808;padding:16px;border-radius:9px}
+.stat strong{display:block;font-size:25px;color:#d9b45b;margin-top:8px}
+input{width:100%;padding:13px;margin:8px 0;background:#080808;color:white;border:1px solid #51452f;border-radius:7px}
+button{padding:12px 17px;background:#d9b45b;color:#111;border:0;border-radius:7px;font-weight:bold;margin:5px 3px;cursor:pointer}
+.hidden{display:none}
+.muted{color:#aaa;font-size:14px;line-height:1.5}
+.member{padding:13px 0;border-bottom:1px solid #393024;overflow-wrap:anywhere}
+.status{color:#d9b45b;font-weight:bold}
+table{width:100%;border-collapse:collapse}
+td,th{text-align:left;padding:10px;border-bottom:1px solid #393024}
+.table-wrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<header>
+<h1>DJ OLATUNS</h1>
+<p>OFFICIAL ADMINISTRATION PANEL</p>
+</header>
+<main>
+<section class="card" id="login">
+<h2>Administrator Login</h2>
+<input id="email" type="email" placeholder="Administrator email">
+<input id="password" type="password" placeholder="Password">
+<button id="loginBtn">Log In</button>
+<p id="message" class="muted"></p>
+</section>
+
+<section id="dashboard" class="hidden">
+<div class="card">
+<h2>Dashboard Overview</h2>
+<p id="welcome" class="muted"></p>
+<div class="stats">
+<div class="stat">Registered profiles<strong id="profileCount">—</strong></div>
+<div class="stat">Membership records<strong id="membershipCount">—</strong></div>
+<div class="stat">Active memberships<strong id="activeCount">—</strong></div>
+<div class="stat">Pending memberships<strong id="pendingCount">—</strong></div>
+</div>
+<button id="refreshBtn">Refresh Dashboard</button>
+<button id="logoutBtn">Log Out</button>
+<p id="dashboardMessage" class="muted"></p>
+</div>
+
+<div class="card">
+<h2>Registered Members</h2>
+<input id="search" placeholder="Search by member name or user ID">
+<div class="table-wrap">
+<table>
+<thead><tr><th>Member</th><th>Joined</th><th>Membership</th></tr></thead>
+<tbody id="members"></tbody>
+</table>
+</div>
+<p class="muted">For privacy, this page does not display member passwords or private authentication details.</p>
+</div>
+</section>
+<p><a href="https://djolatuns.github.io/members.html" style="color:#d9b45b">Back to Members Portal</a></p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const URL="https://tiqracqtgggoctyvtuqo.supabase.co";
+const KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpcXJhY3F0Z2dnb2N0eXZ0dXFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDM0MzgsImV4cCI6MjEwOTAxOTQzOH0.-UT8o_wBFzPMCSG7sxs_gTIZ7A2l1Atmo0PgSh4XF_0";
+const db=supabase.createClient(URL,KEY);
+const $=id=>document.getElementById(id);
+let allMembers=[];
+
+async function verifyAdmin(user){
+const {data,error}=await db.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();
+if(error||!data)throw new Error("This account is not authorised as an administrator.");
+}
+
+async function loadDashboard(){
+$("dashboardMessage").textContent="Loading member records...";
+const [p,m]=await Promise.all([
+db.from("profiles").select("id,display_name,created_at").order("created_at",{ascending:false}),
+db.from("memberships").select("user_id,status,starts_at,ends_at,created_at")
+]);
+if(p.error)throw new Error("Could not load profiles: "+p.error.message);
+if(m.error)throw new Error("Could not load memberships: "+m.error.message);
+
+allMembers=p.data.map(profile=>{
+const records=m.data.filter(x=>x.user_id===profile.id);
+const active=records.some(x=>x.status==="active"&&(!x.ends_at||new Date(x.ends_at)>new Date()));
+const pending=records.some(x=>x.status==="pending");
+return {...profile,records,status:active?"Active":pending?"Pending":records.length?"Inactive":"No membership"};
+});
+
+$("profileCount").textContent=p.data.length;
+$("membershipCount").textContent=m.data.length;
+$("activeCount").textContent=m.data.filter(x=>x.status==="active"&&(!x.ends_at||new Date(x.ends_at)>new Date())).length;
+$("pendingCount").textContent=m.data.filter(x=>x.status==="pending").length;
+renderMembers();
+$("dashboardMessage").textContent="Dashboard updated successfully.";
+}
+
+function renderMembers(){
+const term=$("search").value.toLowerCase().trim();
+const list=allMembers.filter(x=>(x.display_name||"").toLowerCase().includes(term)||x.id.toLowerCase().includes(term));
+const body=$("members");
+body.replaceChildren();
+if(!list.length){
+const row=document.createElement("tr");
+const cell=document.createElement("td");
+cell.colSpan=3;cell.textContent="No matching members found.";
+row.append(cell);body.append(row);return;
+}
+list.forEach(member=>{
+const row=document.createElement("tr");
+const name=document.createElement("td");
+name.textContent=member.display_name||"Member";
+const joined=document.createElement("td");
+joined.textContent=new Date(member.created_at).toLocaleDateString();
+const status=document.createElement("td");
+status.textContent=member.status;
+status.className="status";
+row.append(name,joined,status);
+body.append(row);
+});
+}
+
+async function openDashboard(user){
+await verifyAdmin(user);
+$("login").classList.add("hidden");
+$("dashboard").classList.remove("hidden");
+$("welcome").textContent="Signed in as "+user.email;
+await loadDashboard();
+}
+
+$("loginBtn").onclick=async()=>{
+$("message").textContent="Signing in...";
+const {data,error}=await db.auth.signInWithPassword({
+email:$("email").value.trim(),
+password:$("password").value
+});
+if(error){$("message").textContent=error.message;return;}
+try{await openDashboard(data.user);}
+catch(e){$("message").textContent=e.message;}
+};
+
+$("refreshBtn").onclick=async()=>{
+try{await loadDashboard();}
+catch(e){$("dashboardMessage").textContent=e.message;}
+};
+
+$("search").oninput=renderMembers;
+
+$("logoutBtn").onclick=async()=>{
+await db.auth.signOut();
+$("dashboard").classList.add("hidden");
+$("login").classList.remove("hidden");
+$("password").value="";
+$("message").textContent="You have logged out.";
+};
+
+(async()=>{
+const {data}=await db.auth.getSession();
+if(data.session){
+try{await openDashboard(data.session.user);}
+catch(e){$("message").textContent=e.message;}
+}
+})();
+</script>
+</body>
+</html>
