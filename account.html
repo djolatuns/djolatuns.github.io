@@ -251,7 +251,7 @@ body{padding-bottom:92px!important}
 </section>
 <section class="card hidden" id="accountCard">
 <h2>Welcome to your account</h2>
-<p id="accountEmail" class="muted"></p>
+<p id="accountEmail" class="muted"></p><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
 <div id="membershipStatus" class="notice">Checking membership...</div>
 <div class="notice" id="pushNotice">
 <strong>Phone Notifications</strong>
@@ -596,7 +596,8 @@ async function startPortal() {
 
   db = window.supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_KEY,
+    { auth: { storageKey: "dj-olatuns-member-auth", persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }
   );
 
   await loadAnnouncements();
