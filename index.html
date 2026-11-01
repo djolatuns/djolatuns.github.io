@@ -1,102 +1,13 @@
 <!doctype html>
-<html lang="en-NG">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080808">
-<meta name="description" content="The official DJ OLATUNS app. Explore the app, discover its features and sign in to your members account.">
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://djolatuns.github.io/">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" href="/icon-192.png">
-<link rel="apple-touch-icon" href="/icon-192.png">
-<title>DJ OLATUNS | Official App</title>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090909">
+<meta name="description" content="The official DJ OLATUNS app. Discover music, updates and the members community.">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon-192.png"><title>DJ OLATUNS | Official App</title>
 <style>
-:root{color-scheme:dark;--gold:#d9b45b;--gold2:#f0d17c;--muted:#b7b0a2;--line:#49391f}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#2a200e,#090909 62%);color:#f7f2e8;font-family:Arial,sans-serif;line-height:1.65;padding-bottom:90px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px max(18px,calc((100% - 850px)/2));background:#090909ed;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);font-weight:900;letter-spacing:2px;text-decoration:none}
-.brand img{width:42px;height:42px;border-radius:12px;border:1px solid var(--gold)}
-.brand small{display:block;font-size:9px;letter-spacing:2px;color:var(--muted)}
-#installBtn{display:none;border:1px solid var(--gold);border-radius:30px;padding:9px 13px;background:#20180b;color:var(--gold2);font-weight:700}
-main{max-width:850px;margin:26px auto;padding:0 16px}
-.hero,.panel{border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#1c180f,#10100e);padding:24px;margin:16px 0}
-.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:800}
-h1{font-size:clamp(34px,8vw,58px);line-height:1.05;color:var(--gold2);margin:12px 0}
-h2{font-size:21px;color:var(--gold2);margin:0 0 9px}
-p{color:#d0c9ba;margin:8px 0}
-.actions,.app-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
-.btn,.app-links a{display:inline-flex;align-items:center;justify-content:center;padding:12px 15px;border-radius:12px;border:1px solid #80652f;background:#17130b;color:var(--gold2);text-decoration:none;font-weight:800;font-size:13px}
-.btn.primary{background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;border:0}
-.app-links a{flex:1 1 180px;justify-content:flex-start;min-height:72px}
-.app-links strong{display:block}.app-links span{display:block;color:var(--muted);font-size:11px;font-weight:400}
-footer{text-align:center;color:#958b77;font-size:12px;padding:22px}
-.bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));padding:8px 3px calc(8px + env(safe-area-inset-bottom));background:#090909f5;border-top:1px solid var(--line);backdrop-filter:blur(18px)}
-.bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#b7b0a2;text-decoration:none;font-size:9px;font-weight:750;padding:4px 0}
-.bottomnav .ico{font-size:18px;line-height:1.2}.bottomnav a.active{color:var(--gold2)}
-@media(min-width:650px){.bottomnav{position:static;max-width:900px;margin:18px auto;border:1px solid var(--line);border-radius:16px;padding:10px}.bottomnav a{font-size:12px}}
-</style>
-</head>
-<body>
-<header>
-<a class="brand" href="/" aria-label="DJ OLATUNS Home"><img src="/icon-192.png" alt=""><span>DJ OLATUNS<small>UNDEFEATABLE</small></span></a>
-<button id="installBtn" type="button">＋ Install App</button>
-</header>
-<main>
-<section class="hero">
-<div class="eyebrow">Official DJ OLATUNS App</div>
-<h1>Welcome to the<br>DJ OLATUNS App.</h1>
-<p>Your central place to discover DJ OLATUNS music, follow updates, read announcements and connect with the members community.</p>
-<div class="actions">
-<a class="btn primary" href="/account.html">Members Login / Register</a>
-<a class="btn" href="/about.html">About This App</a>
-</div>
-</section>
-<section class="panel">
-<div class="eyebrow">Explore the app</div>
-<h2>Everything in one place</h2>
-<p>Choose a section below to explore. Members can sign in from Account to access member features.</p>
-<div class="app-links">
-<a href="/mixtapes.html"><strong>♫ Mixtapes<span>Listen to official DJ OLATUNS releases.</span></strong></a>
-<a href="/status.html"><strong>◉ Status<span>See the latest photo and video updates.</span></strong></a>
-<a href="/posts.html"><strong>▣ Posts<span>Browse community posts and the archive.</span></strong></a>
-<a href="/announcements.html"><strong>♢ News &amp; Announcements<span>Read official DJ OLATUNS updates.</span></strong></a>
-<a href="/account.html"><strong>◎ Members Account<span>Register, log in and manage your account.</span></strong></a>
-<a href="/about.html"><strong>ⓘ About<span>Learn about the app and DJ OLATUNS.</span></strong></a>
-</div>
-</section>
-<section class="panel">
-<div class="eyebrow">Members area</div>
-<h2>Already a member?</h2>
-<p>Sign in to your account to view your membership information, access member features and manage phone notifications. New members can create an account from the same page.</p>
-<a class="btn primary" href="/account.html">Open Members Account</a>
-</section>
-<section class="panel">
-<div class="eyebrow">Official music &amp; bookings</div>
-<h2>Stay connected with DJ OLATUNS</h2>
-<p>Listen to the latest releases on Audiomack or contact DJ OLATUNS for bookings and collaborations.</p>
-<div class="actions">
-<a class="btn" href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Official Audiomack</a>
-<a class="btn" href="https://wa.me/2348103327836" target="_blank" rel="noopener">Bookings &amp; Enquiries</a>
-</div>
-</section>
-</main>
-<footer>© 2026 DJ OLATUNS • Feel the vibe. Live the music.</footer>
-<nav class="bottomnav" aria-label="Main navigation">
-<a class="active" href="/"><span class="ico">⌂</span>Home</a>
-<a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a>
-<a href="/status.html"><span class="ico">◉</span>Status</a>
-<a href="/posts.html"><span class="ico">▣</span>Posts</a>
-<a href="/announcements.html"><span class="ico">♢</span>News</a>
-<a href="/about.html"><span class="ico">ⓘ</span>About</a>
-<a href="/account.html"><span class="ico">◎</span>Account</a>
-</nav>
-<script>
-let installPrompt=null;
-const installButton=document.getElementById("installBtn");
-window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;installButton.style.display="inline-block"});
-installButton.addEventListener("click",async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.style.display="none"});
-if("serviceWorker" in navigator && location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("/service-worker.js",{updateViaCache:"none"}).catch(error=>console.error("Service worker registration failed",error)))}
-</script>
-</body></html>
+:root{color-scheme:dark;--gold:#dfb95f;--pale:#ffe6a0;--muted:#bdb5a5;--line:#49391f}*{box-sizing:border-box}body{margin:0;padding-bottom:88px;background:radial-gradient(ellipse at 50% -10%,#3b2a0d,#10100e 45%,#080808 80%);color:#f7f3e9;font-family:system-ui,Arial,sans-serif;line-height:1.65}header{text-align:center;padding:34px 18px 22px;border-bottom:1px solid var(--line)}header h1{margin:0;color:var(--pale);font-size:clamp(28px,6vw,40px);letter-spacing:4px}header p{margin:6px 0 0;color:var(--muted);font-size:11px;letter-spacing:3px}main{width:min(100% - 30px,760px);margin:24px auto}.hero,.brief{border:1px solid #705728;border-radius:22px;background:linear-gradient(145deg,#241b0c,#12110e 75%);padding:clamp(22px,5vw,38px);box-shadow:0 18px 48px #0005}.eyebrow{color:var(--gold);letter-spacing:3px;font-size:11px;font-weight:800}.hero h2{font-size:clamp(30px,7vw,52px);line-height:1.1;margin:12px 0;color:var(--pale)}p{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{display:inline-block;text-decoration:none;border:1px solid #806326;border-radius:12px;padding:12px 17px;color:var(--pale);font-weight:800}.btn.gold{background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;border:0}.brief{margin-top:15px;background:#11100e}.brief h3{color:var(--pale);margin:0 0 7px}.brief p{margin:0}footer{text-align:center;color:#807866;font-size:12px;padding:24px}.bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#090909f5;border-top:1px solid var(--line);backdrop-filter:blur(18px)}.bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#b9b2a3;text-decoration:none;font-size:9px;font-weight:750;padding:4px 0}.bottomnav .ico{font-size:18px;line-height:1.2}.bottomnav a.active{color:var(--pale)}@media(min-width:700px){body{padding-bottom:20px}.bottomnav{position:static;max-width:900px;margin:18px auto;border:1px solid var(--line);border-radius:18px}.bottomnav a{font-size:12px}}
+</style></head><body>
+<header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • OFFICIAL APP</p></header>
+<main><section class="hero"><div class="eyebrow">WELCOME TO THE OFFICIAL APP</div><h2>Your sound.<br>Your community.<br>Your updates.</h2><p>One place to stay connected with DJ OLATUNS. Explore music releases, view the latest status updates, read community posts and receive official announcements.</p><div class="actions"><a class="btn gold" href="/account.html">Members Login / Register</a><a class="btn" href="/about.html">About This App</a></div></section>
+<section class="brief"><h3>What you can do here</h3><p>Browse mixtapes, catch 24-hour status updates, revisit posts, read official news and manage your members account. Use the navigation below to open each section directly.</p></section></main>
+<footer>DJ OLATUNS • UNDEFEATABLE • © 2026</footer>
+<nav class="bottomnav" aria-label="Main navigation"><a class="active" href="/"><span class="ico">⌂</span>Home</a><a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a><a href="/status.html"><span class="ico">◉</span>Status</a><a href="/posts.html"><span class="ico">▣</span>Posts</a><a href="/announcements.html"><span class="ico">♢</span>News</a><a href="/about.html"><span class="ico">ⓘ</span>About</a><a href="/account.html"><span class="ico">◎</span>Account</a></nav></body></html>
