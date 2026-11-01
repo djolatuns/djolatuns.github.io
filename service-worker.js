@@ -1,4 +1,4 @@
-const CACHE_NAME = "dj-olatuns-pwa-v24";
+const CACHE_NAME = "dj-olatuns-pwa-v25";
 
 const APP_SHELL = [
   "/",
@@ -11,6 +11,7 @@ const APP_SHELL = [
   "/account.html",
   "/about.html",
   "/admin.html",
+  "/booking.html",
   "/manifest.webmanifest",
   "/og-image.webp",
   "/icon-192.png",
