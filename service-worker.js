@@ -1,4 +1,4 @@
-const CACHE_NAME = "dj-olatuns-pwa-v14";
+const CACHE_NAME = "dj-olatuns-pwa-v15";
 
 const APP_SHELL = [
   "/",
