@@ -114,6 +114,12 @@ main{width:min(100% - 28px,950px)}.stats .stat{border:1px solid var(--dj-line)}t
 </div>
 
 <div class="card">
+<h2>DJ Booking Requests</h2>
+<p class="muted">Review enquiries from event organisers. A request is not a confirmed booking until you agree directly with the client.</p>
+<div id="bookingRequests"><p class="muted">Booking requests will appear here.</p></div>
+</div>
+
+<div class="card">
 <h2>Publish Announcement</h2>
 <input id="announcementTitle" placeholder="Announcement title">
 <input id="announcementBody" placeholder="Announcement message">
@@ -239,6 +245,7 @@ async function openDashboard(user) {
 
   await loadDashboard();
   await loadAnnouncements();
+  await loadBookings();
 }
 
 /* LOAD DASHBOARD DATA */
@@ -466,6 +473,7 @@ $("refreshBtn").addEventListener("click",async () => {
   try {
     await loadDashboard();
     await loadAnnouncements();
+    await loadBookings();
   } catch(error) {
     $("dashboardMessage").textContent = error.message;
   }
