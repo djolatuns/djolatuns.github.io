@@ -1,4 +1,4 @@
-const CACHE_NAME = "dj-olatuns-pwa-v29";
+const CACHE_NAME = "dj-olatuns-pwa-v30";
 
 const APP_SHELL = [
   "/",
@@ -15,7 +15,8 @@ const APP_SHELL = [
   "/manifest.webmanifest",
   "/og-image.webp",
   "/icon-192.png",
-  "/icon-512.png"
+  "/icon-512.png",
+  "/icon-circle.svg"
 ];
 
 self.addEventListener("install", (event) => {
