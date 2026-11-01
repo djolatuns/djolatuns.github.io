@@ -1,9 +1,15 @@
-
-const CACHE_NAME = "dj-olatuns-pwa-v4";
+const CACHE_NAME = "dj-olatuns-pwa-v5";
 
 const APP_SHELL = [
   "/",
   "/index.html",
+  "/members.html",
+  "/mixtapes.html",
+  "/status.html",
+  "/posts.html",
+  "/announcements.html",
+  "/account.html",
+  "/admin.html",
   "/manifest.webmanifest",
   "/og-image.webp",
   "/icon-192.png",
@@ -12,7 +18,11 @@ const APP_SHELL = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(APP_SHELL))
+      .catch((error) => {
+        console.error("DJ OLATUNS app-shell cache failed:", error);
+      })
   );
   self.skipWaiting();
 });
@@ -25,20 +35,18 @@ self.addEventListener("activate", (event) => {
           .filter((key) => key.startsWith("dj-olatuns-pwa-") && key !== CACHE_NAME)
           .map((key) => caches.delete(key))
       )
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  if (new URL(event.request.url).origin !== self.location.origin) return;
+  const requestUrl = new URL(event.request.url);
+  if (requestUrl.origin !== self.location.origin) return;
 
-  // Always check the live site first for page navigations so installed PWAs
-  // do not keep showing an old homepage after a deployment.
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: "no-store" })
         .then((response) => {
           if (response && response.ok) {
             const copy = response.clone();
@@ -47,17 +55,32 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(async () => {
-          return (await caches.match(event.request)) || (await caches.match("/index.html"));
+          return (await caches.match(event.request)) ||
+            (await caches.match("/index.html")) ||
+            Response.error();
         })
     );
     return;
   }
 
+  if (requestUrl.pathname === "/service-worker.js") {
+    event.respondWith(fetch(event.request, { cache: "no-store" }));
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+      return fetch(event.request).then((response) => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
+        return response;
+      });
+    })
   );
 });
-
 
 self.addEventListener("push", (event) => {
   let data = {};
