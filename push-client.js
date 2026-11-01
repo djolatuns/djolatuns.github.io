@@ -1,7 +1,7 @@
 (() => {
   const SUPABASE_URL = "https://tiqracqtgggoctyvtuqo.supabase.co";
   const SUPABASE_KEY = "sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO";
-  const VAPID_PUBLIC_KEY = "BIMlFtLtFmXM6GjcRj6DIjepDuYkGwv562a3YHIgFRQdk03PrCfNGbK_1aIpRLqM825t9fEG_nvsfNGWyrOy0UI";
+  const VAPID_PUBLIC_KEY = "BFyxNuIrHS5TOcnOOf_RYSSDkroBWzE0LCoxbzkApVi-0vvjbS68-7-zsA-kqkX6agWMA6i7vvfC-exTNTsvvuk";
   let client = null;
 
   const $ = (id) => document.getElementById(id);
