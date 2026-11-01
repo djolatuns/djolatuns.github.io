@@ -27,37 +27,32 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--dj-gold-light);outl
 @media(max-width:420px){header{padding:22px 12px!important}header h1{font-size:23px!important;letter-spacing:2px!important}.card{padding:16px!important}.bottom a{font-size:10px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step,.tile{transition:none}}
 .bottom a[href="announcements.html"]{color:var(--dj-gold-light)!important}
-</style></head><body><header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header><main class="wrap"><section class="intro"><h2>Announcements</h2><p>Official news and important updates from DJ OLATUNS.</p></section><p id="msg" class="muted">Loading announcements...</p><div id="items"></div></main><footer>DJ OLATUNS • © 2026</footer><nav class="bottom" aria-label="Main navigation"><a href="/"><b>⌂</b>Home</a><a href="/mixtapes.html"><b>♫</b>Mixtapes</a><a href="/status.html"><b>◉</b>Status</a><a href="/posts.html"><b>▣</b>Posts</a><a href="/announcements.html" aria-current="page"><b>♢</b>News</a><a href="/account.html"><b>◎</b>Account</a></nav><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(async()=>{
-  const area=document.getElementById('items');
-  const message=document.getElementById('msg');
-  let db;
-  async function loadNews(){
-    message.textContent='Loading official announcements...';
-    try{
-      if(!db){
-        if(!window.supabase || typeof window.supabase.createClient!=='function') throw new Error('Announcement service could not start. Please reload the page.');
-        db=window.supabase.createClient('https://tiqracqtgggoctyvtuqo.supabase.co','sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO');
-      }
-      const {data,error}=await db.from('site_notifications').select('id,title,message,created_at').eq('published',true).order('created_at',{ascending:false});
-      if(error) throw error;
-      area.replaceChildren();
-      if(!data || data.length===0){message.textContent='No announcements yet. Check back soon.';return;}
-      message.textContent='All published official announcements • '+data.length+' update(s)';
-      data.forEach(item=>{
-        const card=document.createElement('article');card.className='card';
-        const title=document.createElement('h3');title.textContent=item.title||'DJ OLATUNS Update';
-        const body=document.createElement('p');body.textContent=item.message||'';
-        const date=document.createElement('small');date.className='muted';date.textContent=item.created_at?new Date(item.created_at).toLocaleString():'';
-        card.append(title,body,date);area.append(card);
-      });
-    }catch(error){message.textContent='Could not load announcements: '+(error?.message||'Unknown error');}
-  }
-  const refresh=document.createElement('button');refresh.type='button';refresh.textContent='Refresh News';
-  refresh.style.cssText='margin:0 0 18px;padding:10px 15px;border-radius:10px;border:1px solid #806326;background:#d9b45b;color:#111;font-weight:bold';
-  refresh.addEventListener('click',loadNews);message.insertAdjacentElement('afterend',refresh);
-  await loadNews();
-  if(db) db.channel('public-news-feed').on('postgres_changes',{event:'*',schema:'public',table:'site_notifications'},loadNews).subscribe();
+</style></head><body><header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header><main class="wrap"><section class="intro"><h2>Announcements</h2><p>Official news and important updates from DJ OLATUNS.</p></section><p id="msg" class="muted">Loading announcements...</p><div id="items"></div></main><footer>DJ OLATUNS • © 2026</footer><nav class="bottom" aria-label="Main navigation"><a href="/"><b>⌂</b>Home</a><a href="/mixtapes.html"><b>♫</b>Mixtapes</a><a href="/status.html"><b>◉</b>Status</a><a href="/posts.html"><b>▣</b>Posts</a><a href="/announcements.html" aria-current="page"><b>♢</b>News</a><a href="/account.html"><b>◎</b>Account</a></nav><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+(()=>{
+ const SUPABASE_URL='https://tiqracqtgggoctyvtuqo.supabase.co';
+ const SUPABASE_KEY='sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO';
+ const newsDb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+ const area=document.getElementById('items'),message=document.getElementById('msg');
+ async function loadNews(){
+  message.textContent='Loading official announcements...';
+  try{
+   const {data,error}=await newsDb.from('site_notifications').select('id,title,message,created_at').eq('published',true).order('created_at',{ascending:false});
+   if(error)throw error;
+   area.replaceChildren();
+   if(!data||!data.length){message.textContent='No announcements yet. Check back soon.';return;}
+   message.textContent='All published official announcements • '+data.length+' update(s)';
+   data.forEach(item=>{
+    const card=document.createElement('article');card.className='card';
+    const title=document.createElement('h3');title.textContent=item.title||'DJ OLATUNS Update';
+    const body=document.createElement('p');body.textContent=item.message||'';
+    const date=document.createElement('small');date.className='muted';date.textContent=item.created_at?new Date(item.created_at).toLocaleString():'';
+    card.append(title,body,date);area.append(card);
+   });
+  }catch(error){console.error('News feed error:',error);message.textContent='Could not load announcements: '+(error.message||'Please try again.');}
+ }
+ loadNews();
+ const refresh=document.createElement('button');refresh.type='button';refresh.textContent='Refresh News';refresh.style.margin='0 0 18px';
+ message.insertAdjacentElement('afterend',refresh);refresh.addEventListener('click',loadNews);
+ newsDb.channel('public-news-feed').on('postgres_changes',{event:'*',schema:'public',table:'site_notifications'},loadNews).subscribe();
 })();
 </script></body></html>
