@@ -1,21 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080808">
-
-<title>DJ OLATUNS Members Club</title>
-<meta name="description" content="Join the official DJ OLATUNS Members Club. Register, log in and receive official music and membership updates.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://djolatuns.github.io/account.html">
-
-<meta property="og:title" content="DJ OLATUNS Members Club">
-<meta property="og:description" content="Join the official DJ OLATUNS community.">
-<meta property="og:url" content="https://djolatuns.github.io/account.html">
-<meta property="og:type" content="website">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="DJ OLATUNS Members Account. Register or sign in to your official members account.">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon-192.png">
+<title>DJ OLATUNS | Members Account</title>
 <style>
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -217,237 +211,67 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--dj-gold-light);outl
 @media(max-width:420px){header{padding:22px 12px!important}header h1{font-size:23px!important;letter-spacing:2px!important}.card{padding:16px!important}.bottom a,.bottom-app-nav a{font-size:10px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step,.tile{transition:none}}
 .bottom-app-nav a[href="account.html"]{color:var(--dj-gold-light)!important}
+
+body{padding-bottom:90px}
+.account-wrap{max-width:760px;margin:28px auto;padding:0 16px}
+.account-wrap .card{margin:18px 0}
+.member-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.member-links a{display:block;padding:16px;border:1px solid var(--dj-line);border-radius:14px;color:var(--dj-gold-light);text-decoration:none;background:#111}
+.member-links a span{display:block;color:#bbb;font-size:12px;margin-top:5px}
+.bottom-app-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;justify-content:space-around;gap:2px;background:#090909f5;border-top:1px solid #806326;padding:8px 2px calc(8px + env(safe-area-inset-bottom))}
+.bottom-app-nav a{flex:1;text-align:center;color:#bbb;text-decoration:none;font-size:10px;line-height:1.35}
+.bottom-app-nav b{display:block;color:#d9b45b;font-size:18px}
+.bottom-app-nav a[aria-current="page"]{color:#f0d17c}
+@media(min-width:700px){.bottom-app-nav{position:static;max-width:900px;margin:20px auto;border:1px solid var(--dj-line);border-radius:16px}}
+@media(max-width:430px){.member-links{grid-template-columns:1fr 1fr}.bottom-app-nav a{font-size:9px}}
 </style>
 </head>
-
 <body>
-
-<header>
-  <h1>DJ OLATUNS</h1>
-  <p>UNDEFEATABLE • OFFICIAL MEMBERS &amp; ACCOUNT CENTRE</p>
-</header>
-
-<section class="hero">
-  <h2>Welcome to the DJ OLATUNS Members Club</h2>
-  <p>
-    More than music. Become part of the official DJ OLATUNS
-    community and stay connected with the latest mixtapes,
-    music updates, announcements and exclusive experiences.
-  </p>
-  <a class="gold-link" href="#membership">Explore Membership</a>
-  <a class="gold-link" href="#member-account">Member Login</a>
-</section>
-
-<main>
-
+<header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
+<main class="account-wrap">
 <section class="card">
-  <h2>Your Members Club</h2>
-  <p class="muted">Choose a section to open it on its own page, just like moving between screens in an app.</p>
-  <div class="steps">
-    <a class="step" href="mixtapes.html"><strong>♫ Mixtapes</strong><p class="muted">Listen to DJ OLATUNS mixes.</p></a>
-    <a class="step" href="status.html"><strong>◉ Status</strong><p class="muted">See the latest 24-hour photo and video updates.</p></a>
-    <a class="step" href="posts.html"><strong>▣ Posts</strong><p class="muted">Browse the permanent status archive.</p></a>
-    <a class="step" href="announcements.html"><strong>♢ Announcements</strong><p class="muted">Read official news and updates.</p></a>
-    <a class="step" href="#member-account"><strong>◎ My Account</strong><p class="muted">Open your member account.</p></a>
-  </div>
+<h2>Members Login</h2>
+<p class="muted">Sign in to your DJ OLATUNS Members account, or create an account if you are new.</p>
+<div id="authCard">
+<input id="email" type="email" placeholder="Your email address" autocomplete="email">
+<input id="password" type="password" placeholder="Password (minimum 8 characters)" autocomplete="current-password">
+<button id="loginBtn" type="button">Log In</button>
+<button id="signupBtn" class="secondary" type="button">Create Account</button>
+</div>
+<p id="authMessage" class="muted status" aria-live="polite"></p>
 </section>
-
-<section class="card">
-  <h2>About the Members Club</h2>
-  <p>
-    The DJ OLATUNS Members Club is the official online
-    membership community of DJ OLATUNS.
-  </p>
-  <p>
-    It brings music lovers and supporters closer to the
-    DJ OLATUNS brand through membership updates,
-    announcements, music releases and premium experiences.
-  </p>
-</section>
-
-<section class="card">
-  <h2>What Members Can Look Forward To</h2>
-  <ul class="feature-list">
-    <li>Updates about new DJ OLATUNS mixtapes.</li>
-    <li>Members' announcements and important updates.</li>
-    <li>Exclusive music content when available.</li>
-    <li>Early-release opportunities when available.</li>
-    <li>A personal membership account.</li>
-    <li>Direct access to membership support.</li>
-  </ul>
-</section>
-
-<section class="card" id="membership">
-  <h2>Membership Information</h2>
-  <div class="price">₦1,000 / Month</div>
-  <div class="notice">
-    <strong>Payment activation coming soon</strong>
-    <p>
-      Account registration is available. Online payment
-      checkout and paid membership activation have not
-      yet been launched.
-    </p>
-    <p>
-      Creating an account does not automatically activate
-      a paid membership.
-    </p>
-  </div>
-  <a class="gold-link" href="#member-account">Create Your Account</a>
-</section>
-
-<section class="card">
-  <h2>How to Join</h2>
-  <div class="steps">
-    <div class="step">
-      <strong>01. Register</strong>
-      <p class="muted">Enter your email and create a password.</p>
-    </div>
-    <div class="step">
-      <strong>02. Confirm</strong>
-      <p class="muted">Check your email if confirmation is required.</p>
-    </div>
-    <div class="step">
-      <strong>03. Log In</strong>
-      <p class="muted">Use your registered email and password.</p>
-    </div>
-    <div class="step">
-      <strong>04. Membership</strong>
-      <p class="muted">Check your membership information.</p>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <h2>Explore DJ OLATUNS Music</h2>
-  <div class="button-row">
-    <a class="gold-link" href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Official Audiomack</a>
-
-    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/new-wave-2026-mixtape?share-user-id=153478386" target="_blank" rel="noopener">New Wave 2026</a>
-
-    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-dance-mix?share-user-id=153478386" target="_blank" rel="noopener">2026 Dance Mix</a>
-
-    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/undefeatable-dj-olatuns-faaja-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Faaja Mixtape</a>
-
-    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Movement Mixtape</a>
-  </div>
-</section>
-
-<section class="card" id="member-account">
-  <h2>Member Account</h2>
-  <p class="muted">
-    Already a member? Log in. New here? Create your account.
-  </p>
-
-  <div id="authCard">
-    <input id="email" type="email"
-      placeholder="Your email address"
-      autocomplete="email">
-
-    <input id="password" type="password"
-      placeholder="Password (minimum 8 characters)"
-      autocomplete="current-password">
-
-    <button id="signupBtn" type="button">Create Account</button>
-    <button id="loginBtn" class="secondary" type="button">Log In</button>
-    <p class="muted" style="margin-top:14px">Administrator?</p><a class="gold-link" href="/admin.html">Administrator Login</a>
-  </div>
-
-  <p id="authMessage" class="muted status" aria-live="polite"></p>
-</section>
-
 <section class="card hidden" id="accountCard">
-  <h2>Your Account</h2>
-  <p id="accountEmail" class="muted"></p>
-
-  <div id="membershipStatus" class="notice">
-    Checking membership...
-  </div>
-
-  <div class="notice" id="pushNotice">
-    <strong>Phone Notifications</strong>
-    <p class="muted">Get DJ OLATUNS announcements on this device, even when the app is closed.</p>
-    <button id="enablePushBtn" type="button">Enable Notifications</button>
-    <button id="disablePushBtn" class="secondary hidden" type="button">Turn Off Notifications</button>
-    <p id="pushStatus" class="muted status" aria-live="polite">Checking notification support...</p>
-  </div>
-
-  <button id="logoutBtn" class="secondary" type="button">Log Out</button>
+<h2>Welcome to your account</h2>
+<p id="accountEmail" class="muted"></p>
+<div id="membershipStatus" class="notice">Checking membership...</div>
+<div class="notice" id="pushNotice">
+<strong>Phone Notifications</strong>
+<p class="muted">Receive official DJ OLATUNS announcements on this device.</p>
+<button id="enablePushBtn" type="button">Enable Notifications</button>
+<button id="disablePushBtn" class="secondary hidden" type="button">Turn Off Notifications</button>
+<p id="pushStatus" class="muted status" aria-live="polite">Checking notification support...</p>
+</div>
+<div id="memberFeatures" class="hidden">
+<h3>Explore your Members App</h3>
+<p class="muted">Your app sections are available here.</p>
+<div class="member-links">
+<a href="/mixtapes.html">♫ Mixtapes<span>Listen to releases</span></a>
+<a href="/status.html">◉ Status<span>Latest 24-hour updates</span></a>
+<a href="/posts.html">▣ Posts<span>Community post archive</span></a>
+<a href="/announcements.html">♢ News<span>Official announcements</span></a>
+<a href="/about.html">ⓘ About<span>About the app and DJ OLATUNS</span></a>
+<a href="/">⌂ Home<span>Return to homepage</span></a>
+</div>
+</div>
+<button id="logoutBtn" class="secondary" type="button">Log Out</button>
 </section>
-
-<section class="card">
-  <h2>Notification &amp; Announcement History</h2>
-  <p class="muted">Your official DJ OLATUNS announcements, with publication dates. Enable phone notifications above to receive future updates on this device.</p>
-  <p id="announcementStatus" class="muted status" aria-live="polite">Connecting to announcements...</p>
-  <div class="button-row">
-    <button id="refreshAnnouncementsBtn" class="secondary" type="button">Refresh Announcements</button>
-  </div>
-  <div id="announcements" aria-live="polite">
-    <p class="muted">Loading announcements...</p>
-  </div>
-</section>
-
-<section class="card hidden" id="adminCard">
-  <h2>Administrator Dashboard</h2>
-  <p class="muted">Official DJ OLATUNS administration.</p>
-
-  <div class="notice" id="adminStats">Loading dashboard...</div>
-
-  <h3>Publish Announcement</h3>
-  <input id="announcementTitle" placeholder="Announcement title">
-  <textarea id="announcementMessage" rows="4"
-    placeholder="Write your announcement"></textarea>
-
-  <button id="publishBtn" type="button">Publish Announcement</button>
-  <p id="adminMessage" class="muted status"></p>
-</section>
-
-<section class="card">
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="faq-item">
-    <h3>What is the DJ OLATUNS Members Club?</h3>
-    <p>It is the official online membership community where supporters can register, access their accounts and receive official updates.</p>
-  </div>
-
-  <div class="faq-item">
-    <h3>How much does membership cost?</h3>
-    <p>The listed membership price is ₦1,000 per month. Payment activation is still being prepared.</p>
-  </div>
-
-  <div class="faq-item">
-    <h3>Can I create an account now?</h3>
-    <p>Yes. Register using your email address and a password of at least eight characters.</p>
-  </div>
-
-  <div class="faq-item">
-    <h3>Does registration activate paid membership?</h3>
-    <p>No. Paid membership activation will require the official payment system once available.</p>
-  </div>
-</section>
-
-<section class="card">
-  <h2>Need Help?</h2>
-  <p>For membership questions and account assistance, contact DJ OLATUNS.</p>
-  <a class="gold-link" href="https://wa.me/2348103327836" target="_blank" rel="noopener">Chat on WhatsApp</a>
-  <p class="muted">
-    Official website:
-    <a href="https://djolatuns.github.io/">djolatuns.github.io</a>
-  </p>
-</section>
-
-<p class="muted" style="text-align:center">
-  <a href="https://djolatuns.github.io/">Back to DJ OLATUNS Official Website</a>
-</p>
-
+<div hidden aria-hidden="true">
+<p id="announcementStatus"></p><button id="refreshAnnouncementsBtn" type="button"></button><div id="announcements"></div>
+<div id="adminCard" class="hidden"><div id="adminStats"></div><input id="announcementTitle"><textarea id="announcementMessage"></textarea><button id="publishBtn" type="button"></button><p id="adminMessage"></p></div>
+</div>
 </main>
-
-<footer>
-  <p>DJ OLATUNS • UNDEFEATABLE</p>
-  <p>© 2026 DJ OLATUNS. All rights reserved.</p>
-</footer>
-
+<footer>DJ OLATUNS • © 2026</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 const SUPABASE_URL =
   "https://tiqracqtgggoctyvtuqo.supabase.co";
@@ -581,18 +405,8 @@ async function loadAccount(user) {
     );
   }
 
-  const { data: admin, error: adminError } = await db
-    .from("admin_users")
-    .select("user_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (!adminError && admin) {
-    $("adminCard").classList.remove("hidden");
-    await loadAdminStats();
-  } else {
-    $("adminCard").classList.add("hidden");
-  }
+  const nav = $("memberFeatures");
+  if (nav) nav.classList.remove("hidden");
 }
 
 async function loadAdminStats() {
@@ -683,7 +497,6 @@ $("logoutBtn").onclick = async () => {
   }
 
   $("accountCard").classList.add("hidden");
-  $("adminCard").classList.add("hidden");
   $("authCard").classList.remove("hidden");
 
   showMessage("authMessage", "You have logged out.");
@@ -787,7 +600,13 @@ startPortal().catch(error => {
 });
 </script>
 <script src="/push-client.js"></script>
-
-<nav class="bottom-app-nav"><a href="/"><b>⌂</b>Home</a><a href="mixtapes.html"><b>♫</b>Mixes</a><a href="status.html"><b>◉</b>Status</a><a href="posts.html"><b>▣</b>Posts</a><a href="announcements.html"><b>♢</b>News</a><a href="account.html"><b>◎</b>Account</a></nav>
-</body>
-</html>
+<nav class="bottom-app-nav" aria-label="Main navigation">
+<a href="/"><b>⌂</b>Home</a>
+<a href="/mixtapes.html"><b>♫</b>Mixtapes</a>
+<a href="/status.html"><b>◉</b>Status</a>
+<a href="/posts.html"><b>▣</b>Posts</a>
+<a href="/announcements.html"><b>♢</b>News</a>
+<a href="/about.html"><b>ⓘ</b>About</a>
+<a href="/account.html" aria-current="page"><b>◎</b>Account</a>
+</nav>
+</body></html>
