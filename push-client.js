@@ -82,6 +82,21 @@
     }
   }
 
+  async function testCEO() {
+    const button = $("testPushBtn");
+    if (!button) return;
+    button.disabled = true;
+    say("Sending a private test notification to your CEO devices…");
+    try {
+      const result = await callPush("test-ceo");
+      say("CEO test sent to " + result.sent + " of " + result.total + " subscribed devices. Check your phone notifications.");
+    } catch (error) {
+      say("CEO test failed: " + (error.message || "Unknown push error."));
+    } finally {
+      button.disabled = false;
+    }
+  }
+
   async function disable() {
     const button = $("disablePushBtn");
     button.disabled = true;
@@ -104,6 +119,8 @@
     if (!user || !$("pushNotice")) return;
     $("enablePushBtn").onclick = enable;
     $("disablePushBtn").onclick = disable;
+    const testButton = $("testPushBtn");
+    if (testButton) testButton.onclick = testCEO;
     try { await refreshPushState(); } catch (error) { say(error.message); }
   };
 
