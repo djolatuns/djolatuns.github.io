@@ -40,13 +40,8 @@ async function initializeStatusComposer(){
   try{
     const {data:{session},error}=await db.auth.getSession();
     if(error) throw error;
-    if(session){
-      box.classList.remove('hidden');
-      msg.textContent='Welcome, member. You can publish a Status update.';
-    }else{
-      box.classList.add('hidden');
-      msg.textContent='Sign in to your DJ OLATUNS membership account to add a Status update.';
-    }
+    box.classList.remove('hidden');
+    msg.textContent=session ? 'Welcome, member. You can publish a Status update.' : '＋ Add Status is available here. Sign in to publish.';
   }catch(e){
     console.error('Status sign-in check failed:',e);
     box.classList.add('hidden');
@@ -58,7 +53,7 @@ db.auth.onAuthStateChange((event,session)=>{
 });
 initializeStatusComposer();
 loadStatuses();
-document.getElementById('addStatusBtn').onclick=()=>{document.getElementById('statusComposer').classList.remove('hidden');document.getElementById('addStatusBtn').classList.add('hidden')};
+document.getElementById('addStatusBtn').onclick=async()=>{const {data:{session}}=await db.auth.getSession();if(!session){document.getElementById('adminMsg').textContent='Please sign in first, then return here to publish.';document.getElementById('statusComposer').classList.remove('hidden');document.getElementById('addStatusBtn').classList.add('hidden');return}document.getElementById('statusComposer').classList.remove('hidden');document.getElementById('addStatusBtn').classList.add('hidden')};
 document.getElementById('cancelStatusBtn').onclick=()=>{document.getElementById('statusComposer').classList.add('hidden');document.getElementById('addStatusBtn').classList.remove('hidden')};
 document.getElementById('publish').onclick=async()=>{const msg=document.getElementById('adminMsg'),file=document.getElementById('media').files[0],btn=document.getElementById('publish');if(!file){msg.textContent='Choose a photo or video first.';return}if(file.size>50*1024*1024){msg.textContent='File is larger than 50 MB.';return}const {data:{session}}=await db.auth.getSession();if(!session){msg.textContent='Please log in first.';return}btn.disabled=true;msg.textContent='Uploading media...';try{const ext=(file.name.split('.').pop()||'bin').toLowerCase(),path=session.user.id+'/'+crypto.randomUUID()+'.'+ext;const {error:upErr}=await db.storage.from('community-media').upload(path,file,{upsert:false,contentType:file.type});if(upErr)throw upErr;const {data:urlData}=db.storage.from('community-media').getPublicUrl(path);const type=file.type.startsWith('video/')?'video':'image';const {error:insErr}=await db.from('community_posts').insert({title:document.getElementById('title').value.trim(),caption:document.getElementById('caption').value.trim(),media_url:urlData.publicUrl,media_type:type,created_by:session.user.id,status_expires_at:new Date(Date.now()+86400000).toISOString()});if(insErr)throw insErr;msg.textContent='Status published. It will expire from Status after 24 hours and stay in Posts.';document.getElementById('title').value='';document.getElementById('caption').value='';document.getElementById('media').value='';await loadStatuses()}catch(e){msg.textContent='Could not publish: '+e.message}finally{btn.disabled=false}};
 </script></body></html>
