@@ -179,6 +179,11 @@ function initialise() {
 
 /* VERIFY ADMIN ACCOUNT */
 async function verifyAdmin(user) {
+  const officialEmail = "ismailtaiw201@gmail.com";
+  if ((user.email || "").trim().toLowerCase() !== officialEmail) {
+    throw new Error("This administrator dashboard is restricted to the official DJ OLATUNS administrator account.");
+  }
+
   const {data,error} = await db
     .from("admin_users")
     .select("user_id")
@@ -190,7 +195,7 @@ async function verifyAdmin(user) {
   }
 
   if (!data) {
-    throw new Error("Login successful, but this account is not registered as an administrator.");
+    throw new Error("This account is not registered as the official administrator.");
   }
 }
 
