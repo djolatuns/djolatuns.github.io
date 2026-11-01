@@ -91,11 +91,11 @@
     .socials a{border:1px solid var(--line);padding:8px 12px;border-radius:10px;color:var(--gold2);font-size:13px}
 
     /* Members portal section */
-    .members-card{border:1px solid #705728;border-radius:20px;background:linear-gradient(145deg,#211a0d,#11100e 70%);padding:18px}
+    .updates-grid{display:grid;grid-template-columns:1fr;gap:12px}.update-panel{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(150deg,#1b1812,#10100e 78%);min-width:0}.update-panel h3{color:var(--gold2);margin:0 0 7px}.update-panel p{color:var(--muted);font-size:13px;margin:6px 0 12px}.live-item{border-top:1px solid var(--line);padding:10px 0}.live-item:first-child{border-top:0}.live-item strong{display:block;color:var(--gold2);font-size:14px}.live-item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.live-media{width:100%;max-height:230px;object-fit:contain;border-radius:12px;background:#050505;margin-top:8px}.update-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.update-actions .btn{font-size:12px;padding:9px 11px}.feed-status{color:var(--muted);font-size:12px}@media(min-width:650px){.updates-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.update-panel.wide{grid-column:1/-1}}\n    .members-card{border:1px solid #705728;border-radius:20px;background:linear-gradient(145deg,#211a0d,#11100e 70%);padding:18px}
     .members-card p{color:var(--muted);font-size:14px;margin:10px 0 16px}
 
     footer{text-align:center;color:#807869;font-size:11px;padding:24px 0 8px}
-    .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#090909f2;border-top:1px solid #49381d;backdrop-filter:blur(18px)}
+    .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,1fr);padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#090909f2;border-top:1px solid #49381d;backdrop-filter:blur(18px)}
     .bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#a69d8b;font-size:10px;font-weight:750;padding:4px 0}
     .bottomnav .ico{font-size:19px;line-height:1.2}
     .bottomnav a.active{color:var(--gold2)}
@@ -122,7 +122,7 @@
       <h1 id="hero-title">FEEL THE<br>VIBE.</h1>
       <p>Welcome to the official home of DJ OLATUNS — Nigerian DJ, mixtape curator and music entertainer. Discover releases, music energy, bookings and the next wave, all in one place.</p>
       <div class="actions">
-        <a class="btn gold" href="#members">♛ Join Members</a>
+        <a class="btn gold" href="#members">♛ Join Members</a>\n        <a class="btn" href="#updates">♢ Live Updates</a>
         <a class="btn" href="#mixtapes">▶ Explore Mixtapes</a>
         <a class="btn" href="https://wa.me/2348103327836" target="_blank" rel="noopener">✦ Book DJ Olatuns</a>
       </div>
@@ -149,7 +149,12 @@
     </div>
   </section>
 
-  <section class="section" id="mixtapes" aria-labelledby="featured-heading">
+<section class="section" id="updates" aria-labelledby="updates-heading"><div class="sectionHead"><div><h2 id="updates-heading">OLATUNS <span>Live Updates</span></h2><div class="sub">The latest community activity, right here on the homepage</div></div><span class="eyebrow">Live hub</span></div><div class="updates-grid">
+<article class="update-panel"><h3>♢ Official Announcements</h3><p>News and important messages from DJ OLATUNS.</p><div id="homeAnnouncements" class="feed-status" aria-live="polite">Loading latest announcements…</div><div class="update-actions"><a class="btn gold" href="/announcements.html">All announcements ↗</a></div></article>
+<article class="update-panel"><h3>◉ 24-hour Status</h3><p>Recent photo and video updates. Status posts expire after 24 hours.</p><div id="homeStatuses" class="feed-status" aria-live="polite">Loading active statuses…</div><div class="update-actions"><a class="btn gold" href="/status.html">View all statuses ↗</a></div></article>
+<article class="update-panel wide"><h3>▣ Community Posts</h3><p>Recent photos and videos remain available in the posts archive.</p><div id="homePosts" class="feed-status" aria-live="polite">Loading recent posts…</div><div class="update-actions"><a class="btn gold" href="/posts.html">Open posts archive ↗</a></div></article>
+<article class="update-panel"><h3>♛ Member Account</h3><p>Create your account or sign in to access the member community and account features.</p><div class="update-actions"><a class="btn gold" href="/members.html">Join / Sign in ↗</a><a class="btn" href="/account.html">My account ↗</a></div></article>
+<article class="update-panel"><h3>♧ Member Notifications</h3><p>Sign in to manage push notifications on this device and receive supported official announcements.</p><div class="update-actions"><a class="btn gold" href="/members.html#member-account">Manage notifications ↗</a></div></article></div></section>\n  <section class="section" id="mixtapes" aria-labelledby="featured-heading">
     <div class="sectionHead">
       <div><h2 id="featured-heading">Featured <span>Release</span></h2><div class="sub">Your soundtrack starts here</div></div>
       <span class="eyebrow">2026</span>
@@ -213,7 +218,7 @@
 
 <nav class="bottomnav" aria-label="Main navigation">
   <a class="active" href="#home"><span class="ico" aria-hidden="true">⌂</span>Home</a>
-  <a href="#mixtapes"><span class="ico" aria-hidden="true">♫</span>Mixtapes</a>
+  <a href="#mixtapes"><span class="ico" aria-hidden="true">♫</span>Mixtapes</a>\n  <a href="#updates"><span class="ico" aria-hidden="true">♢</span>Updates</a>
   <a href="#services"><span class="ico" aria-hidden="true">✦</span>Services</a>
   <a href="#contact"><span class="ico" aria-hidden="true">☏</span>Contact</a>
   <a href="#members"><span class="ico" aria-hidden="true">♛</span>Members</a>
@@ -256,7 +261,7 @@
     installBtn.hidden = true;
   });
 
-  const navLinks = document.querySelectorAll(".bottomnav a");
+(async function loadHomeCommunityUpdates(){const setText=(id,message)=>{const el=document.getElementById(id);if(el)el.textContent=message;};const safeDate=value=>{try{return new Date(value).toLocaleString();}catch(_){return "";}};const addText=(parent,tag,value,className)=>{const el=document.createElement(tag);if(className)el.className=className;el.textContent=value||"";parent.appendChild(el);return el;};try{if(!window.supabase)throw new Error("Community updates are temporarily unavailable.");const db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co","sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO");const [news,statuses,posts]=await Promise.all([db.from("site_notifications").select("title,message,created_at").eq("published",true).order("created_at",{ascending:false}).limit(2),db.from("community_posts").select("title,caption,media_url,media_type,created_at,status_expires_at").gt("status_expires_at",new Date().toISOString()).order("created_at",{ascending:false}).limit(2),db.from("community_posts").select("title,caption,media_url,media_type,created_at").order("created_at",{ascending:false}).limit(2)]);const render=(id,data,error,kind)=>{const box=document.getElementById(id);if(!box)return;box.textContent="";if(error){addText(box,"p","Updates could not be loaded right now.");return;}if(!data||!data.length){addText(box,"p",kind==="news"?"No announcements yet. Check back soon.":kind==="status"?"No active statuses right now.":"No community posts have been shared yet.");return;}data.forEach(item=>{const row=document.createElement("div");row.className="live-item";if(item.title)addText(row,"strong",item.title);if(item.message)addText(row,"p",item.message);if(item.caption)addText(row,"p",item.caption);if(kind!=="news"&&item.media_url){if(item.media_type==="video"){const v=document.createElement("video");v.className="live-media";v.src=item.media_url;v.controls=true;v.playsInline=true;v.preload="metadata";row.appendChild(v);}else{const im=document.createElement("img");im.className="live-media";im.src=item.media_url;im.alt=item.title||"DJ OLATUNS community update";im.loading="lazy";row.appendChild(im);}}addText(row,"small",kind==="status"&&item.status_expires_at?"Expires "+safeDate(item.status_expires_at):safeDate(item.created_at));box.appendChild(row);});};render("homeAnnouncements",news.data,news.error,"news");render("homeStatuses",statuses.data,statuses.error,"status");render("homePosts",posts.data,posts.error,"posts");}catch(error){["homeAnnouncements","homeStatuses","homePosts"].forEach(id=>setText(id,error.message||"Updates are temporarily unavailable."));}})();\n  const navLinks = document.querySelectorAll(".bottomnav a");
   navLinks.forEach(link => link.addEventListener("click", () => {
     navLinks.forEach(item => item.classList.remove("active"));
     link.classList.add("active");
