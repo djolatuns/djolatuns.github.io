@@ -115,8 +115,11 @@
 .wa-viewer.open{display:flex}.wa-viewer-top{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;color:white}.wa-viewer-top button,.wa-detail-close{background:transparent!important;color:white!important;border:0!important;padding:6px!important;box-shadow:none!important}.wa-progress{height:3px;background:#555;border-radius:5px;overflow:hidden}.wa-progress span{display:block;height:100%;width:100%;background:#e6c56e}.wa-viewer-top strong{grid-column:2;font-size:13px}.wa-viewer-media{flex:1;min-height:0;display:grid;place-items:center;margin:15px 0}.wa-viewer-media img,.wa-viewer-media video{max-width:100%;max-height:100%;object-fit:contain}.wa-viewer-caption{text-align:center;color:#fff;padding:10px}.wa-viewer-next{position:absolute;right:8px;top:45%;background:#ffffff22!important;color:white!important;border:0!important;font-size:34px;padding:8px!important}
 .wa-detail{display:none;position:fixed;inset:0;z-index:101;background:#000b;align-items:center;justify-content:center;padding:20px}.wa-detail.open{display:flex}.wa-detail-card{position:relative;width:min(100%,480px);background:#17150f;border:1px solid #705728;border-radius:18px;padding:24px}.wa-detail-card h3{color:var(--gold2)}.wa-detail-card p{white-space:pre-wrap;color:var(--text)}.wa-detail-card small{color:var(--muted)}.wa-detail-close{position:absolute;right:10px;top:8px;color:var(--gold2)!important}
 @media(prefers-reduced-motion:no-preference){.wa-viewer.open .wa-progress span{animation:waStory 8s linear forwards}@keyframes waStory{from{width:0}to{width:100%}}}
-\n    /* Members portal section */
-    .updates-grid{display:grid;grid-template-columns:1fr;gap:12px}.update-panel{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(150deg,#1b1812,#10100e 78%);min-width:0}.update-panel h3{color:var(--gold2);margin:0 0 7px}.update-panel p{color:var(--muted);font-size:13px;margin:6px 0 12px}.live-item{border-top:1px solid var(--line);padding:10px 0}.live-item:first-child{border-top:0}.live-item strong{display:block;color:var(--gold2);font-size:14px}.live-item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.live-media{width:100%;max-height:230px;object-fit:contain;border-radius:12px;background:#050505;margin-top:8px}.update-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.update-actions .btn{font-size:12px;padding:9px 11px}.feed-status{color:var(--muted);font-size:12px}@media(min-width:650px){.updates-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.update-panel.wide{grid-column:1/-1}}\n    .members-card{border:1px solid #705728;border-radius:20px;background:linear-gradient(145deg,#211a0d,#11100e 70%);padding:18px}
+
+.card{background:linear-gradient(150deg,#1b1812,#10100e 78%);border:1px solid var(--line);border-radius:18px;padding:20px;margin:0 0 16px;box-shadow:0 10px 28px #0003}.card h2{color:var(--gold2);margin:0 0 10px}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.step{display:block;padding:15px;border:1px solid var(--line);border-radius:14px;background:#10100e}.step strong{color:var(--gold2)}.step p{margin:7px 0 0}.price{font-size:30px;font-weight:900;color:var(--gold2)}.feature-list{padding-left:22px;color:#ddd}.feature-list li{margin:8px 0}.notice{padding:13px;background:#252014;border:1px solid #51452f;border-radius:12px;margin:10px 0}.hidden{display:none!important}.status{overflow-wrap:anywhere;font-size:13px}.faq-item{border-bottom:1px solid var(--line);padding:12px 0}.button-row{display:flex;flex-wrap:wrap;gap:7px}.gold-link{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;margin:5px 4px 5px 0;border:0;border-radius:12px;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06!important;font-weight:850;text-decoration:none;cursor:pointer}.card input,.card textarea{width:100%;padding:13px;margin:8px 0;background:#090909;color:#f8f5ed;border:1px solid #5a4828;border-radius:11px;font-size:15px}.card button.secondary{background:#29251d;color:#f8f5ed;border:1px solid #5a4828}.card button{margin:5px 4px 5px 0}.hero .gold-link{margin-top:8px}
+    /* Members portal section */
+    .updates-grid{display:grid;grid-template-columns:1fr;gap:12px}.update-panel{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(150deg,#1b1812,#10100e 78%);min-width:0}.update-panel h3{color:var(--gold2);margin:0 0 7px}.update-panel p{color:var(--muted);font-size:13px;margin:6px 0 12px}.live-item{border-top:1px solid var(--line);padding:10px 0}.live-item:first-child{border-top:0}.live-item strong{display:block;color:var(--gold2);font-size:14px}.live-item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.live-media{width:100%;max-height:230px;object-fit:contain;border-radius:12px;background:#050505;margin-top:8px}.update-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.update-actions .btn{font-size:12px;padding:9px 11px}.feed-status{color:var(--muted);font-size:12px}@media(min-width:650px){.updates-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.update-panel.wide{grid-column:1/-1}}
+    .members-card{border:1px solid #705728;border-radius:20px;background:linear-gradient(145deg,#211a0d,#11100e 70%);padding:18px}
     .members-card p{color:var(--muted);font-size:14px;margin:10px 0 16px}
 
     footer{text-align:center;color:#807869;font-size:11px;padding:24px 0 8px}
@@ -147,45 +150,227 @@
       <h1 id="hero-title">FEEL THE<br>VIBE.</h1>
       <p>Welcome to the official home of DJ OLATUNS — Nigerian DJ, mixtape curator and music entertainer. Discover releases, music energy, bookings and the next wave, all in one place.</p>
       <div class="actions">
-        <a class="btn gold" href="#members">♛ Join Members</a>\n        <a class="btn" href="#updates">♢ Live Updates</a>
+        <a class="btn gold" href="#members">♛ Join Members</a>
+        <a class="btn" href="#updates">♢ Live Updates</a>
         <a class="btn" href="#mixtapes">▶ Explore Mixtapes</a>
         <a class="btn" href="https://wa.me/2348103327836" target="_blank" rel="noopener">✦ Book DJ Olatuns</a>
       </div>
     </div>
   </section>
 
-  <!-- NEW: MEMBERS AND ADMIN PORTAL -->
-  <section class="section" id="members" aria-labelledby="members-heading">
-    <div class="sectionHead">
-      <div>
-        <h2 id="members-heading">OLATUNS <span>Members</span></h2>
-        <div class="sub">Your official DJ OLATUNS member area</div>
-      </div>
-    </div>
-
-    <div class="members-card">
-      <div class="eyebrow">Official community access</div>
-      <p>Join the DJ OLATUNS community, access your member account and receive official announcements.</p>
-
-      <div class="actions">
-        <a class="btn gold" href="/members.html">Open Member Portal ↗</a>
-        <a class="btn" href="/admin.html">Administrator Dashboard ↗</a>
-      </div>
-    </div>
-  </section>
-
-<section class="section" id="updates" aria-labelledby="updates-heading">
-<div class="sectionHead"><div><h2 id="updates-heading">OLATUNS <span>Community</span></h2><div class="sub">Your updates, just like a familiar chat app</div></div><span class="eyebrow">LIVE</span></div>
-<div class="wa-shell">
-  <div class="wa-top"><span class="wa-avatar">♛</span><div><strong>DJ OLATUNS Official</strong><small>Community updates</small></div><a href="/members.html" aria-label="Open members area">⋮</a></div>
-  <div class="wa-status"><h3>Recent Status</h3><div id="homeStatuses" class="wa-status-row"><p class="feed-status">Loading statuses…</p></div></div>
-  <div class="wa-chat"><h3>Announcements</h3><div id="homeAnnouncements" class="wa-chat-list"><p class="feed-status">Loading announcements…</p></div></div>
-  <div class="wa-chat"><h3>Community Posts</h3><div id="homePosts" class="wa-post-grid"><p class="feed-status">Loading posts…</p></div><a class="wa-more" href="/posts.html">View all posts →</a></div>
-  <div class="wa-footer-actions"><a class="btn gold" href="/members.html">Join / Sign in</a><a class="btn" href="/announcements.html">All news</a><a class="btn" href="/status.html">Status archive</a></div>
-</div>
+<section class="hero">
+  <h2>Welcome to the DJ OLATUNS Members Club</h2>
+  <p>
+    More than music. Become part of the official DJ OLATUNS
+    community and stay connected with the latest mixtapes,
+    music updates, announcements and exclusive experiences.
+  </p>
+  <a class="gold-link" href="#membership">Explore Membership</a>
+  <a class="gold-link" href="#member-account">Member Login</a>
 </section>
-<div class="wa-viewer" id="waViewer" aria-hidden="true"><div class="wa-viewer-top"><button type="button" id="waClose" aria-label="Close">✕</button><div class="wa-progress"><span id="waProgress"></span></div><strong id="waViewerTitle">DJ OLATUNS</strong></div><div class="wa-viewer-media" id="waViewerMedia"></div><div class="wa-viewer-caption" id="waViewerCaption"></div><button class="wa-viewer-next" id="waNext" type="button" aria-label="Next status">›</button></div>
-<div class="wa-detail" id="waDetail" aria-hidden="true"><div class="wa-detail-card"><button type="button" id="waDetailClose" class="wa-detail-close">✕</button><h3 id="waDetailTitle">Announcement</h3><p id="waDetailMessage"></p><small id="waDetailDate"></small></div></div>
+
+
+<section class="card">
+  <h2>Your Members Club</h2>
+  <p class="muted">Choose a section to open it on its own page, just like moving between screens in an app.</p>
+  <div class="steps">
+    <a class="step" href="mixtapes.html"><strong>♫ Mixtapes</strong><p class="muted">Listen to DJ OLATUNS mixes.</p></a>
+    <a class="step" href="status.html"><strong>◉ Status</strong><p class="muted">See the latest 24-hour photo and video updates.</p></a>
+    <a class="step" href="posts.html"><strong>▣ Posts</strong><p class="muted">Browse the permanent status archive.</p></a>
+    <a class="step" href="announcements.html"><strong>♢ Announcements</strong><p class="muted">Read official news and updates.</p></a>
+    <a class="step" href="account.html"><strong>◎ My Account</strong><p class="muted">Open your member account.</p></a>
+  </div>
+</section>
+
+<section class="card">
+  <h2>About the Members Club</h2>
+  <p>
+    The DJ OLATUNS Members Club is the official online
+    membership community of DJ OLATUNS.
+  </p>
+  <p>
+    It brings music lovers and supporters closer to the
+    DJ OLATUNS brand through membership updates,
+    announcements, music releases and premium experiences.
+  </p>
+</section>
+
+<section class="card">
+  <h2>What Members Can Look Forward To</h2>
+  <ul class="feature-list">
+    <li>Updates about new DJ OLATUNS mixtapes.</li>
+    <li>Members' announcements and important updates.</li>
+    <li>Exclusive music content when available.</li>
+    <li>Early-release opportunities when available.</li>
+    <li>A personal membership account.</li>
+    <li>Direct access to membership support.</li>
+  </ul>
+</section>
+
+<section class="card" id="membership">
+  <h2>Membership Information</h2>
+  <div class="price">₦1,000 / Month</div>
+  <div class="notice">
+    <strong>Payment activation coming soon</strong>
+    <p>
+      Account registration is available. Online payment
+      checkout and paid membership activation have not
+      yet been launched.
+    </p>
+    <p>
+      Creating an account does not automatically activate
+      a paid membership.
+    </p>
+  </div>
+  <a class="gold-link" href="#member-account">Create Your Account</a>
+</section>
+
+<section class="card">
+  <h2>How to Join</h2>
+  <div class="steps">
+    <div class="step">
+      <strong>01. Register</strong>
+      <p class="muted">Enter your email and create a password.</p>
+    </div>
+    <div class="step">
+      <strong>02. Confirm</strong>
+      <p class="muted">Check your email if confirmation is required.</p>
+    </div>
+    <div class="step">
+      <strong>03. Log In</strong>
+      <p class="muted">Use your registered email and password.</p>
+    </div>
+    <div class="step">
+      <strong>04. Membership</strong>
+      <p class="muted">Check your membership information.</p>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Explore DJ OLATUNS Music</h2>
+  <div class="button-row">
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Official Audiomack</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/new-wave-2026-mixtape?share-user-id=153478386" target="_blank" rel="noopener">New Wave 2026</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-dance-mix?share-user-id=153478386" target="_blank" rel="noopener">2026 Dance Mix</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/undefeatable-dj-olatuns-faaja-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Faaja Mixtape</a>
+
+    <a class="gold-link" href="https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386" target="_blank" rel="noopener">Movement Mixtape</a>
+  </div>
+</section>
+
+<section class="card" id="member-account">
+  <h2>Member Account</h2>
+  <p class="muted">
+    Already a member? Log in. New here? Create your account.
+  </p>
+
+  <div id="authCard">
+    <input id="email" type="email"
+      placeholder="Your email address"
+      autocomplete="email">
+
+    <input id="password" type="password"
+      placeholder="Password (minimum 8 characters)"
+      autocomplete="current-password">
+
+    <button id="signupBtn" type="button">Create Account</button>
+    <button id="loginBtn" class="secondary" type="button">Log In</button>
+  </div>
+
+  <p id="authMessage" class="muted status" aria-live="polite"></p>
+</section>
+
+<section class="card hidden" id="accountCard">
+  <h2>Your Account</h2>
+  <p id="accountEmail" class="muted"></p>
+
+  <div id="membershipStatus" class="notice">
+    Checking membership...
+  </div>
+
+  <div class="notice" id="pushNotice">
+    <strong>Phone Notifications</strong>
+    <p class="muted">Get DJ OLATUNS announcements on this device, even when the app is closed.</p>
+    <button id="enablePushBtn" type="button">Enable Notifications</button>
+    <button id="disablePushBtn" class="secondary hidden" type="button">Turn Off Notifications</button>
+    <p id="pushStatus" class="muted status" aria-live="polite">Checking notification support...</p>
+  </div>
+
+  <button id="logoutBtn" class="secondary" type="button">Log Out</button>
+</section>
+
+<section class="card">
+  <h2>Notification &amp; Announcement History</h2>
+  <p class="muted">Your official DJ OLATUNS announcements, with publication dates. Enable phone notifications above to receive future updates on this device.</p>
+  <p id="announcementStatus" class="muted status" aria-live="polite">Connecting to announcements...</p>
+  <div class="button-row">
+    <button id="refreshAnnouncementsBtn" class="secondary" type="button">Refresh Announcements</button>
+  </div>
+  <div id="announcements" aria-live="polite">
+    <p class="muted">Loading announcements...</p>
+  </div>
+</section>
+
+<section class="card hidden" id="adminCard">
+  <h2>Administrator Dashboard</h2>
+  <p class="muted">Official DJ OLATUNS administration.</p>
+
+  <div class="notice" id="adminStats">Loading dashboard...</div>
+
+  <h3>Publish Announcement</h3>
+  <input id="announcementTitle" placeholder="Announcement title">
+  <textarea id="announcementMessage" rows="4"
+    placeholder="Write your announcement"></textarea>
+
+  <button id="publishBtn" type="button">Publish Announcement</button>
+  <p id="adminMessage" class="muted status"></p>
+</section>
+
+<section class="card">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <h3>What is the DJ OLATUNS Members Club?</h3>
+    <p>It is the official online membership community where supporters can register, access their accounts and receive official updates.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How much does membership cost?</h3>
+    <p>The listed membership price is ₦1,000 per month. Payment activation is still being prepared.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Can I create an account now?</h3>
+    <p>Yes. Register using your email address and a password of at least eight characters.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Does registration activate paid membership?</h3>
+    <p>No. Paid membership activation will require the official payment system once available.</p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Need Help?</h2>
+  <p>For membership questions and account assistance, contact DJ OLATUNS.</p>
+  <a class="gold-link" href="https://wa.me/2348103327836" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  <p class="muted">
+    Official website:
+    <a href="https://djolatuns.github.io/">djolatuns.github.io</a>
+  </p>
+</section>
+
+<p class="muted" style="text-align:center">
+  <a href="https://djolatuns.github.io/">Back to DJ OLATUNS Official Website</a>
+</p>
+
+
+<section class="card"><h2>Administrator Access</h2><p class="muted">Authorised administrators can manage members and official website announcements.</p><a class="gold-link" href="/admin.html">Open Administrator Dashboard ↗</a></section>
+
 <section class="section" id="mixtapes" aria-labelledby="featured-heading">
     <div class="sectionHead">
       <div><h2 id="featured-heading">Featured <span>Release</span></h2><div class="sub">Your soundtrack starts here</div></div>
@@ -250,7 +435,8 @@
 
 <nav class="bottomnav" aria-label="Main navigation">
   <a class="active" href="#home"><span class="ico" aria-hidden="true">⌂</span>Home</a>
-  <a href="#mixtapes"><span class="ico" aria-hidden="true">♫</span>Mixtapes</a>\n  <a href="#updates"><span class="ico" aria-hidden="true">♢</span>Updates</a>
+  <a href="#mixtapes"><span class="ico" aria-hidden="true">♫</span>Mixtapes</a>
+  <a href="#updates"><span class="ico" aria-hidden="true">♢</span>Updates</a>
   <a href="#services"><span class="ico" aria-hidden="true">✦</span>Services</a>
   <a href="#contact"><span class="ico" aria-hidden="true">☏</span>Contact</a>
   <a href="#members"><span class="ico" aria-hidden="true">♛</span>Members</a>
@@ -330,5 +516,349 @@ else pr.data.forEach(x=>{const btn=document.createElement("button");btn.classNam
     link.classList.add("active");
   }));
 </script>
+
+<script>
+(function(){
+
+const SUPABASE_URL =
+  "https://tiqracqtgggoctyvtuqo.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO";
+
+const $ = id => document.getElementById(id);
+
+let db = null;
+let announcementChannel = null;
+
+function showMessage(id, message) {
+  const element = $(id);
+  if (element) element.textContent = message;
+}
+
+async function loadAnnouncements() {
+  const { data, error } = await db
+    .from("site_notifications")
+    .select("*")
+    .eq("published", true)
+    .order("created_at", { ascending: false });
+
+  const area = $("announcements");
+  area.replaceChildren();
+
+  if (error) {
+    const details = [
+      error.message,
+      error.details,
+      error.hint,
+      error.code
+    ].filter(Boolean).join(" | ");
+    area.textContent =
+      "Announcements could not load: " +
+      (details || "Unknown Supabase error") +
+      ". Check the Supabase Data API settings, then refresh.";
+    showMessage("announcementStatus", "Announcement service returned an error.");
+    console.error("Announcement loading failed:", error);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    area.textContent = "No announcements yet. Check back soon.";
+    showMessage("announcementStatus", "Announcement service connected.");
+    return;
+  }
+  showMessage("announcementStatus", "Announcements are up to date.");
+
+  data.forEach(item => {
+    const box = document.createElement("div");
+    box.className = "notice";
+
+    const title = document.createElement("h3");
+    title.textContent = item.title || "DJ OLATUNS Update";
+
+    const message = document.createElement("p");
+    message.textContent = item.message || "";
+
+    const date = document.createElement("p");
+    date.className = "muted";
+    date.textContent = item.created_at ? new Date(item.created_at).toLocaleString() : "";
+
+    box.append(title, message, date);
+    area.append(box);
+  });
+}
+
+function watchAnnouncements() {
+  if (announcementChannel) {
+    db.removeChannel(announcementChannel);
+  }
+
+  announcementChannel = db
+    .channel("public-announcements")
+    .on("postgres_changes", {
+      event: "*",
+      schema: "public",
+      table: "site_notifications"
+    }, loadAnnouncements)
+    .subscribe((status, error) => {
+      if (status === "SUBSCRIBED") {
+        showMessage("announcementStatus", "Live announcement updates connected.");
+      } else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+        showMessage(
+          "announcementStatus",
+          "Live updates are offline. Use Refresh Announcements to check manually."
+        );
+        if (error) console.error("Announcement realtime error:", error);
+      }
+    });
+}
+
+async function loadAccount(user) {
+  $("authCard").classList.add("hidden");
+  $("accountCard").classList.remove("hidden");
+
+  $("accountEmail").textContent =
+    "Signed in as: " + (user.email || "");
+  window.__djCurrentUser = user;
+  if (window.initMemberPush) window.initMemberPush(user);
+
+  showMessage("membershipStatus", "Checking your membership...");
+
+  const { data: memberships, error } = await db
+    .from("memberships")
+    .select("*")
+    .eq("user_id", user.id);
+
+  if (error) {
+    showMessage(
+      "membershipStatus",
+      "Account signed in. Membership information is temporarily unavailable."
+    );
+  } else if (!memberships || memberships.length === 0) {
+    showMessage(
+      "membershipStatus",
+      "No active membership yet. Payment setup is coming soon."
+    );
+  } else {
+    const active = memberships.some(
+      item => item.status === "active"
+    );
+
+    showMessage(
+      "membershipStatus",
+      active
+        ? "Your membership is marked active. Welcome!"
+        : "Your membership is not currently active."
+    );
+  }
+
+  const { data: admin, error: adminError } = await db
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (!adminError && admin) {
+    $("adminCard").classList.remove("hidden");
+    await loadAdminStats();
+  } else {
+    $("adminCard").classList.add("hidden");
+  }
+}
+
+async function loadAdminStats() {
+  const [members, events] = await Promise.all([
+    db.from("memberships").select("*", {
+      count: "exact",
+      head: true
+    }),
+
+    db.from("admin_events").select("*", {
+      count: "exact",
+      head: true
+    })
+  ]);
+
+  $("adminStats").textContent =
+    "Membership records: " + (members.count ?? "Unavailable") +
+    " | Account events: " + (events.count ?? "Unavailable");
+}
+
+$("signupBtn").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || password.length < 8) {
+    showMessage(
+      "authMessage",
+      "Enter a valid email and a password of at least 8 characters."
+    );
+    return;
+  }
+
+  $("signupBtn").disabled = true;
+
+  const { data, error } = await db.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: "https://djolatuns.github.io/members.html"
+    }
+  });
+
+  $("signupBtn").disabled = false;
+
+  showMessage(
+    "authMessage",
+    error
+      ? error.message
+      : (data.session
+        ? "Account created successfully. You can now log in."
+        : "Registration submitted. Check your email for confirmation if required.")
+  );
+};
+
+$("loginBtn").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || !password) {
+    showMessage("authMessage", "Enter your email and password.");
+    return;
+  }
+
+  $("loginBtn").disabled = true;
+
+  const { data, error } = await db.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  $("loginBtn").disabled = false;
+
+  if (error) {
+    showMessage("authMessage", error.message);
+    return;
+  }
+
+  showMessage("authMessage", "Login successful.");
+  await loadAccount(data.user);
+};
+
+$("logoutBtn").onclick = async () => {
+  const { error } = await db.auth.signOut();
+
+  if (error) {
+    showMessage("membershipStatus", error.message);
+    return;
+  }
+
+  $("accountCard").classList.add("hidden");
+  $("adminCard").classList.add("hidden");
+  $("authCard").classList.remove("hidden");
+
+  showMessage("authMessage", "You have logged out.");
+};
+
+$("publishBtn").onclick = async () => {
+  const title = $("announcementTitle").value.trim();
+  const message = $("announcementMessage").value.trim();
+
+  if (!title || !message) {
+    showMessage("adminMessage", "Enter both a title and announcement.");
+    return;
+  }
+
+  const { error } = await db
+    .from("site_notifications")
+    .insert({
+      title,
+      message,
+      published: true
+    });
+
+  if (error) {
+    showMessage("adminMessage", error.message);
+    return;
+  }
+
+  $("announcementTitle").value = "";
+  $("announcementMessage").value = "";
+  showMessage("adminMessage", "Announcement published. Sending push notifications to subscribed members...");
+
+  try {
+    const { data: sessionData, error: sessionError } = await db.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!sessionData.session) throw new Error("Please sign in again.");
+
+    const response = await fetch(SUPABASE_URL + "/functions/v1/member-push", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + sessionData.session.access_token
+      },
+      body: JSON.stringify({ action: "broadcast", title, message })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "Push service returned an error.");
+
+    showMessage("adminMessage", "Announcement published. Push notifications delivered to " + result.sent + " of " + result.total + " subscribed devices.");
+  } catch (pushError) {
+    showMessage("adminMessage", "Announcement is saved, but push delivery failed: " + pushError.message);
+  }
+
+  await loadAnnouncements();
+};
+
+$("refreshAnnouncementsBtn").onclick = async () => {
+  const button = $("refreshAnnouncementsBtn");
+  button.disabled = true;
+  button.textContent = "Refreshing...";
+  await loadAnnouncements();
+  button.disabled = false;
+  button.textContent = "Refresh Announcements";
+};
+
+async function startPortal() {
+  if (!window.supabase) {
+    showMessage(
+      "authMessage",
+      "Supabase could not load. Check your internet connection."
+    );
+    return;
+  }
+
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  await loadAnnouncements();
+  watchAnnouncements();
+
+  const { data, error } = await db.auth.getSession();
+
+  if (error) {
+    showMessage("authMessage", error.message);
+    return;
+  }
+
+  if (data.session) {
+    await loadAccount(data.session.user);
+  }
+}
+
+startPortal().catch(error => {
+  console.error("Portal startup error:", error);
+  showMessage(
+    "authMessage",
+    "The portal could not start. Refresh and try again."
+  );
+});
+
+})();
+</script>
+<script src="/push-client.js"></script>
 </body>
 </html>
