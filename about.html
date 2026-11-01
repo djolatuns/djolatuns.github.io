@@ -15,6 +15,15 @@ footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:12px}
 .bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,1fr);padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:#090909f5;border-top:1px solid #49381d}
 .bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#a69d8b;font-size:10px;font-weight:750;padding:4px 0;text-decoration:none}.bottomnav .ico{font-size:18px}.bottomnav a.active{color:var(--gold2)}
 @media(min-width:650px){.bottomnav{position:static;max-width:900px;margin:18px auto;border:1px solid var(--line);border-radius:18px;padding:10px}}
+
+/* Consistent DJ OLATUNS primary navigation */
+body{padding-bottom:92px!important}
+.bottomnav{position:fixed!important;z-index:100;left:0;right:0;bottom:0;display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));margin:0!important;background:rgba(8,8,8,.97)!important;border-top:1px solid #705728!important;border-radius:0!important;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0007}
+.bottomnav a{min-width:0;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 1px;color:#b9b2a3!important;text-decoration:none;font-size:clamp(9px,2.3vw,11px)!important;font-weight:750;white-space:nowrap;text-align:center;border-radius:10px}
+.bottomnav .ico{font-size:20px!important;line-height:1.15;color:#d8ad52}
+.bottomnav a.active,.bottomnav a[aria-current="page"]{color:#ffe6a0!important;background:#211a0d}
+.bottomnav a:focus-visible{outline:2px solid #ffe6a0;outline-offset:-2px}
+@media(min-width:700px){body{padding-bottom:20px!important}.bottomnav{position:static!important;max-width:1000px;margin:18px auto 24px!important;border:1px solid #705728!important;border-radius:16px!important;box-shadow:none;padding:8px}.bottomnav a{font-size:12px!important}.bottomnav .ico{font-size:19px!important}}
 </style></head>
 <body>
 <header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • OFFICIAL APP</p></header>
@@ -24,6 +33,4 @@ footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:12px}
 <section class="panel"><div class="eyebrow">What you can find here</div><h2>App Sections</h2><ul><li><strong>Mixtapes:</strong> official DJ OLATUNS releases and music links.</li><li><strong>Status:</strong> short-lived photo and video updates.</li><li><strong>Posts:</strong> community updates and archived posts.</li><li><strong>News:</strong> official announcements.</li><li><strong>Account:</strong> member registration, login and account settings.</li></ul><div class="links"><a href="/account.html">Members Login / Register</a><a href="/">Back to Home</a></div></section>
 </main>
 <footer>© 2026 DJ OLATUNS • Feel the vibe. Live the music.</footer>
-<nav class="bottomnav" aria-label="Main navigation">
-<a href="/"><span class="ico">⌂</span>Home</a><a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a><a href="/community.html"><b>◉</b>Community</a><a href="/announcements.html"><span class="ico">♢</span>News</a><a class="active" href="/about.html"><span class="ico">ⓘ</span>About</a><a href="/account.html"><span class="ico">◎</span>Account</a>
-</nav></body></html>
+<nav class="bottomnav" aria-label="Main navigation"><a href="/"><span class="ico">⌂</span>Home</a><a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a><a href="/community.html"><span class="ico">◉</span>Community</a><a href="/announcements.html"><span class="ico">♢</span>News</a><a href="/about.html" class="active" aria-current="page"><span class="ico">ⓘ</span>About</a><a href="/account.html"><span class="ico">◎</span>Account</a><a href="/booking.html"><span class="ico">✦</span>Booking</a></nav></body></html>
