@@ -1,36 +1,76 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090909">
-<meta name="description" content="Learn about the DJ OLATUNS app, its features and the DJ behind the brand.">
-<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon-192.png">
-<title>DJ OLATUNS | About This App</title>
+<meta name="description" content="About DJ OLATUNS, the official website, member community, mixtapes, announcements and booking.">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon-192.png">
+<title>DJ OLATUNS | About</title>
 <style>
 :root{color-scheme:dark;--gold:#d9b45b;--gold2:#f0d17c;--muted:#b7b0a2;--line:#4a3a20}
-*{box-sizing:border-box}body{margin:0;background:#090909;color:#f5f1e8;font-family:Arial,sans-serif;padding-bottom:90px}
-header{padding:26px 18px;text-align:center;border-bottom:1px solid var(--line);background:#101010}header h1{margin:0;color:var(--gold2);letter-spacing:3px}header p{margin:8px 0 0;color:var(--muted);font-size:12px;letter-spacing:2px}
-main{max-width:850px;margin:28px auto;padding:0 16px}.panel{background:#121212;border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px;text-transform:uppercase}h2{color:var(--gold2);margin:10px 0}p,li{color:#d0c9ba;line-height:1.7}.links{display:flex;flex-wrap:wrap;gap:10px}.links a{display:inline-block;padding:12px 16px;border:1px solid var(--gold);border-radius:10px;color:var(--gold2);text-decoration:none}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#30230d 0%,#090909 65%);color:#f5f1e8;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:92px}
+header{padding:27px 18px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#211a0d,#101010 75%)}header h1{margin:0;color:var(--gold2);letter-spacing:3px;font-size:26px}header p{margin:8px 0 0;color:var(--muted);font-size:12px;letter-spacing:2px}
+main{width:min(100% - 28px,850px);margin:26px auto}.panel{background:linear-gradient(145deg,#1b1812,#10100e 80%);border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 12px 30px #0004}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:850}h2{color:var(--gold2);margin:8px 0 12px;font-size:24px}h3{color:var(--gold2);margin:0 0 8px;font-size:17px}p,li{color:#d0c9ba;line-height:1.75}ul{padding-left:22px}.updates{display:grid;gap:12px}.update{padding:15px;border:1px solid #49391f;border-radius:13px;background:#11100e}.update p{margin:5px 0 0}.links{display:flex;flex-wrap:wrap;gap:10px}.links a{display:inline-block;padding:12px 16px;border:1px solid var(--gold);border-radius:10px;color:var(--gold2);text-decoration:none;font-weight:700}.links a:focus-visible,.bottomnav a:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
 footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:12px}
-.bottomnav{position:fixed;z-index:30;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,1fr);padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:#090909f5;border-top:1px solid #49381d}
-.bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#a69d8b;font-size:10px;font-weight:750;padding:4px 0;text-decoration:none}.bottomnav .ico{font-size:18px}.bottomnav a.active{color:var(--gold2)}
-@media(min-width:650px){.bottomnav{position:static;max-width:900px;margin:18px auto;border:1px solid var(--line);border-radius:18px;padding:10px}}
-
-/* Consistent DJ OLATUNS primary navigation */
-body{padding-bottom:92px!important}
-.bottomnav{position:fixed!important;z-index:100;left:0;right:0;bottom:0;display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));margin:0!important;background:rgba(8,8,8,.97)!important;border-top:1px solid #705728!important;border-radius:0!important;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0007}
-.bottomnav a{min-width:0;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 1px;color:#b9b2a3!important;text-decoration:none;font-size:clamp(9px,2.3vw,11px)!important;font-weight:750;white-space:nowrap;text-align:center;border-radius:10px}
-.bottomnav .ico{font-size:20px!important;line-height:1.15;color:#d8ad52}
-.bottomnav a.active,.bottomnav a[aria-current="page"]{color:#ffe6a0!important;background:#211a0d}
-.bottomnav a:focus-visible{outline:2px solid #ffe6a0;outline-offset:-2px}
-@media(min-width:700px){body{padding-bottom:20px!important}.bottomnav{position:static!important;max-width:1000px;margin:18px auto 24px!important;border:1px solid #705728!important;border-radius:16px!important;box-shadow:none;padding:8px}.bottomnav a{font-size:12px!important}.bottomnav .ico{font-size:19px!important}}
-</style></head>
+.bottomnav{position:fixed;z-index:100;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));margin:0;background:rgba(8,8,8,.97);border-top:1px solid #705728;backdrop-filter:blur(18px)}
+.bottomnav a{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 1px;color:#b9b2a3;text-decoration:none;font-size:clamp(9px,2.3vw,11px);font-weight:750;white-space:nowrap;text-align:center;border-radius:10px}.bottomnav .ico{font-size:20px;line-height:1.15;color:#d8ad52}.bottomnav a.active{color:#ffe6a0;background:#211a0d}
+@media(min-width:700px){body{padding-bottom:20px}.bottomnav{position:static;max-width:1000px;margin:18px auto 24px;border:1px solid #705728;border-radius:16px;padding:8px}.bottomnav a{font-size:12px}}
+@media(max-width:420px){.panel{padding:17px}header h1{font-size:23px}}
+</style>
+</head>
 <body>
-<header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • OFFICIAL APP</p></header>
+<header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • OFFICIAL WEBSITE</p></header>
 <main>
-<section class="panel"><div class="eyebrow">About this app</div><h2>Welcome to the DJ OLATUNS App</h2><p>The official DJ OLATUNS app brings the brand's music, updates and member community together in one place. Visitors can explore the latest mixtapes, check status updates, read community posts and view official announcements.</p><p>Members can create an account or sign in from the Account page. After signing in, members can access the app sections and manage their membership account and phone notifications.</p></section>
-<section class="panel"><div class="eyebrow">About the brand</div><h2>Meet DJ OLATUNS</h2><p><strong>Ismail Olatunji Taiwo</strong>, known professionally as DJ OLATUNS, is a Nigerian DJ and mixtape curator with a passion for creativity, entertainment and bringing people together through music. Guided by the motto “Undefeatable,” he is building his identity through energetic mixes, consistency and a commitment to memorable musical experiences.</p></section>
-<section class="panel"><div class="eyebrow">What you can find here</div><h2>App Sections</h2><ul><li><strong>Mixtapes:</strong> official DJ OLATUNS releases and music links.</li><li><strong>Status:</strong> short-lived photo and video updates.</li><li><strong>Posts:</strong> community updates and archived posts.</li><li><strong>News:</strong> official announcements.</li><li><strong>Account:</strong> member registration, login and account settings.</li></ul><div class="links"><a href="/account.html">Members Login / Register</a><a href="/">Back to Home</a></div></section>
+<section class="panel">
+<div class="eyebrow">About the platform</div>
+<h2>Welcome to the DJ OLATUNS Website</h2>
+<p>The official DJ OLATUNS website brings music, announcements, bookings and the members community together in one place. Explore releases, keep up with updates, connect with the DJ OLATUNS movement and manage your member account.</p>
+<p>The website is designed to work on mobile phones and computers. Members can register or sign in through the Account page and use their account to access the Community posting feature.</p>
+</section>
+
+<section class="panel">
+<div class="eyebrow">Latest website updates</div>
+<h2>What's new</h2>
+<div class="updates">
+<article class="update"><h3>Text-only Members Community</h3><p>The Community page has been rebuilt for text posts. Signed-in members can write an optional title, share an update of up to 3,000 characters and publish it to the community feed. Photo and video uploads are not part of this page.</p></article>
+<article class="update"><h3>Members Account Centre</h3><p>Visitors can create an account or sign in, check their account status, manage available account options and control phone notifications for official announcements.</p></article>
+<article class="update"><h3>Community feed refresh</h3><p>The Community feed displays recent posts and includes a refresh option so members can check for the latest updates.</p></article>
+<article class="update"><h3>Official announcements and mixtapes</h3><p>Visit News for official announcements and Mixtapes for DJ OLATUNS music releases and listening links.</p></article>
+<article class="update"><h3>Event booking requests</h3><p>Use the Booking page to send an event enquiry. A request is not a confirmed booking until DJ OLATUNS contacts you and confirms the details.</p></article>
+</div>
+</section>
+
+<section class="panel">
+<div class="eyebrow">About the brand</div>
+<h2>Meet DJ OLATUNS</h2>
+<p><strong>Ismail Olatunji Taiwo</strong>, known professionally as DJ OLATUNS, is a Nigerian DJ and mixtape curator with a passion for creativity, entertainment and bringing people together through music. Guided by the motto “Undefeatable,” he continues to build his identity through energetic mixes, consistency and a commitment to memorable musical experiences.</p>
+</section>
+
+<section class="panel">
+<div class="eyebrow">Explore the website</div>
+<h2>Website sections</h2>
+<ul>
+<li><strong>Home:</strong> discover the DJ OLATUNS brand and featured content.</li>
+<li><strong>Mixtapes:</strong> explore official releases and listening links.</li>
+<li><strong>Community:</strong> read and publish text-only member updates after signing in.</li>
+<li><strong>News:</strong> read official announcements.</li>
+<li><strong>Account:</strong> register, sign in and manage available member settings.</li>
+<li><strong>Booking:</strong> submit an event booking enquiry.</li>
+</ul>
+<div class="links"><a href="/account.html">Members Account</a><a href="/community.html">Open Community</a><a href="/booking.html">Make a Booking Enquiry</a><a href="/">Back to Home</a></div>
+</section>
 </main>
 <footer>© 2026 DJ OLATUNS • Feel the vibe. Live the music.</footer>
-<nav class="bottomnav" aria-label="Main navigation"><a href="/"><span class="ico">⌂</span>Home</a><a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a><a href="/community.html"><span class="ico">◉</span>Community</a><a href="/announcements.html"><span class="ico">♢</span>News</a><a href="/about.html" class="active" aria-current="page"><span class="ico">ⓘ</span>About</a><a href="/account.html"><span class="ico">◎</span>Account</a><a href="/booking.html"><span class="ico">✦</span>Booking</a></nav></body></html>
+<nav class="bottomnav" aria-label="Main navigation">
+<a href="/"><span class="ico">⌂</span>Home</a>
+<a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a>
+<a href="/community.html"><span class="ico">◉</span>Community</a>
+<a href="/announcements.html"><span class="ico">♢</span>News</a>
+<a href="/about.html" class="active" aria-current="page"><span class="ico">ⓘ</span>About</a>
+<a href="/account.html"><span class="ico">◎</span>Account</a>
+<a href="/booking.html"><span class="ico">✦</span>Booking</a>
+</nav>
+</body>
+</html>
