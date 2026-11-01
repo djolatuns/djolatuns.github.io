@@ -35,13 +35,13 @@ body{padding-bottom:92px!important}
 <p class="muted">Submitting this form is a request only. Your booking is not confirmed until you receive confirmation directly from DJ OLATUNS.</p>
 <form id="bookingForm">
 <div class="form-grid">
-<div class="field"><label for="name">Full name *</label><input id="name" maxlength="100" autocomplete="name" required></div>
-<div class="field"><label for="email">Email address *</label><input id="email" type="email" maxlength="254" autocomplete="email" required></div>
-<div class="field"><label for="phone">WhatsApp / phone number *</label><input id="phone" type="tel" maxlength="30" autocomplete="tel" required></div>
+<div class="field"><label for="name">Full name *</label><input id="name" minlength="2" maxlength="100" autocomplete="name" required></div>
+<div class="field"><label for="email">Email address *</label><input id="email" type="email" minlength="5" maxlength="254" autocomplete="email" required></div>
+<div class="field"><label for="phone">WhatsApp / phone number *</label><input id="phone" type="tel" minlength="7" maxlength="30" autocomplete="tel" required></div>
 <div class="field"><label for="type">Event type *</label><select id="type" required><option value="">Choose event type</option><option>Wedding</option><option>Birthday</option><option>Concert / Festival</option><option>Club / Lounge</option><option>Corporate event</option><option>Private party</option><option>Other</option></select></div>
 <div class="field"><label for="date">Event date</label><input id="date" type="date"></div>
 <div class="field"><label for="time">Preferred start time</label><input id="time" type="time"></div>
-<div class="field full"><label for="location">Event venue / location *</label><input id="location" maxlength="180" placeholder="Venue, area and city" required></div>
+<div class="field full"><label for="location">Event venue / location *</label><input id="location" minlength="2" maxlength="180" placeholder="Venue, area and city" required></div>
 <div class="field full"><label for="budget">Estimated DJ budget (optional)</label><select id="budget"><option value="">Prefer to discuss</option><option>Below ₦100,000</option><option>₦100,000 – ₦250,000</option><option>₦250,000 – ₦500,000</option><option>₦500,000 – ₦1,000,000</option><option>Above ₦1,000,000</option></select></div>
 <div class="field full"><label for="details">Tell us more (optional)</label><textarea id="details" maxlength="1500" placeholder="Expected audience, event duration, music style, equipment needs, and any other details"></textarea></div>
 </div>
@@ -60,6 +60,15 @@ form.addEventListener("submit",async event=>{
  event.preventDefault();button.disabled=true;statusBox.textContent="Sending your request securely...";
  const value=id=>document.getElementById(id).value.trim();
  const payload={full_name:value("name"),email:value("email"),phone:value("phone"),event_type:value("type"),event_date:value("date")||null,event_time:value("time")||null,event_location:value("location"),budget_range:value("budget")||null,details:value("details")||null};
+ const checks=[
+  [payload.full_name.length>=2 && payload.full_name.length<=100,"Enter a name between 2 and 100 characters."],
+  [payload.email.length>=5 && payload.email.length<=254,"Enter a valid email address."],
+  [payload.phone.length>=7 && payload.phone.length<=30,"Enter a phone number between 7 and 30 characters."],
+  [payload.event_type.length>=2 && payload.event_type.length<=80,"Please choose a valid event type."],
+  [payload.event_location.length>=2 && payload.event_location.length<=180,"Enter a venue/location between 2 and 180 characters."]
+ ];
+ const invalid=checks.find(([ok])=>!ok);
+ if(invalid){statusBox.textContent=invalid[1];button.disabled=false;return;}
  try{
   const {data:booking,error}=await db.from("booking_requests").insert(payload).select("id").single();
   if(error)throw error;
