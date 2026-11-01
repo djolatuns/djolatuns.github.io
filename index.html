@@ -480,36 +480,7 @@
     installBtn.hidden = true;
   });
 
-(async function(){
-const $=id=>document.getElementById(id), add=(p,t,v)=>{const e=document.createElement(t);e.textContent=v||"";p.appendChild(e);return e;};
-let storyItems=[],storyIndex=0;
-function openStory(i){storyIndex=i;const x=storyItems[i];if(!x)return;const box=$("waViewerMedia");box.textContent="";if(x.media_type==="video"){const v=document.createElement("video");v.src=x.media_url;v.controls=true;v.autoplay=true;v.playsInline=true;box.append(v);}else{const im=document.createElement("img");im.src=x.media_url;im.alt=x.title||"DJ OLATUNS status";box.append(im);} $("waViewerTitle").textContent=x.title||"DJ OLATUNS";$("waViewerCaption").textContent=x.caption||"";$("waViewer").classList.add("open");$("waViewer").setAttribute("aria-hidden","false");}
-function closeStory(){$("waViewer").classList.remove("open");$("waViewer").setAttribute("aria-hidden","true");$("waViewerMedia").textContent="";}
-$("waClose").onclick=closeStory;$("waNext").onclick=()=>openStory((storyIndex+1)%storyItems.length);
-$("waViewer").addEventListener("click",e=>{if(e.target===$("waViewer"))closeStory();});
-$("waDetailClose").onclick=()=>{$("waDetail").classList.remove("open");$("waDetail").setAttribute("aria-hidden","true");};
-try{
-if(!window.supabase)throw new Error("Connect to the internet and refresh.");
-const db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co","sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO");
-const [nr,sr,pr]=await Promise.all([
-db.from("site_notifications").select("title,message,created_at").eq("published",true).order("created_at",{ascending:false}).limit(20),
-db.from("community_posts").select("title,caption,media_url,media_type,created_at,status_expires_at").gt("status_expires_at",new Date().toISOString()).order("created_at",{ascending:false}).limit(30),
-db.from("community_posts").select("title,caption,media_url,media_type,created_at").order("created_at",{ascending:false}).limit(9)
-]);
-const statuses=$("homeStatuses");statuses.textContent="";
-if(sr.error) add(statuses,"p","Statuses are temporarily unavailable.");
-else if(!sr.data?.length)add(statuses,"p","No active statuses yet.");
-else{storyItems=sr.data;storyItems.forEach((x,i)=>{const btn=document.createElement("button");btn.className="wa-status-person";btn.type="button";const ring=document.createElement("span");ring.className="wa-status-ring";if(x.media_type==="video"){const v=document.createElement("video");v.src=x.media_url;v.muted=true;v.playsInline=true;ring.append(v);}else{const im=document.createElement("img");im.src=x.media_url;im.alt="";im.loading="lazy";ring.append(im);}btn.append(ring);add(btn,"small",x.title||"DJ OLATUNS");btn.onclick=()=>openStory(i);statuses.append(btn);});}
-const news=$("homeAnnouncements");news.textContent="";
-if(nr.error)add(news,"p","Announcements are temporarily unavailable.");
-else if(!nr.data?.length)add(news,"p","No announcements yet. Check back soon.");
-else nr.data.forEach(x=>{const btn=document.createElement("button");btn.className="wa-chat-row";btn.type="button";const icon=add(btn,"span","♢");icon.className="wa-chat-icon";const copy=add(btn,"span","");copy.className="wa-chat-copy";add(copy,"strong",x.title||"DJ OLATUNS Update");add(copy,"span",x.message||"Open to read this announcement");add(copy,"small",new Date(x.created_at).toLocaleString());btn.onclick=()=>{$("waDetailTitle").textContent=x.title||"DJ OLATUNS Update";$("waDetailMessage").textContent=x.message||"";$("waDetailDate").textContent=new Date(x.created_at).toLocaleString();$("waDetail").classList.add("open");$("waDetail").setAttribute("aria-hidden","false");};news.append(btn);});
-const posts=$("homePosts");posts.textContent="";
-if(pr.error)add(posts,"p","Posts are temporarily unavailable.");
-else if(!pr.data?.length)add(posts,"p","No community posts yet.");
-else pr.data.forEach(x=>{const btn=document.createElement("button");btn.className="wa-post";btn.type="button";if(x.media_type==="video"){const v=document.createElement("video");v.src=x.media_url;v.muted=true;v.playsInline=true;btn.append(v);}else{const im=document.createElement("img");im.src=x.media_url;im.alt=x.title||"Community post";im.loading="lazy";btn.append(im);}const label=document.createElement("span");label.textContent=x.title||x.caption||"DJ OLATUNS";btn.append(label);btn.onclick=()=>{if(x.status_expires_at&&new Date(x.status_expires_at)>new Date()){const idx=storyItems.findIndex(s=>s.media_url===x.media_url);if(idx>=0)openStory(idx);else window.location.href="/posts.html";}else window.location.href="/posts.html";};posts.append(btn);});
-}catch(e){["homeStatuses","homeAnnouncements","homePosts"].forEach(id=>$(id).textContent=e.message||"Updates are temporarily unavailable.");}
-})(); 
+ 
   const navLinks = document.querySelectorAll(".bottomnav a");
   navLinks.forEach(link => link.addEventListener("click", () => {
     navLinks.forEach(item => item.classList.remove("active"));
@@ -702,7 +673,7 @@ $("signupBtn").onclick = async () => {
     email,
     password,
     options: {
-      emailRedirectTo: "https://djolatuns.github.io/members.html"
+      emailRedirectTo: "https://djolatuns.github.io/#member-account"
     }
   });
 
