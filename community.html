@@ -1,97 +1,250 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080808"><title>DJ OLATUNS | COMMUNITY</title><style>
-*{box-sizing:border-box}body{margin:0;background:#080808;color:#f5f5f5;font:16px Arial,sans-serif;line-height:1.55;padding-bottom:82px}a{color:#d9b45b;text-decoration:none}header{padding:24px 18px;text-align:center;border-bottom:1px solid #806326;background:linear-gradient(135deg,#19140a,#080808)}header h1{margin:0;color:#e3bd62;letter-spacing:3px;font-size:25px}header p{margin:5px 0 0;color:#aaa;font-size:12px;letter-spacing:2px}.wrap{max-width:850px;margin:22px auto;padding:0 15px}.intro{padding:20px;border:1px solid #4b3b1d;border-radius:16px;background:radial-gradient(ellipse at top,#30230c,#151515 72%);margin-bottom:18px}.intro h2{margin:0;color:#e3bd62}.muted{color:#aaa;font-size:14px}.card{background:#151515;border:1px solid #393024;border-radius:14px;padding:18px;margin:14px 0}.gold{background:#d9b45b;color:#111;border:0;border-radius:9px;padding:12px 16px;font-weight:bold;display:inline-block;cursor:pointer}.secondary{background:#333;color:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}.tile{display:block;padding:20px 15px;background:#151515;border:1px solid #51452f;border-radius:13px;min-height:110px}.tile strong{display:block;color:#e3bd62;font-size:18px}.tile span{display:block;color:#aaa;font-size:13px;margin-top:6px}.post img,.post video{width:100%;max-height:520px;object-fit:contain;border-radius:10px;background:#050505}.post h3{color:#e3bd62;margin-bottom:5px}input,textarea{width:100%;padding:12px;margin:7px 0;background:#080808;color:white;border:1px solid #51452f;border-radius:8px}.hidden{display:none!important}.bottom{position:fixed;bottom:0;left:0;right:0;background:#101010;border-top:1px solid #806326;display:flex;justify-content:space-around;padding:9px 3px calc(9px + env(safe-area-inset-bottom));z-index:5}.bottom a{font-size:11px;text-align:center;color:#bbb;min-width:50px}.bottom a b{display:block;font-size:19px;color:#d9b45b}footer{text-align:center;color:#777;font-size:12px;padding:20px}.community-lead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}.community-lead p{max-width:560px}.feed-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 2px 8px}.feed-heading h3{margin:0;color:#ffe6a0}.feed-empty{padding:24px;text-align:center;border:1px dashed #5a4828;border-radius:16px;color:#b9b2a3;background:#11100e}.post{overflow:hidden}.post small{display:block;margin-top:12px}.member-prompt{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.member-prompt p{margin:4px 0}.post img,.post video{display:block;max-width:100%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="The official DJ OLATUNS members community. Share text updates and connect with the movement.">
+<title>DJ OLATUNS | Community</title>
+<style>
+:root{color-scheme:dark;--bg:#080808;--panel:#15130f;--gold:#d8ad52;--light:#ffe6a0;--muted:#b9b2a3;--line:#514329}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#38270b 0%,#11100d 34%,var(--bg) 75%);color:#f8f5ed;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;padding-bottom:92px}
+header{text-align:center;padding:24px 16px;background:linear-gradient(135deg,#211a0d,#090909 75%);border-bottom:1px solid #806326;box-shadow:0 12px 35px #0005}
+header h1{margin:0;color:var(--light);font-size:26px;letter-spacing:3px;font-weight:900}header p{margin:5px 0 0;color:var(--muted);font-size:11px;letter-spacing:2px}
+main{width:min(100% - 28px,850px);margin:24px auto}
+.hero,.panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#211a0d,#11100e 75%);padding:20px;margin-bottom:16px;box-shadow:0 12px 32px #0004}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;font-weight:850}.hero h2{margin:5px 0;color:var(--light);font-size:27px}.hero p{margin:5px 0 0;color:var(--muted)}
+.panel{background:linear-gradient(150deg,#1b1812,#10100e 78%)}
+h3{color:var(--light);margin:0 0 10px}.muted{color:var(--muted);font-size:14px}
+button,.gold-link{display:inline-block;border:0;border-radius:11px;padding:12px 17px;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;font-weight:850;text-decoration:none;cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}.secondary{background:#29251d;color:#f8f5ed;border:1px solid #5a4828}
+input,textarea{display:block;width:100%;margin:8px 0 14px;padding:13px;background:#090909;color:#f8f5ed;border:1px solid #5a4828;border-radius:11px;font:inherit}
+textarea{min-height:135px;resize:vertical}input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--light);outline-offset:3px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.status{margin:12px 0 0;min-height:22px;color:var(--muted);font-size:14px}.signed{color:#c8e6b5}.error{color:#ffb4a9}
+.post{padding:18px;margin:12px 0;background:#11100e;border:1px solid #40331f;border-radius:15px;overflow-wrap:anywhere}.post h4{margin:0 0 8px;color:var(--light);font-size:18px}.post p{white-space:pre-wrap;margin:8px 0}.post time{display:block;margin-top:12px;color:#968b76;font-size:12px}
+.empty{text-align:center;padding:26px 16px;border:1px dashed #5a4828;border-radius:15px;color:var(--muted);background:#11100e}
+.hidden{display:none!important}
+.bottomnav{position:fixed;z-index:20;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:rgba(8,8,8,.97);border-top:1px solid #705728;backdrop-filter:blur(18px)}
+.bottomnav a{display:flex;min-width:0;flex-direction:column;align-items:center;gap:3px;padding:5px 1px;color:#b9b2a3;text-decoration:none;font-size:clamp(9px,2.3vw,11px);font-weight:750;white-space:nowrap;border-radius:10px}.bottomnav .ico{font-size:20px;line-height:1.15;color:var(--gold)}.bottomnav a.active{color:var(--light);background:#211a0d}
+footer{text-align:center;color:#968b76;font-size:12px;padding:22px}
+@media(min-width:700px){body{padding-bottom:20px}.bottomnav{position:static;max-width:1000px;margin:18px auto 24px;border:1px solid #705728;border-radius:16px;padding:8px}.bottomnav a{font-size:12px}}
+@media(max-width:420px){header h1{font-size:23px}.hero,.panel{padding:16px}}
+</style>
+</head>
+<body>
+<header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header>
+<main>
+<section class="hero">
+<div class="eyebrow">THE MEMBERS CLUB</div>
+<h2>Community</h2>
+<p>A home for the DJ OLATUNS family. Share your thoughts, updates and moments with the movement — all posts are text-only.</p>
+</section>
 
-/* DJ OLATUNS premium unified member experience */
-:root{color-scheme:dark;--dj-bg:#080808;--dj-panel:#12110e;--dj-gold:#d8ad52;--dj-gold-light:#ffe6a0;--dj-muted:#b9b2a3;--dj-line:#40331f}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:radial-gradient(ellipse at 50% -15%,#38270b 0%,#11100d 32%,var(--dj-bg) 72%)!important;color:#f8f5ed!important;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;line-height:1.6}
-header{position:relative;background:linear-gradient(135deg,#211a0d,#090909 75%)!important;border-bottom:1px solid #806326!important;box-shadow:0 12px 35px #0005}
-header h1{color:var(--dj-gold-light)!important;letter-spacing:3px;font-weight:900}
-header p{color:var(--dj-muted)!important;letter-spacing:2px}
-main,.wrap{width:min(100% - 28px,900px);max-width:900px!important;margin:22px auto!important}
-.intro,.hero{border:1px solid #705728!important;border-radius:22px!important;background:linear-gradient(145deg,#211a0d,#11100e 72%)!important;box-shadow:0 18px 48px #0005}
-.intro h2,.hero h2,h2,h3{color:var(--dj-gold-light)!important}
-.card,.step,.tile,.stat,.notice,.members-card{background:linear-gradient(150deg,#1b1812,#10100e 78%)!important;border:1px solid var(--dj-line)!important;border-radius:18px!important;box-shadow:0 10px 28px #0003}
-.card{padding:20px!important}
-.step,.tile{transition:transform .18s ease,border-color .18s ease}
-.step:hover,.tile:hover{transform:translateY(-2px);border-color:#a47c35!important}
-a{color:var(--dj-gold-light)}
-button,.gold,.gold-link{background:linear-gradient(120deg,#ffe5a0,#c89431)!important;color:#100d06!important;border:0!important;border-radius:12px!important;padding:12px 17px!important;font-weight:850!important;box-shadow:0 5px 18px #0004;cursor:pointer}
-button.secondary,.secondary{background:#29251d!important;color:#f8f5ed!important;border:1px solid #5a4828!important}
-button:disabled{opacity:.55;cursor:not-allowed}
-input,textarea,select{background:#090909!important;color:#f8f5ed!important;border:1px solid #5a4828!important;border-radius:11px!important;padding:13px!important;max-width:100%}
-input:focus,textarea:focus,select:focus{outline:2px solid #d8ad52;outline-offset:2px}
-.muted,small{color:var(--dj-muted)!important}
-.post img,.post video{border:1px solid #5a4828;border-radius:14px!important}
-footer{color:#968b76!important}
-.bottom,.bottom-app-nav{background:#090909f5!important;border-top:1px solid #705728!important;backdrop-filter:blur(18px);padding-bottom:calc(9px + env(safe-area-inset-bottom))!important}
-.bottom a,.bottom-app-nav a{color:#b9b2a3!important;flex:1;min-width:0!important}
-.bottom a b,.bottom-app-nav a b{color:var(--dj-gold)!important}
-a:focus-visible,button:focus-visible{outline:3px solid var(--dj-gold-light);outline-offset:3px}
-@media(min-width:700px){body{padding-bottom:20px!important}.bottom,.bottom-app-nav{position:static!important;max-width:900px;margin:18px auto;border:1px solid var(--dj-line)!important;border-radius:16px;justify-content:space-around}.bottom a,.bottom-app-nav a{font-size:12px!important}}
-@media(max-width:420px){header{padding:22px 12px!important}header h1{font-size:23px!important;letter-spacing:2px!important}.card{padding:16px!important}.bottom a,.bottom-app-nav a{font-size:10px!important}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step,.tile{transition:none}}
-.bottom a[href="status.html"]{color:var(--dj-gold-light)!important}
+<section id="authPanel" class="panel" aria-live="polite">
+<h3 id="authHeading">Checking your membership account…</h3>
+<p id="authDescription" class="muted">Connecting securely to your DJ OLATUNS account.</p>
+<div class="row">
+<a id="accountLink" class="gold-link" href="/account.html">Open Members Account</a>
+<button id="retryAuth" class="secondary" type="button">Check sign-in again</button>
+<button id="signOut" class="secondary hidden" type="button">Log out</button>
+</div>
+<p id="authMessage" class="status" role="status"></p>
+</section>
 
-.bottomnav{position:fixed;z-index:50;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:rgba(8,8,8,.97);border-top:1px solid #705728;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0007}.bottomnav a{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 1px;color:#b9b2a3;text-decoration:none;font-size:clamp(9px,2.3vw,11px);font-weight:750;white-space:nowrap;border-radius:10px}.bottomnav .ico{font-size:20px;line-height:1.15;color:#d8ad52}.bottomnav a.active{color:#ffe6a0;background:#211a0d}.bottomnav a:focus-visible{outline:2px solid #ffe6a0;outline-offset:-2px}@media(min-width:700px){.bottomnav{position:static;max-width:1000px;margin:18px auto 24px;border:1px solid #705728;border-radius:16px;box-shadow:none;padding:8px}.bottomnav a{font-size:12px}.bottomnav .ico{font-size:19px}}
-</style></head><body><header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header><main class="wrap"><section class="intro"><div class="community-lead"><div><div class="eyebrow" style="color:#d9b45b;font-size:11px;letter-spacing:2px;font-weight:800">THE MEMBERS CLUB</div><h2>Community</h2><p>One place for the DJ OLATUNS family. Share your moments, discover member updates and be part of the movement.</p></div><a class="gold" href="/account.html">Members Login</a></div></section><section id="memberPrompt" class="card member-prompt"><div><strong style="color:#ffe6a0">Ready to share something?</strong><p class="muted">Sign in to your membership account to publish photos and videos.</p></div><a class="gold" href="/account.html">Sign in / Register</a></section><section id="adminBox" class="card hidden"><button class="gold" id="addStatusBtn" type="button">＋ Create Post</button><div id="statusComposer" class="hidden"><h3 style="color:#e3bd62">Create a Community Post</h3><p class="muted">All logged-in DJ OLATUNS members can publish. Text updates, photos and videos up to 50 MB are supported. Your update will appear in the Community feed.</p><input id="title" placeholder="Title (optional)"><textarea id="caption" rows="3" placeholder="Write your community update or caption..."></textarea><label for="media" class="gold" style="display:block;text-align:center;margin:12px 0">📁 Choose Photo or Video from Phone</label><input id="media" type="file" accept="image/*,video/*" aria-label="Choose a photo or video from your phone"><div id="mediaPreview" class="hidden" style="margin:12px 0"><p id="mediaFileInfo" class="muted"></p><img id="mediaImage" class="hidden" alt="Selected photo preview" style="width:100%;max-height:360px;object-fit:contain;border-radius:12px"><video id="mediaVideo" class="hidden" controls playsinline style="width:100%;max-height:360px;border-radius:12px"></video><button id="removeMedia" class="secondary" type="button">Remove selected media</button></div><button class="gold" id="publish" type="button">Publish Post</button><button class="secondary" id="cancelStatusBtn" type="button">Cancel</button><p id="adminMsg" class="muted" aria-live="polite"></p></div></section><div class="feed-heading"><h3>Community feed</h3><span class="muted" style="font-size:12px">Latest updates</span></div><p id="msg" class="muted" aria-live="polite">Loading Community posts...</p><div id="items"></div></main><footer>DJ OLATUNS • © 2026</footer><nav class="bottomnav" aria-label="Main navigation"><a href="/"><span class="ico">⌂</span>Home</a><a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a><a class="active" href="/community.html"><span class="ico">◉</span>Community</a><a href="/announcements.html"><span class="ico">♢</span>News</a><a href="/about.html"><span class="ico">ⓘ</span>About</a><a href="/account.html"><span class="ico">◎</span>Account</a><a href="/booking.html"><span class="ico">♫</span>Booking</a></nav><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>const URL="https://tiqracqtgggoctyvtuqo.supabase.co",KEY="sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO",db=supabase.createClient(URL,KEY,{auth:{storageKey:"sb-tiqracqtgggoctyvtuqo-auth-token",persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});</script><script>
-async function loadStatuses(){const area=document.getElementById('items'),m=document.getElementById('msg');try{const {data,error}=await db.from('community_posts').select('*').order('created_at',{ascending:false});if(error)throw error;area.innerHTML='';if(!data.length){m.innerHTML='';const empty=document.createElement('div');empty.className='feed-empty';empty.textContent='No community posts yet. Be the first to share an update.';area.append(empty);return}m.textContent='Community posts';data.forEach(x=>{const c=document.createElement('article');c.className='card post';if(x.title){const h=document.createElement('h3');h.textContent=x.title;c.append(h)}if(x.media_url&&x.media_type==='video'){const v=document.createElement('video');v.src=x.media_url;v.controls=true;v.playsInline=true;c.append(v)}else if(x.media_url){const im=document.createElement('img');im.src=x.media_url;im.alt=x.title||'DJ OLATUNS community photo';im.loading='lazy';c.append(im)}else{const label=document.createElement('p');label.className='muted';label.textContent='Community update';c.append(label)}if(x.caption){const p=document.createElement('p');p.textContent=x.caption;c.append(p)}const d=document.createElement('small');d.className='muted';d.textContent='Shared '+new Date(x.created_at).toLocaleString();c.append(d);area.append(c)})}catch(e){m.textContent='Could not load statuses: '+e.message}}
-let communitySessionCheck = null;
-async function initializeStatusComposer(){
-  if(communitySessionCheck) return communitySessionCheck;
-  communitySessionCheck = (async()=>{
-    const box=document.getElementById('adminBox');
-    const prompt=document.getElementById('memberPrompt');
-    const msg=document.getElementById('msg');
-    try{
-      const {data:{session},error}=await db.auth.getSession();
-      if(error) throw error;
-      box.classList.toggle('hidden',!session);
-      prompt.classList.toggle('hidden',!!session);
-      if(session){
-        msg.textContent='You are signed in. Create a post and share with the DJ OLATUNS family.';
-        const status=document.getElementById('adminMsg');
-        if(status) status.textContent='Membership verified. You can publish text updates, photos and videos.';
-      }else{
-        msg.textContent='Browse the latest member updates below.';
-      }
-      return session;
-    }catch(e){
-      console.error('Community sign-in check failed:',e);
-      box.classList.add('hidden');
-      prompt.classList.remove('hidden');
-      msg.textContent='We could not confirm your membership session. Open Account, sign in, then return to Community. '+(e.message||'');
-      return null;
-    }finally{communitySessionCheck=null;}
-  })();
-  return communitySessionCheck;
+<section id="composerPanel" class="panel hidden">
+<h3>Create a Community Post</h3>
+<p class="muted">Write a text update for the DJ OLATUNS family. No photos or videos are accepted here.</p>
+<form id="postForm">
+<label for="postTitle">Post title <span class="muted">(optional)</span></label>
+<input id="postTitle" name="title" type="text" maxlength="100" placeholder="Give your update a title">
+<label for="postText">Your update</label>
+<textarea id="postText" name="caption" maxlength="3000" required placeholder="What's happening? Share it with the community…"></textarea>
+<div class="row"><button id="publishButton" type="submit">Publish Post</button><span id="characterCount" class="muted">0 / 3000</span></div>
+<p id="publishMessage" class="status" role="status"></p>
+</form>
+</section>
+
+<section class="panel">
+<div class="row" style="justify-content:space-between"><h3 style="margin:0">Community Feed</h3><button id="refreshFeed" class="secondary" type="button">Refresh feed</button></div>
+<p id="feedMessage" class="status" role="status">Loading community posts…</p>
+<div id="feed"></div>
+</section>
+</main>
+<footer>DJ OLATUNS • © 2026</footer>
+<nav class="bottomnav" aria-label="Main navigation">
+<a href="/"><span class="ico">⌂</span>Home</a>
+<a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a>
+<a class="active" href="/community.html" aria-current="page"><span class="ico">◉</span>Community</a>
+<a href="/announcements.html"><span class="ico">♢</span>News</a>
+<a href="/about.html"><span class="ico">ⓘ</span>About</a>
+<a href="/account.html"><span class="ico">◎</span>Account</a>
+<a href="/booking.html"><span class="ico">♫</span>Booking</a>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+"use strict";
+const SUPABASE_URL = "https://tiqracqtgggoctyvtuqo.supabase.co";
+const SUPABASE_KEY = "sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO";
+const STORAGE_KEY = "sb-tiqracqtgggoctyvtuqo-auth-token";
+const $ = id => document.getElementById(id);
+let client = null;
+let currentUser = null;
+let authCheckRunning = false;
+
+function setStatus(id, message, kind) {
+  const el = $(id);
+  el.textContent = message || "";
+  el.className = "status" + (kind ? " " + kind : "");
 }
-db.auth.onAuthStateChange((event)=>{
-  if(['SIGNED_IN','SIGNED_OUT','TOKEN_REFRESHED','USER_UPDATED'].includes(event)){
-    Promise.resolve().then(()=>initializeStatusComposer());
+function showSignedIn(user) {
+  currentUser = user || null;
+  $("composerPanel").classList.toggle("hidden", !currentUser);
+  $("signOut").classList.toggle("hidden", !currentUser);
+  $("authHeading").textContent = currentUser ? "You're signed in" : "Members sign-in required";
+  $("authDescription").textContent = currentUser
+    ? "Signed in as " + (currentUser.email || "your DJ OLATUNS account") + ". You can now publish text-only updates."
+    : "Sign in to your DJ OLATUNS Members Account, then return here. Your account is not affected.";
+  $("accountLink").textContent = currentUser ? "Open Members Account" : "Sign in / Register";
+  setStatus("authMessage", currentUser ? "Membership account connected successfully." : "No active sign-in was found on this device.", currentUser ? "signed" : "");
+}
+async function checkSession() {
+  if (authCheckRunning || !client) return;
+  authCheckRunning = true;
+  $("retryAuth").disabled = true;
+  try {
+    const { data, error } = await client.auth.getSession();
+    if (error) throw error;
+    showSignedIn(data.session ? data.session.user : null);
+  } catch (error) {
+    showSignedIn(null);
+    setStatus("authMessage", "Could not check your sign-in: " + (error.message || "Please retry."), "error");
+  } finally {
+    authCheckRunning = false;
+    $("retryAuth").disabled = false;
   }
-});
-window.addEventListener('pageshow',()=>initializeStatusComposer());
-document.addEventListener('visibilitychange',()=>{if(!document.hidden) initializeStatusComposer();});
-initializeStatusComposer();
-loadStatuses();
-document.getElementById('addStatusBtn').onclick=function(){
- const composer=document.getElementById('statusComposer');
- const notice=document.getElementById('adminMsg');
- const opening=composer.classList.contains('hidden');
- composer.classList.toggle('hidden',!opening);
- this.textContent=opening?'− Close Post Form':'＋ Create Post';
- if(!opening)return;
- notice.textContent='Checking membership sign-in...';
- db.auth.getSession().then(function(result){
-  if(result.error)throw result.error;
-  notice.innerHTML=result.data.session?'You are signed in. Choose a photo or video and publish your post.':'Please <a href="/account.html" style="color:#e3bd62;text-decoration:underline">sign in to your membership account</a>, then return here to publish.';
- }).catch(function(e){notice.textContent='Sign-in check failed: '+(e.message||'Please refresh.');});
-};
-const mediaInput=document.getElementById('media'),preview=document.getElementById('mediaPreview'),previewImage=document.getElementById('mediaImage'),previewVideo=document.getElementById('mediaVideo'),fileInfo=document.getElementById('mediaFileInfo');let previewUrl='';
-function clearMediaPreview(){if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl='';}preview.classList.add('hidden');previewImage.classList.add('hidden');previewVideo.classList.add('hidden');previewImage.removeAttribute('src');previewVideo.removeAttribute('src');fileInfo.textContent='';mediaInput.value='';}
-mediaInput.addEventListener('change',()=>{const file=mediaInput.files&&mediaInput.files[0];clearMediaPreview();if(!file)return;previewUrl=URL.createObjectURL(file);preview.classList.remove('hidden');fileInfo.textContent=file.name+' • '+(file.size/1024/1024).toFixed(2)+' MB';if(file.type.startsWith('video/')){previewVideo.src=previewUrl;previewVideo.classList.remove('hidden');}else if(file.type.startsWith('image/')){previewImage.src=previewUrl;previewImage.classList.remove('hidden');}else{fileInfo.textContent+=' • Unsupported media type';}});
-document.getElementById('removeMedia').onclick=clearMediaPreview;
-document.getElementById('cancelStatusBtn').onclick=()=>{document.getElementById('statusComposer').classList.add('hidden');document.getElementById('addStatusBtn').classList.remove('hidden');document.getElementById('addStatusBtn').textContent='＋ Create Post';clearMediaPreview()};
-document.getElementById('publish').onclick=async()=>{const msg=document.getElementById('adminMsg'),file=document.getElementById('media').files[0],btn=document.getElementById('publish'),title=document.getElementById('title').value.trim(),caption=document.getElementById('caption').value.trim();if(!file&&!title&&!caption){msg.textContent='Write an update or choose a photo/video before publishing.';return}if(file&&file.size>50*1024*1024){msg.textContent='File is larger than 50 MB.';return}const {data:{session},error:sessionErr}=await db.auth.getSession();if(sessionErr){msg.textContent='Could not verify sign-in: '+sessionErr.message;return}if(!session){msg.textContent='Please sign in to your membership account first.';return}btn.disabled=true;try{let mediaUrl=null,mediaType=null;if(file){msg.textContent='Uploading media...';const ext=(file.name.split('.').pop()||'bin').toLowerCase(),path=session.user.id+'/'+crypto.randomUUID()+'.'+ext;const {error:upErr}=await db.storage.from('community-media').upload(path,file,{upsert:false,contentType:file.type});if(upErr)throw new Error('Media upload failed: '+upErr.message);const {data:urlData}=db.storage.from('community-media').getPublicUrl(path);mediaUrl=urlData.publicUrl;mediaType=file.type.startsWith('video/')?'video':'image'}msg.textContent='Publishing your update...';const {error:insErr}=await db.from('community_posts').insert({title,caption,media_url:mediaUrl,media_type:mediaType,created_by:session.user.id,status_expires_at:new Date(Date.now()+86400000).toISOString()});if(insErr)throw new Error('Post could not be saved: '+insErr.message);msg.textContent='Your update has been published to the Community feed.';document.getElementById('title').value='';document.getElementById('caption').value='';clearMediaPreview();await loadStatuses()}catch(e){msg.textContent='Could not publish: '+(e.message||'Please try again.')}finally{btn.disabled=false}};
-</script></body></html>
+}
+async function loadFeed() {
+  const feed = $("feed");
+  $("refreshFeed").disabled = true;
+  setStatus("feedMessage", "Loading community posts…");
+  feed.replaceChildren();
+  try {
+    const { data, error } = await client.from("community_posts")
+      .select("id,title,caption,created_at")
+      .order("created_at", { ascending: false })
+      .limit(100);
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      setStatus("feedMessage", "");
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      empty.textContent = "No community posts yet. Be the first to share an update.";
+      feed.append(empty);
+      return;
+    }
+    setStatus("feedMessage", data.length + " community update" + (data.length === 1 ? "" : "s"));
+    data.forEach(post => {
+      const article = document.createElement("article");
+      article.className = "post";
+      if (post.title) {
+        const heading = document.createElement("h4");
+        heading.textContent = post.title;
+        article.append(heading);
+      }
+      const body = document.createElement("p");
+      body.textContent = post.caption || "";
+      article.append(body);
+      const time = document.createElement("time");
+      const date = new Date(post.created_at);
+      time.dateTime = date.toISOString();
+      time.textContent = "Shared " + date.toLocaleString();
+      article.append(time);
+      feed.append(article);
+    });
+  } catch (error) {
+    setStatus("feedMessage", "The feed could not load: " + (error.message || "Please try again."), "error");
+  } finally {
+    $("refreshFeed").disabled = false;
+  }
+}
+async function publishPost(event) {
+  event.preventDefault();
+  const title = $("postTitle").value.trim();
+  const caption = $("postText").value.trim();
+  const button = $("publishButton");
+  if (!caption) {
+    setStatus("publishMessage", "Please write your update before publishing.", "error");
+    return;
+  }
+  button.disabled = true;
+  setStatus("publishMessage", "Checking your membership sign-in…");
+  try {
+    const { data, error } = await client.auth.getSession();
+    if (error) throw error;
+    const session = data.session;
+    if (!session) {
+      showSignedIn(null);
+      throw new Error("Your sign-in has expired. Open your Members Account and sign in again.");
+    }
+    const { error: insertError } = await client.from("community_posts").insert({
+      title: title,
+      caption: caption,
+      created_by: session.user.id,
+      status_expires_at: new Date(Date.now() + 86400000).toISOString()
+    });
+    if (insertError) throw insertError;
+    $("postForm").reset();
+    $("characterCount").textContent = "0 / 3000";
+    setStatus("publishMessage", "Your text post has been published successfully.", "signed");
+    await loadFeed();
+  } catch (error) {
+    setStatus("publishMessage", error.message || "Your post could not be published.", "error");
+  } finally {
+    button.disabled = false;
+  }
+}
+function start() {
+  if (!window.supabase || !window.supabase.createClient) {
+    $("authHeading").textContent = "Community connection unavailable";
+    $("authDescription").textContent = "The sign-in service did not load. Check your internet connection and refresh this page.";
+    setStatus("authMessage", "Supabase client library did not load.", "error");
+    setStatus("feedMessage", "The community feed cannot connect right now.", "error");
+    return;
+  }
+  try {
+    client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: { storageKey: STORAGE_KEY, persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+    });
+    client.auth.onAuthStateChange((event, session) => {
+      if (["SIGNED_IN", "SIGNED_OUT", "TOKEN_REFRESHED", "USER_UPDATED"].includes(event)) {
+        showSignedIn(session ? session.user : null);
+      }
+    });
+    $("retryAuth").addEventListener("click", checkSession);
+    $("refreshFeed").addEventListener("click", loadFeed);
+    $("postForm").addEventListener("submit", publishPost);
+    $("postText").addEventListener("input", () => {
+      $("characterCount").textContent = $("postText").value.length + " / 3000";
+    });
+    $("signOut").addEventListener("click", async () => {
+      $("signOut").disabled = true;
+      const { error } = await client.auth.signOut();
+      $("signOut").disabled = false;
+      if (error) setStatus("authMessage", error.message, "error");
+      else showSignedIn(null);
+    });
+    checkSession();
+    loadFeed();
+  } catch (error) {
+    $("authHeading").textContent = "Community could not start";
+    setStatus("authMessage", error.message || "Please refresh the page.", "error");
+    setStatus("feedMessage", "Community connection failed.", "error");
+  }
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+else start();
+})();
+</script>
+</body>
+</html>
