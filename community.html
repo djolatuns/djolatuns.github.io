@@ -53,6 +53,19 @@ db.auth.onAuthStateChange((event,session)=>{
 });
 initializeStatusComposer();
 loadStatuses();
+document.getElementById('addStatusBtn').onclick=function(){
+ const composer=document.getElementById('statusComposer');
+ const notice=document.getElementById('adminMsg');
+ const opening=composer.classList.contains('hidden');
+ composer.classList.toggle('hidden',!opening);
+ this.textContent=opening?'− Close Post Form':'＋ Create Post';
+ if(!opening)return;
+ notice.textContent='Checking membership sign-in...';
+ db.auth.getSession().then(function(result){
+  if(result.error)throw result.error;
+  notice.innerHTML=result.data.session?'You are signed in. Choose a photo or video and publish your post.':'Please <a href="/account.html" style="color:#e3bd62;text-decoration:underline">sign in to your membership account</a>, then return here to publish.';
+ }).catch(function(e){notice.textContent='Sign-in check failed: '+(e.message||'Please refresh.');});
+};
 const mediaInput=document.getElementById('media'),preview=document.getElementById('mediaPreview'),previewImage=document.getElementById('mediaImage'),previewVideo=document.getElementById('mediaVideo'),fileInfo=document.getElementById('mediaFileInfo');let previewUrl='';
 function clearMediaPreview(){if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl='';}preview.classList.add('hidden');previewImage.classList.add('hidden');previewVideo.classList.add('hidden');previewImage.removeAttribute('src');previewVideo.removeAttribute('src');fileInfo.textContent='';mediaInput.value='';}
 mediaInput.addEventListener('change',()=>{const file=mediaInput.files&&mediaInput.files[0];clearMediaPreview();if(!file)return;previewUrl=URL.createObjectURL(file);preview.classList.remove('hidden');fileInfo.textContent=file.name+' • '+(file.size/1024/1024).toFixed(2)+' MB';if(file.type.startsWith('video/')){previewVideo.src=previewUrl;previewVideo.classList.remove('hidden');}else if(file.type.startsWith('image/')){previewImage.src=previewUrl;previewImage.classList.remove('hidden');}else{fileInfo.textContent+=' • Unsupported media type';}});
