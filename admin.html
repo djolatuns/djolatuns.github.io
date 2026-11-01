@@ -306,7 +306,33 @@ $("publishBtn").addEventListener("click",async () => {
 
   $("announcementTitle").value = "";
   $("announcementBody").value = "";
-  $("announcementStatus").textContent = "Announcement published.";
+  $("announcementStatus").textContent = "Announcement published. Sending phone notifications...";
+
+  try {
+    const { data: sessionData } = await db.auth.getSession();
+    const response = await fetch(SUPABASE_URL + "/functions/v1/member-push", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + sessionData.session.access_token
+      },
+      body: JSON.stringify({ action: "broadcast", title, message })
+    });
+    const pushResult = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      $("announcementStatus").textContent =
+        "Announcement published, but phone notifications could not be sent: " +
+        (pushResult.error || "Push service is not configured yet.");
+    } else {
+      $("announcementStatus").textContent =
+        "Announcement published. Phone notifications sent: " +
+        pushResult.sent + " of " + pushResult.total + ".";
+    }
+  } catch (pushError) {
+    $("announcementStatus").textContent =
+      "Announcement published, but push delivery needs setup: " + pushError.message;
+  }
 
   await loadAnnouncements();
 });
