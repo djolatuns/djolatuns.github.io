@@ -57,7 +57,7 @@ document.getElementById('addStatusBtn').onclick=function(){
  const composer=document.getElementById('statusComposer');
  const notice=document.getElementById('adminMsg');
  composer.classList.toggle('hidden');
- if(composer.classList.contains('hidden')){this.textContent='＋ Add Status';return;}
+ if(composer.classList.contains('hidden')){this.textContent='＋ Create Post';return;}
  this.textContent='− Close Post Form';
  notice.textContent='Checking membership sign-in...';
  db.auth.getSession().then(function(result){
