@@ -61,9 +61,22 @@ form.addEventListener("submit",async event=>{
  const value=id=>document.getElementById(id).value.trim();
  const payload={full_name:value("name"),email:value("email"),phone:value("phone"),event_type:value("type"),event_date:value("date")||null,event_time:value("time")||null,event_location:value("location"),budget_range:value("budget")||null,details:value("details")||null};
  try{
-  const {error}=await db.from("booking_requests").insert(payload);
+  const {data:booking,error}=await db.from("booking_requests").insert(payload).select("id").single();
   if(error)throw error;
-  form.reset();statusBox.textContent="Thank you! Your booking request has been received. It is not confirmed yet; DJ OLATUNS will contact you to discuss availability and pricing.";
+  form.reset();
+  statusBox.textContent="Your booking request has been received. Sending a private alert to the DJ OLATUNS CEO…";
+  try{
+   const response=await fetch(DB_URL+"/functions/v1/member-push",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","apikey":DB_KEY},
+    body:JSON.stringify({action:"booking-created",booking_id:booking.id})
+   });
+   const result=await response.json().catch(()=>({}));
+   if(!response.ok)throw new Error(result.error||"CEO alert could not be delivered.");
+   statusBox.textContent="Thank you! Your booking request has been received and a private notification has been sent to the DJ OLATUNS CEO. Your booking is not confirmed until you receive confirmation directly.";
+  }catch(pushError){
+   statusBox.textContent="Your booking request was received, but the CEO notification could not be delivered automatically. Please contact DJ OLATUNS directly if you need an urgent response. ("+pushError.message+")";
+  }
  }catch(error){statusBox.textContent="We couldn't send your request. Please try again or contact DJ OLATUNS directly. "+(error.message||"");}
  finally{button.disabled=false;}
 });
