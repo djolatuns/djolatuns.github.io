@@ -5,6 +5,7 @@ const APP_SHELL = [
   "/index.html",
   "/members.html",
   "/mixtapes.html",
+  "/community.html",
   "/status.html",
   "/announcements.html",
   "/account.html",
