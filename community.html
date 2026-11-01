@@ -187,16 +187,32 @@ async function publishPost(event) {
       showSignedIn(null);
       throw new Error("Your sign-in has expired. Open your Members Account and sign in again.");
     }
-    const { error: insertError } = await client.from("community_posts").insert({
+    const { data: newPost, error: insertError } = await client.from("community_posts").insert({
       title: title,
       caption: caption,
       created_by: session.user.id,
       status_expires_at: new Date(Date.now() + 86400000).toISOString()
-    });
+    }).select("id").single();
     if (insertError) throw insertError;
     $("postForm").reset();
     $("characterCount").textContent = "0 / 3000";
-    setStatus("publishMessage", "Your text post has been published successfully.", "signed");
+    setStatus("publishMessage", "Post published. Sending notifications to subscribed members…", "");
+    try {
+      const pushResponse = await fetch(SUPABASE_URL + "/functions/v1/member-push", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_KEY,
+          "Authorization": "Bearer " + session.access_token
+        },
+        body: JSON.stringify({ action: "community-post", post_id: newPost.id })
+      });
+      const pushResult = await pushResponse.json().catch(() => ({}));
+      if (!pushResponse.ok) throw new Error(pushResult.error || "Push delivery failed.");
+      setStatus("publishMessage", "Post published. Community alerts sent to " + pushResult.sent + " of " + pushResult.total + " subscribed devices.", "signed");
+    } catch (pushError) {
+      setStatus("publishMessage", "Your post is published, but its push alerts could not be sent: " + pushError.message, "error");
+    }
     await loadFeed();
   } catch (error) {
     setStatus("publishMessage", error.message || "Your post could not be published.", "error");
