@@ -404,6 +404,63 @@ async function loadAnnouncements() {
   });
 }
 
+
+/* BOOKING REQUEST MANAGEMENT */
+async function loadBookings() {
+  const area = $("bookingRequests");
+  area.textContent = "Loading booking requests...";
+  const { data, error } = await db.from("booking_requests")
+    .select("*").order("created_at", {ascending:false}).limit(100);
+  if (error) { area.textContent = "Could not load booking requests: " + error.message; return; }
+  area.replaceChildren();
+  if (!data || !data.length) { area.textContent = "No booking requests yet."; return; }
+  data.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "notice";
+    const heading = document.createElement("h3");
+    heading.textContent = item.full_name + " — " + item.event_type;
+    const details = document.createElement("p");
+    details.textContent = [
+      "Email: " + item.email,
+      "Phone: " + item.phone,
+      "Date: " + (item.event_date || "Not specified"),
+      "Time: " + (item.event_time || "Not specified"),
+      "Venue: " + item.event_location,
+      "Budget: " + (item.budget_range || "To discuss"),
+      "Details: " + (item.details || "None"),
+      "Received: " + new Date(item.created_at).toLocaleString()
+    ].join("\\n");
+    details.style.whiteSpace = "pre-wrap";
+    const statusLabel = document.createElement("label");
+    statusLabel.textContent = "Request status";
+    const select = document.createElement("select");
+    ["new","contacted","quoted","confirmed","completed","declined"].forEach(value => {
+      const option = document.createElement("option");
+      option.value = value; option.textContent = value.charAt(0).toUpperCase()+value.slice(1);
+      select.appendChild(option);
+    });
+    select.value = item.status;
+    const notes = document.createElement("textarea");
+    notes.placeholder = "Private admin notes (not shown to the customer)";
+    notes.value = item.admin_notes || "";
+    notes.maxLength = 1500;
+    const save = document.createElement("button");
+    save.textContent = "Save Update";
+    const feedback = document.createElement("p");
+    feedback.className = "muted";
+    save.addEventListener("click", async () => {
+      save.disabled = true; feedback.textContent = "Saving...";
+      const { error: updateError } = await db.from("booking_requests")
+        .update({status:select.value, admin_notes:notes.value.trim(), updated_at:new Date().toISOString()})
+        .eq("id", item.id);
+      feedback.textContent = updateError ? "Could not save: " + updateError.message : "Booking request updated.";
+      save.disabled = false;
+    });
+    card.append(heading,details,statusLabel,select,notes,save,feedback);
+    area.appendChild(card);
+  });
+}
+
 /* REFRESH */
 $("refreshBtn").addEventListener("click",async () => {
   try {
