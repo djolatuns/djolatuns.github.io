@@ -1,4 +1,4 @@
-const CACHE_NAME = "dj-olatuns-pwa-v30";
+const CACHE_NAME = "dj-olatuns-pwa-v31";
 
 const APP_SHELL = [
   "/",
@@ -91,7 +91,7 @@ self.addEventListener("push", (event) => {
   const title = data.title || "DJ OLATUNS";
   const options = {
     body: data.body || "You have a new DJ OLATUNS announcement.",
-    icon: "/icon-192.png",
+    icon: "/icon-circle.svg",
     badge: "/icon-192.png",
     data: { url: data.url || "/#updates" },
     tag: "dj-olatuns-announcement",
