@@ -90,7 +90,32 @@
     .socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
     .socials a{border:1px solid var(--line);padding:8px 12px;border-radius:10px;color:var(--gold2);font-size:13px}
 
-    /* Members portal section */
+    /* WhatsApp-inspired homepage community */
+.wa-shell{overflow:hidden;border:1px solid #49391f;border-radius:20px;background:#10110f;box-shadow:0 16px 40px #0005}
+.wa-top{display:flex;align-items:center;gap:11px;padding:13px 15px;background:#171812;border-bottom:1px solid #393020}
+.wa-avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffe6a0,#b47d20);color:#171006;font-size:23px;border:2px solid #d8ad52}
+.wa-top strong,.wa-top small{display:block}.wa-top small{font-size:11px;color:var(--muted)}.wa-top>a{margin-left:auto;font-size:24px;color:var(--gold2)}
+.wa-status,.wa-chat{padding:14px 15px;border-bottom:1px solid #30291d}.wa-status h3,.wa-chat h3{font-size:14px;color:var(--gold2);margin:0 0 12px}
+.wa-status-row{display:flex;gap:14px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:thin}
+.wa-status-person{flex:0 0 76px;max-width:76px;text-align:center;background:none;border:0;color:var(--text);padding:0;cursor:pointer}
+.wa-status-ring{width:66px;height:66px;margin:0 auto 6px;border-radius:50%;padding:3px;border:2px solid #d8ad52;background:#17130b;display:grid;place-items:center}
+.wa-status-ring img,.wa-status-ring video{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#050505}
+.wa-status-person small{display:block;font-size:10px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wa-status-person.new-status .wa-status-ring{border-style:dashed}
+.wa-chat-list{display:grid;gap:0}
+.wa-chat-row{width:100%;display:flex;gap:11px;align-items:center;text-align:left;padding:10px 0;background:transparent;color:var(--text);border:0;border-bottom:1px solid #2c281f;cursor:pointer}
+.wa-chat-row:last-child{border-bottom:0}.wa-chat-icon{flex:0 0 42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#29210f;color:var(--gold2);font-size:20px}
+.wa-chat-copy{min-width:0;flex:1}.wa-chat-copy strong{display:block;font-size:13px;color:#f7e6b7}.wa-chat-copy span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wa-chat-copy small{display:block;color:#9a8d73;font-size:10px;margin-top:3px}
+.wa-post-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.wa-post{aspect-ratio:1;border:0;border-radius:8px;overflow:hidden;padding:0;background:#201a10;cursor:pointer;position:relative}
+.wa-post img,.wa-post video{width:100%;height:100%;object-fit:cover}.wa-post span{position:absolute;left:5px;right:5px;bottom:4px;font-size:9px;text-align:left;text-shadow:0 1px 4px #000}
+.wa-more{display:block;text-align:center;padding:12px 0 0;color:var(--gold2);font-size:12px;font-weight:800}
+.wa-footer-actions{display:flex;flex-wrap:wrap;gap:8px;padding:14px}.wa-footer-actions .btn{font-size:11px;padding:9px 12px}
+.wa-viewer{display:none;position:fixed;inset:0;z-index:100;background:#050505;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom))}
+.wa-viewer.open{display:flex}.wa-viewer-top{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;color:white}.wa-viewer-top button,.wa-detail-close{background:transparent!important;color:white!important;border:0!important;padding:6px!important;box-shadow:none!important}.wa-progress{height:3px;background:#555;border-radius:5px;overflow:hidden}.wa-progress span{display:block;height:100%;width:100%;background:#e6c56e}.wa-viewer-top strong{grid-column:2;font-size:13px}.wa-viewer-media{flex:1;min-height:0;display:grid;place-items:center;margin:15px 0}.wa-viewer-media img,.wa-viewer-media video{max-width:100%;max-height:100%;object-fit:contain}.wa-viewer-caption{text-align:center;color:#fff;padding:10px}.wa-viewer-next{position:absolute;right:8px;top:45%;background:#ffffff22!important;color:white!important;border:0!important;font-size:34px;padding:8px!important}
+.wa-detail{display:none;position:fixed;inset:0;z-index:101;background:#000b;align-items:center;justify-content:center;padding:20px}.wa-detail.open{display:flex}.wa-detail-card{position:relative;width:min(100%,480px);background:#17150f;border:1px solid #705728;border-radius:18px;padding:24px}.wa-detail-card h3{color:var(--gold2)}.wa-detail-card p{white-space:pre-wrap;color:var(--text)}.wa-detail-card small{color:var(--muted)}.wa-detail-close{position:absolute;right:10px;top:8px;color:var(--gold2)!important}
+@media(prefers-reduced-motion:no-preference){.wa-viewer.open .wa-progress span{animation:waStory 8s linear forwards}@keyframes waStory{from{width:0}to{width:100%}}}
+\n    /* Members portal section */
     .updates-grid{display:grid;grid-template-columns:1fr;gap:12px}.update-panel{border:1px solid var(--line);border-radius:18px;padding:16px;background:linear-gradient(150deg,#1b1812,#10100e 78%);min-width:0}.update-panel h3{color:var(--gold2);margin:0 0 7px}.update-panel p{color:var(--muted);font-size:13px;margin:6px 0 12px}.live-item{border-top:1px solid var(--line);padding:10px 0}.live-item:first-child{border-top:0}.live-item strong{display:block;color:var(--gold2);font-size:14px}.live-item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.live-media{width:100%;max-height:230px;object-fit:contain;border-radius:12px;background:#050505;margin-top:8px}.update-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.update-actions .btn{font-size:12px;padding:9px 11px}.feed-status{color:var(--muted);font-size:12px}@media(min-width:650px){.updates-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.update-panel.wide{grid-column:1/-1}}\n    .members-card{border:1px solid #705728;border-radius:20px;background:linear-gradient(145deg,#211a0d,#11100e 70%);padding:18px}
     .members-card p{color:var(--muted);font-size:14px;margin:10px 0 16px}
 
@@ -149,12 +174,19 @@
     </div>
   </section>
 
-<section class="section" id="updates" aria-labelledby="updates-heading"><div class="sectionHead"><div><h2 id="updates-heading">OLATUNS <span>Live Updates</span></h2><div class="sub">The latest community activity, right here on the homepage</div></div><span class="eyebrow">Live hub</span></div><div class="updates-grid">
-<article class="update-panel"><h3>♢ Official Announcements</h3><p>News and important messages from DJ OLATUNS.</p><div id="homeAnnouncements" class="feed-status" aria-live="polite">Loading latest announcements…</div><div class="update-actions"><a class="btn gold" href="/announcements.html">All announcements ↗</a></div></article>
-<article class="update-panel"><h3>◉ 24-hour Status</h3><p>Recent photo and video updates. Status posts expire after 24 hours.</p><div id="homeStatuses" class="feed-status" aria-live="polite">Loading active statuses…</div><div class="update-actions"><a class="btn gold" href="/status.html">View all statuses ↗</a></div></article>
-<article class="update-panel wide"><h3>▣ Community Posts</h3><p>Recent photos and videos remain available in the posts archive.</p><div id="homePosts" class="feed-status" aria-live="polite">Loading recent posts…</div><div class="update-actions"><a class="btn gold" href="/posts.html">Open posts archive ↗</a></div></article>
-<article class="update-panel"><h3>♛ Member Account</h3><p>Create your account or sign in to access the member community and account features.</p><div class="update-actions"><a class="btn gold" href="/members.html">Join / Sign in ↗</a><a class="btn" href="/account.html">My account ↗</a></div></article>
-<article class="update-panel"><h3>♧ Member Notifications</h3><p>Sign in to manage push notifications on this device and receive supported official announcements.</p><div class="update-actions"><a class="btn gold" href="/members.html#member-account">Manage notifications ↗</a></div></article></div></section>\n  <section class="section" id="mixtapes" aria-labelledby="featured-heading">
+<section class="section" id="updates" aria-labelledby="updates-heading">
+<div class="sectionHead"><div><h2 id="updates-heading">OLATUNS <span>Community</span></h2><div class="sub">Your updates, just like a familiar chat app</div></div><span class="eyebrow">LIVE</span></div>
+<div class="wa-shell">
+  <div class="wa-top"><span class="wa-avatar">♛</span><div><strong>DJ OLATUNS Official</strong><small>Community updates</small></div><a href="/members.html" aria-label="Open members area">⋮</a></div>
+  <div class="wa-status"><h3>Recent Status</h3><div id="homeStatuses" class="wa-status-row"><p class="feed-status">Loading statuses…</p></div></div>
+  <div class="wa-chat"><h3>Announcements</h3><div id="homeAnnouncements" class="wa-chat-list"><p class="feed-status">Loading announcements…</p></div></div>
+  <div class="wa-chat"><h3>Community Posts</h3><div id="homePosts" class="wa-post-grid"><p class="feed-status">Loading posts…</p></div><a class="wa-more" href="/posts.html">View all posts →</a></div>
+  <div class="wa-footer-actions"><a class="btn gold" href="/members.html">Join / Sign in</a><a class="btn" href="/announcements.html">All news</a><a class="btn" href="/status.html">Status archive</a></div>
+</div>
+</section>
+<div class="wa-viewer" id="waViewer" aria-hidden="true"><div class="wa-viewer-top"><button type="button" id="waClose" aria-label="Close">✕</button><div class="wa-progress"><span id="waProgress"></span></div><strong id="waViewerTitle">DJ OLATUNS</strong></div><div class="wa-viewer-media" id="waViewerMedia"></div><div class="wa-viewer-caption" id="waViewerCaption"></div><button class="wa-viewer-next" id="waNext" type="button" aria-label="Next status">›</button></div>
+<div class="wa-detail" id="waDetail" aria-hidden="true"><div class="wa-detail-card"><button type="button" id="waDetailClose" class="wa-detail-close">✕</button><h3 id="waDetailTitle">Announcement</h3><p id="waDetailMessage"></p><small id="waDetailDate"></small></div></div>
+<section class="section" id="mixtapes" aria-labelledby="featured-heading">
     <div class="sectionHead">
       <div><h2 id="featured-heading">Featured <span>Release</span></h2><div class="sub">Your soundtrack starts here</div></div>
       <span class="eyebrow">2026</span>
@@ -261,7 +293,37 @@
     installBtn.hidden = true;
   });
 
-(async function loadHomeCommunityUpdates(){const setText=(id,message)=>{const el=document.getElementById(id);if(el)el.textContent=message;};const safeDate=value=>{try{return new Date(value).toLocaleString();}catch(_){return "";}};const addText=(parent,tag,value,className)=>{const el=document.createElement(tag);if(className)el.className=className;el.textContent=value||"";parent.appendChild(el);return el;};try{if(!window.supabase)throw new Error("Community updates are temporarily unavailable.");const db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co","sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO");const [news,statuses,posts]=await Promise.all([db.from("site_notifications").select("title,message,created_at").eq("published",true).order("created_at",{ascending:false}).limit(2),db.from("community_posts").select("title,caption,media_url,media_type,created_at,status_expires_at").gt("status_expires_at",new Date().toISOString()).order("created_at",{ascending:false}).limit(2),db.from("community_posts").select("title,caption,media_url,media_type,created_at").order("created_at",{ascending:false}).limit(2)]);const render=(id,data,error,kind)=>{const box=document.getElementById(id);if(!box)return;box.textContent="";if(error){addText(box,"p","Updates could not be loaded right now.");return;}if(!data||!data.length){addText(box,"p",kind==="news"?"No announcements yet. Check back soon.":kind==="status"?"No active statuses right now.":"No community posts have been shared yet.");return;}data.forEach(item=>{const row=document.createElement("div");row.className="live-item";if(item.title)addText(row,"strong",item.title);if(item.message)addText(row,"p",item.message);if(item.caption)addText(row,"p",item.caption);if(kind!=="news"&&item.media_url){if(item.media_type==="video"){const v=document.createElement("video");v.className="live-media";v.src=item.media_url;v.controls=true;v.playsInline=true;v.preload="metadata";row.appendChild(v);}else{const im=document.createElement("img");im.className="live-media";im.src=item.media_url;im.alt=item.title||"DJ OLATUNS community update";im.loading="lazy";row.appendChild(im);}}addText(row,"small",kind==="status"&&item.status_expires_at?"Expires "+safeDate(item.status_expires_at):safeDate(item.created_at));box.appendChild(row);});};render("homeAnnouncements",news.data,news.error,"news");render("homeStatuses",statuses.data,statuses.error,"status");render("homePosts",posts.data,posts.error,"posts");}catch(error){["homeAnnouncements","homeStatuses","homePosts"].forEach(id=>setText(id,error.message||"Updates are temporarily unavailable."));}})();\n  const navLinks = document.querySelectorAll(".bottomnav a");
+(async function(){
+const $=id=>document.getElementById(id), add=(p,t,v)=>{const e=document.createElement(t);e.textContent=v||"";p.appendChild(e);return e;};
+let storyItems=[],storyIndex=0;
+function openStory(i){storyIndex=i;const x=storyItems[i];if(!x)return;const box=$("waViewerMedia");box.textContent="";if(x.media_type==="video"){const v=document.createElement("video");v.src=x.media_url;v.controls=true;v.autoplay=true;v.playsInline=true;box.append(v);}else{const im=document.createElement("img");im.src=x.media_url;im.alt=x.title||"DJ OLATUNS status";box.append(im);} $("waViewerTitle").textContent=x.title||"DJ OLATUNS";$("waViewerCaption").textContent=x.caption||"";$("waViewer").classList.add("open");$("waViewer").setAttribute("aria-hidden","false");}
+function closeStory(){$("waViewer").classList.remove("open");$("waViewer").setAttribute("aria-hidden","true");$("waViewerMedia").textContent="";}
+$("waClose").onclick=closeStory;$("waNext").onclick=()=>openStory((storyIndex+1)%storyItems.length);
+$("waViewer").addEventListener("click",e=>{if(e.target===$("waViewer"))closeStory();});
+$("waDetailClose").onclick=()=>{$("waDetail").classList.remove("open");$("waDetail").setAttribute("aria-hidden","true");};
+try{
+if(!window.supabase)throw new Error("Connect to the internet and refresh.");
+const db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co","sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO");
+const [nr,sr,pr]=await Promise.all([
+db.from("site_notifications").select("title,message,created_at").eq("published",true).order("created_at",{ascending:false}).limit(20),
+db.from("community_posts").select("title,caption,media_url,media_type,created_at,status_expires_at").gt("status_expires_at",new Date().toISOString()).order("created_at",{ascending:false}).limit(30),
+db.from("community_posts").select("title,caption,media_url,media_type,created_at").order("created_at",{ascending:false}).limit(9)
+]);
+const statuses=$("homeStatuses");statuses.textContent="";
+if(sr.error) add(statuses,"p","Statuses are temporarily unavailable.");
+else if(!sr.data?.length)add(statuses,"p","No active statuses yet.");
+else{storyItems=sr.data;storyItems.forEach((x,i)=>{const btn=document.createElement("button");btn.className="wa-status-person";btn.type="button";const ring=document.createElement("span");ring.className="wa-status-ring";if(x.media_type==="video"){const v=document.createElement("video");v.src=x.media_url;v.muted=true;v.playsInline=true;ring.append(v);}else{const im=document.createElement("img");im.src=x.media_url;im.alt="";im.loading="lazy";ring.append(im);}btn.append(ring);add(btn,"small",x.title||"DJ OLATUNS");btn.onclick=()=>openStory(i);statuses.append(btn);});}
+const news=$("homeAnnouncements");news.textContent="";
+if(nr.error)add(news,"p","Announcements are temporarily unavailable.");
+else if(!nr.data?.length)add(news,"p","No announcements yet. Check back soon.");
+else nr.data.forEach(x=>{const btn=document.createElement("button");btn.className="wa-chat-row";btn.type="button";const icon=add(btn,"span","♢");icon.className="wa-chat-icon";const copy=add(btn,"span","");copy.className="wa-chat-copy";add(copy,"strong",x.title||"DJ OLATUNS Update");add(copy,"span",x.message||"Open to read this announcement");add(copy,"small",new Date(x.created_at).toLocaleString());btn.onclick=()=>{$("waDetailTitle").textContent=x.title||"DJ OLATUNS Update";$("waDetailMessage").textContent=x.message||"";$("waDetailDate").textContent=new Date(x.created_at).toLocaleString();$("waDetail").classList.add("open");$("waDetail").setAttribute("aria-hidden","false");};news.append(btn);});
+const posts=$("homePosts");posts.textContent="";
+if(pr.error)add(posts,"p","Posts are temporarily unavailable.");
+else if(!pr.data?.length)add(posts,"p","No community posts yet.");
+else pr.data.forEach(x=>{const btn=document.createElement("button");btn.className="wa-post";btn.type="button";if(x.media_type==="video"){const v=document.createElement("video");v.src=x.media_url;v.muted=true;v.playsInline=true;btn.append(v);}else{const im=document.createElement("img");im.src=x.media_url;im.alt=x.title||"Community post";im.loading="lazy";btn.append(im);}const label=document.createElement("span");label.textContent=x.title||x.caption||"DJ OLATUNS";btn.append(label);btn.onclick=()=>{if(x.status_expires_at&&new Date(x.status_expires_at)>new Date()){const idx=storyItems.findIndex(s=>s.media_url===x.media_url);if(idx>=0)openStory(idx);else window.location.href="/posts.html";}else window.location.href="/posts.html";};posts.append(btn);});
+}catch(e){["homeStatuses","homeAnnouncements","homePosts"].forEach(id=>$(id).textContent=e.message||"Updates are temporarily unavailable.");}
+})(); 
+  const navLinks = document.querySelectorAll(".bottomnav a");
   navLinks.forEach(link => link.addEventListener("click", () => {
     navLinks.forEach(item => item.classList.remove("active"));
     link.classList.add("active");
