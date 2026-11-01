@@ -20,13 +20,19 @@
     return { client, session: data.session };
   }
 
+  async function getPushRegistration() {
+    if (!("serviceWorker" in navigator)) throw new Error("This browser does not support service workers.");
+    await navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
+    return await navigator.serviceWorker.ready;
+  }
+
   async function refreshPushState() {
     if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) {
       say("This browser does not support push notifications. Update Chrome on Android and reopen the installed app.");
       $("enablePushBtn").disabled = true;
       return;
     }
-    const reg = await navigator.serviceWorker.ready;
+    const reg = await getPushRegistration();
     const sub = await reg.pushManager.getSubscription();
     $("enablePushBtn").classList.toggle("hidden", !!sub);
     $("disablePushBtn").classList.toggle("hidden", !sub);
@@ -60,7 +66,7 @@
         const permission = await Notification.requestPermission();
         if (permission !== "granted") throw new Error("Notification permission was not granted. Allow it in your phone settings to continue.");
       }
-      const reg = await navigator.serviceWorker.ready;
+      const reg = await getPushRegistration();
       let sub = await reg.pushManager.getSubscription();
       if (!sub) sub = await reg.pushManager.subscribe({
         userVisibleOnly: true,
@@ -80,7 +86,7 @@
     const button = $("disablePushBtn");
     button.disabled = true;
     try {
-      const reg = await navigator.serviceWorker.ready;
+      const reg = await getPushRegistration();
       const sub = await reg.pushManager.getSubscription();
       if (sub) {
         await callPush("unsubscribe", { endpoint: sub.endpoint });
