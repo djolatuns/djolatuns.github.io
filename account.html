@@ -597,7 +597,7 @@ async function startPortal() {
   db = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY,
-    {}
+    { auth: { storageKey: "sb-tiqracqtgggoctyvtuqo-auth-token", persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }
   );
 
   await loadAnnouncements();
