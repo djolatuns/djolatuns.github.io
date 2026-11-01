@@ -568,7 +568,10 @@ $("signupBtn").onclick = async () => {
 
   const { data, error } = await db.auth.signUp({
     email,
-    password
+    password,
+    options: {
+      emailRedirectTo: "https://djolatuns.github.io/members.html"
+    }
   });
 
   $("signupBtn").disabled = false;
