@@ -1,4 +1,4 @@
-const CACHE_NAME = "dj-olatuns-pwa-v7";
+const CACHE_NAME = "dj-olatuns-pwa-v8";
 
 const APP_SHELL = [
   "/",
@@ -90,7 +90,7 @@ self.addEventListener("push", (event) => {
     body: data.body || "You have a new DJ OLATUNS announcement.",
     icon: "/icon-192.png",
     badge: "/icon-192.png",
-    data: { url: data.url || "/members.html" },
+    data: { url: data.url || "/#updates" },
     tag: "dj-olatuns-announcement",
     renotify: true
   };
@@ -99,7 +99,7 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const target = new URL(event.notification.data?.url || "/members.html", self.location.origin).href;
+  const target = new URL(event.notification.data?.url || "/#updates", self.location.origin).href;
   event.waitUntil((async () => {
     const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
     for (const client of windows) {
