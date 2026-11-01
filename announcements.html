@@ -64,4 +64,6 @@ body{padding-bottom:92px!important}
  message.insertAdjacentElement('afterend',refresh);refresh.addEventListener('click',loadNews);
  newsDb.channel('public-news-feed').on('postgres_changes',{event:'*',schema:'public',table:'site_notifications'},loadNews).subscribe();
 })();
-</script></body></html>
+</script>
+<script src="/pwa.js" defer></script>
+</body></html>
