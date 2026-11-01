@@ -252,6 +252,11 @@ body{padding-bottom:90px}
 <p id="pushStatus" class="muted status" aria-live="polite">Checking notification support...</p>
 </div>
 <div id="memberFeatures" class="hidden" aria-hidden="true"></div>
+<div id="adminAccess" class="notice hidden">
+<strong>Administrator Access</strong>
+<p class="muted">Administrator account verified.</p>
+<a class="gold-link" href="/admin.html">Open Administrator Dashboard</a>
+</div>
 <button id="logoutBtn" class="secondary" type="button">Log Out</button>
 </section>
 <div hidden aria-hidden="true">
@@ -396,6 +401,25 @@ async function loadAccount(user) {
 
   const nav = $("memberFeatures");
   if (nav) nav.classList.remove("hidden");
+
+  // Only the designated official email AND its protected admin_users record
+  // receive the dashboard shortcut. The admin page performs its own check too.
+  const adminPanel = $("adminAccess");
+  if (adminPanel) adminPanel.classList.add("hidden");
+  const isOfficialEmail =
+    (user.email || "").trim().toLowerCase() === "ismailtaiw201@gmail.com";
+  if (isOfficialEmail) {
+    const { data: adminRecord, error: adminError } = await db
+      .from("admin_users")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+    if (!adminError && adminRecord && adminPanel) {
+      adminPanel.classList.remove("hidden");
+    } else if (adminError) {
+      console.error("Administrator visibility check failed:", adminError);
+    }
+  }
 }
 
 async function loadAdminStats() {
@@ -487,6 +511,7 @@ $("logoutBtn").onclick = async () => {
 
   $("accountCard").classList.add("hidden");
   $("authCard").classList.remove("hidden");
+  $("adminAccess").classList.add("hidden");
 
   showMessage("authMessage", "You have logged out.");
 };
