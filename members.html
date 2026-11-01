@@ -183,6 +183,8 @@ footer {
   main { padding: 12px; }
   .card { padding: 17px; }
 }
+
+.bottom-app-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;justify-content:space-around;gap:2px;background:#101010;border-top:1px solid #806326;padding:8px 2px calc(8px + env(safe-area-inset-bottom))}.bottom-app-nav a{flex:1;text-align:center;color:#bbb;text-decoration:none;font-size:11px;line-height:1.35}.bottom-app-nav b{display:block;color:#d9b45b;font-size:19px}
 </style>
 </head>
 
@@ -753,5 +755,6 @@ startPortal().catch(error => {
 </script>
 <script src="/push-client.js"></script>
 
+<nav class="bottom-app-nav"><a href="members.html"><b>⌂</b>Home</a><a href="mixtapes.html"><b>♫</b>Mixes</a><a href="status.html"><b>◉</b>Status</a><a href="posts.html"><b>▣</b>Posts</a><a href="announcements.html"><b>♢</b>News</a><a href="account.html"><b>◎</b>Account</a></nav>
 </body>
 </html>
