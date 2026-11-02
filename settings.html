@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909"><meta name="description" content="Manage your DJ OLATUNS app settings, account, notifications and privacy.">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon-circle.svg">
+<title>Settings | DJ OLATUNS</title>
+<style>
+:root{color-scheme:dark;--gold:#dfb95f;--pale:#ffe6a0;--muted:#bdb5a5;--line:#49391f}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#3b2a0d,#10100e 45%,#080808 80%);color:#f7f3e9;font:16px/1.6 system-ui,Arial,sans-serif;padding-bottom:30px}
+header{text-align:center;padding:30px 18px 22px;border-bottom:1px solid var(--line);background:linear-gradient(145deg,#21190b,#090909)}
+header h1{margin:0;color:var(--pale);letter-spacing:3px;font-size:clamp(25px,6vw,34px)}header p{margin:6px 0;color:var(--muted);font-size:11px;letter-spacing:2px}
+main{width:min(100% - 28px,820px);margin:24px auto}.intro,.setting{border:1px solid #594521;border-radius:18px;background:linear-gradient(145deg,#1b1812,#10100e 78%);padding:20px;margin:14px 0;box-shadow:0 12px 30px #0004}
+.eyebrow{color:var(--gold);font-size:10px;letter-spacing:2px;font-weight:850}.intro h2,.setting h2{color:var(--pale);margin:7px 0}.intro p,.setting p{color:var(--muted);margin:6px 0}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:15px}.setting-copy{min-width:0}.setting-copy strong{color:#f8f0dc}.setting-copy small{display:block;color:var(--muted);margin-top:3px}
+.action{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;border-radius:11px;padding:10px 14px;font-weight:850;white-space:nowrap}.action.secondary{background:#29251d;color:var(--pale);border:1px solid #5a4828}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:14px;padding:15px;background:#11100e}.tile strong{display:block;color:var(--pale)}.tile span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+footer{text-align:center;color:#807866;font-size:12px;padding:22px}
+.app-menu-button{position:fixed!important;top:14px!important;left:14px!important;z-index:10002!important;width:46px;height:46px;border:1px solid #705728;border-radius:13px;background:#100e0a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 5px 20px #0008}.app-menu-button span{display:block;width:20px;height:2px;background:#ffe6a0;border-radius:2px}
+.app-menu-backdrop{position:fixed;inset:0;z-index:10000;background:#000a;backdrop-filter:blur(3px)}.app-menu-backdrop[hidden]{display:none}
+.app-menu{position:fixed;z-index:10001;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;background:linear-gradient(160deg,#21190b,#0b0b0a 65%);border-right:1px solid #705728;box-shadow:20px 0 55px #0009;transform:translateX(-105%);transition:transform .24s ease}.app-menu.open{transform:translateX(0)}
+.app-menu-head{display:flex;align-items:center;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid #49391f}.app-menu-head strong{color:#ffe6a0;letter-spacing:3px;font-size:17px}.app-menu-head button{background:#211a0d;border:1px solid #705728;color:#ffe6a0;border-radius:9px;font-size:25px;width:38px;height:38px}
+.app-menu-caption{font-size:10px;letter-spacing:2px;color:#b99a55;margin:18px 8px 10px}.app-menu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:5px 0;border:1px solid transparent;border-radius:12px;color:#e9dfc8;text-decoration:none;font-weight:700;font-size:15px}.app-menu>a:hover,.app-menu>a:focus{background:#211a0d;border-color:#594521;color:#ffe6a0;outline:none}
+html.menu-open,body.menu-open{overflow:hidden!important}
+@media(max-width:540px){.setting-row{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.intro,.setting{padding:17px}}
+@media(prefers-reduced-motion:reduce){.app-menu{transition:none}}
+</style></head>
+<body>
+<button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button>
+<div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div>
+<aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true">
+<div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div>
+<p class="app-menu-caption">OFFICIAL APP MENU</p>
+<a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html" aria-current="page">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a>
+</aside>
+<header><h1>SETTINGS</h1><p>YOUR DJ OLATUNS APP PREFERENCES</p></header>
+<main>
+<section class="intro"><div class="eyebrow">CONTROL CENTRE</div><h2>Manage your app</h2><p>Find account controls, phone notifications, privacy information and app installation help in one place. Some account options require you to sign in first.</p></section>
+<section class="setting"><div class="eyebrow">ACCOUNT</div><h2>Account & profile</h2><p>Manage your member account, sign-in details and Messenger username from the secure Account page.</p><div class="setting-row"><div class="setting-copy"><strong>Membership and username</strong><small>Sign in, register, update your username or log out.</small></div><a class="action" href="/account.html">Open Account</a></div></section>
+<section class="setting"><div class="eyebrow">NOTIFICATIONS</div><h2>Phone notifications</h2><p>Control whether this device receives official DJ OLATUNS announcements. Notification permission and subscription controls are managed from your signed-in Account page.</p><div class="setting-row"><div class="setting-copy"><strong>Push notification preferences</strong><small>Enable notifications, turn them off or send a test notification where supported.</small></div><a class="action" href="/account.html#pushNotice">Manage</a></div></section>
+<section class="setting"><div class="eyebrow">PRIVACY & SECURITY</div><h2>Your information</h2><p>Review how account details, community posts, booking enquiries and notification subscriptions are handled.</p><div class="setting-row"><div class="setting-copy"><strong>Privacy policy</strong><small>Read data use, retention and contact information.</small></div><a class="action secondary" href="/privacy.html">View Policy</a></div></section>
+<section class="setting"><div class="eyebrow">APP INSTALLATION</div><h2>Install DJ OLATUNS</h2><p>Add the app to your phone's home screen for a more app-like experience. Installation options depend on your browser and device.</p><div class="setting-row"><div class="setting-copy"><strong>Installation help</strong><small>Open the homepage and use the Install DJ OLATUNS App option, or your browser's Install / Add to Home screen menu.</small></div><a class="action" href="/">Go to Home</a></div></section>
+<section class="setting"><div class="eyebrow">APP SHORTCUTS</div><h2>More app sections</h2><div class="grid">
+<a class="tile" href="/business-chat.html"><strong>✉ Messenger</strong><span>Open private member conversations.</span></a>
+<a class="tile" href="/community.html"><strong>◉ Community</strong><span>Read and publish text updates.</span></a>
+<a class="tile" href="/announcements.html"><strong>♢ Announcements</strong><span>Read official updates.</span></a>
+<a class="tile" href="/booking.html"><strong>✦ DJ Bookings</strong><span>Submit an event enquiry.</span></a>
+</div></section>
+</main>
+<footer>DJ OLATUNS • UNDEFEATABLE • © 2026</footer>
+<script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)))})();</script>
+</body></html>
