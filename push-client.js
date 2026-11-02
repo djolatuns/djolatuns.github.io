@@ -115,6 +115,10 @@
     }
   }
 
+  window.sendDJLoginAlert = async function() {
+    return await callPush("login-alert");
+  };
+
   window.initMemberPush = async function(user) {
     if (!user || !$("pushNotice")) return;
     $("enablePushBtn").onclick = enable;
