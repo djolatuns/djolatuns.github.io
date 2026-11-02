@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909"><meta name="description" content="Your private DJ OLATUNS AI Assistant for planning, drafting and business support.">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon-192.png">
+<title>AI Assistant | DJ OLATUNS</title>
+<style>
+:root{color-scheme:dark;--bg:#090909;--panel:#151515;--gold:#e2b95f;--gold2:#ffdfa0;--muted:#aaa397;--line:#38332a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f4ed;font:15px/1.55 system-ui,Arial}
+header{padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line);background:#101010;position:sticky;top:0;z-index:5}
+.brand{font-weight:950;letter-spacing:1.8px;color:var(--gold2)}.sub{font-size:11px;color:var(--muted);letter-spacing:1px}
+main{max-width:900px;margin:22px auto;padding:0 14px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.top h1{font-size:25px;margin:0}.top p{color:var(--muted);margin:4px 0 18px}
+a{color:var(--gold2);text-decoration:none}.navlink{border:1px solid #55472b;border-radius:10px;padding:9px 13px;font-weight:750}
+.panel{border:1px solid var(--line);border-radius:17px;background:#141414;padding:18px;margin:14px 0}
+.intro{display:flex;gap:14px;align-items:center}.orb{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffe5a0,#a97822);color:#171107;font-size:24px;font-weight:900;flex:none}.intro h2{margin:0;color:var(--gold2);font-size:18px}.intro p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.section-title{font-size:13px;color:var(--gold2);letter-spacing:1px;font-weight:850;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.suggestion{border:1px solid #443a28;background:#1c1913;border-radius:12px;padding:12px;color:#eee3c8;text-align:left;font:inherit;cursor:pointer}.suggestion strong{display:block;color:var(--gold2);font-size:13px}.suggestion span{font-size:12px;color:var(--muted)}
+.chat{min-height:270px;max-height:48vh;overflow:auto;padding:14px;border-radius:13px;background:#0f0f0f;border:1px solid #302a20}
+.welcome{text-align:center;padding:32px 10px;color:var(--muted)}.welcome strong{display:block;color:#f1dfb7;font-size:16px;margin-bottom:5px}
+.bubble-row{display:flex;margin:10px 0}.bubble-row.user{justify-content:flex-end}.bubble{max-width:85%;padding:11px 14px;border-radius:15px 15px 15px 4px;background:#28251e;white-space:pre-wrap;overflow-wrap:anywhere}.user .bubble{background:linear-gradient(120deg,#ffe5a0,#c89431);color:#171107;border-radius:15px 15px 4px 15px}
+.composer{display:flex;gap:9px;align-items:flex-end;margin-top:12px}.composer textarea{flex:1;min-width:0;min-height:54px;max-height:150px;resize:vertical;background:#202020;color:white;border:1px solid #49402e;border-radius:13px;padding:13px;font:inherit}.send{border:0;border-radius:12px;padding:13px 17px;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#171107;font-weight:900;cursor:pointer}.send:disabled{opacity:.55;cursor:not-allowed}
+.status{font-size:12px;color:#d9c89e;background:#17140f;border:1px solid #5b4827;border-radius:10px;padding:11px 13px;margin-top:12px}.safety{font-size:12px;color:var(--muted);margin:12px 2px}.actions{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}.actions a{font-size:13px}
+footer{text-align:center;color:#827a6b;font-size:11px;padding:18px}.hidden{display:none!important}
+@media(max-width:600px){main{margin:15px auto;padding:0 10px}.grid{grid-template-columns:1fr}.panel{padding:14px}.top h1{font-size:22px}.composer{align-items:stretch}.send{padding:10px 13px}.chat{min-height:240px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">DJ OLATUNS</div><div class="sub">PRIVATE AI ASSISTANT</div></div><a class="navlink" href="/business-chat.html">← Messenger</a></header>
+<main>
+<div class="top"><div><h1>AI Assistant</h1><p>Your private workspace for ideas, planning and business support.</p></div><a class="navlink" href="/settings.html">⚙ Settings</a></div>
+<section class="panel"><div class="intro"><div class="orb">✦</div><div><h2>Welcome to your AI Assistant</h2><p>Ask for help with DJ OLATUNS, your app, clients and daily work.</p></div></div></section>
+<section class="panel">
+<p class="section-title">WHAT CAN I HELP YOU WITH?</p>
+<div class="grid">
+<button class="suggestion" data-prompt="Help me draft a professional reply to a client."><strong>✉ Draft client replies</strong><span>Prepare a clear, professional response.</span></button>
+<button class="suggestion" data-prompt="Explain how a feature in the DJ OLATUNS app works."><strong>◎ Explain app features</strong><span>Understand pages, settings and membership.</span></button>
+<button class="suggestion" data-prompt="Help me prepare an official DJ OLATUNS announcement."><strong>▣ Prepare announcements</strong><span>Write updates for members and followers.</span></button>
+<button class="suggestion" data-prompt="Help me organise my tasks and priorities for today."><strong>✓ Organise my tasks</strong><span>Turn ideas into a practical action plan.</span></button>
+<button class="suggestion" data-prompt="Answer this question about DJ services, bookings or DJ business."><strong>♫ DJ service support</strong><span>Bookings, promotions and DJ business questions.</span></button>
+<button class="suggestion" data-prompt="Help me develop and evaluate a new business idea."><strong>✧ Develop an idea</strong><span>Brainstorm and structure your next idea.</span></button>
+</div>
+</section>
+<section class="panel">
+<p class="section-title">YOUR CONVERSATION</p>
+<div class="chat" id="chat"><div class="welcome"><strong>I'm ready to help you plan.</strong>Your conversation will appear here once the AI service is connected.</div></div>
+<div class="composer"><textarea id="prompt" placeholder="Message your AI Assistant…" aria-label="Message your AI Assistant"></textarea><button class="send" id="send">Send ➤</button></div>
+<div class="status" id="status" role="status">AI connection is not configured yet. Your message is not sent or stored. The secure AI service must be connected before replies can be generated.</div>
+<p class="safety">Private helper only: I can prepare client messages and announcements as drafts. Nothing is sent to a client or published without your explicit approval.</p>
+</section>
+<div class="actions"><a href="/business-chat.html">Open private client messages</a><a href="/business-centre.html">Business Centre</a><a href="/">Home</a></div>
+</main>
+<footer>DJ OLATUNS • PRIVATE AI WORKSPACE • © 2026</footer>
+<script>
+const promptBox=document.getElementById("prompt"),statusBox=document.getElementById("status"),chatBox=document.getElementById("chat");
+document.querySelectorAll("[data-prompt]").forEach(button=>button.addEventListener("click",()=>{promptBox.value=button.dataset.prompt;promptBox.focus()}));
+document.getElementById("send").addEventListener("click",()=>{if(!promptBox.value.trim()){statusBox.textContent="Type a message first.";promptBox.focus();return}statusBox.textContent="The secure AI service has not been connected yet. Your message has not been transmitted. Once connected, the assistant will reply here.";});
+promptBox.addEventListener("keydown",event=>{if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();document.getElementById("send").click()}});
+</script>
+<script src="/theme.js"></script>
+</body></html>
