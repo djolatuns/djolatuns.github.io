@@ -25,7 +25,7 @@ main{max-width:1100px;margin:18px auto;padding:0 14px}.topline{display:flex;just
 <body>
 <header><div><div class="brand">DJ OLATUNS</div><div class="sub">PRIVATE BUSINESS MESSENGER</div></div><div class="sub">OFFICIAL BUSINESS DESK</div></header>
 <main>
-<div class="topline"><h1>Messages</h1><div class="tabs"><button class="tab active" id="messagesTab">Messages</button><button class="tab" id="aiTab">AI Assistant</button></div></div>
+<div class="topline"><h1>Private Messages</h1><a class="tab" href="/ai-assistant.html">✦ Open AI Assistant</a></div>
 <section id="messagesPanel" class="chat-shell">
 <aside class="sidebar"><div class="side-head"><h2>Chats</h2><input class="search" id="chatSearch" placeholder="Find people by @username" aria-label="Search members"><div id="searchResults"></div></div><div class="conversation-list" id="conversationList"><div class="empty-list">Sign in to load your chats.</div></div></aside>
 <section class="chat-area"><div class="chat-head"><div class="avatar" id="activeAvatar">DJ</div><div><strong id="activeName">DJ OLATUNS Messenger</strong><small id="activeStatus">Sign in to start chatting</small></div></div>
@@ -33,8 +33,7 @@ main{max-width:1100px;margin:18px auto;padding:0 14px}.topline{display:flex;just
 <div class="composer"><input id="messageInput" placeholder="Message…" aria-label="Write a message" disabled><button class="send" id="sendMessage" aria-label="Send message" disabled>➤</button></div>
 </section></section>
 <div id="messageNotice" class="notice">Sign in with your DJ OLATUNS member account to search usernames and send private messages.</div>
-<section id="aiPanel" class="ai-panel hidden"><h2>DJ OLATUNS AI Assistant</h2><p style="color:#aaa397">Your private helper for drafting client replies, planning promotions, organising app tasks and creating business ideas. You approve anything before it is sent or published.</p><textarea id="aiPrompt" placeholder="Ask your AI assistant for help…"></textarea><p><button class="action" id="askAI">Ask AI Assistant</button></p><div class="ai-result" id="aiStatus">AI service is not connected yet. Your prompt will not be sent until it is configured.</div></section>
-<div class="links"><a href="/business-centre.html">← Business Centre</a><a href="/account.html">Member Account</a></div>
+<div class="links"><a href="/ai-assistant.html">✦ AI Assistant</a><a href="/business-centre.html">← Business Centre</a><a href="/account.html">Member Account</a></div>
 </main><footer>DJ OLATUNS • Private business tools</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -43,8 +42,6 @@ const SUPABASE_KEY="sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{storageKey:"sb-tiqracqtgggoctyvtuqo-auth-token",persistSession:true,autoRefreshToken:true}});
 const $=id=>document.getElementById(id);
 let me=null,activeConversation=null,activeChannel=null,searchTimer=null;
-function showAI(on){$("messagesPanel").classList.toggle("hidden",on);$("aiPanel").classList.toggle("hidden",!on);$("messageNotice").classList.toggle("hidden",on);$("messagesTab").classList.toggle("active",!on);$("aiTab").classList.toggle("active",on)}
-$("messagesTab").addEventListener("click",()=>showAI(false));$("aiTab").addEventListener("click",()=>showAI(true));
 function node(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
 function notice(t){$("messageNotice").textContent=t}
 function renderMessage(m){const row=node("div","message-row"+(m.sender_id===me.id?" mine":""));const bubble=node("div","bubble",m.body);const time=node("small","message-time",new Date(m.created_at).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"}));row.append(bubble,time);$("chatBody").append(row)}
@@ -54,7 +51,6 @@ async function searchPeople(q){$("searchResults").replaceChildren();if(!q)return
 $("chatSearch").addEventListener("input",()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>searchPeople($("chatSearch").value),250)});
 async function sendMessage(){const body=$("messageInput").value.trim();if(!body||!activeConversation)return;const b=$("sendMessage");b.disabled=true;const {data,error}=await db.from("direct_messages").insert({conversation_id:activeConversation,sender_id:me.id,body}).select("id,conversation_id,sender_id,body,created_at").single();b.disabled=false;if(error){notice("Message not sent: "+error.message);return}$("messageInput").value="";if(data)renderMessage(data);$("chatBody").scrollTop=$("chatBody").scrollHeight}
 $("sendMessage").addEventListener("click",sendMessage);$("messageInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();sendMessage()}});
-$("askAI").addEventListener("click",()=>{const q=$("aiPrompt").value.trim();$("aiStatus").textContent=q?"The AI service still needs an approved provider connection and secure server-side API credential. Your prompt has not been transmitted.":"Type a question first."});
 async function start(){const {data,error}=await db.auth.getSession();if(error||!data.session){notice("Please sign in to your DJ OLATUNS member account first. Then return here.");$("conversationList").textContent="Sign in required.";return}me=data.session.user;const {data:profile}=await db.from("profiles").select("username").eq("id",me.id).maybeSingle();if(!profile?.username){notice("Please choose your unique username in Member Account before using Messenger.");$("conversationList").textContent="Username setup required.";return}notice("Signed in as @"+profile.username+". Search members by username to start a private chat.");await loadConversations()}
 start().catch(e=>notice("Messenger could not start: "+e.message));</script>
 <p style="text-align:center;margin:12px"><a href="/settings.html" style="color:#ffe6a0">⚙ App Settings</a></p>
