@@ -46,7 +46,7 @@ html.menu-open,body.menu-open{overflow:hidden!important}
 <button class="action secondary" type="button" data-theme-choice="dark" aria-pressed="true">☾ Dark mode</button>
 </div></div></section>
 <section class="setting"><div class="eyebrow">ACCOUNT</div><h2>Account & profile</h2><p>Manage your member account, sign-in details and Messenger username from the secure Account page.</p><div class="setting-row"><div class="setting-copy"><strong>Membership and username</strong><small>Sign in, register, update your username or log out.</small></div><a class="action" href="/account.html">Open Account</a></div></section>
-<section class="setting"><div class="eyebrow">NOTIFICATIONS</div><h2>Phone notifications</h2><p>Control whether this device receives official DJ OLATUNS announcements. Notification permission and subscription controls are managed from your signed-in Account page.</p><div class="setting-row"><div class="setting-copy"><strong>Push notification preferences</strong><small>Enable notifications, turn them off or send a test notification where supported.</small></div><a class="action" href="/account.html#pushNotice">Manage</a></div></section>
+<section class="setting" id="pushNotice"><div class="eyebrow">NOTIFICATIONS • DEVICE CONTROL</div><h2>Push notification centre</h2><p>Receive important DJ OLATUNS announcements, community updates and account alerts directly on this device—even when the app is not open.</p><div class="notice" style="border:1px solid #594521;border-radius:13px;padding:14px;margin:14px 0;background:#100f0c"><div class="setting-row"><div class="setting-copy"><strong id="pushStateTitle">Notification status</strong><small id="pushStatus" role="status" aria-live="polite">Checking this device…</small></div><span aria-hidden="true" style="font-size:24px">🔔</span></div></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="action" id="enablePushBtn" type="button">Enable Notifications</button><button class="action secondary hidden" id="disablePushBtn" type="button">Turn Off on This Device</button></div><p class="muted" style="font-size:12px;margin-top:12px">Notifications are optional and device-specific. You can turn them off at any time. Your account remains private.</p><p id="pushHelp" class="muted" style="font-size:12px"></p></section>
 <section class="setting"><div class="eyebrow">PRIVACY & SECURITY</div><h2>Your information</h2><p>Review how account details, community posts, booking enquiries and notification subscriptions are handled.</p><div class="setting-row"><div class="setting-copy"><strong>Privacy policy</strong><small>Read data use, retention and contact information.</small></div><a class="action secondary" href="/privacy.html">View Policy</a></div></section>
 <section class="setting"><div class="eyebrow">APP INSTALLATION</div><h2>Install DJ OLATUNS</h2><p>Add the app to your phone's home screen for a more app-like experience. Installation options depend on your browser and device.</p><div class="setting-row"><div class="setting-copy"><strong>Installation help</strong><small>Open the homepage and use the Install DJ OLATUNS App option, or your browser's Install / Add to Home screen menu.</small></div><a class="action" href="/">Go to Home</a></div></section>
 <section class="setting"><div class="eyebrow">APP SHORTCUTS</div><h2>More app sections</h2><div class="grid">
@@ -79,6 +79,32 @@ html.menu-open,body.menu-open{overflow:hidden!important}
    });
  });
  sync();
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/push-client.js"></script>
+<script>
+(async function(){
+ const status=document.getElementById("pushStatus");
+ const title=document.getElementById("pushStateTitle");
+ const enable=document.getElementById("enablePushBtn");
+ const disable=document.getElementById("disablePushBtn");
+ const say=(message)=>{if(status)status.textContent=message;};
+ try{
+  if(!window.supabase){say("Notification service could not load. Check your connection and reload.");enable.disabled=true;return;}
+  const db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co","sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO",{auth:{storageKey:"sb-tiqracqtgggoctyvtuqo-auth-token",persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const {data,error}=await db.auth.getSession();
+  if(error)throw error;
+  if(!data.session){say("Sign in to your DJ OLATUNS member account to manage notifications.");enable.disabled=true;title.textContent="Sign-in required";return;}
+  window.__djCurrentUser=data.session.user;
+  if(window.initMemberPush)await window.initMemberPush(data.session.user);
+  title.textContent="This device's notification settings";
+  db.auth.onAuthStateChange(async(_event,session)=>{
+   if(session?.user){window.__djCurrentUser=session.user;if(window.initMemberPush)await window.initMemberPush(session.user);}
+   else{window.__djCurrentUser=null;enable.disabled=true;disable.classList.add("hidden");say("You are signed out. Sign in to manage notifications.");}
+  });
+ }catch(error){say(error.message||"Could not check notification settings.");enable.disabled=true;}
 })();
 </script>
 </body></html>
