@@ -1,4 +1,4 @@
-name: Build DJ OLATUNS Android APK
+name: Build DJ OLATUNS Android Release Bundle
 
 on:
   push:
@@ -29,17 +29,17 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Build debug APK
+      - name: Build release app bundle
         working-directory: android
         env:
           ANDROID_HOME: /usr/local/lib/android/sdk
           ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-        run: gradle --no-daemon assembleDebug
+        run: gradle --no-daemon bundleRelease
 
-      - name: Upload test APK
+      - name: Upload unsigned release AAB for signing setup
         uses: actions/upload-artifact@v4
         with:
-          name: DJ-OLATUNS-Beta-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: DJ-OLATUNS-Release-AAB-Unsigned
+          path: android/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
           retention-days: 14
