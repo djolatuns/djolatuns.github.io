@@ -253,12 +253,10 @@ body{padding-bottom:92px!important}
 <h2>Welcome to your account</h2>
 <p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
 <div id="membershipStatus" class="notice">Checking membership...</div>
-<div class="notice" id="pushNotice">
+<div class="notice">
 <strong>Phone Notifications</strong>
-<p class="muted">Receive official DJ OLATUNS announcements on this device.</p>
-<button id="enablePushBtn" type="button">Enable Notifications</button>
-<button id="disablePushBtn" class="secondary hidden" type="button">Turn Off Notifications</button>
-<p id="pushStatus" class="muted status" aria-live="polite">Checking notification support...</p>
+<p class="muted">Manage push notifications, device permissions and notification status from your central Settings page.</p>
+<a class="gold-link" href="/settings.html#pushNotice">Open Notification Settings</a>
 </div>
 <div id="memberFeatures" class="hidden" aria-hidden="true"></div>
 <div id="adminAccess" class="notice hidden">
@@ -266,6 +264,7 @@ body{padding-bottom:92px!important}
 <p class="muted">Administrator account verified.</p>
 <a class="gold-link" href="/admin.html">Open Administrator Dashboard</a>
 <button id="testPushBtn" class="secondary" type="button">Send Me a Test Notification</button>
+<p id="pushStatus" class="muted status" aria-live="polite"></p>
 </div>
 <button id="logoutBtn" class="secondary" type="button">Log Out</button>
 </section>
