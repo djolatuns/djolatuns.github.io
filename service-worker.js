@@ -1,4 +1,4 @@
-const CACHE_NAME = "dj-olatuns-pwa-v46";
+const CACHE_NAME = "dj-olatuns-pwa-v47";
 
 const APP_SHELL = [
   "/",
@@ -28,11 +28,19 @@ const APP_SHELL = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(APP_SHELL))
-      .catch((error) => console.error("DJ OLATUNS app-shell cache failed:", error))
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    // Cache shell files individually: one missing/unsupported asset must not
+    // prevent Safari or another browser from activating the whole app shell.
+    await Promise.all(APP_SHELL.map(async (url) => {
+      try {
+        const response = await fetch(url, { credentials: "same-origin" });
+        if (response && response.ok) await cache.put(url, response);
+      } catch (error) {
+        console.warn("DJ OLATUNS could not cache:", url, error);
+      }
+    }));
+  })());
   self.skipWaiting();
 });
 
@@ -50,7 +58,7 @@ self.addEventListener("fetch", (event) => {
   if (requestUrl.origin !== self.location.origin) return;
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request, { cache: "no-store" }).then((response) => {
+      fetch(event.request).then((response) => {
         if (response && response.ok) {
           const copy = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
