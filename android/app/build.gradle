@@ -2,6 +2,11 @@ plugins {
     id 'com.android.application'
 }
 
+def signingStoreFile = System.getenv('ANDROID_KEYSTORE_PATH')
+def signingStorePassword = System.getenv('ANDROID_KEYSTORE_PASSWORD')
+def signingKeyAlias = System.getenv('ANDROID_KEY_ALIAS')
+def signingKeyPassword = System.getenv('ANDROID_KEY_PASSWORD')
+
 android {
     namespace 'com.djolatuns.official'
     compileSdk 36
@@ -12,5 +17,24 @@ android {
         targetSdk 36
         versionCode 3
         versionName '1.0.2'
+    }
+
+    signingConfigs {
+        release {
+            if (signingStoreFile && signingStorePassword && signingKeyAlias && signingKeyPassword) {
+                storeFile file(signingStoreFile)
+                storePassword signingStorePassword
+                keyAlias signingKeyAlias
+                keyPassword signingKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (signingStoreFile && signingStorePassword && signingKeyAlias && signingKeyPassword) {
+                signingConfig signingConfigs.release
+            }
+        }
     }
 }
