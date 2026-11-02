@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808"><meta name="description" content="Private business conversations and DJ OLATUNS AI assistant.">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon-192.png">
+<title>DJ OLATUNS | Business Chat & AI</title>
+<style>
+:root{color-scheme:dark;--bg:#080808;--panel:#15130f;--gold:#d8ad52;--light:#ffe6a0;--muted:#b9b2a3;--line:#514329}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#38270b,#11100d 36%,var(--bg) 75%);color:#f8f5ed;font:16px/1.6 system-ui,Arial;padding-bottom:30px}
+header{text-align:center;padding:28px 16px 20px;background:linear-gradient(135deg,#211a0d,#090909 75%);border-bottom:1px solid #806326}
+header h1{margin:0;color:var(--light);font-size:24px;letter-spacing:2px;font-weight:900}header p{margin:5px 0;color:var(--muted);font-size:12px}
+main{width:min(100% - 26px,850px);margin:22px auto}.hero,.panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#211a0d,#11100e 75%);padding:20px;margin-bottom:16px}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;font-weight:850}.hero h2{margin:5px 0;color:var(--light);font-size:26px}.muted{color:var(--muted);font-size:14px}
+.tabs{display:flex;gap:8px;margin:16px 0}.tab{flex:1;background:#17140e;color:#d9c89e;border:1px solid #5a4828;border-radius:12px;padding:12px;font-weight:800}.tab.active{background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06}
+label{display:block;color:#d9c89e;font-size:13px;font-weight:700}input,textarea{display:block;width:100%;margin:8px 0 14px;padding:13px;background:#090909;color:#f8f5ed;border:1px solid #5a4828;border-radius:11px;font:inherit}textarea{min-height:110px;resize:vertical}
+button,.link{display:inline-block;border:0;border-radius:11px;padding:12px 17px;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;font-weight:850;text-decoration:none;cursor:pointer}.secondary{background:#29251d;color:#f8f5ed;border:1px solid #5a4828}.status{min-height:22px;color:var(--muted);font-size:14px}.notice{border:1px solid #5a4828;background:#11100e;padding:14px;border-radius:12px;color:#d8cba9}.hidden{display:none!important}
+footer{text-align:center;color:#968b76;font-size:12px;padding:20px}
+@media(max-width:420px){.hero,.panel{padding:16px}.tabs{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><h1>DJ OLATUNS</h1><p>PRIVATE BUSINESS CHAT • AI ASSISTANT</p></header>
+<main>
+<section class="hero"><div class="eyebrow">OFFICIAL BUSINESS DESK</div><h2>Connect. Discuss. Create.</h2><p class="muted">A dedicated space for private client conversations and a personal AI helper for your DJ OLATUNS app.</p></section>
+<div class="tabs" role="tablist"><button class="tab active" id="clientTab" type="button">Client Chat</button><button class="tab" id="aiTab" type="button">AI Assistant</button></div>
+<section class="panel" id="clientPanel"><h3>Private client conversations</h3><p class="muted">One-to-one business enquiries for bookings, artist promotion, advertising, sponsorships, DJ education and other services.</p>
+<div class="notice">Secure messaging is being prepared. Client messages will only be visible to the client and authorised DJ OLATUNS account(s).</div>
+<label for="clientEmail">Client email or member ID</label><input id="clientEmail" placeholder="Find a client by email or member ID" autocomplete="off">
+<label for="clientTopic">Business topic</label><input id="clientTopic" placeholder="e.g. Booking enquiry, sponsorship">
+<button id="startChat" type="button">Prepare private chat</button><p id="clientStatus" class="status" role="status">Private messaging backend setup is required before messages can be sent.</p>
+</section>
+<section class="panel hidden" id="aiPanel"><h3>DJ OLATUNS AI Assistant</h3><p class="muted">Use the assistant to draft client replies, plan promotions, explain app features, organise tasks and prepare announcements. You remain in control of anything sent or published.</p>
+<div class="notice">AI responses are not connected yet. This page is the secure app entry point; the AI service and server-side access controls must be configured before it can answer.</div>
+<label for="aiPrompt">What do you need help with?</label><textarea id="aiPrompt" placeholder="Ask for a client reply, promo idea, app help, or business task…"></textarea>
+<button id="askAI" type="button">Ask DJ OLATUNS AI</button><p id="aiStatus" class="status" role="status">AI service setup is required before answers can be generated.</p>
+</section>
+<p><a class="link secondary" href="/business-centre.html">← Business Centre</a> <a class="link secondary" href="/account.html">Members Account</a></p>
+</main><footer>DJ OLATUNS • Private business tools</footer>
+<script>
+const clientTab=document.getElementById('clientTab'),aiTab=document.getElementById('aiTab'),clientPanel=document.getElementById('clientPanel'),aiPanel=document.getElementById('aiPanel');
+function show(which){const isAI=which==='ai';clientPanel.classList.toggle('hidden',isAI);aiPanel.classList.toggle('hidden',!isAI);clientTab.classList.toggle('active',!isAI);aiTab.classList.toggle('active',isAI)}
+clientTab.addEventListener('click',()=>show('client'));aiTab.addEventListener('click',()=>show('ai'));
+document.getElementById('startChat').addEventListener('click',()=>{document.getElementById('clientStatus').textContent='This chat is not created yet. Secure database tables, access policies, and member identity lookup must be connected first.'});
+document.getElementById('askAI').addEventListener('click',()=>{const q=document.getElementById('aiPrompt').value.trim();document.getElementById('aiStatus').textContent=q?'AI service is not connected yet, so this request has not been sent or answered.':'Enter a question first.'});
+</script>
+</body></html>
