@@ -29,19 +29,14 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Generate launcher icon resources
+      - name: Verify native launcher icon resources
         run: |
-          mkdir -p android/app/src/main/res
-          curl -fsSL https://djolatuns.github.io/icon-circle.svg -o /tmp/dj-olatuns-icon.svg
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-          for spec in "mipmap-mdpi:48" "mipmap-hdpi:72" "mipmap-xhdpi:96" "mipmap-xxhdpi:144" "mipmap-xxxhdpi:192"; do
-            dir="${spec%%:*}"
-            size="${spec##*:}"
-            mkdir -p "android/app/src/main/res/$dir"
-            convert -background none /tmp/dj-olatuns-icon.svg -resize "${size}x${size}" "android/app/src/main/res/$dir/ic_launcher.png"
-            cp "android/app/src/main/res/$dir/ic_launcher.png" "android/app/src/main/res/$dir/ic_launcher_round.png"
-          done
+          test -f android/app/src/main/res/mipmap-anydpi/ic_launcher.xml
+          test -f android/app/src/main/res/mipmap-anydpi/ic_launcher_round.xml
+          test -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+          test -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+          test -f android/app/src/main/res/drawable/dj_olatuns_icon_foreground.xml
+          test -f android/app/src/main/res/values/dj_olatuns_icon.xml
 
       - name: Build release app bundle
         working-directory: android
