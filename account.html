@@ -509,6 +509,10 @@ $("loginBtn").onclick = async () => {
 
   showMessage("authMessage", "Login successful.");
   await loadAccount(data.user);
+  // Notify the CEO's registered devices about this successful sign-in.
+  if (window.sendDJLoginAlert) {
+    window.sendDJLoginAlert().catch(error => console.warn("Login alert could not be sent:", error));
+  }
 };
 
 $("logoutBtn").onclick = async () => {
