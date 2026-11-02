@@ -378,8 +378,13 @@ async function loadAccount(user) {
     "Signed in as: " + (user.email || "");
   window.__djCurrentUser = user;
   const { data: profile, error: profileError } = await db.from("profiles").select("username").eq("id", user.id).maybeSingle();
-  $("usernameSetup").classList.toggle("hidden", Boolean(profile?.username));
-  $("profileUsername").value = profile?.username || "";
+  let currentUsername = profile?.username || user.user_metadata?.username || "";
+  if (!profileError && !profile?.username && currentUsername) {
+    const { error: saveError } = await db.from("profiles").upsert({ id: user.id, username: currentUsername.toLowerCase(), display_name: currentUsername }, { onConflict: "id" });
+    if (!saveError) currentUsername = currentUsername.toLowerCase();
+  }
+  $("usernameSetup").classList.toggle("hidden", Boolean(currentUsername));
+  $("profileUsername").value = currentUsername;
   if (profileError) showMessage("usernameStatus", "Could not load username. Refresh and try again.");
   else if (!profile?.username) showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
   if (window.initMemberPush) window.initMemberPush(user);
