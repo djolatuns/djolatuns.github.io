@@ -242,7 +242,7 @@ body{padding-bottom:92px!important}
 <h2>Members Login</h2>
 <p class="muted">Sign in to your DJ OLATUNS Members account, or create an account if you are new.</p>
 <div id="authCard">
-<input id="email" type="email" placeholder="Your email address" autocomplete="email">
+<input id="username" type="text" placeholder="Username (3–20 letters, numbers or _)" autocomplete="username" maxlength="20"><input id="email" type="email" placeholder="Your email address" autocomplete="email">
 <input id="password" type="password" placeholder="Password (minimum 8 characters)" autocomplete="current-password">
 <button id="loginBtn" type="button">Log In</button>
 <button id="signupBtn" class="secondary" type="button">Create Account</button>
@@ -251,7 +251,7 @@ body{padding-bottom:92px!important}
 </section>
 <section class="card hidden" id="accountCard">
 <h2>Welcome to your account</h2>
-<p id="accountEmail" class="muted"></p><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
+<p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
 <div id="membershipStatus" class="notice">Checking membership...</div>
 <div class="notice" id="pushNotice">
 <strong>Phone Notifications</strong>
@@ -377,6 +377,11 @@ async function loadAccount(user) {
   $("accountEmail").textContent =
     "Signed in as: " + (user.email || "");
   window.__djCurrentUser = user;
+  const { data: profile, error: profileError } = await db.from("profiles").select("username").eq("id", user.id).maybeSingle();
+  $("usernameSetup").classList.toggle("hidden", Boolean(profile?.username));
+  $("profileUsername").value = profile?.username || "";
+  if (profileError) showMessage("usernameStatus", "Could not load username. Refresh and try again.");
+  else if (!profile?.username) showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
   if (window.initMemberPush) window.initMemberPush(user);
 
   showMessage("membershipStatus", "Checking your membership...");
@@ -432,6 +437,18 @@ async function loadAccount(user) {
   }
 }
 
+$("saveUsernameBtn").onclick = async () => {
+  const username = $("profileUsername").value.trim().replace(/^@/, "").toLowerCase();
+  const user = window.__djCurrentUser;
+  if (!user) return showMessage("usernameStatus", "Please sign in again.");
+  if (!/^[a-z0-9_]{3,20}$/.test(username)) return showMessage("usernameStatus", "Use 3–20 letters, numbers or underscores.");
+  $("saveUsernameBtn").disabled = true;
+  const { error } = await db.from("profiles").upsert({ id: user.id, username, display_name: username }, { onConflict: "id" });
+  $("saveUsernameBtn").disabled = false;
+  if (error) showMessage("usernameStatus", error.code === "23505" ? "That username is already taken. Try another." : error.message);
+  else { $("usernameSetup").classList.add("hidden"); $("accountEmail").textContent = "Signed in as: " + (user.email || "") + " • @" + username; }
+};
+
 async function loadAdminStats() {
   const [members, events] = await Promise.all([
     db.from("memberships").select("*", {
@@ -451,13 +468,14 @@ async function loadAdminStats() {
 }
 
 $("signupBtn").onclick = async () => {
+  const username = $("username").value.trim().replace(/^@/, "").toLowerCase();
   const email = $("email").value.trim();
   const password = $("password").value;
 
-  if (!email || password.length < 8) {
+  if (!/^[a-z0-9_]{3,20}$/.test(username) || !email || password.length < 8) {
     showMessage(
       "authMessage",
-      "Enter a valid email and a password of at least 8 characters."
+      "Choose a username (3–20 letters, numbers or _), enter a valid email and a password of at least 8 characters."
     );
     return;
   }
@@ -468,20 +486,19 @@ $("signupBtn").onclick = async () => {
     email,
     password,
     options: {
+      data: { username },
       emailRedirectTo: "https://djolatuns.github.io/account.html"
     }
   });
 
   $("signupBtn").disabled = false;
 
-  showMessage(
-    "authMessage",
-    error
-      ? error.message
-      : (data.session
-        ? "Account created successfully. You can now log in."
-        : "Registration submitted. Check your email for confirmation if required.")
-  );
+  if (error) showMessage("authMessage", error.message);
+  else if (data.session) {
+    const { error: profileError } = await db.from("profiles").upsert({ id: data.user.id, username, display_name: username }, { onConflict: "id" });
+    showMessage("authMessage", profileError ? (profileError.code === "23505" ? "That username is taken. Try another." : profileError.message) : "Account created. Your username is @" + username + ".");
+    await loadAccount(data.user);
+  } else showMessage("authMessage", "Registration submitted. Confirm your email, then sign in to finish setting your username.");
 };
 
 $("loginBtn").onclick = async () => {
