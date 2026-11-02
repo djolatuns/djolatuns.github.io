@@ -29,6 +29,20 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      - name: Generate launcher icon resources
+        run: |
+          mkdir -p android/app/src/main/res
+          curl -fsSL https://djolatuns.github.io/icon-circle.svg -o /tmp/dj-olatuns-icon.svg
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          for spec in "mipmap-mdpi:48" "mipmap-hdpi:72" "mipmap-xhdpi:96" "mipmap-xxhdpi:144" "mipmap-xxxhdpi:192"; do
+            dir="${spec%%:*}"
+            size="${spec##*:}"
+            mkdir -p "android/app/src/main/res/$dir"
+            convert -background none /tmp/dj-olatuns-icon.svg -resize "${size}x${size}" "android/app/src/main/res/$dir/ic_launcher.png"
+            cp "android/app/src/main/res/$dir/ic_launcher.png" "android/app/src/main/res/$dir/ic_launcher_round.png"
+          done
+
       - name: Build release app bundle
         working-directory: android
         env:
@@ -39,7 +53,7 @@ jobs:
       - name: Upload unsigned release AAB for signing setup
         uses: actions/upload-artifact@v4
         with:
-          name: DJ-OLATUNS-Release-AAB-Unsigned
+          name: DJ-OLATUNS-Release-AAB-Unsigned-IconReady
           path: android/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
           retention-days: 14
