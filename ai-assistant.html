@@ -28,10 +28,10 @@ footer{text-align:center;color:#827a6b;font-size:11px;padding:18px}.hidden{displ
 <body>
 <header><div><div class="brand">DJ OLATUNS</div><div class="sub">PRIVATE AI ASSISTANT</div></div><a class="navlink" href="/business-chat.html">← Messenger</a></header>
 <main>
-<div class="top"><div><h1>AI Assistant</h1><p>Your private workspace for ideas, planning and business support.</p></div><a class="navlink" href="/settings.html">⚙ Settings</a></div>
-<section class="panel"><div class="intro"><div class="orb">✦</div><div><h2>Welcome to your AI Assistant</h2><p>Ask for help with DJ OLATUNS, your app, clients and daily work.</p></div></div></section>
+<div class="top"><div><h1>AI Assistant</h1><p>Ask questions and get step-by-step help using the DJ OLATUNS app.</p></div><a class="navlink" href="/settings.html">⚙ Settings</a></div>
+<section class="panel"><div class="intro"><div class="orb">✦</div><div><h2>Welcome to your AI Assistant</h2><p>Focused support for navigating, understanding and troubleshooting the DJ OLATUNS app.</p></div></div></section>
 <section class="panel">
-<p class="section-title">WHAT CAN I HELP YOU WITH?</p>
+<p class="section-title">APP HELP TOPICS</p>
 <div class="grid">
 <button class="suggestion" data-prompt="Help me draft a professional reply to a client."><strong>✉ Draft client replies</strong><span>Prepare a clear, professional response.</span></button>
 <button class="suggestion" data-prompt="Explain how a feature in the DJ OLATUNS app works."><strong>◎ Explain app features</strong><span>Understand pages, settings and membership.</span></button>
@@ -42,20 +42,29 @@ footer{text-align:center;color:#827a6b;font-size:11px;padding:18px}.hidden{displ
 </div>
 </section>
 <section class="panel">
-<p class="section-title">YOUR CONVERSATION</p>
-<div class="chat" id="chat"><div class="welcome"><strong>I'm ready to help you plan.</strong>Your conversation will appear here once the AI service is connected.</div></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><p class="section-title">YOUR CONVERSATION</p><button id="newChat" class="navlink" type="button">New chat</button></div>
+<div class="chat" id="chat"><div class="welcome"><strong>I'm ready to help you plan.</strong>Ask me anything about using the app, its pages, settings or troubleshooting.</div></div>
 <div class="composer"><textarea id="prompt" placeholder="Message your AI Assistant…" aria-label="Message your AI Assistant"></textarea><button class="send" id="send">Send ➤</button></div>
-<div class="status" id="status" role="status">AI connection is not configured yet. Your message is not sent or stored. The secure AI service must be connected before replies can be generated.</div>
-<p class="safety">Private helper only: I can prepare client messages and announcements as drafts. Nothing is sent to a client or published without your explicit approval.</p>
+<div class="status" id="status" role="status">Checking your member sign-in…</div>
+<p class="safety">This assistant is dedicated to the DJ OLATUNS app. It cannot view your private account data or make changes for you. Never share passwords or verification codes here.</p>
 </section>
 <div class="actions"><a href="/business-chat.html">Open private client messages</a><a href="/business-centre.html">Business Centre</a><a href="/">Home</a></div>
 </main>
 <footer>DJ OLATUNS • PRIVATE AI WORKSPACE • © 2026</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const promptBox=document.getElementById("prompt"),statusBox=document.getElementById("status"),chatBox=document.getElementById("chat");
-document.querySelectorAll("[data-prompt]").forEach(button=>button.addEventListener("click",()=>{promptBox.value=button.dataset.prompt;promptBox.focus()}));
-document.getElementById("send").addEventListener("click",()=>{if(!promptBox.value.trim()){statusBox.textContent="Type a message first.";promptBox.focus();return}statusBox.textContent="The secure AI service has not been connected yet. Your message has not been transmitted. Once connected, the assistant will reply here.";});
-promptBox.addEventListener("keydown",event=>{if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();document.getElementById("send").click()}});
-</script>
+const promptBox=document.getElementById("prompt"),statusBox=document.getElementById("status"),chatBox=document.getElementById("chat"),sendButton=document.getElementById("send");
+let db=null,conversation=[],signedIn=false,busy=false;
+function setStatus(s){statusBox.textContent=s;}
+function bubble(t,r){const row=document.createElement("div");row.className="bubble-row "+(r==="user"?"user":"assistant");const b=document.createElement("div");b.className="bubble";b.textContent=t;row.appendChild(b);chatBox.appendChild(row);chatBox.scrollTop=chatBox.scrollHeight;}
+function newChat(){conversation=[];chatBox.replaceChildren();const w=document.createElement("div");w.className="welcome";const s=document.createElement("strong");s.textContent="New conversation";w.append(s,document.createTextNode("Ask me anything about the DJ OLATUNS app."));chatBox.appendChild(w);setStatus("Ready for your next app question.");}
+document.querySelectorAll("[data-prompt]").forEach(b=>b.addEventListener("click",()=>{promptBox.value=b.dataset.prompt;promptBox.focus();}));
+document.getElementById("newChat").addEventListener("click",newChat);
+async function init(){try{const response=await fetch("/business-chat.html",{cache:"no-store"});const source=await response.text();const match=source.match(/SUPABASE_KEY\s*=\s*"([^"]+)"/);if(!match)throw new Error("Could not load the app sign-in connection.");db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co",match[1],{auth:{storageKey:"sb-tiqracqtgggoctyvtuqo-auth-token",persistSession:true,autoRefreshToken:true}});const session=await db.auth.getSession();signedIn=!!session.data?.session?.access_token;if(!signedIn){setStatus("Please sign in to your DJ OLATUNS member account, then reopen this page.");sendButton.disabled=true;return;}setStatus("Connected. Ask me anything about the DJ OLATUNS app.");sendButton.disabled=false;}catch(e){setStatus(e.message||"Could not connect. Please reload the page.");sendButton.disabled=true;}}
+async function send(){const q=promptBox.value.trim();if(!q||busy)return;if(!db||!signedIn){await init();if(!signedIn)return;}busy=true;sendButton.disabled=true;promptBox.disabled=true;bubble(q,"user");conversation.push({role:"user",content:q});promptBox.value="";setStatus("DJ OLATUNS AI is thinking…");try{const result=await db.functions.invoke("dj-olatuns-ai",{body:{messages:conversation.slice(-20)}});if(result.error)throw result.error;if(!result.data?.reply)throw new Error(result.data?.error||"No reply was returned.");conversation.push({role:"assistant",content:result.data.reply});bubble(result.data.reply,"assistant");setStatus("Reply received. You can ask a follow-up question.");}catch(e){setStatus(e.message||"The assistant could not reply. Please try again.");conversation.pop();}finally{busy=false;promptBox.disabled=false;sendButton.disabled=!signedIn;promptBox.focus();}}
+sendButton.addEventListener("click",send);
+promptBox.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();}});
+init();
+</script>>
 <script src="/theme.js"></script>
 </body></html>
