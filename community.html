@@ -30,8 +30,8 @@ footer{text-align:center;color:#968b76;font-size:12px;padding:22px}
 @media(min-width:700px){body{padding-bottom:20px}.bottomnav{position:static;max-width:1000px;margin:18px auto 24px;border:1px solid #705728;border-radius:16px;padding:8px}.bottomnav a{font-size:12px}}
 @media(max-width:420px){header h1{font-size:23px}.hero,.panel{padding:16px}}
 </style>
-</head>
-<body>
+<style>.app-menu-button{position:fixed!important;top:14px!important;left:14px!important;z-index:10002!important;width:46px;height:46px;border:1px solid #705728;border-radius:13px;background:#100e0a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 5px 20px #0008}.app-menu-button span{display:block;width:20px;height:2px;background:#ffe6a0;border-radius:2px}.app-menu-backdrop{position:fixed;inset:0;z-index:10000;background:#000a;backdrop-filter:blur(3px)}.app-menu-backdrop[hidden]{display:none}.app-menu{position:fixed;z-index:10001;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;background:linear-gradient(160deg,#21190b,#0b0b0a 65%);border-right:1px solid #705728;box-shadow:20px 0 55px #0009;transform:translateX(-105%);transition:transform .24s ease}.app-menu.open{transform:translateX(0)}.app-menu-head{display:flex;align-items:center;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid #49391f}.app-menu-head strong{color:#ffe6a0;letter-spacing:3px;font-size:17px}.app-menu-head button{background:#211a0d;border:1px solid #705728;color:#ffe6a0;border-radius:9px;font-size:25px;width:38px;height:38px}.app-menu-caption{font-size:10px;letter-spacing:2px;color:#b99a55;margin:18px 8px 10px}.app-menu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:5px 0;border:1px solid transparent;border-radius:12px;color:#e9dfc8;text-decoration:none;font-weight:700;font-size:15px}.app-menu>a:first-letter{color:#dfb95f}.app-menu>a:hover,.app-menu>a:focus{background:#211a0d;border-color:#594521;color:#ffe6a0;outline:none}body{padding-bottom:0!important}.bottomnav{display:none!important}html.menu-open,body.menu-open{overflow:hidden!important}@media(prefers-reduced-motion:reduce){.app-menu{transition:none}}</style></head>
+<body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header>
 <main>
 <section class="hero">
@@ -71,15 +71,7 @@ footer{text-align:center;color:#968b76;font-size:12px;padding:22px}
 </section>
 </main>
 <footer>DJ OLATUNS • © 2026</footer>
-<nav class="bottomnav" aria-label="Main navigation">
-<a href="/"><span class="ico">⌂</span>Home</a>
-<a href="/mixtapes.html"><span class="ico">♫</span>Mixtapes</a>
-<a class="active" href="/community.html" aria-current="page"><span class="ico">◉</span>Community</a>
-<a href="/announcements.html"><span class="ico">♢</span>News</a>
-<a href="/about.html"><span class="ico">ⓘ</span>About</a>
-<a href="/account.html"><span class="ico">◎</span>Account</a>
-<a href="/booking.html"><span class="ico">♫</span>Booking</a>
-</nav>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (() => {
@@ -264,5 +256,5 @@ else start();
 </script>
 
 <script src="/pwa.js" defer></script>
-</body>
+<script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script></body>
 </html>
