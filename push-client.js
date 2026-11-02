@@ -27,18 +27,30 @@
   }
 
   async function refreshPushState() {
+    const enableButton = $("enablePushBtn");
+    const disableButton = $("disablePushBtn");
     if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) {
-      say("This browser does not support push notifications. Update Chrome on Android and reopen the installed app.");
-      $("enablePushBtn").disabled = true;
+      say("This browser does not support web push. Update Chrome on Android and open the installed DJ OLATUNS app.");
+      if (enableButton) enableButton.disabled = true;
+      if (disableButton) disableButton.classList.add("hidden");
       return;
     }
     const reg = await getPushRegistration();
     const sub = await reg.pushManager.getSubscription();
-    $("enablePushBtn").classList.toggle("hidden", !!sub);
-    $("disablePushBtn").classList.toggle("hidden", !sub);
-    if (sub) say("Notifications are enabled on this device.");
-    else if (Notification.permission === "denied") say("Notifications are blocked in Android/browser settings. Allow them there, then try again.");
-    else say("Notifications are currently off on this device.");
+    if (enableButton) {
+      enableButton.disabled = false;
+      enableButton.classList.toggle("hidden", !!sub);
+    }
+    if (disableButton) disableButton.classList.toggle("hidden", !sub);
+    if (sub) {
+      // Re-sync an existing browser subscription with the signed-in member account.
+      const result = await callPush("subscribe", { subscription: sub.toJSON() });
+      say(result.message || "Notifications are active and linked to your member account on this device.");
+    } else if (Notification.permission === "denied") {
+      say("Notifications are blocked by Android or Chrome. Allow notifications for djolatuns.github.io in your phone settings, then return here.");
+    } else {
+      say("Notifications are off on this device. Select Enable Notifications and allow the permission request.");
+    }
   }
 
   async function callPush(action, payload = {}) {
@@ -120,12 +132,17 @@
   };
 
   window.initMemberPush = async function(user) {
-    if (!user || !$("pushNotice")) return;
-    $("enablePushBtn").onclick = enable;
-    $("disablePushBtn").onclick = disable;
+    if (!user) return;
+    const notice = $("pushNotice");
+    const enableButton = $("enablePushBtn");
+    const disableButton = $("disablePushBtn");
+    if (notice && enableButton && disableButton) {
+      enableButton.onclick = enable;
+      disableButton.onclick = disable;
+      try { await refreshPushState(); } catch (error) { say(error.message); }
+    }
     const testButton = $("testPushBtn");
     if (testButton) testButton.onclick = testCEO;
-    try { await refreshPushState(); } catch (error) { say(error.message); }
   };
 
   if (window.__djCurrentUser) window.initMemberPush(window.__djCurrentUser);
