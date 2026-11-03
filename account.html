@@ -240,7 +240,7 @@ body{padding-bottom:92px!important}
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
 <main class="account-wrap">
-<section class="card">
+<section class="card" id="authSection">
 <h2>Members Login</h2>
 <p class="muted">Sign in to your DJ OLATUNS Members account, or create an account if you are new.</p>
 <div id="authCard">
@@ -252,6 +252,7 @@ body{padding-bottom:92px!important}
 <p id="authMessage" class="muted status" aria-live="polite"></p>
 </section>
 <section class="card hidden" id="accountCard">
+<div class="row" style="justify-content:flex-start;margin-bottom:12px"><button id="logoutBtn" class="secondary" type="button">Log Out</button></div>
 <h2>Welcome to your account</h2>
 <p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><section class="notice profile-editor" id="profileEditor">
 <h3>My Community Profile</h3><p class="muted">Choose how other registered DJ OLATUNS members see you.</p>
@@ -275,7 +276,6 @@ body{padding-bottom:92px!important}
 <button id="testPushBtn" class="secondary" type="button">Send Me a Test Notification</button>
 <p id="pushStatus" class="muted status" aria-live="polite"></p>
 </div>
-<button id="logoutBtn" class="secondary" type="button">Log Out</button>
 </section>
 <div hidden aria-hidden="true">
 <p id="announcementStatus"></p><button id="refreshAnnouncementsBtn" type="button"></button><div id="announcements"></div>
@@ -379,7 +379,7 @@ function watchAnnouncements() {
 }
 
 async function loadAccount(user) {
-  $("authCard").classList.add("hidden");
+  $("authSection").classList.add("hidden");
   $("accountCard").classList.remove("hidden");
 
   $("accountEmail").textContent =
@@ -629,6 +629,7 @@ $("logoutBtn").onclick = async () => {
   }
 
   $("accountCard").classList.add("hidden");
+  $("authSection").classList.remove("hidden");
   $("authCard").classList.remove("hidden");
   $("adminAccess").classList.add("hidden");
 
