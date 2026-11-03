@@ -389,8 +389,11 @@ async function loadAccount(user) {
   $("profileUsername").value = currentUsername;
   $("displayName").value = profile?.display_name || "";
   $("memberBio").value = profile?.bio || "";
-  if (profileError) showMessage("usernameStatus", "Could not load username. Refresh and try again."); showMessage("usernameStatus", "Could not load username. Refresh and try again.");
-  else if (!profile?.username) showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
+  if (profileError) {
+    showMessage("usernameStatus", "Could not load username. Refresh and try again.");
+  } else if (!profile?.username) {
+    showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
+  }
   $("profilePreviewUsername").textContent = currentUsername ? "@" + currentUsername : "Choose a username";
   $("avatarFallback").textContent = (currentUsername || "M").trim().charAt(0).toUpperCase();
   if (profile?.avatar_path) {
