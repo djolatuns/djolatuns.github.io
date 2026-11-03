@@ -234,6 +234,8 @@ body{padding-bottom:92px!important}
 .bottomnav a:focus-visible{outline:2px solid #ffe6a0;outline-offset:-2px}
 @media(min-width:700px){body{padding-bottom:20px!important}.bottomnav{position:static!important;max-width:1000px;margin:18px auto 24px!important;border:1px solid #705728!important;border-radius:16px!important;box-shadow:none;padding:8px}.bottomnav a{font-size:12px!important}.bottomnav .ico{font-size:19px!important}}
 </style>
+<style>.profile-editor label{display:block;margin:12px 0 4px;color:#e5d2a4;font-size:13px;font-weight:700}.profile-edit-preview{display:flex;align-items:center;gap:13px;margin:14px 0}.avatar-preview{width:66px;height:66px;flex:0 0 66px;border-radius:50%;object-fit:cover;border:2px solid #c89b42}.avatar-fallback{display:grid;place-items:center;background:linear-gradient(145deg,#f0d18a,#8b6427);color:#17120a;font-size:25px;font-weight:900}.profile-editor textarea{min-height:82px}.profile-editor input[type=file]{padding:10px}
+</style>
 <style>.app-menu-button{position:fixed!important;top:14px!important;left:14px!important;z-index:10002!important;width:46px;height:46px;border:1px solid #705728;border-radius:13px;background:#100e0a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 5px 20px #0008}.app-menu-button span{display:block;width:20px;height:2px;background:#ffe6a0;border-radius:2px}.app-menu-backdrop{position:fixed;inset:0;z-index:10000;background:#000a;backdrop-filter:blur(3px)}.app-menu-backdrop[hidden]{display:none}.app-menu{position:fixed;z-index:10001;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;background:linear-gradient(160deg,#21190b,#0b0b0a 65%);border-right:1px solid #705728;box-shadow:20px 0 55px #0009;transform:translateX(-105%);transition:transform .24s ease}.app-menu.open{transform:translateX(0)}.app-menu-head{display:flex;align-items:center;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid #49391f}.app-menu-head strong{color:#ffe6a0;letter-spacing:3px;font-size:17px}.app-menu-head button{background:#211a0d;border:1px solid #705728;color:#ffe6a0;border-radius:9px;font-size:25px;width:38px;height:38px}.app-menu-caption{font-size:10px;letter-spacing:2px;color:#b99a55;margin:18px 8px 10px}.app-menu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:5px 0;border:1px solid transparent;border-radius:12px;color:#e9dfc8;text-decoration:none;font-weight:700;font-size:15px}.app-menu>a:first-letter{color:#dfb95f}.app-menu>a:hover,.app-menu>a:focus{background:#211a0d;border-color:#594521;color:#ffe6a0;outline:none}body{padding-bottom:0!important}.bottomnav{display:none!important}html.menu-open,body.menu-open{overflow:hidden!important}@media(prefers-reduced-motion:reduce){.app-menu{transition:none}}</style></head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
@@ -251,7 +253,14 @@ body{padding-bottom:92px!important}
 </section>
 <section class="card hidden" id="accountCard">
 <h2>Welcome to your account</h2>
-<p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
+<p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><section class="notice profile-editor" id="profileEditor">
+<h3>My Community Profile</h3><p class="muted">Choose how other registered DJ OLATUNS members see you.</p>
+<div class="profile-edit-preview"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><div><strong id="profilePreviewName">Your name</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div>
+<label for="profilePhoto">Profile photo (JPG, PNG or WebP; maximum 3 MB)</label><input id="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp">
+<label for="profileDisplayName">Display name</label><input id="profileDisplayName" type="text" maxlength="50" placeholder="Your name">
+<label for="profileBio">Bio</label><textarea id="profileBio" maxlength="300" rows="3" placeholder="Tell members a little about yourself (300 characters maximum)"></textarea>
+<button id="saveProfileBtn" type="button">Save Profile</button><p id="profileStatus" class="muted status" role="status"></p>
+</section><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
 <div id="membershipStatus" class="notice">Checking membership...</div>
 <div class="notice">
 <strong>Phone Notifications</strong>
@@ -376,7 +385,7 @@ async function loadAccount(user) {
   $("accountEmail").textContent =
     "Signed in as: " + (user.email || "");
   window.__djCurrentUser = user;
-  const { data: profile, error: profileError } = await db.from("profiles").select("username").eq("id", user.id).maybeSingle();
+  const { data: profile, error: profileError } = await db.from("profiles").select("username,display_name,bio,avatar_path").eq("id", user.id).maybeSingle();
   let currentUsername = profile?.username || user.user_metadata?.username || "";
   if (!profileError && !profile?.username && currentUsername) {
     const { error: saveError } = await db.from("profiles").upsert({ id: user.id, username: currentUsername.toLowerCase(), display_name: currentUsername }, { onConflict: "id" });
@@ -386,6 +395,19 @@ async function loadAccount(user) {
   $("profileUsername").value = currentUsername;
   if (profileError) showMessage("usernameStatus", "Could not load username. Refresh and try again.");
   else if (!profile?.username) showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
+  $("profileDisplayName").value = profile?.display_name || currentUsername || "";
+  $("profileBio").value = profile?.bio || "";
+  $("profilePreviewName").textContent = profile?.display_name || currentUsername || "Your name";
+  $("profilePreviewUsername").textContent = currentUsername ? "@" + currentUsername : "Choose a username";
+  $("avatarFallback").textContent = (profile?.display_name || currentUsername || "M").trim().charAt(0).toUpperCase();
+  if (profile?.avatar_path) {
+    const { data: avatarData } = await db.storage.from("member-avatars").createSignedUrl(profile.avatar_path, 3600);
+    if (avatarData?.signedUrl) {
+      $("avatarPreview").src = avatarData.signedUrl;
+      $("avatarPreview").classList.remove("hidden");
+      $("avatarFallback").classList.add("hidden");
+    }
+  }
   if (window.initMemberPush) window.initMemberPush(user);
 
   showMessage("membershipStatus", "Checking your membership...");
@@ -441,13 +463,75 @@ async function loadAccount(user) {
   }
 }
 
+$("profilePhoto").addEventListener("change", () => {
+  const file = $("profilePhoto").files?.[0];
+  if (!file) return;
+  if (!["image/jpeg","image/png","image/webp"].includes(file.type) || file.size > 3 * 1024 * 1024) {
+    $("profilePhoto").value = "";
+    showMessage("profileStatus","Choose a JPG, PNG or WebP image under 3 MB.");
+    return;
+  }
+  $("avatarPreview").src = URL.createObjectURL(file);
+  $("avatarPreview").classList.remove("hidden");
+  $("avatarFallback").classList.add("hidden");
+});
+$("profileDisplayName").addEventListener("input", () => {
+  $("profilePreviewName").textContent = $("profileDisplayName").value.trim() || "Your name";
+  $("avatarFallback").textContent = ($("profileDisplayName").value.trim() || $("profileUsername").value.trim() || "M").charAt(0).toUpperCase();
+});
+$("saveProfileBtn").onclick = async () => {
+  const user = window.__djCurrentUser;
+  if (!user) return showMessage("profileStatus","Please sign in again.");
+  const username = $("profileUsername").value.trim().replace(/^@/,"").toLowerCase();
+  const displayName = $("profileDisplayName").value.trim();
+  const bio = $("profileBio").value.trim();
+  if (!/^[a-z0-9_]{3,20}$/.test(username)) return showMessage("profileStatus","Set a valid username first (3–20 letters, numbers or underscores).");
+  if (!displayName || displayName.length > 50) return showMessage("profileStatus","Enter a display name of up to 50 characters.");
+  if (bio.length > 300) return showMessage("profileStatus","Your bio must be 300 characters or fewer.");
+  const saveButton = $("saveProfileBtn");
+  saveButton.disabled = true;
+  showMessage("profileStatus","Saving your profile…");
+  try {
+    const { data: currentProfile, error: currentProfileError } = await db.from("profiles").select("avatar_path").eq("id",user.id).maybeSingle();
+    if (currentProfileError) throw currentProfileError;
+    let avatarPath = currentProfile?.avatar_path || null;
+    const file = $("profilePhoto").files?.[0];
+    if (file) {
+      const extension = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+      const nextPath = user.id + "/avatar." + extension;
+      const { error: uploadError } = await db.storage.from("member-avatars").upload(nextPath,file,{upsert:true,contentType:file.type,cacheControl:"3600"});
+      if (uploadError) throw uploadError;
+      if (avatarPath && avatarPath !== nextPath) await db.storage.from("member-avatars").remove([avatarPath]);
+      avatarPath = nextPath;
+    }
+    const { error: saveError } = await db.from("profiles").upsert({id:user.id,username,display_name:displayName,bio,avatar_path:avatarPath},{onConflict:"id"});
+    if (saveError) throw saveError;
+    $("usernameSetup").classList.add("hidden");
+    $("profilePreviewName").textContent = displayName;
+    $("profilePreviewUsername").textContent = "@" + username;
+    $("avatarFallback").textContent = displayName.charAt(0).toUpperCase();
+    if (avatarPath) {
+      const { data: signed } = await db.storage.from("member-avatars").createSignedUrl(avatarPath,3600);
+      if (signed?.signedUrl) {
+        $("avatarPreview").src = signed.signedUrl;
+        $("avatarPreview").classList.remove("hidden");
+        $("avatarFallback").classList.add("hidden");
+      }
+    }
+    $("profilePhoto").value = "";
+    showMessage("profileStatus","Profile saved. Members can now see your name, bio and profile photo.");
+  } catch (error) {
+    showMessage("profileStatus",error.message || "Your profile could not be saved.");
+  } finally { saveButton.disabled = false; }
+};
+
 $("saveUsernameBtn").onclick = async () => {
   const username = $("profileUsername").value.trim().replace(/^@/, "").toLowerCase();
   const user = window.__djCurrentUser;
   if (!user) return showMessage("usernameStatus", "Please sign in again.");
   if (!/^[a-z0-9_]{3,20}$/.test(username)) return showMessage("usernameStatus", "Use 3–20 letters, numbers or underscores.");
   $("saveUsernameBtn").disabled = true;
-  const { error } = await db.from("profiles").upsert({ id: user.id, username, display_name: username }, { onConflict: "id" });
+  const { error } = await db.from("profiles").upsert({ id: user.id, username }, { onConflict: "id" });
   $("saveUsernameBtn").disabled = false;
   if (error) showMessage("usernameStatus", error.code === "23505" ? "That username is already taken. Try another." : error.message);
   else { $("usernameSetup").classList.add("hidden"); $("accountEmail").textContent = "Signed in as: " + (user.email || "") + " • @" + username; }
