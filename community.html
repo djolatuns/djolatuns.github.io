@@ -120,6 +120,7 @@ button,.gold-link{border-radius:12px}
 </div>
 <p id="authMessage" class="status" role="status"></p>
 </section>
+<div class="row hidden" id="memberSessionActions" style="justify-content:flex-start;margin:0 0 14px"><button id="communityLogout" class="secondary" type="button">Log Out</button></div>
 
 <section id="composerPanel" class="panel hidden">
 <h3>Create a Community Post</h3>
@@ -175,7 +176,8 @@ function showSignedIn(user) {
     $("feed").replaceChildren();
     setStatus("feedMessage", "This is a private members-only community. Sign in to your registered DJ OLATUNS account to view posts.");
   }
-  $("signOut").classList.toggle("hidden", !currentUser);
+  $("authPanel").classList.toggle("hidden", Boolean(currentUser));
+  $("memberSessionActions").classList.toggle("hidden", !currentUser);
   $("authHeading").textContent = currentUser ? "You're signed in" : "Members sign-in required";
   $("authDescription").textContent = currentUser
     ? "Signed in as " + (currentUser.email || "your DJ OLATUNS account") + ". You can now publish text-only updates."
@@ -616,10 +618,10 @@ function start() {
     $("postText").addEventListener("input", () => {
       $("characterCount").textContent = $("postText").value.length + " / 3000";
     });
-    $("signOut").addEventListener("click", async () => {
-      $("signOut").disabled = true;
+    $("communityLogout").addEventListener("click", async () => {
+      $("communityLogout").disabled = true;
       const { error } = await client.auth.signOut();
-      $("signOut").disabled = false;
+      $("communityLogout").disabled = false;
       if (error) setStatus("authMessage", error.message, "error");
       else showSignedIn(null);
     });
