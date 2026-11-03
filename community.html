@@ -92,6 +92,11 @@ function setStatus(id, message, kind) {
 function showSignedIn(user) {
   currentUser = user || null;
   $("composerPanel").classList.toggle("hidden", !currentUser);
+  $("refreshFeed").disabled = !currentUser;
+  if (!currentUser) {
+    $("feed").replaceChildren();
+    setStatus("feedMessage", "This is a private members-only community. Sign in to your registered DJ OLATUNS account to view posts.");
+  }
   $("signOut").classList.toggle("hidden", !currentUser);
   $("authHeading").textContent = currentUser ? "You're signed in" : "Members sign-in required";
   $("authDescription").textContent = currentUser
@@ -108,6 +113,7 @@ async function checkSession() {
     const { data, error } = await client.auth.getSession();
     if (error) throw error;
     showSignedIn(data.session ? data.session.user : null);
+    if (data.session) await loadFeed();
   } catch (error) {
     showSignedIn(null);
     setStatus("authMessage", "Could not check your sign-in: " + (error.message || "Please retry."), "error");
@@ -118,12 +124,19 @@ async function checkSession() {
 }
 async function loadFeed() {
   const feed = $("feed");
+  if (!currentUser) {
+    feed.replaceChildren();
+    setStatus("feedMessage", "This is a private members-only community. Sign in to your registered DJ OLATUNS account to view posts.");
+    $("refreshFeed").disabled = true;
+    return;
+  }
   $("refreshFeed").disabled = true;
   setStatus("feedMessage", "Loading community posts…");
   feed.replaceChildren();
   try {
     const { data, error } = await client.from("community_posts")
       .select("id,title,caption,created_at")
+      .gt("status_expires_at", new Date().toISOString())
       .order("created_at", { ascending: false })
       .limit(100);
     if (error) throw error;
@@ -227,6 +240,7 @@ function start() {
     client.auth.onAuthStateChange((event, session) => {
       if (["SIGNED_IN", "SIGNED_OUT", "TOKEN_REFRESHED", "USER_UPDATED"].includes(event)) {
         showSignedIn(session ? session.user : null);
+        if (session) loadFeed();
       }
     });
     $("retryAuth").addEventListener("click", checkSession);
@@ -243,7 +257,6 @@ function start() {
       else showSignedIn(null);
     });
     checkSession();
-    loadFeed();
   } catch (error) {
     $("authHeading").textContent = "Community could not start";
     setStatus("authMessage", error.message || "Please refresh the page.", "error");
