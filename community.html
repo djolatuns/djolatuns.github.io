@@ -30,14 +30,43 @@ footer{text-align:center;color:#968b76;font-size:12px;padding:22px}
 @media(min-width:700px){body{padding-bottom:20px}.bottomnav{position:static;max-width:1000px;margin:18px auto 24px;border:1px solid #705728;border-radius:16px;padding:8px}.bottomnav a{font-size:12px}}
 @media(max-width:420px){header h1{font-size:23px}.hero,.panel{padding:16px}}
 </style>
-<style>.app-menu-button{position:fixed!important;top:14px!important;left:14px!important;z-index:10002!important;width:46px;height:46px;border:1px solid #705728;border-radius:13px;background:#100e0a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 5px 20px #0008}.app-menu-button span{display:block;width:20px;height:2px;background:#ffe6a0;border-radius:2px}.app-menu-backdrop{position:fixed;inset:0;z-index:10000;background:#000a;backdrop-filter:blur(3px)}.app-menu-backdrop[hidden]{display:none}.app-menu{position:fixed;z-index:10001;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;background:linear-gradient(160deg,#21190b,#0b0b0a 65%);border-right:1px solid #705728;box-shadow:20px 0 55px #0009;transform:translateX(-105%);transition:transform .24s ease}.app-menu.open{transform:translateX(0)}.app-menu-head{display:flex;align-items:center;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid #49391f}.app-menu-head strong{color:#ffe6a0;letter-spacing:3px;font-size:17px}.app-menu-head button{background:#211a0d;border:1px solid #705728;color:#ffe6a0;border-radius:9px;font-size:25px;width:38px;height:38px}.app-menu-caption{font-size:10px;letter-spacing:2px;color:#b99a55;margin:18px 8px 10px}.app-menu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:5px 0;border:1px solid transparent;border-radius:12px;color:#e9dfc8;text-decoration:none;font-weight:700;font-size:15px}.app-menu>a:first-letter{color:#dfb95f}.app-menu>a:hover,.app-menu>a:focus{background:#211a0d;border-color:#594521;color:#ffe6a0;outline:none}body{padding-bottom:0!important}.bottomnav{display:none!important}html.menu-open,body.menu-open{overflow:hidden!important}@media(prefers-reduced-motion:reduce){.app-menu{transition:none}}</style></head>
+<style>.app-menu-button{position:fixed!important;top:14px!important;left:14px!important;z-index:10002!important;width:46px;height:46px;border:1px solid #705728;border-radius:13px;background:#100e0a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;box-shadow:0 5px 20px #0008}.app-menu-button span{display:block;width:20px;height:2px;background:#ffe6a0;border-radius:2px}.app-menu-backdrop{position:fixed;inset:0;z-index:10000;background:#000a;backdrop-filter:blur(3px)}.app-menu-backdrop[hidden]{display:none}.app-menu{position:fixed;z-index:10001;top:0;bottom:0;left:0;width:min(310px,86vw);padding:22px 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;background:linear-gradient(160deg,#21190b,#0b0b0a 65%);border-right:1px solid #705728;box-shadow:20px 0 55px #0009;transform:translateX(-105%);transition:transform .24s ease}.app-menu.open{transform:translateX(0)}.app-menu-head{display:flex;align-items:center;justify-content:space-between;padding:8px 0 18px;border-bottom:1px solid #49391f}.app-menu-head strong{color:#ffe6a0;letter-spacing:3px;font-size:17px}.app-menu-head button{background:#211a0d;border:1px solid #705728;color:#ffe6a0;border-radius:9px;font-size:25px;width:38px;height:38px}.app-menu-caption{font-size:10px;letter-spacing:2px;color:#b99a55;margin:18px 8px 10px}.app-menu>a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:5px 0;border:1px solid transparent;border-radius:12px;color:#e9dfc8;text-decoration:none;font-weight:700;font-size:15px}.app-menu>a:first-letter{color:#dfb95f}.app-menu>a:hover,.app-menu>a:focus{background:#211a0d;border-color:#594521;color:#ffe6a0;outline:none}body{padding-bottom:0!important}.bottomnav{display:none!important}html.menu-open,body.menu-open{overflow:hidden!important}@media(prefers-reduced-motion:reduce){.app-menu{transition:none}}</style><style>
+:root{--bg:#090909;--surface:#151515;--surface2:#1c1a16;--gold:#d9ad55;--gold2:#f3d68e;--text:#f7f4ed;--muted:#aaa49a;--line:#302b21}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:#0d0c0a;border-bottom:1px solid var(--line);box-shadow:none;padding:24px 16px 18px}
+header h1{font-size:22px;letter-spacing:2.5px}
+main{width:min(100% - 28px,760px);margin:22px auto}
+.hero{background:linear-gradient(135deg,#211a0d,#111 70%);border:1px solid #554324;border-radius:20px;padding:24px;margin-bottom:16px}
+.hero h2{font-size:30px;letter-spacing:-.6px}
+.hero p{max-width:580px;font-size:14px;line-height:1.65}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 8px 28px #0003}
+.panel h3{font-size:17px;letter-spacing:.1px;color:var(--gold2)}
+input,textarea{background:#0e0e0e;border:1px solid #39342a;border-radius:13px;color:var(--text);padding:14px}
+textarea{min-height:115px}
+button,.gold-link{border-radius:12px}
+.post{position:relative;background:#141414;border:1px solid #302b21;border-radius:17px;padding:17px;margin:12px 0 14px;box-shadow:0 5px 20px #0002}
+.post-top{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.post-avatar{width:42px;height:42px;flex:0 0 42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f0d18a,#8b6427);color:#17120a;font-weight:900;font-size:17px}
+.post-author{display:flex;flex-direction:column;min-width:0;gap:1px}
+.post-author strong{font-size:14px;color:#f7e7c1;overflow-wrap:anywhere}
+.post-author time{font-size:11px;color:var(--muted)}
+.post h4{font-size:18px;color:#fff;margin:5px 0 8px}
+.post p{font-size:15px;line-height:1.7;color:#eee9df;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.post-footer{border-top:1px solid #2d2922;margin-top:15px;padding-top:10px;font-size:9px;letter-spacing:1.5px;font-weight:800;color:#b79653}
+.delete-post{margin-left:auto;background:#211d17;color:#d9c59c;border:1px solid #4a3d27;padding:7px 10px;font-size:11px}
+.empty{padding:34px 18px;border:1px dashed #554324;border-radius:16px;background:#111;text-align:center}
+#feedMessage{font-size:13px}
+@media(min-width:760px){main{margin-top:28px}.hero,.panel{padding:23px}}
+@media(max-width:480px){main{width:min(100% - 20px,760px);margin:14px auto}.hero,.panel{padding:16px;border-radius:15px}.hero h2{font-size:26px}.post{padding:14px}}
+</style>
+</head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header>
 <main>
 <section class="hero">
 <div class="eyebrow">THE MEMBERS CLUB</div>
 <h2>Community</h2>
-<p>A home for the DJ OLATUNS family. Share your thoughts, updates and moments with the movement — all posts are text-only.</p>
+<p>A members-only space to share ideas, conversations and updates. Your posts stay here until you choose to remove them.</p>
 </section>
 
 <section id="authPanel" class="panel" aria-live="polite">
@@ -53,7 +82,7 @@ footer{text-align:center;color:#968b76;font-size:12px;padding:22px}
 
 <section id="composerPanel" class="panel hidden">
 <h3>Create a Community Post</h3>
-<p class="muted">Write a text update for the DJ OLATUNS family. No photos or videos are accepted here.</p>
+<p class="muted">Share an update with the DJ OLATUNS community. Posts are permanent until deleted. Text posts only.</p>
 <form id="postForm">
 <label for="postTitle">Post title <span class="muted">(optional)</span></label>
 <input id="postTitle" name="title" type="text" maxlength="100" placeholder="Give your update a title">
@@ -135,8 +164,7 @@ async function loadFeed() {
   feed.replaceChildren();
   try {
     const { data, error } = await client.from("community_posts")
-      .select("id,title,caption,created_at")
-      .gt("status_expires_at", new Date().toISOString())
+      .select("id,title,caption,created_at,created_by")
       .order("created_at", { ascending: false })
       .limit(100);
     if (error) throw error;
@@ -148,10 +176,56 @@ async function loadFeed() {
       feed.append(empty);
       return;
     }
-    setStatus("feedMessage", data.length + " community update" + (data.length === 1 ? "" : "s"));
+    setStatus("feedMessage", data.length + " post" + (data.length === 1 ? "" : "s"));
+    const authorIds = [...new Set(data.map(post => post.created_by).filter(Boolean))];
+    let profilesById = {};
+    if (authorIds.length) {
+      const { data: profiles } = await client.from("profiles")
+        .select("id,username,display_name")
+        .in("id", authorIds);
+      (profiles || []).forEach(profile => { profilesById[profile.id] = profile; });
+    }
     data.forEach(post => {
       const article = document.createElement("article");
       article.className = "post";
+      const profile = profilesById[post.created_by] || {};
+      const displayName = profile.display_name || (profile.username ? "@" + profile.username : "DJ OLATUNS Member");
+      const avatar = document.createElement("div");
+      avatar.className = "post-avatar";
+      avatar.textContent = displayName.replace(/^@/,"").slice(0,1).toUpperCase() || "M";
+      const author = document.createElement("div");
+      author.className = "post-author";
+      const authorName = document.createElement("strong");
+      authorName.textContent = displayName;
+      const time = document.createElement("time");
+      const date = new Date(post.created_at);
+      time.dateTime = date.toISOString();
+      time.textContent = date.toLocaleString([], {dateStyle:"medium",timeStyle:"short"});
+      author.append(authorName,time);
+      const top = document.createElement("div");
+      top.className = "post-top";
+      top.append(avatar,author);
+      if (post.created_by === currentUser.id) {
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "delete-post";
+        remove.textContent = "Delete";
+        remove.setAttribute("aria-label","Delete your post");
+        remove.addEventListener("click", async () => {
+          if (!window.confirm("Delete this post permanently?")) return;
+          remove.disabled = true;
+          const { error: deleteError } = await client.from("community_posts").delete().eq("id",post.id);
+          if (deleteError) {
+            remove.disabled = false;
+            setStatus("feedMessage","Your post could not be deleted: "+deleteError.message,"error");
+            return;
+          }
+          article.remove();
+          setStatus("feedMessage","Your post has been deleted.","signed");
+        });
+        top.append(remove);
+      }
+      article.append(top);
       if (post.title) {
         const heading = document.createElement("h4");
         heading.textContent = post.title;
@@ -160,11 +234,10 @@ async function loadFeed() {
       const body = document.createElement("p");
       body.textContent = post.caption || "";
       article.append(body);
-      const time = document.createElement("time");
-      const date = new Date(post.created_at);
-      time.dateTime = date.toISOString();
-      time.textContent = "Shared " + date.toLocaleString();
-      article.append(time);
+      const footer = document.createElement("div");
+      footer.className = "post-footer";
+      footer.textContent = "DJ OLATUNS COMMUNITY";
+      article.append(footer);
       feed.append(article);
     });
   } catch (error) {
@@ -195,8 +268,7 @@ async function publishPost(event) {
     const { data: newPost, error: insertError } = await client.from("community_posts").insert({
       title: title,
       caption: caption,
-      created_by: session.user.id,
-      status_expires_at: new Date(Date.now() + 86400000).toISOString()
+      created_by: session.user.id
     }).select("id").single();
     if (insertError) throw insertError;
     $("postForm").reset();
