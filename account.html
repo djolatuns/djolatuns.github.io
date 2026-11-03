@@ -557,7 +557,7 @@ $("logoutBtn").onclick = async () => {
   const { error } = await db.auth.signOut();
 
   if (error) {
-    showMessage("membershipStatus", error.message);
+    showMessage("authMessage", error.message);
     return;
   }
 
