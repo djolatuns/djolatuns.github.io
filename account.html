@@ -550,6 +550,7 @@ $("signupBtn").onclick = async () => {
 };
 
 $("loginBtn").onclick = async () => {
+  const button = $("loginBtn");
   const email = $("email").value.trim();
   const password = $("password").value;
 
@@ -557,26 +558,37 @@ $("loginBtn").onclick = async () => {
     showMessage("authMessage", "Enter your email and password.");
     return;
   }
-
-  $("loginBtn").disabled = true;
-
-  const { data, error } = await db.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  $("loginBtn").disabled = false;
-
-  if (error) {
-    showMessage("authMessage", error.message);
+  if (!db) {
+    showMessage("authMessage", "The login service is still starting. Please wait a moment and try again.");
     return;
   }
 
-  showMessage("authMessage", "Login successful.");
-  await loadAccount(data.user);
-  // Notify the CEO's registered devices about this successful sign-in.
-  if (window.sendDJLoginAlert) {
-    window.sendDJLoginAlert().catch(error => console.warn("Login alert could not be sent:", error));
+  button.disabled = true;
+  button.textContent = "Logging in…";
+  showMessage("authMessage", "Signing in securely…");
+
+  try {
+    const { data, error } = await db.auth.signInWithPassword({ email, password });
+    if (error) {
+      showMessage("authMessage", error.message || "Login failed. Check your details and try again.");
+      return;
+    }
+    if (!data?.user) {
+      showMessage("authMessage", "Login did not return a member account. Please try again.");
+      return;
+    }
+
+    showMessage("authMessage", "Login successful.");
+    await loadAccount(data.user);
+    if (window.sendDJLoginAlert) {
+      window.sendDJLoginAlert().catch(error => console.warn("Login alert could not be sent:", error));
+    }
+  } catch (error) {
+    console.error("Member login failed:", error);
+    showMessage("authMessage", error.message || "Unable to sign in right now. Check your connection and try again.");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Log In";
   }
 };
 
