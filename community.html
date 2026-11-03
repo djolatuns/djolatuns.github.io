@@ -160,6 +160,7 @@ const $ = id => document.getElementById(id);
 let client = null;
 let currentUser = null;
 let authCheckRunning = false;
+let feedLoadToken = 0;
 
 function setStatus(id, message, kind) {
   const el = $(id);
@@ -257,6 +258,8 @@ async function searchMembers(event) {
 
 async function loadFeed() {
   const feed = $("feed");
+  const requestToken = ++feedLoadToken;
+  const requestedUserId = currentUser?.id || null;
   if (!currentUser) {
     feed.replaceChildren();
     setStatus("feedMessage", "This is a private members-only community. Sign in to your registered DJ OLATUNS account to view posts.");
@@ -264,8 +267,7 @@ async function loadFeed() {
     return;
   }
   $("refreshFeed").disabled = true;
-  setStatus("feedMessage", "Loading community posts…");
-  feed.replaceChildren();
+  setStatus("feedMessage", feed.childElementCount ? "Updating community posts…" : "Loading community posts…");
   try {
     const { data, error } = await client.from("community_posts")
       .select("id,title,caption,created_at,created_by")
@@ -280,6 +282,8 @@ async function loadFeed() {
       feed.append(empty);
       return;
     }
+    const uniquePosts = [...new Map(data.map(post => [post.id, post])).values()];
+    data.splice(0, data.length, ...uniquePosts);
     const postIds = data.map(post => post.id);
     const [likesResult, commentsResult, followsResult] = await Promise.all([
       client.from("community_post_likes").select("post_id,user_id").in("post_id", postIds),
@@ -320,6 +324,8 @@ async function loadFeed() {
       if (!commentsByPost[comment.post_id]) commentsByPost[comment.post_id] = [];
       commentsByPost[comment.post_id].push(comment);
     });
+    if (requestToken !== feedLoadToken || currentUser?.id !== requestedUserId) return;
+    const renderFragment = document.createDocumentFragment();
     setStatus("feedMessage", data.length + " post" + (data.length === 1 ? "" : "s"));
     data.forEach(post => {
       const article = document.createElement("article");
@@ -414,7 +420,14 @@ async function loadFeed() {
       likeButton.className = "community-action" + (likedByMe.has(post.id) ? " liked" : "");
       likeButton.textContent = (likedByMe.has(post.id) ? "♥ Liked · " : "♡ Like · ") + (likeCounts[post.id] || 0);
       likeButton.setAttribute("aria-pressed",String(likedByMe.has(post.id)));
+      const updateLikeButton = () => {
+        const isLiked = likedByMe.has(post.id);
+        likeButton.classList.toggle("liked",isLiked);
+        likeButton.textContent = (isLiked ? "♥ Liked · " : "♡ Like · ") + (likeCounts[post.id] || 0);
+        likeButton.setAttribute("aria-pressed",String(isLiked));
+      };
       likeButton.addEventListener("click", async () => {
+        if (likeButton.disabled) return;
         likeButton.disabled = true;
         const wasLiked = likedByMe.has(post.id);
         const result = wasLiked
@@ -423,8 +436,11 @@ async function loadFeed() {
         if (result.error) {
           setStatus("feedMessage","Your reaction could not be saved: "+result.error.message,"error");
         } else {
-          await loadFeed();
+          likeCounts[post.id] = Math.max(0,(likeCounts[post.id] || 0) + (wasLiked ? -1 : 1));
+          if (wasLiked) likedByMe.delete(post.id); else likedByMe.add(post.id);
+          updateLikeButton();
         }
+        likeButton.disabled = false;
       });
       const commentToggle = document.createElement("button");
       commentToggle.type = "button";
@@ -514,12 +530,13 @@ async function loadFeed() {
       footer.className = "post-footer";
       footer.textContent = "DJ OLATUNS COMMUNITY";
       article.append(footer);
-      feed.append(article);
+      renderFragment.append(article);
     });
+    if (requestToken === feedLoadToken && currentUser?.id === requestedUserId) feed.replaceChildren(renderFragment);
   } catch (error) {
-    setStatus("feedMessage", "The feed could not load: " + (error.message || "Please try again."), "error");
+    if (requestToken === feedLoadToken) setStatus("feedMessage", "The feed could not load: " + (error.message || "Please try again."), "error");
   } finally {
-    $("refreshFeed").disabled = false;
+    if (requestToken === feedLoadToken) $("refreshFeed").disabled = false;
   }
 }
 async function publishPost(event) {
