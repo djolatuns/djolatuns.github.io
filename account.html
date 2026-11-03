@@ -255,11 +255,6 @@ body{padding-bottom:92px!important}
 <div class="row" style="justify-content:flex-start;margin-bottom:12px"><button id="logoutBtn" class="secondary" type="button">Log Out</button></div>
 <h2>Welcome to your account</h2>
 <p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><section class="notice profile-editor" id="profileEditor">
-<h3>Member Profile</h3>
-<p class="muted">Add your display name and bio. Save them to show the details on your member profile and in the Community.</p>
-<label for="displayName">Display name</label><input id="displayName" type="text" maxlength="50" placeholder="Your display name" autocomplete="name">
-<label for="memberBio">Bio</label><textarea id="memberBio" maxlength="300" placeholder="Tell members a little about yourself (up to 300 characters)"></textarea>
-<button id="saveProfileBtn" type="button">Save Profile</button><p id="profileSaveStatus" class="muted status" aria-live="polite"></p>
 <h3>Profile Picture</h3><p class="muted">Tap the + to add or change your profile picture.</p>
 <div class="profile-edit-preview"><div class="avatar-upload-wrap"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><label class="avatar-upload-button" for="profilePhoto" aria-label="Add profile picture" title="Add profile picture">+</label><input id="profilePhoto" class="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp"></div><div><strong>Member profile</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div></section>
 <div id="memberFeatures" class="hidden" aria-hidden="true"></div>
@@ -387,8 +382,6 @@ async function loadAccount(user) {
   }
   $("usernameSetup").classList.toggle("hidden", Boolean(currentUsername));
   $("profileUsername").value = currentUsername;
-  $("displayName").value = profile?.display_name || "";
-  $("memberBio").value = profile?.bio || "";
   if (profileError) {
     showMessage("usernameStatus", "Could not load username. Refresh and try again.");
   } else if (!profile?.username) {
@@ -426,26 +419,6 @@ async function loadAccount(user) {
     }
   }
 }
-
-$("saveProfileBtn").onclick = async () => {
-  const user = window.__djCurrentUser;
-  const displayName = $("displayName").value.trim();
-  const bio = $("memberBio").value.trim();
-  if (!user) return showMessage("profileSaveStatus", "Please sign in again.");
-  if (!displayName) return showMessage("profileSaveStatus", "Enter a display name before saving.");
-  if (displayName.length > 50 || bio.length > 300) return showMessage("profileSaveStatus", "Display name must be 50 characters or fewer and bio 300 characters or fewer.");
-  const button = $("saveProfileBtn");
-  button.disabled = true;
-  showMessage("profileSaveStatus", "Saving your profile…");
-  const { error } = await db.from("profiles").update({ display_name: displayName, bio }).eq("id", user.id);
-  button.disabled = false;
-  if (error) {
-    console.error("Profile details save failed:", error);
-    showMessage("profileSaveStatus", error.message || "Your profile could not be saved. Please try again.");
-    return;
-  }
-  showMessage("profileSaveStatus", "Profile saved. Members can now see your name, bio and profile photo.");
-};
 
 $("profilePhoto").addEventListener("change", async () => {
   const file = $("profilePhoto").files?.[0];
@@ -713,4 +686,5 @@ startPortal().catch(error => {
 
 
 <script src="/pwa.js" defer></script>
-<script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script><script src="/theme.js"></script>\n</body></html>
+<script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script><script src="/theme.js"></script>
+</body></html>
