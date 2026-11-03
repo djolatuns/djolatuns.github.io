@@ -90,7 +90,7 @@ function setStatus(id, message, kind) {
   el.className = "status" + (kind ? " " + kind : "");
 }
 function showSignedIn(user) {
-  currentUser = user || null;
+  currentUser = user && user.is_anonymous !== true ? user : null;
   $("composerPanel").classList.toggle("hidden", !currentUser);
   $("refreshFeed").disabled = !currentUser;
   if (!currentUser) {
@@ -188,9 +188,9 @@ async function publishPost(event) {
     const { data, error } = await client.auth.getSession();
     if (error) throw error;
     const session = data.session;
-    if (!session) {
+    if (!session || session.user.is_anonymous === true) {
       showSignedIn(null);
-      throw new Error("Your sign-in has expired. Open your Members Account and sign in again.");
+      throw new Error("A registered DJ OLATUNS member account is required to publish in this community. Please sign in with your registered account.");
     }
     const { data: newPost, error: insertError } = await client.from("community_posts").insert({
       title: title,
