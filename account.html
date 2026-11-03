@@ -383,7 +383,7 @@ async function loadAccount(user) {
   $("accountCard").classList.remove("hidden");
 
   $("accountEmail").textContent =
-    "Signed in as: " + (user.email || "");
+    "Account email: " + (user.email || "");
   window.__djCurrentUser = user;
   const { data: profile, error: profileError } = await db.from("profiles").select("username,display_name,bio,avatar_path").eq("id", user.id).maybeSingle();
   let currentUsername = profile?.username || user.user_metadata?.username || "";
@@ -534,7 +534,7 @@ $("saveUsernameBtn").onclick = async () => {
   const { error } = await db.from("profiles").upsert({ id: user.id, username }, { onConflict: "id" });
   $("saveUsernameBtn").disabled = false;
   if (error) showMessage("usernameStatus", error.code === "23505" ? "That username is already taken. Try another." : error.message);
-  else { $("usernameSetup").classList.add("hidden"); $("accountEmail").textContent = "Signed in as: " + (user.email || "") + " • @" + username; }
+  else { $("usernameSetup").classList.add("hidden"); $("accountEmail").textContent = "Account email: " + (user.email || "") + " • @" + username; }
 };
 
 async function loadAdminStats() {
