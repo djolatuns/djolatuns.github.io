@@ -198,7 +198,7 @@ async function loadFeed() {
     const postIds = data.map(post => post.id);
     const [likesResult, commentsResult] = await Promise.all([
       client.from("community_post_likes").select("post_id,user_id").in("post_id", postIds),
-      client.from("community_comments").select("id,post_id,user_id,body,created_at").in("post_id", postIds).order("created_at", { ascending: true }).limit(500)
+      client.from("community_post_comments").select("id,post_id,user_id,body,created_at").in("post_id", postIds).order("created_at", { ascending: true }).limit(500)
     ]);
     if (likesResult.error) throw likesResult.error;
     if (commentsResult.error) throw commentsResult.error;
@@ -334,7 +334,7 @@ async function loadFeed() {
             deleteComment.textContent = "Delete";
             deleteComment.addEventListener("click", async () => {
               deleteComment.disabled = true;
-              const { error: commentDeleteError } = await client.from("community_comments").delete().eq("id",comment.id);
+              const { error: commentDeleteError } = await client.from("community_post_comments").delete().eq("id",comment.id);
               if (commentDeleteError) {
                 deleteComment.disabled = false;
                 setStatus("feedMessage","Comment could not be deleted: "+commentDeleteError.message,"error");
@@ -365,7 +365,7 @@ async function loadFeed() {
         const commentText = commentInput.value.trim();
         if (!commentText) return;
         sendComment.disabled = true;
-        const { error: commentInsertError } = await client.from("community_comments").insert({
+        const { error: commentInsertError } = await client.from("community_post_comments").insert({
           post_id:post.id,user_id:currentUser.id,body:commentText
         });
         if (commentInsertError) {
