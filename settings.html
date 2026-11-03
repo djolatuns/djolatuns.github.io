@@ -45,6 +45,18 @@ html.menu-open,body.menu-open{overflow:hidden!important}
 <button class="action secondary" type="button" data-theme-choice="light" aria-pressed="false">☀ Light mode</button>
 <button class="action secondary" type="button" data-theme-choice="dark" aria-pressed="true">☾ Dark mode</button>
 </div></div></section>
+<section class="setting" id="profileSettings">
+<div class="eyebrow">PROFILE SETTINGS</div><h2>Edit your member profile</h2>
+<p>Change the display name and bio shown on your member profile and in the Community.</p>
+<div id="profileSettingsAuth" class="muted" role="status" aria-live="polite">Checking your member account…</div>
+<div id="profileSettingsForm" class="hidden">
+<label for="settingsDisplayName" style="display:block;color:#e5d2a4;font-weight:700;margin:12px 0 4px">Display name</label>
+<input id="settingsDisplayName" type="text" maxlength="50" placeholder="Your display name" style="width:100%;padding:13px;border-radius:10px;background:#090909;color:#f8f5ed;border:1px solid #5a4828">
+<label for="settingsBio" style="display:block;color:#e5d2a4;font-weight:700;margin:12px 0 4px">Bio</label>
+<textarea id="settingsBio" maxlength="300" rows="4" placeholder="Tell members a little about yourself (up to 300 characters)" style="width:100%;padding:13px;border-radius:10px;background:#090909;color:#f8f5ed;border:1px solid #5a4828;resize:vertical"></textarea>
+<button class="action" id="saveSettingsProfile" type="button" style="margin-top:12px">Save Profile Changes</button>
+<p id="settingsProfileStatus" class="muted" role="status" aria-live="polite"></p>
+</div></section>
 <section class="setting"><div class="eyebrow">ACCOUNT</div><h2>Account & profile</h2><p>Manage your member account, sign-in details and Messenger username from the secure Account page.</p><div class="setting-row"><div class="setting-copy"><strong>Membership and username</strong><small id="accountSettingHelp">Manage your member profile and username.</small></div><div style="display:flex;gap:8px;flex-wrap:wrap"><a class="action" href="/account.html">Open Account</a></div></div></section>
 <section class="setting" id="pushNotice"><div class="eyebrow">NOTIFICATIONS • DEVICE CONTROL</div><h2>Push notification centre</h2><p>Receive private Messenger alerts, official announcements, community updates, booking updates and account alerts from anywhere in the DJ OLATUNS app—even when the app is closed.</p><div class="notice" style="border:1px solid #594521;border-radius:13px;padding:14px;margin:14px 0;background:#100f0c"><div class="setting-row"><div class="setting-copy"><strong id="pushStateTitle">Notification status</strong><small id="pushStatus" role="status" aria-live="polite">Checking this device…</small></div><span aria-hidden="true" style="font-size:24px">🔔</span></div></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="action" id="enablePushBtn" type="button">Enable Notifications</button><button class="action secondary hidden" id="disablePushBtn" type="button">Turn Off on This Device</button><button class="action secondary hidden" id="testPushBtn" type="button">Send Test Notification</button></div><p class="muted" style="font-size:12px;margin-top:12px">Notifications are optional and device-specific. You can turn them off at any time. Your account remains private.</p><p id="pushHelp" class="muted" style="font-size:12px"></p></section>
 <section class="setting"><div class="eyebrow">PRIVACY & SECURITY</div><h2>Your information</h2><p>Review how account details, community posts, booking enquiries and notification subscriptions are handled.</p><div class="setting-row"><div class="setting-copy"><strong>Privacy policy</strong><small>Read data use, retention and contact information.</small></div><a class="action secondary" href="/privacy.html">View Policy</a></div></section>
@@ -83,6 +95,40 @@ html.menu-open,body.menu-open{overflow:hidden!important}
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+ const message=document.getElementById("profileSettingsAuth");
+ const form=document.getElementById("profileSettingsForm");
+ const save=document.getElementById("saveSettingsProfile");
+ const status=document.getElementById("settingsProfileStatus");
+ const say=(value)=>{if(status)status.textContent=value;};
+ try{
+  if(!window.supabase){message.textContent="Profile service could not load. Check your connection and reload.";return;}
+  const db=window.supabase.createClient("https://tiqracqtgggoctyvtuqo.supabase.co","sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO",{auth:{storageKey:"sb-tiqracqtgggoctyvtuqo-auth-token",persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const {data,error}=await db.auth.getSession();
+  if(error)throw error;
+  if(!data.session){message.textContent="Sign in to your member account to edit your display name and bio.";return;}
+  const user=data.session.user;
+  const {data:profile,error:profileError}=await db.from("profiles").select("display_name,bio").eq("id",user.id).maybeSingle();
+  if(profileError)throw profileError;
+  document.getElementById("settingsDisplayName").value=profile?.display_name||"";
+  document.getElementById("settingsBio").value=profile?.bio||"";
+  message.textContent="Your member profile is ready to edit.";
+  form.classList.remove("hidden");
+  save.addEventListener("click",async()=>{
+   const displayName=document.getElementById("settingsDisplayName").value.trim();
+   const bio=document.getElementById("settingsBio").value.trim();
+   if(!displayName){say("Enter a display name before saving.");return;}
+   if(displayName.length>50||bio.length>300){say("Display name must be 50 characters or fewer and bio 300 characters or fewer.");return;}
+   save.disabled=true;say("Saving your profile changes…");
+   const {error:updateError}=await db.from("profiles").update({display_name:displayName,bio}).eq("id",user.id);
+   save.disabled=false;
+   if(updateError){console.error("Settings profile update failed:",updateError);say(updateError.message||"Your changes could not be saved.");return;}
+   say("Profile updated. Your new display name and bio are now saved.");
+  });
+ }catch(error){console.error("Profile settings could not load:",error);message.textContent=error.message||"Profile settings could not load. Please refresh.";}
+})();
+</script>
 <script src="/push-client.js"></script>
 <script>
 (async function(){
