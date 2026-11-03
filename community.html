@@ -274,12 +274,13 @@ async function loadFeed() {
       .order("created_at", { ascending: false })
       .limit(100);
     if (error) throw error;
+    if (requestToken !== feedLoadToken || currentUser?.id !== requestedUserId) return;
     if (!data || data.length === 0) {
       setStatus("feedMessage", "");
       const empty = document.createElement("div");
       empty.className = "empty";
       empty.textContent = "No community posts yet. Be the first to share an update.";
-      feed.append(empty);
+      feed.replaceChildren(empty);
       return;
     }
     const uniquePosts = [...new Map(data.map(post => [post.id, post])).values()];
