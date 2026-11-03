@@ -78,6 +78,11 @@ button,.gold-link{border-radius:12px}
 .comment-empty{color:#aaa49a;font-size:12px;padding:5px 0}
 </style>
 
+<style>
+.community-follow{margin-left:auto;align-self:center;padding:7px 12px!important;border-radius:999px!important;background:#211a0d!important;border:1px solid #806326!important;color:#f3d68e!important;font-size:11px!important;font-weight:800!important}
+.community-follow.following{background:#171717!important;color:#aaa49a!important;border-color:#39342a!important}
+.community-follow:disabled{opacity:.6}
+</style>
 </head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header>
@@ -196,14 +201,17 @@ async function loadFeed() {
       return;
     }
     const postIds = data.map(post => post.id);
-    const [likesResult, commentsResult] = await Promise.all([
+    const [likesResult, commentsResult, followsResult] = await Promise.all([
       client.from("community_post_likes").select("post_id,user_id").in("post_id", postIds),
-      client.from("community_post_comments").select("id,post_id,user_id,body,created_at").in("post_id", postIds).order("created_at", { ascending: true }).limit(500)
+      client.from("community_post_comments").select("id,post_id,user_id,body,created_at").in("post_id", postIds).order("created_at", { ascending: true }).limit(500),
+      client.from("community_follows").select("following_id").eq("follower_id", currentUser.id)
     ]);
     if (likesResult.error) throw likesResult.error;
     if (commentsResult.error) throw commentsResult.error;
+    if (followsResult.error) throw followsResult.error;
     const likes = likesResult.data || [];
     const comments = commentsResult.data || [];
+    const followingSet = new Set((followsResult.data || []).map(row => row.following_id));
     const authorIds = [...new Set(data.map(post => post.created_by).concat(comments.map(comment => comment.user_id)).filter(Boolean))];
     let profilesById = {};
     if (authorIds.length) {
@@ -248,6 +256,39 @@ async function loadFeed() {
       const top = document.createElement("div");
       top.className = "post-top";
       top.append(avatar,author);
+      if (post.created_by !== currentUser.id) {
+        const followButton = document.createElement("button");
+        followButton.type = "button";
+        followButton.className = "community-follow" + (followingSet.has(post.created_by) ? " following" : "");
+        const updateFollowLabel = () => {
+          const isFollowing = followingSet.has(post.created_by);
+          followButton.textContent = isFollowing ? "Following" : "＋ Follow";
+          followButton.classList.toggle("following",isFollowing);
+          followButton.setAttribute("aria-pressed",String(isFollowing));
+        };
+        updateFollowLabel();
+        followButton.addEventListener("click", async () => {
+          followButton.disabled = true;
+          try {
+            if (followingSet.has(post.created_by)) {
+              const { error } = await client.from("community_follows").delete()
+                .eq("follower_id",currentUser.id).eq("following_id",post.created_by);
+              if (error) throw error;
+              followingSet.delete(post.created_by);
+            } else {
+              const { error } = await client.from("community_follows").insert({
+                follower_id:currentUser.id,following_id:post.created_by
+              });
+              if (error) throw error;
+              followingSet.add(post.created_by);
+            }
+            updateFollowLabel();
+          } catch (error) {
+            setStatus("feedMessage","Follow action could not be saved: "+error.message,"error");
+          } finally { followButton.disabled = false; }
+        });
+        top.append(followButton);
+      }
       if (post.created_by === currentUser.id) {
         const remove = document.createElement("button");
         remove.type = "button";
