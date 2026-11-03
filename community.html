@@ -59,6 +59,25 @@ button,.gold-link{border-radius:12px}
 @media(min-width:760px){main{margin-top:28px}.hero,.panel{padding:23px}}
 @media(max-width:480px){main{width:min(100% - 20px,760px);margin:14px auto}.hero,.panel{padding:16px;border-radius:15px}.hero h2{font-size:26px}.post{padding:14px}}
 </style>
+
+<style>
+.community-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #302b21}
+.community-action{background:transparent!important;color:#d9c59c!important;border:1px solid #514329!important;padding:8px 13px!important;font-size:13px!important}
+.community-action.liked{background:#2b2110!important;border-color:#d8ad52!important;color:#ffe6a0!important}
+.community-action:disabled{opacity:.55}
+.comment-area{margin-top:12px;padding:12px;background:#10100e;border:1px solid #302b21;border-radius:13px}
+.comment-list{display:grid;gap:9px;margin:10px 0}
+.comment-item{padding:10px 11px;background:#191815;border:1px solid #302b21;border-radius:11px}
+.comment-head{display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:12px;color:#e9d7ae}
+.comment-head time{font-size:10px;color:#aaa49a}
+.comment-body{margin:5px 0 0;color:#eee9df;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.comment-delete{padding:4px 7px!important;font-size:10px!important;background:#211d17!important;color:#d9c59c!important;border:1px solid #4a3d27!important}
+.comment-form{display:flex;gap:8px;align-items:flex-end}
+.comment-form textarea{min-height:42px;height:42px;max-height:110px;margin:0;flex:1;padding:10px;font-size:13px}
+.comment-form button{padding:10px 12px;font-size:12px}
+.comment-empty{color:#aaa49a;font-size:12px;padding:5px 0}
+</style>
+
 </head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header>
@@ -176,20 +195,44 @@ async function loadFeed() {
       feed.append(empty);
       return;
     }
-    setStatus("feedMessage", data.length + " post" + (data.length === 1 ? "" : "s"));
-    const authorIds = [...new Set(data.map(post => post.created_by).filter(Boolean))];
+    const postIds = data.map(post => post.id);
+    const [likesResult, commentsResult] = await Promise.all([
+      client.from("community_post_likes").select("post_id,user_id").in("post_id", postIds),
+      client.from("community_comments").select("id,post_id,user_id,body,created_at").in("post_id", postIds).order("created_at", { ascending: true }).limit(500)
+    ]);
+    if (likesResult.error) throw likesResult.error;
+    if (commentsResult.error) throw commentsResult.error;
+    const likes = likesResult.data || [];
+    const comments = commentsResult.data || [];
+    const authorIds = [...new Set(data.map(post => post.created_by).concat(comments.map(comment => comment.user_id)).filter(Boolean))];
     let profilesById = {};
     if (authorIds.length) {
-      const { data: profiles } = await client.from("profiles")
+      const { data: profiles, error: profileError } = await client.from("profiles")
         .select("id,username,display_name")
         .in("id", authorIds);
+      if (profileError) throw profileError;
       (profiles || []).forEach(profile => { profilesById[profile.id] = profile; });
     }
+    const displayNameFor = id => {
+      const profile = profilesById[id] || {};
+      return profile.display_name || (profile.username ? "@" + profile.username : "DJ OLATUNS Member");
+    };
+    const likeCounts = {};
+    const likedByMe = new Set();
+    likes.forEach(like => {
+      likeCounts[like.post_id] = (likeCounts[like.post_id] || 0) + 1;
+      if (like.user_id === currentUser.id) likedByMe.add(like.post_id);
+    });
+    const commentsByPost = {};
+    comments.forEach(comment => {
+      if (!commentsByPost[comment.post_id]) commentsByPost[comment.post_id] = [];
+      commentsByPost[comment.post_id].push(comment);
+    });
+    setStatus("feedMessage", data.length + " post" + (data.length === 1 ? "" : "s"));
     data.forEach(post => {
       const article = document.createElement("article");
       article.className = "post";
-      const profile = profilesById[post.created_by] || {};
-      const displayName = profile.display_name || (profile.username ? "@" + profile.username : "DJ OLATUNS Member");
+      const displayName = displayNameFor(post.created_by);
       const avatar = document.createElement("div");
       avatar.className = "post-avatar";
       avatar.textContent = displayName.replace(/^@/,"").slice(0,1).toUpperCase() || "M";
@@ -234,6 +277,110 @@ async function loadFeed() {
       const body = document.createElement("p");
       body.textContent = post.caption || "";
       article.append(body);
+
+      const actionRow = document.createElement("div");
+      actionRow.className = "community-actions";
+      const likeButton = document.createElement("button");
+      likeButton.type = "button";
+      likeButton.className = "community-action" + (likedByMe.has(post.id) ? " liked" : "");
+      likeButton.textContent = (likedByMe.has(post.id) ? "♥ Liked · " : "♡ Like · ") + (likeCounts[post.id] || 0);
+      likeButton.setAttribute("aria-pressed",String(likedByMe.has(post.id)));
+      likeButton.addEventListener("click", async () => {
+        likeButton.disabled = true;
+        const wasLiked = likedByMe.has(post.id);
+        const result = wasLiked
+          ? await client.from("community_post_likes").delete().eq("post_id",post.id).eq("user_id",currentUser.id)
+          : await client.from("community_post_likes").insert({post_id:post.id,user_id:currentUser.id});
+        if (result.error) {
+          setStatus("feedMessage","Your reaction could not be saved: "+result.error.message,"error");
+        } else {
+          await loadFeed();
+        }
+      });
+      const commentToggle = document.createElement("button");
+      commentToggle.type = "button";
+      commentToggle.className = "community-action";
+      const postComments = commentsByPost[post.id] || [];
+      commentToggle.textContent = "Comments · " + postComments.length;
+      actionRow.append(likeButton,commentToggle);
+      article.append(actionRow);
+
+      const commentArea = document.createElement("section");
+      commentArea.className = "comment-area hidden";
+      const commentList = document.createElement("div");
+      commentList.className = "comment-list";
+      if (!postComments.length) {
+        const emptyComment = document.createElement("div");
+        emptyComment.className = "comment-empty";
+        emptyComment.textContent = "No comments yet. Start the conversation.";
+        commentList.append(emptyComment);
+      } else {
+        postComments.forEach(comment => {
+          const item = document.createElement("div");
+          item.className = "comment-item";
+          const head = document.createElement("div");
+          head.className = "comment-head";
+          const name = document.createElement("strong");
+          name.textContent = displayNameFor(comment.user_id);
+          const commentDate = document.createElement("time");
+          const commentTime = new Date(comment.created_at);
+          commentDate.dateTime = commentTime.toISOString();
+          commentDate.textContent = commentTime.toLocaleString([], {dateStyle:"medium",timeStyle:"short"});
+          head.append(name,commentDate);
+          if (comment.user_id === currentUser.id) {
+            const deleteComment = document.createElement("button");
+            deleteComment.type = "button";
+            deleteComment.className = "comment-delete";
+            deleteComment.textContent = "Delete";
+            deleteComment.addEventListener("click", async () => {
+              deleteComment.disabled = true;
+              const { error: commentDeleteError } = await client.from("community_comments").delete().eq("id",comment.id);
+              if (commentDeleteError) {
+                deleteComment.disabled = false;
+                setStatus("feedMessage","Comment could not be deleted: "+commentDeleteError.message,"error");
+              } else await loadFeed();
+            });
+            head.append(deleteComment);
+          }
+          const commentBody = document.createElement("p");
+          commentBody.className = "comment-body";
+          commentBody.textContent = comment.body;
+          item.append(head,commentBody);
+          commentList.append(item);
+        });
+      }
+      const form = document.createElement("form");
+      form.className = "comment-form";
+      const commentInput = document.createElement("textarea");
+      commentInput.maxLength = 2000;
+      commentInput.required = true;
+      commentInput.setAttribute("aria-label","Write a comment");
+      commentInput.placeholder = "Write a comment…";
+      const sendComment = document.createElement("button");
+      sendComment.type = "submit";
+      sendComment.textContent = "Comment";
+      form.append(commentInput,sendComment);
+      form.addEventListener("submit", async event => {
+        event.preventDefault();
+        const commentText = commentInput.value.trim();
+        if (!commentText) return;
+        sendComment.disabled = true;
+        const { error: commentInsertError } = await client.from("community_comments").insert({
+          post_id:post.id,user_id:currentUser.id,body:commentText
+        });
+        if (commentInsertError) {
+          sendComment.disabled = false;
+          setStatus("feedMessage","Your comment could not be published: "+commentInsertError.message,"error");
+        } else await loadFeed();
+      });
+      commentArea.append(commentList,form);
+      commentToggle.addEventListener("click", () => {
+        const opening = commentArea.classList.contains("hidden");
+        commentArea.classList.toggle("hidden",!opening);
+        commentToggle.textContent = (opening ? "Hide comments · " : "Comments · ") + postComments.length;
+      });
+      article.append(commentArea);
+
       const footer = document.createElement("div");
       footer.className = "post-footer";
       footer.textContent = "DJ OLATUNS COMMUNITY";
