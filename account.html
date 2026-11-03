@@ -255,18 +255,8 @@ body{padding-bottom:92px!important}
 <div class="row" style="justify-content:flex-start;margin-bottom:12px"><button id="logoutBtn" class="secondary" type="button">Log Out</button></div>
 <h2>Welcome to your account</h2>
 <p id="accountEmail" class="muted"></p><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><section class="notice profile-editor" id="profileEditor">
-<h3>My Community Profile</h3><p class="muted">Choose how other registered DJ OLATUNS members see you.</p>
-<div class="profile-edit-preview"><div class="avatar-upload-wrap"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><label class="avatar-upload-button" for="profilePhoto" aria-label="Add profile picture" title="Add profile picture">+</label><input id="profilePhoto" class="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp"></div><div><strong id="profilePreviewName">Your name</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div><p class="muted" style="font-size:12px;margin:0">Tap the + to add or change your profile picture (JPG, PNG or WebP; maximum 3 MB).</p>
-<label for="profileDisplayName">Display name</label><input id="profileDisplayName" type="text" maxlength="50" placeholder="Your name">
-<label for="profileBio">Bio</label><textarea id="profileBio" maxlength="300" rows="3" placeholder="Tell members a little about yourself (300 characters maximum)"></textarea>
-<button id="saveProfileBtn" type="button">Save Profile</button><p id="profileStatus" class="muted status" role="status"></p>
-</section><p><a class="gold-link" href="/community.html">Open Community — Create a Post</a></p>
-<div id="membershipStatus" class="notice">Checking membership...</div>
-<div class="notice">
-<strong>Phone Notifications</strong>
-<p class="muted">Manage push notifications, device permissions and notification status from your central Settings page.</p>
-<a class="gold-link" href="/settings.html#pushNotice">Open Notification Settings</a>
-</div>
+<h3>Profile Picture</h3><p class="muted">Tap the + to add or change your profile picture.</p>
+<div class="profile-edit-preview"><div class="avatar-upload-wrap"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><label class="avatar-upload-button" for="profilePhoto" aria-label="Add profile picture" title="Add profile picture">+</label><input id="profilePhoto" class="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp"></div><div><strong>Member profile</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div></section>
 <div id="memberFeatures" class="hidden" aria-hidden="true"></div>
 <div id="adminAccess" class="notice hidden">
 <strong>Administrator Access</strong>
@@ -384,7 +374,7 @@ async function loadAccount(user) {
   $("accountEmail").textContent =
     "Account email: " + (user.email || "");
   window.__djCurrentUser = user;
-  const { data: profile, error: profileError } = await db.from("profiles").select("username,display_name,bio,avatar_path").eq("id", user.id).maybeSingle();
+  const { data: profile, error: profileError } = await db.from("profiles").select("username,avatar_path").eq("id", user.id).maybeSingle();
   let currentUsername = profile?.username || user.user_metadata?.username || "";
   if (!profileError && !profile?.username && currentUsername) {
     const { error: saveError } = await db.from("profiles").upsert({ id: user.id, username: currentUsername.toLowerCase(), display_name: currentUsername }, { onConflict: "id" });
@@ -394,11 +384,8 @@ async function loadAccount(user) {
   $("profileUsername").value = currentUsername;
   if (profileError) showMessage("usernameStatus", "Could not load username. Refresh and try again.");
   else if (!profile?.username) showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
-  $("profileDisplayName").value = profile?.display_name || currentUsername || "";
-  $("profileBio").value = profile?.bio || "";
-  $("profilePreviewName").textContent = profile?.display_name || currentUsername || "Your name";
   $("profilePreviewUsername").textContent = currentUsername ? "@" + currentUsername : "Choose a username";
-  $("avatarFallback").textContent = (profile?.display_name || currentUsername || "M").trim().charAt(0).toUpperCase();
+  $("avatarFallback").textContent = (currentUsername || "M").trim().charAt(0).toUpperCase();
   if (profile?.avatar_path) {
     const { data: avatarData } = await db.storage.from("member-avatars").createSignedUrl(profile.avatar_path, 3600);
     if (avatarData?.signedUrl) {
@@ -407,38 +394,6 @@ async function loadAccount(user) {
       $("avatarFallback").classList.add("hidden");
     }
   }
-  if (window.initMemberPush) window.initMemberPush(user);
-
-  showMessage("membershipStatus", "Checking your membership...");
-
-  const { data: memberships, error } = await db
-    .from("memberships")
-    .select("*")
-    .eq("user_id", user.id);
-
-  if (error) {
-    showMessage(
-      "membershipStatus",
-      "Account signed in. Membership information is temporarily unavailable."
-    );
-  } else if (!memberships || memberships.length === 0) {
-    showMessage(
-      "membershipStatus",
-      "No active membership yet. Payment setup is coming soon."
-    );
-  } else {
-    const active = memberships.some(
-      item => item.status === "active"
-    );
-
-    showMessage(
-      "membershipStatus",
-      active
-        ? "Your membership is marked active. Welcome!"
-        : "Your membership is not currently active."
-    );
-  }
-
   const nav = $("memberFeatures");
   if (nav) nav.classList.remove("hidden");
 
@@ -462,67 +417,46 @@ async function loadAccount(user) {
   }
 }
 
-$("profilePhoto").addEventListener("change", () => {
+$("profilePhoto").addEventListener("change", async () => {
   const file = $("profilePhoto").files?.[0];
-  if (!file) return;
+  const user = window.__djCurrentUser;
+  if (!file || !user) return;
   if (!["image/jpeg","image/png","image/webp"].includes(file.type) || file.size > 3 * 1024 * 1024) {
     $("profilePhoto").value = "";
-    showMessage("profileStatus","Choose a JPG, PNG or WebP image under 3 MB.");
+    alert("Choose a JPG, PNG or WebP image under 3 MB.");
     return;
   }
-  $("avatarPreview").src = URL.createObjectURL(file);
-  $("avatarPreview").classList.remove("hidden");
-  $("avatarFallback").classList.add("hidden");
-});
-$("profileDisplayName").addEventListener("input", () => {
-  $("profilePreviewName").textContent = $("profileDisplayName").value.trim() || "Your name";
-  $("avatarFallback").textContent = ($("profileDisplayName").value.trim() || $("profileUsername").value.trim() || "M").charAt(0).toUpperCase();
-});
-$("saveProfileBtn").onclick = async () => {
-  const user = window.__djCurrentUser;
-  if (!user) return showMessage("profileStatus","Please sign in again.");
-  const username = $("profileUsername").value.trim().replace(/^@/,"").toLowerCase();
-  const displayName = $("profileDisplayName").value.trim();
-  const bio = $("profileBio").value.trim();
-  if (!/^[a-z0-9_]{3,20}$/.test(username)) return showMessage("profileStatus","Set a valid username first (3–20 letters, numbers or underscores).");
-  if (!displayName || displayName.length > 50) return showMessage("profileStatus","Enter a display name of up to 50 characters.");
-  if (bio.length > 300) return showMessage("profileStatus","Your bio must be 300 characters or fewer.");
-  const saveButton = $("saveProfileBtn");
-  saveButton.disabled = true;
-  showMessage("profileStatus","Saving your profile…");
+
+  const button = document.querySelector(".avatar-upload-button");
+  if (button) button.style.opacity = "0.6";
   try {
-    const { data: currentProfile, error: currentProfileError } = await db.from("profiles").select("avatar_path").eq("id",user.id).maybeSingle();
-    if (currentProfileError) throw currentProfileError;
-    let avatarPath = currentProfile?.avatar_path || null;
-    const file = $("profilePhoto").files?.[0];
-    if (file) {
-      const extension = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
-      const nextPath = user.id + "/avatar." + extension;
-      const { error: uploadError } = await db.storage.from("member-avatars").upload(nextPath,file,{upsert:true,contentType:file.type,cacheControl:"3600"});
-      if (uploadError) throw uploadError;
-      if (avatarPath && avatarPath !== nextPath) await db.storage.from("member-avatars").remove([avatarPath]);
-      avatarPath = nextPath;
-    }
-    const { error: saveError } = await db.from("profiles").upsert({id:user.id,username,display_name:displayName,bio,avatar_path:avatarPath},{onConflict:"id"});
+    const extension = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+    const nextPath = user.id + "/avatar." + extension;
+    const { error: uploadError } = await db.storage.from("member-avatars").upload(nextPath, file, {
+      upsert: true, contentType: file.type, cacheControl: "3600"
+    });
+    if (uploadError) throw uploadError;
+
+    const { error: saveError } = await db.from("profiles").upsert({
+      id: user.id, username: $("profileUsername").value.trim().replace(/^@/, "").toLowerCase(),
+      avatar_path: nextPath
+    }, { onConflict: "id" });
     if (saveError) throw saveError;
-    $("usernameSetup").classList.add("hidden");
-    $("profilePreviewName").textContent = displayName;
-    $("profilePreviewUsername").textContent = "@" + username;
-    $("avatarFallback").textContent = displayName.charAt(0).toUpperCase();
-    if (avatarPath) {
-      const { data: signed } = await db.storage.from("member-avatars").createSignedUrl(avatarPath,3600);
-      if (signed?.signedUrl) {
-        $("avatarPreview").src = signed.signedUrl;
-        $("avatarPreview").classList.remove("hidden");
-        $("avatarFallback").classList.add("hidden");
-      }
-    }
+
+    const { data: signed, error: signedError } = await db.storage.from("member-avatars").createSignedUrl(nextPath, 3600);
+    if (signedError || !signed?.signedUrl) throw signedError || new Error("Could not refresh the profile picture.");
+    $("avatarPreview").src = signed.signedUrl;
+    $("avatarPreview").classList.remove("hidden");
+    $("avatarFallback").classList.add("hidden");
     $("profilePhoto").value = "";
-    showMessage("profileStatus","Profile saved. Members can now see your name, bio and profile photo.");
   } catch (error) {
-    showMessage("profileStatus",error.message || "Your profile could not be saved.");
-  } finally { saveButton.disabled = false; }
-};
+    console.error("Profile picture upload failed:", error);
+    alert(error.message || "Your profile picture could not be uploaded. Please try again.");
+    $("profilePhoto").value = "";
+  } finally {
+    if (button) button.style.opacity = "";
+  }
+});
 
 $("saveUsernameBtn").onclick = async () => {
   const username = $("profileUsername").value.trim().replace(/^@/, "").toLowerCase();
