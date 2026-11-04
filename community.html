@@ -111,6 +111,14 @@ button,.gold-link{border-radius:12px}
 <div class="eyebrow">THE MEMBERS CLUB</div>
 <h2>Community</h2>
 <p>A members-only space to share ideas, conversations and updates. Your posts stay here until you choose to remove them.</p>
+
+</section>
+
+<section class="community-highlights" aria-label="Community highlights">
+  <a class="highlight-tile highlight-main" href="/about.html"><span class="highlight-orb">DJ</span><strong>DJ OLATUNS</strong><small>Official updates</small></a>
+  <a class="highlight-tile" href="/mixtapes.html"><span class="highlight-orb">♫</span><strong>Mixtapes</strong><small>Music & mixes</small></a>
+  <a class="highlight-tile" href="/booking.html"><span class="highlight-orb">✦</span><strong>Events</strong><small>Bookings</small></a>
+  <a class="highlight-tile" href="/dj-lessons.html"><span class="highlight-orb">♬</span><strong>Academy</strong><small>Learn DJing</small></a>
 </section>
 
 <section id="authPanel" class="panel" aria-live="polite">
@@ -668,3 +676,42 @@ else start();
 <script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script><script src="/theme.js"></script>
 </body>
 </html>
+<style>
+
+/* Social-feed presentation refresh — preserves Supabase auth, moderation and feed code */
+main{width:min(100% - 20px,780px)!important;margin:14px auto 26px!important}
+header{position:relative;text-align:left!important;padding:17px 16px 17px 70px!important;background:linear-gradient(110deg,#211a0d,#090909 75%)!important}
+header h1{font-size:20px!important;letter-spacing:2px!important}
+header p{font-size:9px!important;letter-spacing:1.6px!important}
+.hero{position:relative;overflow:hidden;min-height:190px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px!important;border-radius:19px!important;background:linear-gradient(0deg,#080808 0%,rgba(8,8,8,.72) 40%,rgba(8,8,8,.15) 100%),radial-gradient(ellipse at 75% 5%,#a17b32 0%,#4d3814 27%,#1b160c 60%,#090909 100%)!important;border:1px solid #765b2b!important}
+.hero:before{content:"DJ OLATUNS";position:absolute;right:-7px;top:0;color:#ffe6a0;opacity:.12;font-size:clamp(34px,9vw,78px);font-weight:1000;letter-spacing:3px;white-space:nowrap}
+.hero .eyebrow,.hero h2,.hero p{position:relative;z-index:1}
+.hero h2{font-size:30px!important;margin:4px 0!important}
+.hero p{font-size:13px!important;max-width:510px}
+.community-highlights{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:12px 0 16px;overflow-x:auto}
+.highlight-tile{min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 5px;border:1px solid #46371f;border-radius:15px;background:linear-gradient(145deg,#1d190f,#111);text-decoration:none;text-align:center;color:#ffe6a0}
+.highlight-orb{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;border:2px solid #d9ad55;background:radial-gradient(circle at 30% 25%,#ffe6a0,#8a6220 72%);color:#171108;font-size:17px;font-weight:1000;box-shadow:0 4px 13px #0008}
+.highlight-tile strong{font-size:11px;line-height:1.2}
+.highlight-tile small{font-size:9px;line-height:1.2;color:#b9b2a3!important}
+.panel{border-radius:18px!important;padding:17px!important;margin-bottom:13px!important}
+#composerPanel{position:relative}
+#composerPanel h3{font-size:18px!important;margin-bottom:5px}
+#composerPanel>p.muted{font-size:12px!important}
+#postForm{position:relative;padding-left:54px}
+#postForm:before{content:"DJ";position:absolute;left:0;top:2px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffe6a0,#9c7026);border:2px solid #d9ad55;color:#171108;font-weight:1000;font-size:14px}
+#postForm label{font-size:12px;color:#e4c982;font-weight:750}
+#postText{min-height:95px}
+#postForm .row{align-items:center}
+#publishButton{min-height:43px}
+.member-search{display:flex;gap:8px;align-items:center}
+.member-search input{min-width:0;margin:8px 0}
+.member-search button{flex:0 0 auto}
+.post{border-radius:17px!important;padding:16px!important;background:linear-gradient(145deg,#191713,#10100e)!important;border:1px solid #3c321f!important}
+.post-top{gap:10px}
+.post-avatar{border:2px solid #d9ad55;box-shadow:0 3px 10px #0007}
+.post-author strong{color:#ffe6a0!important}
+.post-footer{display:flex;gap:14px;flex-wrap:wrap;color:#d9ad55!important}
+#feedMessage{padding:5px 0}
+@media(max-width:480px){main{width:calc(100% - 16px)!important}.community-highlights{gap:6px}.highlight-tile{padding:10px 3px}.highlight-orb{width:43px;height:43px}#postForm{padding-left:0}#postForm:before{display:none}.member-search{align-items:stretch}.member-search button{padding:10px!important}}
+
+</style>
