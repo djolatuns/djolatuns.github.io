@@ -289,6 +289,25 @@ footer{margin-top:32px}
 #displayNameInput{width:100%;margin:6px 0 10px}
 #displayNameStatus{min-height:18px}
 </style>
+
+<style>
+/* Social-app inspired Account Centre */
+.account-center-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:2px 0 4px}
+.account-center-nav a{display:flex;align-items:center;gap:11px;min-width:0;padding:13px 12px;border:1px solid #40331f;border-radius:15px;background:linear-gradient(145deg,#1b1812,#0d0d0c);color:#f7f0df;text-decoration:none;transition:border-color .18s,transform .18s}
+.account-center-nav a:hover{border-color:#b58b3d;transform:translateY(-1px)}
+.account-center-nav .ac-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:12px;background:#2a2111;color:#ffe6a0;font-size:19px;font-weight:800}
+.account-center-nav a>span:nth-child(2){min-width:0;flex:1}
+.account-center-nav strong,.account-center-nav small{display:block}
+.account-center-nav strong{font-size:13px;color:#ffe6a0}
+.account-center-nav small{font-size:10px;line-height:1.4;color:#b9b2a3;margin-top:3px}
+.account-center-nav a>b{color:#cda34c;font-size:22px;font-weight:500}
+#accountCard>h2{margin-bottom:0}
+#accountProfileCard{position:relative}
+#accountEmail{font-size:13px}
+#myCommunityPostsCard{scroll-margin-top:20px}
+#profileEditor,#usernameSetup,#myCommunityPostsCard{scroll-margin-top:20px}
+@media(max-width:430px){.account-center-nav{grid-template-columns:1fr}.account-center-nav a{padding:12px}.account-center-nav small{font-size:11px}}
+</style>
 </head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
@@ -306,9 +325,17 @@ footer{margin-top:32px}
 </section>
 <section class="card hidden" id="accountCard">
 <div class="row" style="justify-content:flex-start;margin-bottom:12px"><button id="logoutBtn" class="secondary" type="button">Log Out</button></div>
-<h2>Welcome to your account</h2>
+<h2>Your Account</h2>
 <h3 id="accountDisplayName" class="account-display-name">Member</h3>
 <p id="accountEmail" class="muted"></p>
+<nav class="account-center-nav" aria-label="Account centre shortcuts">
+<a href="#profileEditor"><span class="ac-icon">✎</span><span><strong>Edit profile</strong><small>Photo, display name and profile details</small></span><b>›</b></a>
+<a href="#myCommunityPostsCard"><span class="ac-icon">▤</span><span><strong>Your activity</strong><small>Posts and review updates</small></span><b>›</b></a>
+<a href="#usernameSetup"><span class="ac-icon">@</span><span><strong>Username</strong><small>How members find you in Messenger</small></span><b>›</b></a>
+<a href="/settings.html"><span class="ac-icon">⚙</span><span><strong>Settings & privacy</strong><small>App preferences and controls</small></span><b>›</b></a>
+<a href="/privacy.html"><span class="ac-icon">◈</span><span><strong>Privacy information</strong><small>How your account information is handled</small></span><b>›</b></a>
+<a href="/about.html"><span class="ac-icon">?</span><span><strong>Help & about</strong><small>Learn about DJ OLATUNS App</small></span><b>›</b></a>
+</nav>
 <section class="account-profile" id="accountProfileCard" aria-label="Your member profile">
 <div class="account-profile-main"><strong style="color:#ffe6a0">Your Member Profile</strong><p class="muted" style="margin:4px 0">Your public profile and community statistics.</p><div class="account-profile-stats"><div class="account-profile-stat"><strong id="myFollowersCount">—</strong><span>Followers</span></div><div class="account-profile-stat"><strong id="myFollowingCount">—</strong><span>Following</span></div></div><p id="myProfileStatsStatus" class="muted status" aria-live="polite"></p><a class="gold-link" id="viewMyProfile" href="/member-profile.html">View My Profile</a></div>
 </section>
