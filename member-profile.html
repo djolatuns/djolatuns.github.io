@@ -5,11 +5,11 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
 header{text-align:center;padding:25px 16px;background:#0d0c0a;border-bottom:1px solid var(--line)}header h1{margin:0;color:var(--gold2);letter-spacing:2px;font-size:22px}
 main{width:min(100% - 28px,680px);margin:25px auto}.card{background:linear-gradient(145deg,#211a0d,#151515 65%);border:1px solid #554324;border-radius:20px;padding:24px;text-align:center}
-.avatar{width:108px;height:108px;border-radius:50%;object-fit:cover;display:grid;place-items:center;margin:0 auto 15px;background:linear-gradient(145deg,#f0d18a,#8b6427);color:#17120a;font-size:36px;font-weight:900;border:2px solid #806326}
+.avatar{width:108px;height:108px;border-radius:50%;object-fit:cover;margin:0 auto 15px;background:linear-gradient(145deg,#f0d18a,#8b6427);color:#17120a;font-size:36px;font-weight:900;border:2px solid #806326}.avatar-fallback{display:grid;place-items:center}.hidden{display:none!important}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:360px;margin:20px auto}.stat{padding:12px;border:1px solid #554324;border-radius:13px;background:#111}.stat strong{display:block;color:var(--gold2);font-size:24px;line-height:1.2}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
 h2{margin:5px 0;color:var(--gold2);font-size:27px;overflow-wrap:anywhere}.username{color:var(--gold);font-weight:700}.bio{margin:18px auto;max-width:520px;white-space:pre-wrap;overflow-wrap:anywhere;color:#ddd8cd}
 .meta{color:var(--muted);font-size:13px}.button{display:inline-block;margin-top:18px;padding:11px 16px;border-radius:11px;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;font-weight:850;text-decoration:none}
 .status{color:var(--muted);text-align:center}.error{color:#ffb4a9}
-</style></head><body><header><h1>DJ OLATUNS • MEMBERS</h1></header><main><section class="card" aria-live="polite"><div id="avatar" class="avatar">M</div><h2 id="displayName">Loading member profile…</h2><div id="username" class="username"></div><p id="bio" class="bio"></p><div id="meta" class="meta"></div><a class="button" href="/community.html">Back to Community</a></section><p id="status" class="status">Connecting securely…</p></main>
+</style></head><body><header><h1>DJ OLATUNS • MEMBERS</h1></header><main><section class="card" aria-live="polite"><div id="avatarFallback" class="avatar avatar-fallback">M</div><img id="avatar" class="avatar hidden" alt="Member profile picture"><h2 id="displayName">Loading member profile…</h2><div id="username" class="username"></div><p id="bio" class="bio"></p><div class="stats" aria-label="Member activity"><div class="stat"><strong id="followersCount">—</strong><span>Followers</span></div><div class="stat"><strong id="followingCount">—</strong><span>Following</span></div></div><div id="meta" class="meta"></div><a class="button" href="/community.html">Back to Community</a></section><p id="status" class="status">Connecting securely…</p></main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 (()=>{"use strict";
 const SUPABASE_URL="https://tiqracqtgggoctyvtuqo.supabase.co";
@@ -29,9 +29,25 @@ const {data,error}=await query.maybeSingle();if(error)throw error;if(!data){fail
 $("displayName").textContent=data.display_name||"DJ OLATUNS Member";
 $("username").textContent=data.username?"@"+data.username:"";
 $("bio").textContent=data.bio||"This member hasn't added a bio yet.";
-$("avatar").textContent=(data.display_name||data.username||"M").trim().charAt(0).toUpperCase();
-if(data.avatar_path){const {data:signed,error:avatarError}=await client.storage.from("member-avatars").createSignedUrl(data.avatar_path,3600);if(!avatarError&&signed?.signedUrl){$("avatar").textContent="";$("avatar").style.backgroundImage="url('"+signed.signedUrl.replace(/'/g,"%27")+"')";$("avatar").style.backgroundSize="cover";$("avatar").style.backgroundPosition="center";}}
-$("meta").textContent="DJ OLATUNS registered member";$("status").textContent="";
+$("avatarFallback").textContent=(data.display_name||data.username||"M").trim().charAt(0).toUpperCase();
+if(data.avatar_path){
+  const {data:signed,error:avatarError}=await client.storage.from("member-avatars").createSignedUrl(data.avatar_path,604800);
+  if(!avatarError&&signed?.signedUrl){
+    $("avatar").src=signed.signedUrl;
+    $("avatar").classList.remove("hidden");
+    $("avatarFallback").classList.add("hidden");
+    $("avatar").addEventListener("error",()=>{$("avatar").classList.add("hidden");$("avatarFallback").classList.remove("hidden");},{once:true});
+  }
+}
+const [followers,following]=await Promise.all([
+  client.from("community_follows").select("follower_id",{count:"exact",head:true}).eq("following_id",data.id),
+  client.from("community_follows").select("following_id",{count:"exact",head:true}).eq("follower_id",data.id)
+]);
+$("followersCount").textContent=followers.error?"—":String(followers.count??0);
+$("followingCount").textContent=following.error?"—":String(following.count??0);
+if(followers.error||following.error) $("meta").textContent="Some member statistics are temporarily unavailable.";
+else $("meta").textContent="DJ OLATUNS registered member";
+$("status").textContent="";
 }catch(error){fail("Couldn't load this profile: "+(error.message||"Please try again."));}
 }
 start();
