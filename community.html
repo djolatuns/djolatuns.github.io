@@ -765,3 +765,14 @@ main>.panel:not(#authPanel):not(#composerPanel):not(.member-directory){order:5}
 @media(max-width:480px){main{width:calc(100% - 12px)!important;margin-top:8px!important}.hero{min-height:105px!important}.social-top-nav a{min-height:43px}.highlight-tile{flex-basis:78px!important}.highlight-orb{width:58px!important;height:58px!important}#postForm{padding-left:0!important}#postForm:before{display:none}#postForm label[for="postText"]{display:block}}
 
 </style>
+
+<style>
+
+/* Keep required category and media controls available in the refreshed composer */
+#postForm label[for="postCategory"],#postCategory,#postForm label[for="postMedia"],#postMedia{display:block!important}
+#postForm label[for="postCategory"],#postForm label[for="postMedia"]{font-size:11px!important;margin:10px 0 3px!important}
+#postCategory,#postMedia{font-size:12px!important;padding:10px!important;margin:4px 0 8px!important;min-height:40px}
+#postForm label[for="postTitle"],#postTitle{display:none!important}
+#postForm .muted{font-size:10px!important}
+
+</style>
