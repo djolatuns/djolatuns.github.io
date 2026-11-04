@@ -417,6 +417,10 @@ async function loadFeed() {
             setStatus("feedMessage","Your post could not be deleted: "+deleteError.message,"error");
             return;
           }
+          if (post.media_url) {
+            const { error: mediaDeleteError } = await client.storage.from("community-media").remove([post.media_url]);
+            if (mediaDeleteError) console.warn("Post removed, but its media file could not be deleted:",mediaDeleteError);
+          }
           article.remove();
           setStatus("feedMessage","Your post has been deleted.","signed");
         });
