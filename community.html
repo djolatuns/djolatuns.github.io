@@ -720,12 +720,10 @@ header p{font-size:9px!important;letter-spacing:1.6px!important}
 <style>
 
 /* Facebook-inspired information architecture, DJ OLATUNS black & gold skin */
-header{padding:14px 14px 0!important;text-align:left!important;position:sticky;top:0;z-index:50;background:#090909f5!important;backdrop-filter:blur(16px)}
+header{text-align:left!important;position:relative!important;top:auto!important;z-index:auto!important;backdrop-filter:none!important}
 header h1{font-size:22px!important;letter-spacing:1.5px!important}
 header p{font-size:10px!important;letter-spacing:1.2px!important;margin:1px 0 9px!important}
-.social-top-nav{display:grid;grid-template-columns:repeat(6,1fr);align-items:center;border-top:1px solid #302719;margin:8px -14px 0;padding:0 5px}
-.social-top-nav a{display:grid;place-items:center;min-height:46px;color:#c8b98f!important;text-decoration:none;font-size:24px;border-bottom:3px solid transparent}
-.social-top-nav a.selected{color:#ffe6a0!important;border-bottom-color:#d9ad55}
+
 main{display:flex!important;flex-direction:column!important;gap:0!important;width:min(100% - 18px,760px)!important;margin:12px auto 28px!important}
 .hero{order:0;min-height:120px!important;padding:16px 18px!important;margin-bottom:10px!important;border-radius:0 0 14px 14px!important;box-shadow:none!important}
 .hero .eyebrow{font-size:9px!important}
@@ -768,4 +766,9 @@ main>.panel:not(#authPanel):not(#composerPanel):not(.member-directory){order:5}
 #postForm label[for="postTitle"],#postTitle{display:none!important}
 #postForm .muted{font-size:10px!important}
 
+</style>
+
+<style>
+/* Community page: no six-icon top navigation */
+.social-top-nav{display:none!important}
 </style>
