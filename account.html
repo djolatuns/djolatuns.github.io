@@ -904,3 +904,40 @@ startPortal().catch(error => {
 <script src="/pwa.js" defer></script>
 <script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script><script src="/theme.js"></script>
 </body></html>
+<style>
+
+/* 2026 social-profile refresh — black & gold, existing account logic preserved */
+.account-wrap{width:min(100% - 24px,780px)!important;margin:16px auto 30px!important}
+#authSection{max-width:560px;margin:28px auto!important;border-radius:22px!important}
+#authSection h2{font-size:25px;letter-spacing:.2px}
+#authCard{display:grid;gap:7px}
+#authCard button{min-height:48px}
+#accountCard{padding:0!important;overflow:hidden;border-radius:22px!important;background:#0d0c0a!important}
+#accountCard>.row{padding:14px 18px 0}
+.account-heading{position:relative;isolation:isolate;min-height:190px;padding:28px 22px 26px!important;margin:0 -1px 0!important;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;background:linear-gradient(115deg,rgba(8,8,8,.2),rgba(8,8,8,.8)),radial-gradient(ellipse at 75% 10%,#806126 0%,#3c2b0d 30%,#17130b 70%,#090909 100%)!important;border-bottom:1px solid #806326}
+.account-heading:after{content:"DJ OLATUNS";position:absolute;z-index:-1;right:12px;top:8px;color:#ffe6a0;opacity:.09;font-size:clamp(32px,9vw,76px);font-weight:1000;letter-spacing:4px;white-space:nowrap}
+.account-heading h2{font-size:clamp(26px,6vw,38px)!important;margin:4px 0!important;color:#ffe6a0!important}
+.account-heading-subtitle{max-width:440px;color:#e0d4b8!important;margin:5px 0 0!important;font-size:13px}
+.account-eyebrow{color:#f0cf7e!important;font-size:10px;letter-spacing:2px;font-weight:900}
+.account-secure-mark{align-self:flex-start;border:1px solid #b38b3f;background:#0b0a08b8;border-radius:999px;padding:7px 10px;color:#ffe6a0!important;font-size:10px;font-weight:900;white-space:nowrap}
+#accountDisplayName{position:relative;margin:0!important;padding:18px 20px 0 86px!important;color:#fff!important;font-size:22px!important;min-height:68px}
+#accountDisplayName:before{content:"DJ";position:absolute;left:19px;top:-28px;width:58px;height:58px;border:3px solid #0d0c0a;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffe6a0,#a77722);color:#171108;font-size:20px;font-weight:1000;box-shadow:0 5px 18px #0008}
+#accountEmail{padding:0 20px 15px 86px!important;margin:0!important;font-size:12px}
+.account-center-nav{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 16px 16px}
+.account-center-nav a{min-width:0!important;display:flex!important;align-items:center;gap:10px;padding:13px!important;border:1px solid #3c321f!important;border-radius:14px!important;background:linear-gradient(145deg,#1b1812,#111)!important;color:#f6e7c4!important;text-decoration:none}
+.account-center-nav a strong{display:block;font-size:13px;color:#ffe6a0}
+.account-center-nav a small{display:block;font-size:10px;line-height:1.35;margin-top:3px}
+.account-center-nav a>b{margin-left:auto;color:#d9ad55}
+.ac-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:11px;background:#302513;color:#f4d78f;font-size:17px}
+.account-section-label{padding:12px 18px 8px!important;color:#c39a4d!important;font-size:10px!important;letter-spacing:2px;font-weight:900}
+.account-profile,#myCommunityPostsCard,#usernameSetup,#profileEditor{margin:10px 15px 16px!important;padding:18px!important;border-radius:17px!important;background:#15130f!important;border:1px solid #44371f!important}
+.account-profile-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+.account-profile-stat{padding:13px;border-radius:13px;background:#0b0a08;border:1px solid #3b301d;text-align:center}
+.account-profile-stat strong{display:block;color:#ffe6a0;font-size:23px}
+.account-profile-stat span{font-size:11px;color:#b9b2a3}
+#viewMyProfile{display:block;text-align:center;margin-top:12px}
+.profile-edit-preview{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.avatar-preview{width:76px!important;height:76px!important;border-radius:50%!important;border:2px solid #d9ad55!important;object-fit:cover}
+@media(max-width:520px){.account-center-nav{grid-template-columns:1fr}.account-heading{min-height:165px;padding:22px 16px!important}.account-secure-mark{font-size:9px}.account-center-nav a{padding:12px!important}}
+
+</style>
