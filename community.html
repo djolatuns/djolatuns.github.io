@@ -53,6 +53,9 @@ button,.gold-link{border-radius:12px}
 .post h4{font-size:18px;color:#fff;margin:5px 0 8px}
 .post p{font-size:15px;line-height:1.7;color:#eee9df;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
 .post-footer{border-top:1px solid #2d2922;margin-top:15px;padding-top:10px;font-size:9px;letter-spacing:1.5px;font-weight:800;color:#b79653}
+.post-media{display:block;width:100%;max-height:560px;object-fit:contain;background:#080808;border:1px solid #302b21;border-radius:13px;margin:12px 0}
+.post-category{display:inline-block;margin:0 0 8px;padding:4px 9px;border:1px solid #554324;border-radius:999px;color:#e8c77d;font-size:10px;font-weight:800;letter-spacing:.5px}
+#postMedia,#postCategory{display:block;width:100%;margin:8px 0 14px;padding:12px;background:#0e0e0e;color:var(--text);border:1px solid #39342a;border-radius:13px;font:inherit}
 .delete-post{margin-left:auto;background:#211d17;color:#d9c59c;border:1px solid #4a3d27;padding:7px 10px;font-size:11px}
 .empty{padding:34px 18px;border:1px dashed #554324;border-radius:16px;background:#111;text-align:center}
 #feedMessage{font-size:13px}
@@ -122,13 +125,21 @@ button,.gold-link{border-radius:12px}
 </section>
 <section id="composerPanel" class="panel hidden">
 <h3>Create a Community Post</h3>
-<p class="muted">Share an update with the DJ OLATUNS community. Posts are permanent until deleted. Text posts only.</p>
+<p class="muted">Share DJ OLATUNS-related photos, videos or updates. Every submission stays private until the official administrator approves it.</p>
 <form id="postForm">
+<label for="postCategory">Post category</label>
+<select id="postCategory" name="category" required>
+<option value="">Choose a DJ OLATUNS category</option>
+<option>DJ OLATUNS App</option><option>DJing &amp; Music</option><option>Mixes &amp; Releases</option><option>Events &amp; Bookings</option><option>DJ Academy</option><option>Member Community</option>
+</select>
 <label for="postTitle">Post title <span class="muted">(optional)</span></label>
-<input id="postTitle" name="title" type="text" maxlength="100" placeholder="Give your update a title">
-<label for="postText">Your update</label>
-<textarea id="postText" name="caption" maxlength="3000" required placeholder="What's happening? Share it with the community…"></textarea>
-<div class="row"><button id="publishButton" type="submit">Publish Post</button><span id="characterCount" class="muted">0 / 3000</span></div>
+<input id="postTitle" name="title" type="text" maxlength="100" placeholder="Give your post a title">
+<label for="postText">Caption or description <span class="muted">(optional if media is attached)</span></label>
+<textarea id="postText" name="caption" maxlength="3000" placeholder="Explain how this relates to DJ OLATUNS…"></textarea>
+<label for="postMedia">Add a photo or video</label>
+<input id="postMedia" name="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm">
+<p class="muted">Images: JPEG, PNG or WebP. Videos: MP4 or WebM. Maximum file size: 50 MB.</p>
+<div class="row"><button id="publishButton" type="submit">Submit for Review</button><span id="characterCount" class="muted">0 / 3000</span></div>
 <p id="publishMessage" class="status" role="status"></p>
 </form>
 </section>
@@ -177,7 +188,7 @@ function showSignedIn(user) {
   $("authPanel").classList.toggle("hidden", Boolean(currentUser));
   $("authHeading").textContent = currentUser ? "You're signed in" : "Members sign-in required";
   $("authDescription").textContent = currentUser
-    ? "Signed in as " + (currentUser.email || "your DJ OLATUNS account") + ". You can now publish text-only updates."
+    ? "Signed in as " + (currentUser.email || "your DJ OLATUNS account") + ". Submit DJ OLATUNS-related text, photos or videos for approval."
     : "Sign in to your DJ OLATUNS Members Account, then return here. Your account is not affected.";
   $("accountLink").textContent = currentUser ? "Open Members Account" : "Sign in / Register";
   setStatus("authMessage", currentUser ? "Membership account connected successfully." : "No active sign-in was found on this device.", currentUser ? "signed" : "");
@@ -269,7 +280,8 @@ async function loadFeed() {
   setStatus("feedMessage", feed.childElementCount ? "Updating community posts…" : "Loading community posts…");
   try {
     const { data, error } = await client.from("community_posts")
-      .select("id,title,caption,created_at,created_by")
+      .select("id,title,caption,category,media_url,media_type,moderation_status,created_at,created_by")
+      .eq("moderation_status","published")
       .order("created_at", { ascending: false })
       .limit(100);
     if (error) throw error;
@@ -285,6 +297,10 @@ async function loadFeed() {
     const uniquePosts = [...new Map(data.map(post => [post.id, post])).values()];
     data.splice(0, data.length, ...uniquePosts);
     const postIds = data.map(post => post.id);
+    await Promise.all(data.filter(post => post.media_url).map(async post => {
+      const { data: mediaData, error: mediaError } = await client.storage.from("community-media").createSignedUrl(post.media_url, 3600);
+      if (!mediaError && mediaData?.signedUrl) post.media_signed_url = mediaData.signedUrl;
+    }));
     const [likesResult, commentsResult, followsResult] = await Promise.all([
       client.from("community_post_likes").select("post_id,user_id").in("post_id", postIds),
       client.from("community_post_comments").select("id,post_id,user_id,body,created_at").in("post_id", postIds).order("created_at", { ascending: true }).limit(500),
@@ -407,14 +423,30 @@ async function loadFeed() {
         top.append(remove);
       }
       article.append(top);
+      if (post.category) {
+        const category = document.createElement("span");
+        category.className = "post-category";
+        category.textContent = post.category;
+        article.append(category);
+      }
       if (post.title) {
         const heading = document.createElement("h4");
         heading.textContent = post.title;
         article.append(heading);
       }
-      const body = document.createElement("p");
-      body.textContent = post.caption || "";
-      article.append(body);
+      if (post.caption) {
+        const body = document.createElement("p");
+        body.textContent = post.caption;
+        article.append(body);
+      }
+      if (post.media_signed_url) {
+        const media = post.media_type === "video" ? document.createElement("video") : document.createElement("img");
+        media.className = "post-media";
+        media.src = post.media_signed_url;
+        if (post.media_type === "video") { media.controls = true; media.preload = "metadata"; }
+        else { media.alt = post.title || "Community photo"; media.loading = "lazy"; }
+        article.append(media);
+      }
 
       const actionRow = document.createElement("div");
       actionRow.className = "community-actions";
@@ -550,52 +582,46 @@ async function publishPost(event) {
   event.preventDefault();
   const title = $("postTitle").value.trim();
   const caption = $("postText").value.trim();
+  const category = $("postCategory").value;
+  const file = $("postMedia").files?.[0] || null;
   const button = $("publishButton");
-  if (!caption) {
-    setStatus("publishMessage", "Please write your update before publishing.", "error");
-    return;
-  }
+  if (!category) { setStatus("publishMessage","Choose the DJ OLATUNS category that best describes your post.","error"); return; }
+  if (!caption && !file) { setStatus("publishMessage","Add a caption or attach a photo/video before submitting.","error"); return; }
+  if (file && !["image/jpeg","image/png","image/webp","video/mp4","video/webm"].includes(file.type)) { setStatus("publishMessage","That file type is not supported. Choose JPEG, PNG, WebP, MP4 or WebM.","error"); return; }
+  if (file && file.size > 50 * 1024 * 1024) { setStatus("publishMessage","The selected file is larger than 50 MB.","error"); return; }
   button.disabled = true;
-  setStatus("publishMessage", "Checking your membership sign-in…");
+  let uploadedPath = null;
+  setStatus("publishMessage","Checking your membership sign-in…");
   try {
     const { data, error } = await client.auth.getSession();
     if (error) throw error;
     const session = data.session;
     if (!session || session.user.is_anonymous === true) {
       showSignedIn(null);
-      throw new Error("A registered DJ OLATUNS member account is required to publish in this community. Please sign in with your registered account.");
+      throw new Error("A registered DJ OLATUNS member account is required to submit a post. Please sign in first.");
+    }
+    let mediaType = null;
+    if (file) {
+      mediaType = file.type.startsWith("video/") ? "video" : "image";
+      const ext = file.name.split(".").pop().toLowerCase().replace(/[^a-z0-9]/g,"") || (mediaType === "video" ? "mp4" : "jpg");
+      uploadedPath = session.user.id + "/" + crypto.randomUUID() + "." + ext;
+      setStatus("publishMessage","Uploading your media securely…");
+      const { error: uploadError } = await client.storage.from("community-media").upload(uploadedPath,file,{contentType:file.type,upsert:false});
+      if (uploadError) throw uploadError;
     }
     const { data: newPost, error: insertError } = await client.from("community_posts").insert({
-      title: title,
-      caption: caption,
-      created_by: session.user.id
+      title, caption, category, media_url: uploadedPath, media_type: mediaType,
+      created_by: session.user.id, moderation_status: "pending"
     }).select("id").single();
     if (insertError) throw insertError;
     $("postForm").reset();
     $("characterCount").textContent = "0 / 3000";
-    setStatus("publishMessage", "Post published. Sending notifications to subscribed members…", "");
-    try {
-      const pushResponse = await fetch(SUPABASE_URL + "/functions/v1/member-push", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": SUPABASE_KEY,
-          "Authorization": "Bearer " + session.access_token
-        },
-        body: JSON.stringify({ action: "community-post", post_id: newPost.id })
-      });
-      const pushResult = await pushResponse.json().catch(() => ({}));
-      if (!pushResponse.ok) throw new Error(pushResult.error || "Push delivery failed.");
-      setStatus("publishMessage", "Post published. Community alerts sent to " + pushResult.sent + " of " + pushResult.total + " subscribed devices.", "signed");
-    } catch (pushError) {
-      setStatus("publishMessage", "Your post is published, but its push alerts could not be sent: " + pushError.message, "error");
-    }
-    await loadFeed();
+    setStatus("publishMessage","Submitted successfully. Your post is now Pending Review and will appear publicly only after approval.","signed");
+    if (typeof loadMyCommunityPosts === "function") await loadMyCommunityPosts(session.user.id);
   } catch (error) {
-    setStatus("publishMessage", error.message || "Your post could not be published.", "error");
-  } finally {
-    button.disabled = false;
-  }
+    if (uploadedPath) await client.storage.from("community-media").remove([uploadedPath]).catch(()=>{});
+    setStatus("publishMessage",error.message || "Your post could not be submitted.","error");
+  } finally { button.disabled = false; }
 }
 function start() {
   if (!window.supabase || !window.supabase.createClient) {
