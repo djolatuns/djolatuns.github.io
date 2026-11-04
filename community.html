@@ -87,7 +87,7 @@ button,.gold-link{border-radius:12px}
 .member-result{display:flex;align-items:center;gap:11px;padding:11px;border:1px solid #302b21;border-radius:13px;background:#111}
 .member-result-avatar{width:44px;height:44px;flex:0 0 44px;border-radius:50%;display:grid;place-items:center;object-fit:cover;background:linear-gradient(145deg,#f0d18a,#8b6427);color:#17120a;font-weight:900}
 .member-result-info{min-width:0;flex:1}
-.member-result-info strong{display:block;color:#f7e7c1;font-size:13px;overflow-wrap:anywhere}
+.member-result-info strong,.member-profile-link{display:block;color:#f7e7c1;font-size:13px;overflow-wrap:anywhere}.member-profile-link{text-decoration:none}.member-profile-link:hover{text-decoration:underline;color:#ffe6a0}
 .member-result-info span{display:block;color:#aaa49a;font-size:11px}
 .member-result-info p{margin:3px 0 0;font-size:12px;color:#c7c0b4;overflow-wrap:anywhere}
 .member-result .community-follow{margin-left:auto}
@@ -228,7 +228,7 @@ async function searchMembers(event) {
       avatar.textContent=(member.display_name||member.username||"M").trim().charAt(0).toUpperCase();
       if(member.avatar_url){avatar.style.backgroundImage="url('"+member.avatar_url.replace(/'/g,"%27")+"')";avatar.style.backgroundSize="cover";avatar.style.backgroundPosition="center";avatar.textContent="";}
       const info=document.createElement("div");info.className="member-result-info";
-      const name=document.createElement("strong");name.textContent=member.display_name||"DJ OLATUNS Member";
+      const name=document.createElement("a");name.className="member-profile-link";name.href="/member-profile.html?id="+encodeURIComponent(member.id);name.textContent=member.display_name||"DJ OLATUNS Member";name.setAttribute("aria-label","View profile of "+name.textContent);
       const username=document.createElement("span");username.textContent=member.username?"@"+member.username:"";
       info.append(name,username);
       if(member.bio){const bio=document.createElement("p");bio.textContent=member.bio;info.append(bio);}
@@ -628,5 +628,6 @@ else start();
 </script>
 
 <script src="/pwa.js" defer></script>
-<script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script><script src="/theme.js"></script>\n</body>
+<script>(function(){const btn=document.getElementById('appMenuButton'),panel=document.getElementById('appMenu'),backdrop=document.getElementById('appMenuBackdrop'),close=document.getElementById('appMenuClose');if(!btn||!panel||!backdrop||!close)return;function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));backdrop.hidden=!open;document.documentElement.classList.toggle('menu-open',open);document.body.classList.toggle('menu-open',open);if(open)close.focus();else btn.focus()}btn.addEventListener('click',()=>setOpen(true));close.addEventListener('click',()=>setOpen(false));backdrop.addEventListener('click',()=>setOpen(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))setOpen(false)});panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));})();</script><script src="/theme.js"></script>
+</body>
 </html>
