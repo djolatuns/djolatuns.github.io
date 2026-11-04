@@ -105,7 +105,15 @@ button,.gold-link{border-radius:12px}
 </style>
 </head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
-<header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p></header>
+<header><h1>DJ OLATUNS</h1><p>UNDEFEATABLE • MEMBERS CLUB</p>
+<nav class="social-top-nav" aria-label="Community navigation">
+  <a class="selected" href="/community.html" aria-label="Home">⌂</a>
+  <a href="/member-profile.html" aria-label="Members">♙</a>
+  <a href="/mixtapes.html" aria-label="Music">♫</a>
+  <a href="/booking.html" aria-label="Events">▣</a>
+  <a href="/account.html" aria-label="Account">☻</a>
+  <a href="/settings.html" aria-label="Settings">☰</a>
+</nav></header>
 <main>
 <section class="hero">
 <div class="eyebrow">THE MEMBERS CLUB</div>
@@ -713,5 +721,47 @@ header p{font-size:9px!important;letter-spacing:1.6px!important}
 .post-footer{display:flex;gap:14px;flex-wrap:wrap;color:#d9ad55!important}
 #feedMessage{padding:5px 0}
 @media(max-width:480px){main{width:calc(100% - 16px)!important}.community-highlights{gap:6px}.highlight-tile{padding:10px 3px}.highlight-orb{width:43px;height:43px}#postForm{padding-left:0}#postForm:before{display:none}.member-search{align-items:stretch}.member-search button{padding:10px!important}}
+
+</style>
+
+<style>
+
+/* Facebook-inspired information architecture, DJ OLATUNS black & gold skin */
+header{padding:14px 14px 0!important;text-align:left!important;position:sticky;top:0;z-index:50;background:#090909f5!important;backdrop-filter:blur(16px)}
+header h1{font-size:22px!important;letter-spacing:1.5px!important}
+header p{font-size:10px!important;letter-spacing:1.2px!important;margin:1px 0 9px!important}
+.social-top-nav{display:grid;grid-template-columns:repeat(6,1fr);align-items:center;border-top:1px solid #302719;margin:8px -14px 0;padding:0 5px}
+.social-top-nav a{display:grid;place-items:center;min-height:46px;color:#c8b98f!important;text-decoration:none;font-size:24px;border-bottom:3px solid transparent}
+.social-top-nav a.selected{color:#ffe6a0!important;border-bottom-color:#d9ad55}
+main{display:flex!important;flex-direction:column!important;gap:0!important;width:min(100% - 18px,760px)!important;margin:12px auto 28px!important}
+.hero{order:0;min-height:120px!important;padding:16px 18px!important;margin-bottom:10px!important;border-radius:0 0 14px 14px!important;box-shadow:none!important}
+.hero .eyebrow{font-size:9px!important}
+.hero h2{font-size:23px!important;margin:2px 0!important}
+.hero p{font-size:12px!important;margin:0!important}
+#authPanel{order:1;margin-bottom:10px!important}
+#composerPanel{order:2;margin-bottom:12px!important}
+.community-highlights{order:3;display:flex!important;gap:9px!important;overflow-x:auto!important;padding:10px 2px 13px!important;margin:0 0 12px!important;border-top:1px solid #302719;border-bottom:1px solid #302719;scrollbar-width:none}
+.community-highlights::-webkit-scrollbar{display:none}
+.highlight-tile{flex:0 0 88px!important;min-height:112px;justify-content:flex-start!important;background:transparent!important;border:0!important;padding:3px!important}
+.highlight-orb{width:66px!important;height:66px!important;font-size:20px!important;border:2px solid #d9ad55!important;box-shadow:0 0 0 3px #18130a,0 0 0 4px #705728!important}
+.highlight-tile strong{font-size:10px!important}
+.highlight-tile small{font-size:9px!important}
+.member-directory{order:4}
+main>.panel:not(#authPanel):not(#composerPanel):not(.member-directory){order:5}
+#composerPanel{background:#14120e!important;border-radius:16px!important}
+#composerPanel h3{font-size:15px!important;color:#f7e7c1!important}
+#composerPanel>p.muted{display:none}
+#postForm{padding:0 0 0 51px!important}
+#postForm:before{top:5px!important}
+#postText{min-height:64px!important;border-radius:24px!important;padding:12px 15px!important}
+#postForm label{margin-top:8px}
+#postForm label[for="postCategory"],#postForm label[for="postTitle"],#postForm label[for="postMedia"],#postCategory,#postTitle,#postMedia{display:none}
+#postForm label[for="postText"]{font-size:0!important}
+#postForm label[for="postText"]:after{content:"What's on your mind?";font-size:13px;color:#c9c1b0}
+#postForm .row{display:flex;justify-content:flex-end}
+#publishButton{min-width:120px}
+#characterCount{margin-right:auto}
+.post{background:#141414!important;border-radius:15px!important}
+@media(max-width:480px){main{width:calc(100% - 12px)!important;margin-top:8px!important}.hero{min-height:105px!important}.social-top-nav a{min-height:43px}.highlight-tile{flex-basis:78px!important}.highlight-orb{width:58px!important;height:58px!important}#postForm{padding-left:0!important}#postForm:before{display:none}#postForm label[for="postText"]{display:block}}
 
 </style>
