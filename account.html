@@ -982,3 +982,58 @@ header p{font-size:10px!important;letter-spacing:1.2px!important;margin:1px 0 9p
 @media(max-width:480px){.account-heading{min-height:175px!important}.account-heading>div{max-width:80%}.account-center-nav{grid-template-columns:1fr!important}.account-profile-tabs a{font-size:11px}#accountDisplayName{padding-left:104px!important}#accountEmail{padding-left:104px!important}}
 
 </style>
+
+
+<style>
+/* Final Account Centre polish: clear hierarchy, calmer spacing, consistent cards */
+:root{--ac-gold:#d9b45b;--ac-gold-soft:#f4dfa9;--ac-panel:#121313;--ac-panel-2:#191916;--ac-line:rgba(217,180,91,.2);--ac-copy:#f4f1e9;--ac-muted:#aaa69b}
+body{background:radial-gradient(ellipse at 50% -20%,#30230d 0%,#11110f 34%,#080909 76%)!important;color:var(--ac-copy)!important}
+header{padding:17px 18px 12px 70px!important;text-align:left!important;background:rgba(9,9,9,.94)!important;border-bottom:1px solid var(--ac-line)!important;box-shadow:0 8px 28px #0005}
+header h1{font-size:clamp(19px,4vw,25px)!important;letter-spacing:1.8px!important}
+header p{margin:3px 0 0!important;font-size:10px!important;letter-spacing:1.5px!important}
+.account-wrap{width:min(100% - 28px,900px)!important;max-width:900px!important;margin:22px auto 48px!important;padding:0!important}
+#authSection{max-width:560px;margin:35px auto!important;padding:clamp(20px,4vw,32px)!important;border:1px solid var(--ac-line)!important;border-radius:20px!important;background:linear-gradient(145deg,#191813,#101111)!important;box-shadow:0 18px 50px #0006!important}
+#authSection h2{margin:0 0 7px!important;font-size:25px!important;color:var(--ac-gold-soft)!important}
+#authSection>p{line-height:1.6}
+#authCard{display:grid!important;grid-template-columns:1fr 1fr;gap:11px!important;margin-top:18px}
+#authCard input{min-width:0;min-height:48px;margin:0!important}
+#authCard #username,#authCard #email,#authCard #password{grid-column:1/-1}
+#authCard button{min-height:47px;margin:0!important}
+#authMessage{margin:14px 0 0!important;min-height:20px}
+#accountCard{gap:0!important;overflow:hidden!important;border:1px solid var(--ac-line)!important;border-radius:22px!important;background:#0e0f0f!important;box-shadow:0 22px 65px #0007!important}
+#accountCard>.row{order:20!important;display:flex;justify-content:flex-end!important;padding:15px 20px!important;border-top:1px solid rgba(255,255,255,.07)}
+#accountCard>.row #logoutBtn{padding:9px 15px!important;font-size:12px}
+.account-heading{min-height:174px!important;padding:25px clamp(18px,4vw,34px)!important;align-items:flex-end!important;background:linear-gradient(100deg,rgba(8,8,8,.15),rgba(8,8,8,.82)),radial-gradient(ellipse at 78% 5%,#8b6828 0%,#443312 34%,#17140d 72%,#0b0b0a 100%)!important;border-bottom:1px solid #735928!important}
+.account-heading:after{right:18px!important;top:12px!important;opacity:.11!important}
+.account-heading h2{font-size:clamp(25px,5vw,34px)!important;margin:4px 0!important}
+.account-heading-subtitle{font-size:13px!important;max-width:510px!important;line-height:1.55!important}
+.account-secure-mark{padding:7px 10px!important;font-size:9px!important}
+#accountDisplayName{padding-top:17px!important;color:#fff!important;font-size:clamp(20px,4vw,25px)!important}
+#accountEmail{color:var(--ac-muted)!important}
+.account-profile-tabs{margin:0 18px 7px!important;border-top:1px solid rgba(255,255,255,.07)!important;border-bottom:1px solid rgba(255,255,255,.09)!important}
+.account-profile-tabs a{padding:12px 5px!important;font-size:12px!important}
+.account-section-label{padding:18px 20px 10px!important;color:#c9a75e!important;font-size:10px!important;letter-spacing:1.8px!important}
+.account-center-nav{padding:0 18px 8px!important;gap:10px!important}
+.account-center-nav a{min-height:76px!important;padding:13px!important;border:1px solid var(--ac-line)!important;border-radius:13px!important;background:linear-gradient(145deg,#191916,#111212)!important}
+.account-center-nav a:hover{border-color:#b58b3d!important;background:#201b10!important}
+.account-center-nav .ac-icon{width:36px!important;height:36px!important;flex-basis:36px!important;background:#2b2314!important;color:#f2d68f!important}
+.account-center-nav strong{font-size:12px!important;color:#f4dfa9!important}
+.account-center-nav small{font-size:10px!important;color:#aaa69b!important}
+.account-profile,#myCommunityPostsCard,#usernameSetup,#profileEditor,#adminAccess{margin:8px 18px 12px!important;padding:18px!important;border:1px solid var(--ac-line)!important;border-radius:15px!important;background:linear-gradient(145deg,#181916,#101111)!important;box-shadow:none!important}
+.account-profile-stats{gap:10px!important}
+.account-profile-stat{background:#0b0c0c!important;border:1px solid rgba(255,255,255,.08)!important}
+.account-profile-stat strong{color:#f4dfa9!important}
+#myCommunityPostsCard>strong,#usernameSetup>strong{color:#f4dfa9!important;font-size:15px}
+#myCommunityPostsCard>p,#usernameSetup>p,#profileEditor>p{font-size:12px;line-height:1.55}
+#myCommunityPosts{gap:10px!important}
+#profileEditor h3{margin:0 0 5px!important;font-size:17px!important}
+.profile-edit-preview{padding:13px!important;border:1px solid rgba(255,255,255,.07)!important;border-radius:13px!important;background:#0c0d0d!important}
+#profileEditor label{color:#d8c28e!important}
+#profileEditor input:not([type=file]){width:100%}
+#accountCard button,#authSection button{font-weight:750!important}
+#accountCard input:focus,#authSection input:focus{outline:2px solid #d9b45b!important;outline-offset:2px}
+.app-menu-button{top:12px!important;left:12px!important;width:42px!important;height:42px!important}
+@media(min-width:700px){.account-center-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important}.account-profile{display:flex;align-items:center;justify-content:space-between}.account-profile-main{width:100%}}
+@media(max-width:520px){.account-wrap{width:calc(100% - 20px)!important;margin:14px auto 28px!important}#authCard{grid-template-columns:1fr!important}#authCard button{grid-column:1/-1!important;width:100%}.account-heading{min-height:158px!important;padding:20px 16px!important}.account-heading>div{max-width:100%!important}.account-secure-mark{font-size:8px!important;padding:6px 8px!important}.account-center-nav{grid-template-columns:1fr!important;padding-left:12px!important;padding-right:12px!important}.account-profile,#myCommunityPostsCard,#usernameSetup,#profileEditor,#adminAccess{margin-left:12px!important;margin-right:12px!important}.account-section-label{padding-left:14px!important}.account-profile-tabs{margin-left:12px!important;margin-right:12px!important}}
+@media(prefers-reduced-motion:reduce){.account-center-nav a{transition:none!important}}
+</style>
