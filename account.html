@@ -348,7 +348,9 @@ footer{margin-top:32px}
 @media(prefers-reduced-motion:reduce){.account-center-nav a{transition:none!important}}
 </style></head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
-<header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
+<header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p><nav class="social-top-nav" aria-label="Account navigation">
+<a href="/index.html" aria-label="Home">⌂</a><a href="/community.html" aria-label="Community">♙</a><a href="/mixtapes.html" aria-label="Music">♫</a><a href="/booking.html" aria-label="Events">▣</a><a class="selected" href="/account.html" aria-label="Account">☻</a><a href="/settings.html" aria-label="Settings">☰</a>
+</nav></header>
 <main class="account-wrap">
 <section class="card" id="authSection">
 <h2>Members Login</h2>
@@ -366,6 +368,9 @@ footer{margin-top:32px}
 <div class="account-heading"><div><span class="account-eyebrow">DJ OLATUNS • MEMBER SERVICES</span><h2>Account Centre</h2><p class="account-heading-subtitle">Manage your profile, activity, preferences and account security from one place.</p></div><span class="account-secure-mark">✦ MEMBER</span></div>
 <h3 id="accountDisplayName" class="account-display-name">Member</h3>
 <p id="accountEmail" class="muted"></p>
+<nav class="account-profile-tabs" aria-label="Profile sections">
+<a class="active" href="#accountProfileCard">All</a><a href="#myCommunityPostsCard">Posts</a><a href="#profileEditor">Photos</a><a href="#usernameSetup">About</a>
+</nav>
 <div class="account-section-label">YOUR ACCOUNT</div><nav class="account-center-nav" aria-label="Account centre shortcuts">
 <a href="#profileEditor"><span class="ac-icon">✎</span><span><strong>Edit profile</strong><small>Photo, display name and profile details</small></span><b>›</b></a>
 <a href="#myCommunityPostsCard"><span class="ac-icon">▤</span><span><strong>Your activity</strong><small>Posts and review updates</small></span><b>›</b></a>
@@ -939,5 +944,43 @@ startPortal().catch(error => {
 .profile-edit-preview{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .avatar-preview{width:76px!important;height:76px!important;border-radius:50%!important;border:2px solid #d9ad55!important;object-fit:cover}
 @media(max-width:520px){.account-center-nav{grid-template-columns:1fr}.account-heading{min-height:165px;padding:22px 16px!important}.account-secure-mark{font-size:9px}.account-center-nav a{padding:12px!important}}
+
+</style>
+
+<style>
+
+/* Facebook profile-page structure in DJ OLATUNS colours */
+header{padding:14px 14px 0!important;text-align:left!important;position:sticky;top:0;z-index:50;background:#090909f5!important;backdrop-filter:blur(16px)}
+header h1{font-size:22px!important;letter-spacing:1.5px!important}
+header p{font-size:10px!important;letter-spacing:1.2px!important;margin:1px 0 9px!important}
+.social-top-nav{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid #302719;margin:8px -14px 0;padding:0 5px}
+.social-top-nav a{display:grid;place-items:center;min-height:46px;color:#c8b98f!important;text-decoration:none;font-size:24px;border-bottom:3px solid transparent}
+.social-top-nav a.selected{color:#ffe6a0!important;border-bottom-color:#d9ad55}
+.account-wrap{width:min(100% - 16px,780px)!important;padding:0!important;margin:10px auto 30px!important}
+#accountCard{padding:0!important;overflow:hidden!important;display:flex;flex-direction:column;gap:0!important;border-radius:15px!important}
+#accountCard>.row{order:9;padding:12px 15px!important;margin:0!important}
+.account-heading{order:0;min-height:210px!important;display:flex!important;align-items:flex-end!important;padding:18px!important;margin:0!important;border:0!important;border-radius:0!important;background:linear-gradient(0deg,#080808 0%,rgba(8,8,8,.35) 70%),radial-gradient(ellipse at 70% 5%,#9b762d 0%,#4c3815 30%,#18140c 72%,#080808 100%)!important}
+.account-heading:after{font-size:clamp(36px,10vw,82px)!important;top:12px!important}
+.account-heading>div{max-width:75%}
+.account-heading h2{font-size:20px!important}
+.account-heading-subtitle{font-size:11px!important}
+.account-secure-mark{font-size:9px!important}
+#accountDisplayName{order:1;position:relative!important;margin:-37px 0 0!important;padding:48px 16px 0 110px!important;min-height:93px!important;font-size:22px!important;color:#fff!important;z-index:2}
+#accountDisplayName:before{left:16px!important;top:-5px!important;width:82px!important;height:82px!important;border:4px solid #111!important;box-shadow:0 0 0 2px #c99a43!important;font-size:25px!important}
+#accountEmail{order:2!important;padding:0 16px 13px 110px!important;margin:-3px 0 0!important;font-size:12px!important}
+.account-profile-tabs{order:3;display:grid;grid-template-columns:repeat(4,1fr);margin:0 14px 12px;border-top:1px solid #302719;border-bottom:1px solid #302719}
+.account-profile-tabs a{padding:13px 4px;text-align:center;text-decoration:none;color:#c8c1b3;font-size:12px;font-weight:750;border-bottom:3px solid transparent}
+.account-profile-tabs a.active{color:#ffe6a0;border-bottom-color:#d9ad55}
+#accountCard>.account-section-label{order:4;padding:12px 16px 7px!important}
+#accountCard>.account-center-nav{order:5;padding:0 14px 12px!important}
+#accountProfileCard{order:6!important;margin:0 14px 14px!important}
+#myCommunityPostsCard{order:7!important}
+#usernameSetup{order:8!important}
+#profileEditor{order:9!important}
+#adminAccess{order:10!important}
+.account-center-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.account-center-nav a{background:#111!important}
+#authSection{padding:20px!important;margin:10px 0 16px!important}
+@media(max-width:480px){.account-heading{min-height:175px!important}.account-heading>div{max-width:80%}.account-center-nav{grid-template-columns:1fr!important}.account-profile-tabs a{font-size:11px}#accountDisplayName{padding-left:104px!important}#accountEmail{padding-left:104px!important}}
 
 </style>
