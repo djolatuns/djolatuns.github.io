@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090909"><meta name="description" content="Public DJ OLATUNS member profile"><title>DJ OLATUNS | Member Profile</title>
+<style>
+:root{--bg:#090909;--panel:#151515;--gold:#d9ad55;--gold2:#f3d68e;--text:#f7f4ed;--muted:#aaa49a;--line:#39342a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{text-align:center;padding:25px 16px;background:#0d0c0a;border-bottom:1px solid var(--line)}header h1{margin:0;color:var(--gold2);letter-spacing:2px;font-size:22px}
+main{width:min(100% - 28px,680px);margin:25px auto}.card{background:linear-gradient(145deg,#211a0d,#151515 65%);border:1px solid #554324;border-radius:20px;padding:24px;text-align:center}
+.avatar{width:108px;height:108px;border-radius:50%;object-fit:cover;display:grid;place-items:center;margin:0 auto 15px;background:linear-gradient(145deg,#f0d18a,#8b6427);color:#17120a;font-size:36px;font-weight:900;border:2px solid #806326}
+h2{margin:5px 0;color:var(--gold2);font-size:27px;overflow-wrap:anywhere}.username{color:var(--gold);font-weight:700}.bio{margin:18px auto;max-width:520px;white-space:pre-wrap;overflow-wrap:anywhere;color:#ddd8cd}
+.meta{color:var(--muted);font-size:13px}.button{display:inline-block;margin-top:18px;padding:11px 16px;border-radius:11px;background:linear-gradient(120deg,#ffe5a0,#c89431);color:#100d06;font-weight:850;text-decoration:none}
+.status{color:var(--muted);text-align:center}.error{color:#ffb4a9}
+</style></head><body><header><h1>DJ OLATUNS • MEMBERS</h1></header><main><section class="card" aria-live="polite"><div id="avatar" class="avatar">M</div><h2 id="displayName">Loading member profile…</h2><div id="username" class="username"></div><p id="bio" class="bio"></p><div id="meta" class="meta"></div><a class="button" href="/community.html">Back to Community</a></section><p id="status" class="status">Connecting securely…</p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+(()=>{"use strict";
+const SUPABASE_URL="https://tiqracqtgggoctyvtuqo.supabase.co";
+const SUPABASE_KEY="sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO";
+const STORAGE_KEY="sb-tiqracqtgggoctyvtuqo-auth-token";
+const $=id=>document.getElementById(id);
+const params=new URLSearchParams(location.search);const id=params.get("id");const username=params.get("username");
+function fail(message){$("displayName").textContent="Member profile unavailable";$("status").textContent=message;$("status").className="status error";}
+async function start(){
+if(!id&&!username){fail("No member was selected. Return to Community and tap a member name.");return;}
+if(!window.supabase?.createClient){fail("Profile service could not load. Check your connection and retry.");return;}
+const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{storageKey:STORAGE_KEY,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+try{
+let query=client.from("profiles").select("id,username,display_name,bio,avatar_path").limit(1);
+query=id?query.eq("id",id):query.ilike("username",username);
+const {data,error}=await query.maybeSingle();if(error)throw error;if(!data){fail("This member could not be found, or their profile is not publicly available.");return;}
+$("displayName").textContent=data.display_name||"DJ OLATUNS Member";
+$("username").textContent=data.username?"@"+data.username:"";
+$("bio").textContent=data.bio||"This member hasn't added a bio yet.";
+$("avatar").textContent=(data.display_name||data.username||"M").trim().charAt(0).toUpperCase();
+if(data.avatar_path){const {data:signed,error:avatarError}=await client.storage.from("member-avatars").createSignedUrl(data.avatar_path,3600);if(!avatarError&&signed?.signedUrl){$("avatar").textContent="";$("avatar").style.backgroundImage="url('"+signed.signedUrl.replace(/'/g,"%27")+"')";$("avatar").style.backgroundSize="cover";$("avatar").style.backgroundPosition="center";}}
+$("meta").textContent="DJ OLATUNS registered member";$("status").textContent="";
+}catch(error){fail("Couldn't load this profile: "+(error.message||"Please try again."));}
+}
+start();
+})();
+</script><script src="/pwa.js" defer></script><script src="/theme.js"></script></body></html>
