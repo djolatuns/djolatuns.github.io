@@ -282,6 +282,13 @@ footer{margin-top:32px}
  #myCommunityPosts{grid-template-columns:1fr}
 }
 </style>
+
+<style>
+.account-display-name{margin:0 0 4px!important;color:#ffe6a0!important;font-size:clamp(22px,5vw,30px)!important;overflow-wrap:anywhere}
+#profileEditor label{display:block;margin:12px 0 5px;color:#e5d2a4;font-size:13px;font-weight:750}
+#displayNameInput{width:100%;margin:6px 0 10px}
+#displayNameStatus{min-height:18px}
+</style>
 </head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
@@ -300,6 +307,7 @@ footer{margin-top:32px}
 <section class="card hidden" id="accountCard">
 <div class="row" style="justify-content:flex-start;margin-bottom:12px"><button id="logoutBtn" class="secondary" type="button">Log Out</button></div>
 <h2>Welcome to your account</h2>
+<h3 id="accountDisplayName" class="account-display-name">Member</h3>
 <p id="accountEmail" class="muted"></p>
 <section class="account-profile" id="accountProfileCard" aria-label="Your member profile">
 <div class="account-profile-main"><strong style="color:#ffe6a0">Your Member Profile</strong><p class="muted" style="margin:4px 0">Your public profile and community statistics.</p><div class="account-profile-stats"><div class="account-profile-stat"><strong id="myFollowersCount">—</strong><span>Followers</span></div><div class="account-profile-stat"><strong id="myFollowingCount">—</strong><span>Following</span></div></div><p id="myProfileStatsStatus" class="muted status" aria-live="polite"></p><a class="gold-link" id="viewMyProfile" href="/member-profile.html">View My Profile</a></div>
@@ -310,7 +318,7 @@ footer{margin-top:32px}
 <div id="myCommunityPosts"><p class="muted">Loading your posts…</p></div>
 </section><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><section class="notice profile-editor" id="profileEditor">
 <h3>Profile Picture</h3><p class="muted">Tap the + to add or change your profile picture.</p>
-<div class="profile-edit-preview"><div class="avatar-upload-wrap"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><label class="avatar-upload-button" for="profilePhoto" aria-label="Add profile picture" title="Add profile picture">+</label><input id="profilePhoto" class="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp"></div><div><strong>Member profile</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div></section>
+<div class="profile-edit-preview"><div class="avatar-upload-wrap"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><label class="avatar-upload-button" for="profilePhoto" aria-label="Add profile picture" title="Add profile picture">+</label><input id="profilePhoto" class="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp"></div><div><strong id="profilePreviewDisplayName">Your display name</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div><label for="displayNameInput">Display name</label><input id="displayNameInput" type="text" maxlength="40" autocomplete="nickname" placeholder="How your name appears to members"><button id="saveDisplayNameBtn" type="button">Save display name</button><p id="displayNameStatus" class="muted status" aria-live="polite"></p></section>
 <div id="memberFeatures" class="hidden" aria-hidden="true"></div>
 <div id="adminAccess" class="notice hidden">
 <strong>Administrator Access</strong>
@@ -489,6 +497,10 @@ async function loadAccount(user) {
   if (myFollowers.error) console.warn("Could not load follower count:", myFollowers.error);
   if (myFollowing.error) console.warn("Could not load following count:", myFollowing.error);
   const { data: profile, error: profileError } = await db.from("profiles").select("username,display_name,bio,avatar_path").eq("id", user.id).maybeSingle();
+  const displayName = (profile?.display_name || user.user_metadata?.display_name || user.user_metadata?.full_name || profile?.username || user.user_metadata?.username || (user.email || "Member").split("@")[0]).trim();
+  $("accountDisplayName").textContent = displayName;
+  $("displayNameInput").value = profile?.display_name || user.user_metadata?.display_name || user.user_metadata?.full_name || "";
+  $("profilePreviewDisplayName").textContent = displayName;
   let currentUsername = profile?.username || user.user_metadata?.username || "";
   if (!profileError && !profile?.username && currentUsername) {
     const { error: saveError } = await db.from("profiles").upsert({ id: user.id, username: currentUsername.toLowerCase(), display_name: currentUsername }, { onConflict: "id" });
@@ -502,7 +514,7 @@ async function loadAccount(user) {
     showMessage("usernameStatus", "Choose a unique username to appear in Messenger search.");
   }
   $("profilePreviewUsername").textContent = currentUsername ? "@" + currentUsername : "Choose a username";
-  $("avatarFallback").textContent = (currentUsername || "M").trim().charAt(0).toUpperCase();
+  $("avatarFallback").textContent = (displayName || currentUsername || "M").trim().charAt(0).toUpperCase();
   if (profile?.avatar_path) {
     const { data: avatarData } = await db.storage.from("member-avatars").createSignedUrl(profile.avatar_path, 3600);
     if (avatarData?.signedUrl) {
@@ -575,6 +587,31 @@ $("profilePhoto").addEventListener("change", async () => {
     if (button) button.style.opacity = "";
   }
 });
+
+
+$("saveDisplayNameBtn").onclick = async () => {
+  const user = window.__djCurrentUser;
+  const displayName = $("displayNameInput").value.trim().replace(/\\s+/g, " ");
+  if (!user) return showMessage("displayNameStatus", "Please sign in again.");
+  if (displayName.length < 2 || displayName.length > 40) return showMessage("displayNameStatus", "Enter a display name between 2 and 40 characters.");
+  const button = $("saveDisplayNameBtn");
+  button.disabled = true;
+  button.textContent = "Saving…";
+  const { error } = await db.from("profiles").upsert({
+    id: user.id,
+    display_name: displayName
+  }, { onConflict: "id" });
+  button.disabled = false;
+  button.textContent = "Save display name";
+  if (error) {
+    showMessage("displayNameStatus", "Your display name could not be saved: " + error.message);
+    return;
+  }
+  $("accountDisplayName").textContent = displayName;
+  $("profilePreviewDisplayName").textContent = displayName;
+  $("avatarFallback").textContent = displayName.charAt(0).toUpperCase();
+  showMessage("displayNameStatus", "Display name updated successfully.");
+};
 
 $("saveUsernameBtn").onclick = async () => {
   const username = $("profileUsername").value.trim().replace(/^@/, "").toLowerCase();
