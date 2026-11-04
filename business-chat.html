@@ -55,4 +55,4 @@ $("sendMessage").addEventListener("click",sendMessage);$("messageInput").addEven
 async function start(){const {data,error}=await db.auth.getSession();if(error||!data.session){notice("Please sign in to your DJ OLATUNS member account first. Then return here.");$("conversationList").textContent="Sign in required.";return}me=data.session.user;const {data:profile}=await db.from("profiles").select("username").eq("id",me.id).maybeSingle();if(!profile?.username){notice("Please choose your unique username in Member Account before using Messenger.");$("conversationList").textContent="Username setup required.";return}subscribeToMessages();notice("Live messaging is ready.");await loadConversations()}
 start().catch(e=>notice("Messenger could not start: "+e.message));</script>
 <p style="text-align:center;margin:12px"><a href="/settings.html" style="color:#ffe6a0">⚙ App Settings</a></p>
-<script src="/theme.js"></script>\n</body></html>
+<script src="/theme.js"></script></body></html>
