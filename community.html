@@ -175,7 +175,6 @@ function showSignedIn(user) {
     setStatus("feedMessage", "This is a private members-only community. Sign in to your registered DJ OLATUNS account to view posts.");
   }
   $("authPanel").classList.toggle("hidden", Boolean(currentUser));
-  $("memberSessionActions").classList.toggle("hidden", !currentUser);
   $("authHeading").textContent = currentUser ? "You're signed in" : "Members sign-in required";
   $("authDescription").textContent = currentUser
     ? "Signed in as " + (currentUser.email || "your DJ OLATUNS account") + ". You can now publish text-only updates."
