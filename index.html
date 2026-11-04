@@ -13,6 +13,14 @@
 <main>
 <section class="hero"><div class="eyebrow">THE OFFICIAL DJ OLATUNS EXPERIENCE</div><h2>Feel the sound.<br>Join the movement.</h2><p>Welcome to the official home of DJ OLATUNS — discover mixtapes, connect with the community, get the latest announcements and book an unforgettable DJ experience.</p><div class="actions"><a class="btn gold" href="/mixtapes.html">Explore Mixtapes</a><a class="btn" href="/booking.html">Book DJ OLATUNS</a><a class="btn" href="/account.html">Join the Members Club</a></div></section>
 
+<section class="brief" id="daily-wisdom" aria-labelledby="wisdom-title" style="border-color:#806326;background:linear-gradient(145deg,#21190b,#11100e)">
+<div class="eyebrow">WORDS OF WISDOM BY DJ OLATUNS</div>
+<h3 id="wisdom-title" style="font-size:22px;margin:8px 0;color:var(--pale)">A thought for today</h3>
+<p id="wisdom-date" style="font-size:12px;letter-spacing:1px;margin:0 0 12px;color:var(--gold)"></p>
+<blockquote id="wisdom-quote" style="margin:0;color:#f7f3e9;font-size:clamp(18px,4vw,24px);line-height:1.5;font-weight:650">Your journey becomes clearer when you keep learning, stay patient, and take the next right step.</blockquote>
+<p style="font-size:11px;margin:14px 0 0;color:#bdb5a5">A new reflection every day • DJ OLATUNS</p>
+</section>
+
 <h2 class="section-title">Your front row access</h2><section class="feature-grid" aria-label="Website features">
 <a class="feature" href="/mixtapes.html" style="text-decoration:none"><b>♫ Music & Mixtapes</b><span>Explore DJ OLATUNS mixes and releases.</span></a>
 <a class="feature" href="/community.html" style="text-decoration:none"><b>◉ Community</b><span>Share moments and connect with members.</span></a>
@@ -26,6 +34,48 @@
 </div></section>
 <section class="brief"><h3>Let’s connect</h3><p>Follow DJ OLATUNS across official platforms and stay close to every new mix, update and announcement.</p><div class="social-row"><a href="https://audiomack.com/dj_olatuns1" target="_blank" rel="noopener">Audiomack</a><a href="https://www.tiktok.com/@djolatuns1" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/djolatuns1" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/2348103327836" target="_blank" rel="noopener">WhatsApp</a></div></section>
 <section class="brief"><h3>Make your event sound different.</h3><p>Planning a party, wedding, concert or special event? Send a booking request and the DJ OLATUNS team will get back to you.</p><div class="actions"><a class="btn gold" href="/booking.html">Request a Booking</a><a class="btn" href="/about.html">Meet DJ OLATUNS</a></div></section>
+<script>(function(){
+const reflections=[
+"Your journey becomes clearer when you keep learning, stay patient, and take the next right step.",
+"Do not measure your progress by someone else’s timing; keep building your own story.",
+"Character is what you practice when nobody is watching.",
+"Every challenge carries a lesson; take the lesson and keep moving.",
+"Small consistent efforts can create results that once looked impossible.",
+"Protect your peace, respect people, and never stop improving yourself.",
+"Your future is shaped by the choices you repeat today.",
+"Be humble enough to learn, brave enough to try, and wise enough to grow.",
+"Not every delay is a denial; sometimes you are being prepared.",
+"Let your actions speak clearly, and let your values guide them.",
+"Success means more when you grow without losing your kindness.",
+"Take responsibility for your mistakes; that is where real growth begins.",
+"Stay focused on what you can control, and give your best to it.",
+"Discipline carries you forward when motivation becomes quiet.",
+"Listen to understand, not only to reply.",
+"Make room for others to shine; their light does not reduce yours.",
+"Be patient with the process, but honest about the effort.",
+"Choose progress over perfection, and keep showing up.",
+"Your words can heal or hurt; use them with care.",
+"Learn from yesterday, act wisely today, and prepare with hope for tomorrow.",
+"Confidence grows when you keep promises to yourself.",
+"Do good without needing applause; integrity is its own reward.",
+"Turn disappointment into information, not an identity.",
+"Your attitude can change how you meet a difficult day.",
+"Be the kind of person whose presence brings respect and calm.",
+"Dream boldly, plan carefully, and work consistently.",
+"Forgiveness can free your heart while boundaries protect your peace.",
+"Growth begins when you become willing to see yourself honestly.",
+"Never be ashamed of starting small; every great thing has a beginning.",
+"Keep your purpose bigger than temporary pressure."
+];
+const now=new Date();
+const key=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());
+const day=Math.floor(key/86400000);
+const quote=reflections[((day%reflections.length)+reflections.length)%reflections.length];
+const date=document.getElementById('wisdom-date');
+const text=document.getElementById('wisdom-quote');
+if(date)date.textContent=now.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+if(text)text.textContent='“'+quote+'”';
+})();</script>
 </main>
 <footer>DJ OLATUNS • UNDEFEATABLE • © 2026</footer>
 
