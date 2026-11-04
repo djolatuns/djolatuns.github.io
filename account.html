@@ -7,7 +7,7 @@
 <meta name="description" content="DJ OLATUNS Members Account. Register or sign in to your official members account.">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/icon-192.png">
-<title>DJ OLATUNS | Members Account</title>
+<title>Account Centre | DJ OLATUNS</title>
 <style>
 
 * { box-sizing: border-box; }
@@ -308,7 +308,45 @@ footer{margin-top:32px}
 #profileEditor,#usernameSetup,#myCommunityPostsCard{scroll-margin-top:20px}
 @media(max-width:430px){.account-center-nav{grid-template-columns:1fr}.account-center-nav a{padding:12px}.account-center-nav small{font-size:11px}}
 </style>
-</head>
+<style>
+/* Professional account dashboard system */
+:root{--ac-gold:#d9b45b;--ac-ink:#090a0b;--ac-surface:#111315;--ac-border:rgba(217,180,91,.22);--ac-muted:#a9adb4}
+.account-wrap{width:min(100% - 32px,1040px)!important;max-width:1040px!important;margin:34px auto 56px!important}
+#accountCard{gap:20px!important;padding:clamp(22px,4vw,42px)!important;border:1px solid rgba(217,180,91,.28)!important;border-radius:26px!important;background:linear-gradient(145deg,rgba(23,23,21,.98),rgba(9,10,11,.99) 62%)!important;box-shadow:0 24px 80px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.035)!important}
+.account-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:4px 0 20px;border-bottom:1px solid rgba(255,255,255,.09)}
+.account-eyebrow{display:block;color:#c4a15a;font-size:10px;letter-spacing:2.4px;font-weight:850;margin-bottom:8px}
+.account-heading h2{font-size:clamp(27px,4vw,36px)!important;line-height:1.12;letter-spacing:-.8px;margin:0!important;color:#fff2cf!important}
+.account-heading-subtitle{max-width:590px;margin:9px 0 0;color:#aeb0b3;font-size:14px;line-height:1.65}
+.account-secure-mark{white-space:nowrap;margin-top:5px;padding:7px 11px;border:1px solid rgba(217,180,91,.3);border-radius:30px;color:#e8c979;background:rgba(217,180,91,.08);font-size:9px;letter-spacing:1.2px;font-weight:850}
+#accountDisplayName{font-size:clamp(22px,3vw,28px)!important;letter-spacing:-.3px;margin:0!important;color:#f7e5b8!important}
+#accountEmail{display:inline-block;width:fit-content;max-width:100%;padding:7px 11px!important;margin:0!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:8px!important;background:rgba(255,255,255,.035)!important;color:#aeb0b3!important;font-size:12px!important}
+.account-section-label{color:#c4a15a;font-size:10px;letter-spacing:2px;font-weight:850;margin:0 0 -9px}
+.account-section-label-spaced{margin-top:1px}
+.account-center-nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;margin:0!important}
+.account-center-nav a{position:relative;min-height:94px;padding:17px!important;gap:13px!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:15px!important;background:linear-gradient(145deg,#191a1b,#101112)!important;transition:transform .2s,border-color .2s,background .2s!important}
+.account-center-nav a:hover{transform:translateY(-3px);border-color:rgba(217,180,91,.55)!important;background:linear-gradient(145deg,#211d14,#111)!important}
+.account-center-nav .ac-icon{width:42px!important;height:42px!important;flex-basis:42px!important;border:1px solid rgba(217,180,91,.18);border-radius:13px!important;background:rgba(217,180,91,.09)!important;color:#e7c574!important;font-size:18px!important}
+.account-center-nav strong{font-size:13px!important;color:#f4ead4!important;letter-spacing:.1px}
+.account-center-nav small{font-size:11px!important;line-height:1.45!important;color:#9da1a7!important}
+.account-center-nav a>b{margin-left:auto;color:#c9a85f!important;font-size:20px!important}
+.account-profile{width:100%;padding:21px!important;border:1px solid var(--ac-border)!important;border-radius:17px!important;background:linear-gradient(110deg,rgba(217,180,91,.09),rgba(255,255,255,.025) 52%,rgba(255,255,255,.01))!important}
+.account-profile-main>strong{font-size:15px;letter-spacing:.2px}
+.account-profile-stats{display:flex!important;gap:10px!important;max-width:380px!important}
+.account-profile-stat{flex:1;min-width:0!important;border:1px solid rgba(255,255,255,.09)!important;background:rgba(0,0,0,.22)!important}
+#myCommunityPostsCard,#usernameSetup,#profileEditor,#adminAccess{border:1px solid rgba(255,255,255,.09)!important;border-radius:17px!important;background:linear-gradient(145deg,#171819,#101112)!important}
+#myCommunityPostsCard>strong,#usernameSetup>strong{color:#f0d28b!important}
+#profileEditor h3{font-size:16px;letter-spacing:.2px}
+#profileEditor label{color:#d7c18e!important}
+#accountCard>.row{order:50!important;justify-content:flex-end!important;padding-top:18px!important}
+#logoutBtn{min-width:130px;border:1px solid rgba(255,255,255,.14)!important;background:#202225!important;color:#e7e7e7!important}
+#authSection{max-width:660px;margin:40px auto!important;padding:clamp(24px,5vw,42px)!important;border:1px solid rgba(217,180,91,.25)!important;border-radius:24px!important;background:linear-gradient(145deg,#1b1b19,#0b0c0d)!important;box-shadow:0 24px 75px #0008!important}
+#authSection h2{font-size:29px;letter-spacing:-.5px;color:#fff0c8!important}
+#authSection>p{color:#aeb0b3!important}
+#authCard input{min-height:51px}
+@media(max-width:760px){.account-center-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:520px){.account-wrap{width:100%!important;padding:0 12px!important;margin:16px auto 30px!important}#accountCard{padding:20px 15px!important;gap:16px!important;border-radius:20px!important}.account-heading{display:block;padding-bottom:16px}.account-secure-mark{display:inline-block;margin-top:13px}.account-center-nav{grid-template-columns:1fr!important;gap:9px!important}.account-center-nav a{min-height:76px;padding:13px!important}.account-profile{padding:16px!important}.account-profile-stats{max-width:none!important}#accountCard>.row{justify-content:stretch!important}#logoutBtn{width:100%}}
+@media(prefers-reduced-motion:reduce){.account-center-nav a{transition:none!important}}
+</style></head>
 <body><button class="app-menu-button" id="appMenuButton" type="button" aria-label="Open app menu" aria-expanded="false" aria-controls="appMenu"><span></span><span></span><span></span></button><div class="app-menu-backdrop" id="appMenuBackdrop" hidden></div><aside class="app-menu" id="appMenu" aria-label="App navigation" aria-hidden="true"><div class="app-menu-head"><strong>DJ OLATUNS</strong><button type="button" id="appMenuClose" aria-label="Close menu">×</button></div><p class="app-menu-caption">OFFICIAL APP MENU</p><a href="/">⌂ <span>Home</span></a><a href="/mixtapes.html">♫ <span>Music & Mixtapes</span></a><a href="/community.html">◉ <span>Community</span></a><a href="/announcements.html">♢ <span>Announcements</span></a><a href="/account.html">◎ <span>Account & Membership</span></a><a href="/booking.html">✦ <span>DJ Bookings</span></a><a href="/business-centre.html">▣ <span>Business Centre</span></a><a href="/dj-lessons.html">🎧 <span>DJ Academy & Lessons</span></a><a href="/settings.html">⚙ <span>Settings</span></a><a href="/about.html">ⓘ <span>About DJ OLATUNS</span></a></aside>
 <header><h1>DJ OLATUNS</h1><p>MEMBERS ACCOUNT CENTRE</p></header>
 <main class="account-wrap">
@@ -325,10 +363,10 @@ footer{margin-top:32px}
 </section>
 <section class="card hidden" id="accountCard">
 <div class="row" style="justify-content:flex-start;margin-bottom:12px"><button id="logoutBtn" class="secondary" type="button">Log Out</button></div>
-<h2>Your Account</h2>
+<div class="account-heading"><div><span class="account-eyebrow">DJ OLATUNS • MEMBER SERVICES</span><h2>Account Centre</h2><p class="account-heading-subtitle">Manage your profile, activity, preferences and account security from one place.</p></div><span class="account-secure-mark">✦ MEMBER</span></div>
 <h3 id="accountDisplayName" class="account-display-name">Member</h3>
 <p id="accountEmail" class="muted"></p>
-<nav class="account-center-nav" aria-label="Account centre shortcuts">
+<div class="account-section-label">YOUR ACCOUNT</div><nav class="account-center-nav" aria-label="Account centre shortcuts">
 <a href="#profileEditor"><span class="ac-icon">✎</span><span><strong>Edit profile</strong><small>Photo, display name and profile details</small></span><b>›</b></a>
 <a href="#myCommunityPostsCard"><span class="ac-icon">▤</span><span><strong>Your activity</strong><small>Posts and review updates</small></span><b>›</b></a>
 <a href="#usernameSetup"><span class="ac-icon">@</span><span><strong>Username</strong><small>How members find you in Messenger</small></span><b>›</b></a>
@@ -336,7 +374,7 @@ footer{margin-top:32px}
 <a href="/privacy.html"><span class="ac-icon">◈</span><span><strong>Privacy information</strong><small>How your account information is handled</small></span><b>›</b></a>
 <a href="/about.html"><span class="ac-icon">?</span><span><strong>Help & about</strong><small>Learn about DJ OLATUNS App</small></span><b>›</b></a>
 </nav>
-<section class="account-profile" id="accountProfileCard" aria-label="Your member profile">
+<div class="account-section-label account-section-label-spaced">PROFILE OVERVIEW</div><section class="account-profile" id="accountProfileCard" aria-label="Your member profile">
 <div class="account-profile-main"><strong style="color:#ffe6a0">Your Member Profile</strong><p class="muted" style="margin:4px 0">Your public profile and community statistics.</p><div class="account-profile-stats"><div class="account-profile-stat"><strong id="myFollowersCount">—</strong><span>Followers</span></div><div class="account-profile-stat"><strong id="myFollowingCount">—</strong><span>Following</span></div></div><p id="myProfileStatsStatus" class="muted status" aria-live="polite"></p><a class="gold-link" id="viewMyProfile" href="/member-profile.html">View My Profile</a></div>
 </section>
 <section class="notice" id="myCommunityPostsCard">
