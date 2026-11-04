@@ -108,6 +108,13 @@ body{padding-bottom:92px!important}
 <p id="dashboardMessage" class="muted"></p>
 </div>
 
+<div class="card" id="communityReviewCard">
+<h2>Community Post Approval</h2>
+<p class="muted">Every member submission stays hidden until you approve it. Check that the post genuinely relates to DJ OLATUNS, the app, DJing, music, mixes, events, lessons or this members community.</p>
+<div id="pendingCommunityPosts"><p class="muted">Loading submissions…</p></div>
+<p id="communityReviewStatus" class="muted" aria-live="polite"></p>
+</div>
+
 <div class="card">
 <h2>Registered Members</h2>
 <input id="search" type="search" placeholder="Search members by name or ID">
@@ -166,6 +173,7 @@ const SUPABASE_KEY =
 const $ = id => document.getElementById(id);
 let db;
 let members = [];
+let currentAdminUser = null;
 
 function showMessage(message) {
   $("message").textContent = message;
@@ -264,6 +272,7 @@ $("loginForm").addEventListener("submit",async event => {
 /* OPEN ADMIN DASHBOARD */
 async function openDashboard(user) {
   await verifyAdmin(user);
+  currentAdminUser = user;
 
   $("login").classList.add("hidden");
   $("dashboard").classList.remove("hidden");
@@ -272,6 +281,7 @@ async function openDashboard(user) {
   await loadDashboard();
   await loadAnnouncements();
   await loadBookings();
+  await loadPendingCommunityPosts();
 }
 
 /* LOAD DASHBOARD DATA */
@@ -494,12 +504,94 @@ async function loadBookings() {
   });
 }
 
+/* COMMUNITY POST MODERATION */
+async function loadPendingCommunityPosts() {
+  const area = $("pendingCommunityPosts");
+  area.textContent = "Loading pending submissions…";
+  const {data: posts,error} = await db.from("community_posts")
+    .select("id,title,caption,category,media_url,media_type,created_by,created_at")
+    .eq("moderation_status","pending").order("created_at",{ascending:true}).limit(100);
+  if (error) { area.textContent = "Could not load submissions: " + error.message; return; }
+  area.replaceChildren();
+  if (!posts?.length) { area.textContent = "No posts are waiting for approval."; return; }
+  const authorIds = [...new Set(posts.map(post=>post.created_by))];
+  const {data: profiles} = await db.from("profiles").select("id,display_name,username").in("id",authorIds);
+  const names = {};
+  (profiles||[]).forEach(profile=>names[profile.id]=profile.display_name || (profile.username ? "@"+profile.username : "Member"));
+  for (const post of posts) {
+    const card = document.createElement("article");
+    card.className = "notice";
+    card.style.margin = "14px 0";
+    const heading = document.createElement("h3");
+    heading.textContent = post.title || "Community submission";
+    const meta = document.createElement("p");
+    meta.className = "muted";
+    meta.textContent = "From: " + (names[post.created_by]||"DJ OLATUNS Member") + " • Category: " + (post.category||"Uncategorised") + " • " + new Date(post.created_at).toLocaleString();
+    const caption = document.createElement("p");
+    caption.textContent = post.caption || "(No caption)";
+    card.append(heading,meta,caption);
+    if (post.media_url) {
+      const {data:signed,error:signedError}=await db.storage.from("community-media").createSignedUrl(post.media_url,3600);
+      if (!signedError && signed?.signedUrl) {
+        const media = post.media_type === "video" ? document.createElement("video") : document.createElement("img");
+        media.src = signed.signedUrl;
+        media.controls = post.media_type === "video";
+        media.alt = post.title || "Submitted community media";
+        media.style.cssText = "display:block;width:100%;max-height:480px;object-fit:contain;background:#080808;border-radius:12px;margin:12px 0";
+        card.append(media);
+      } else {
+        const warning=document.createElement("p");warning.className="muted";warning.textContent="Media preview unavailable: "+signedError.message;card.append(warning);
+      }
+    }
+    const controls = document.createElement("div");
+    controls.style.cssText = "display:flex;gap:8px;flex-wrap:wrap;margin-top:12px";
+    const approve = document.createElement("button");
+    approve.textContent = "Approve & Publish";
+    const reject = document.createElement("button");
+    reject.textContent = "Reject";
+    reject.className = "secondary";
+    const feedback = document.createElement("p");
+    feedback.className = "muted";
+    approve.addEventListener("click",async()=>{
+      if (!window.confirm("Approve this DJ OLATUNS-related post and make it visible to members?")) return;
+      approve.disabled=true;reject.disabled=true;feedback.textContent="Publishing…";
+      const {error:updateError}=await db.from("community_posts").update({moderation_status:"published",reviewed_by:currentAdminUser.id,reviewed_at:new Date().toISOString(),moderation_note:null}).eq("id",post.id).eq("moderation_status","pending");
+      if(updateError){feedback.textContent="Could not approve: "+updateError.message;approve.disabled=false;reject.disabled=false;return;}
+      feedback.textContent="Approved and published.";
+      try {
+        const {data:sessionInfo}=await db.auth.getSession();
+        if(sessionInfo.session){
+          const response=await fetch(SUPABASE_URL+"/functions/v1/member-push",{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+sessionInfo.session.access_token},body:JSON.stringify({action:"community-post",post_id:post.id})});
+          if(!response.ok) feedback.textContent="Published. Community push notification could not be sent.";
+        }
+      } catch(pushError){console.warn("Community post push failed:",pushError);}
+      card.remove();
+      if(!area.children.length)area.textContent="No posts are waiting for approval.";
+      $("communityReviewStatus").textContent="Post approved and published.";
+    });
+    reject.addEventListener("click",async()=>{
+      const reason=window.prompt("Why are you rejecting this post? (The member will see this note.)");
+      if(reason===null)return;
+      approve.disabled=true;reject.disabled=true;feedback.textContent="Rejecting…";
+      const {error:updateError}=await db.from("community_posts").update({moderation_status:"rejected",reviewed_by:currentAdminUser.id,reviewed_at:new Date().toISOString(),moderation_note:reason.trim()||"This post does not meet the DJ OLATUNS community guidelines."}).eq("id",post.id).eq("moderation_status","pending");
+      if(updateError){feedback.textContent="Could not reject: "+updateError.message;approve.disabled=false;reject.disabled=false;return;}
+      card.remove();
+      if(!area.children.length)area.textContent="No posts are waiting for approval.";
+      $("communityReviewStatus").textContent="Submission rejected. It remains private to its owner.";
+    });
+    controls.append(approve,reject);
+    card.append(controls,feedback);
+    area.append(card);
+  }
+}
+
 /* REFRESH */
 $("refreshBtn").addEventListener("click",async () => {
   try {
     await loadDashboard();
     await loadAnnouncements();
     await loadBookings();
+    await loadPendingCommunityPosts();
   } catch(error) {
     $("dashboardMessage").textContent = error.message;
   }
