@@ -259,6 +259,11 @@ body{padding-bottom:92px!important}
 <p id="accountEmail" class="muted"></p>
 <section class="account-profile" id="accountProfileCard" aria-label="Your member profile">
 <div class="account-profile-main"><strong style="color:#ffe6a0">Your Member Profile</strong><p class="muted" style="margin:4px 0">Your public profile and community statistics.</p><div class="account-profile-stats"><div class="account-profile-stat"><strong id="myFollowersCount">—</strong><span>Followers</span></div><div class="account-profile-stat"><strong id="myFollowingCount">—</strong><span>Following</span></div></div><p id="myProfileStatsStatus" class="muted status" aria-live="polite"></p><a class="gold-link" id="viewMyProfile" href="/member-profile.html">View My Profile</a></div>
+</section>
+<section class="notice" id="myCommunityPostsCard">
+<strong style="color:#ffe6a0">My Community Posts</strong>
+<p class="muted">Your submissions, review status and published media.</p>
+<div id="myCommunityPosts"><p class="muted">Loading your posts…</p></div>
 </section><div class="notice" id="usernameSetup"><strong>Your Messenger username</strong><p class="muted">Set a unique username so members can find you. Your email remains private.</p><input id="profileUsername" maxlength="20" placeholder="e.g. TUNS_01"><button id="saveUsernameBtn" type="button">Save username</button><p id="usernameStatus" class="muted status"></p></div><section class="notice profile-editor" id="profileEditor">
 <h3>Profile Picture</h3><p class="muted">Tap the + to add or change your profile picture.</p>
 <div class="profile-edit-preview"><div class="avatar-upload-wrap"><img id="avatarPreview" alt="Your profile photo" class="avatar-preview hidden"><div id="avatarFallback" class="avatar-preview avatar-fallback">M</div><label class="avatar-upload-button" for="profilePhoto" aria-label="Add profile picture" title="Add profile picture">+</label><input id="profilePhoto" class="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp"></div><div><strong>Member profile</strong><div class="muted" id="profilePreviewUsername">@username</div></div></div></section>
@@ -372,6 +377,54 @@ function watchAnnouncements() {
     });
 }
 
+async function loadMyCommunityPosts(userId) {
+  const area = $("myCommunityPosts");
+  if (!area || !db || !userId) return;
+  area.textContent = "Loading your posts…";
+  const { data, error } = await db.from("community_posts")
+    .select("id,title,caption,category,media_url,media_type,moderation_status,moderation_note,created_at")
+    .eq("created_by",userId).order("created_at",{ascending:false}).limit(50);
+  if (error) { area.textContent = "Your posts could not be loaded: " + error.message; return; }
+  area.replaceChildren();
+  if (!data?.length) { area.textContent = "You haven't submitted any community posts yet."; return; }
+  for (const post of data) {
+    const card = document.createElement("article");
+    card.className = "notice";
+    card.style.margin = "12px 0";
+    const title = document.createElement("strong");
+    title.textContent = post.title || post.category || "Community post";
+    const status = document.createElement("p");
+    status.className = "muted";
+    status.textContent = "Status: " + (post.moderation_status === "published" ? "Published" : post.moderation_status === "rejected" ? "Not approved" : "Pending review");
+    const caption = document.createElement("p");
+    caption.className = "muted";
+    caption.textContent = post.caption || "";
+    card.append(title,status,caption);
+    if (post.media_url) {
+      const { data: signed, error: signedError } = await db.storage.from("community-media").createSignedUrl(post.media_url,3600);
+      if (!signedError && signed?.signedUrl) {
+        const media = post.media_type === "video" ? document.createElement("video") : document.createElement("img");
+        media.src = signed.signedUrl;
+        media.controls = post.media_type === "video";
+        media.alt = post.title || "Your community media";
+        media.style.cssText = "display:block;width:100%;max-height:360px;object-fit:contain;border-radius:12px;margin-top:10px;background:#080808";
+        card.append(media);
+      }
+    }
+    if (post.moderation_status === "rejected" && post.moderation_note) {
+      const note = document.createElement("p");
+      note.className = "muted";
+      note.textContent = "Review note: " + post.moderation_note;
+      card.append(note);
+    }
+    const date = document.createElement("small");
+    date.className = "muted";
+    date.textContent = new Date(post.created_at).toLocaleString();
+    card.append(date);
+    area.append(card);
+  }
+}
+
 async function loadAccount(user) {
   $("authSection").classList.add("hidden");
   $("accountCard").classList.remove("hidden");
@@ -416,6 +469,7 @@ async function loadAccount(user) {
   }
   const nav = $("memberFeatures");
   if (nav) nav.classList.remove("hidden");
+  await loadMyCommunityPosts(user.id);
 
   // Only the designated official email AND its protected admin_users record
   // receive the dashboard shortcut. The admin page performs its own check too.
