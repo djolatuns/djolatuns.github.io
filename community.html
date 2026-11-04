@@ -340,8 +340,11 @@ async function loadFeed() {
       }
       const author = document.createElement("div");
       author.className = "post-author";
-      const authorName = document.createElement("strong");
+      const authorName = document.createElement("a");
+      authorName.className = "member-profile-link";
+      authorName.href = "/member-profile.html?id=" + encodeURIComponent(post.created_by);
       authorName.textContent = displayName;
+      authorName.setAttribute("aria-label", "View profile of " + displayName);
       const time = document.createElement("time");
       const date = new Date(post.created_at);
       time.dateTime = date.toISOString();
@@ -465,8 +468,12 @@ async function loadFeed() {
           item.className = "comment-item";
           const head = document.createElement("div");
           head.className = "comment-head";
-          const name = document.createElement("strong");
-          name.textContent = displayNameFor(comment.user_id);
+          const commentDisplayName = displayNameFor(comment.user_id);
+          const name = document.createElement("a");
+          name.className = "member-profile-link";
+          name.href = "/member-profile.html?id=" + encodeURIComponent(comment.user_id);
+          name.textContent = commentDisplayName;
+          name.setAttribute("aria-label", "View profile of " + commentDisplayName);
           const commentDate = document.createElement("time");
           const commentTime = new Date(comment.created_at);
           commentDate.dateTime = commentTime.toISOString();
