@@ -114,26 +114,32 @@ const copy=document.getElementById('wisdom-copy');
 if(copy)copy.addEventListener('click',async()=>{const value=message();try{await navigator.clipboard.writeText(value);setStatus('Wisdom and link copied. Paste them into any social app.')}catch(e){const t=document.createElement('textarea');t.value=value;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');setStatus('Wisdom and link copied. Paste them into any social app.')}catch(err){setStatus('Copy is unavailable. Use one of the platform links.')}t.remove()}});
 })();
 
+const saveStatus=document.getElementById('wisdom-share-status');
+const showSaveStatus=s=>{if(saveStatus)saveStatus.textContent=s};
+const quoteEl=document.getElementById('wisdom-quote');
+const makeSaveMessage=()=>{const q=quoteEl?quoteEl.textContent.replace(/[“”]/g,'').trim():'';return '“'+q+'”\n\nWords of Wisdom by DJ OLATUNS\n'+window.location.href.split('#')[0]};
 const fileDate=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
-const downloadBlob=(blob,name)=>{const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)};
+const downloadBlob=(blob,name)=>{const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)};
 const saveText=document.getElementById('wisdom-save-text');
-if(saveText)saveText.addEventListener('click',()=>{const content=message()+'\\n\\n— DJ OLATUNS';downloadBlob(new Blob([content],{type:'text/plain;charset=utf-8'}),'DJ-Olatuns-Words-of-Wisdom-'+fileDate()+'.txt');setStatus('Text file prepared. Check your Downloads or Files folder.')});
+if(saveText)saveText.addEventListener('click',()=>{try{const content=makeSaveMessage()+'\n\n— DJ OLATUNS';downloadBlob(new Blob([content],{type:'text/plain;charset=utf-8'}),'DJ-Olatuns-Words-of-Wisdom-'+fileDate()+'.txt');showSaveStatus('Text file download started. Check your Downloads folder.')}catch(e){showSaveStatus('Could not save the text file. Please try again or use Copy text & link.')}});
 const saveImage=document.getElementById('wisdom-save-image');
 if(saveImage)saveImage.addEventListener('click',()=>{
+ try{
  const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;
- const ctx=canvas.getContext('2d');if(!ctx){setStatus('Image saving is not supported in this browser.');return}
+ const ctx=canvas.getContext('2d');if(!ctx){showSaveStatus('Image saving is not supported in this browser.');return}
  const bg=ctx.createLinearGradient(0,0,1080,1350);bg.addColorStop(0,'#30220c');bg.addColorStop(.55,'#12110e');bg.addColorStop(1,'#080808');ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
  ctx.strokeStyle='#dfb95f';ctx.lineWidth=5;ctx.strokeRect(42,42,996,1266);ctx.strokeStyle='#705728';ctx.lineWidth=2;ctx.strokeRect(62,62,956,1226);
  ctx.textAlign='center';ctx.fillStyle='#ffe6a0';ctx.font='bold 35px Arial';ctx.fillText('DJ OLATUNS',540,190);
  ctx.fillStyle='#dfb95f';ctx.font='bold 23px Arial';ctx.fillText('WORDS OF WISDOM',540,255);
  const dateEl=document.getElementById('wisdom-date');ctx.fillStyle='#bdb5a5';ctx.font='22px Arial';ctx.fillText(dateEl?dateEl.textContent:'',540,315);
- const raw=quote?quote.textContent.replace(/[“”]/g,'').trim():'';
- ctx.fillStyle='#fff7e5';ctx.font='bold 47px Arial';const words=raw.split(/\\s+/),lines=[];let line='';
+ const raw=quoteEl?quoteEl.textContent.replace(/[“”]/g,'').trim():'';
+ ctx.fillStyle='#fff7e5';ctx.font='bold 47px Arial';const words=raw.split(/\s+/),lines=[];let line='';
  for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>850&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);
  const lineHeight=66;let y=675-(lines.length*lineHeight)/2;lines.forEach(v=>{ctx.fillText(v,540,y,880);y+=lineHeight});
  ctx.fillStyle='#dfb95f';ctx.font='bold 24px Arial';ctx.fillText('LEARN • GROW • KEEP MOVING',540,1125);
  ctx.fillStyle='#bdb5a5';ctx.font='22px Arial';ctx.fillText('A daily reflection from DJ OLATUNS',540,1180);
- canvas.toBlob(blob=>{if(blob){downloadBlob(blob,'DJ-Olatuns-Words-of-Wisdom-'+fileDate()+'.png');setStatus('Wisdom image saved. Check your Downloads or Files folder.')}else setStatus('Could not create the image. Please try again.')},'image/png');
+ canvas.toBlob(blob=>{if(blob){downloadBlob(blob,'DJ-Olatuns-Words-of-Wisdom-'+fileDate()+'.png');showSaveStatus('Image download started. Check your Downloads folder.')}else showSaveStatus('Could not create the image. Please try again.')},'image/png');
+ }catch(e){showSaveStatus('Could not create the image file in this browser. Please try again.')}
 });
 </script>
 </main>
