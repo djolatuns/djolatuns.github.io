@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "DJ OLATUNS - Official DJ App",
-  "short_name": "DJ OLATUNS",
-  "description": "Official DJ OLATUNS mixtapes, bookings, community and music updates.",
+  "name": "Ismail Olatunji Taiwo - DJ Olatuns Official App",
+  "short_name": "DJ Olatuns",
+  "description": "The official DJ Olatuns app by Ismail Olatunji Taiwo. Explore mixtapes, bookings, community and music updates.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
