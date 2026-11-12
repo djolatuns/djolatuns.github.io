@@ -56,6 +56,8 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const requestUrl = new URL(event.request.url);
   if (requestUrl.origin !== self.location.origin) return;
+  // Keep OLATUNS WORLD isolated from the DJ OLATUNS app cache and offline fallback.
+  if (requestUrl.pathname === "/olatuns-world" || requestUrl.pathname.startsWith("/olatuns-world/")) return;
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request).then((response) => {
