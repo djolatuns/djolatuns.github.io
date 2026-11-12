@@ -3,15 +3,10 @@
   "short_name": "DJ Olatuns",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f7f7fc",
-  "theme_color": "#111126",
+  "background_color": "#10051f",
+  "theme_color": "#8d22df",
   "description": "Music, mixtapes, community and bookings.",
   "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
 }
