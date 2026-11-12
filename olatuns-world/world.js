@@ -22,3 +22,4 @@ document.querySelector('#closeHelp').onclick=()=>help.hidden=true;document.query
 window.addEventListener('appinstalled',()=>{installBtn.hidden=true;installPrompt=null});
 if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
 if('standalone'in navigator&&navigator.standalone)installBtn.hidden=true;
+// Weekly content refresh: 12 November 2026.
