@@ -1,16 +1,12 @@
 {
-  "name": "OLATUNS WORLD",
+  "name": "DJ Olatuns World",
   "short_name": "Olatuns World",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f7f7fc",
-  "theme_color": "#111126",
+  "background_color": "#031638",
+  "theme_color": "#087ee8",
+  "description": "Updates, entertainment, events, opportunities and stories.",
   "icons": [
-    {
-      "src": "world-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "world-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
 }
