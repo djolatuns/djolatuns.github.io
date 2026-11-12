@@ -11,6 +11,19 @@ const stories=[
 {category:'Events',title:'Entertainment Week Africa',summary:'17–22 November 2026 in Lagos. Six days of summits, markets, showcases and creative-industry networking across seven tracks.',date:'Upcoming · Lagos',url:'https://ewafrica.com/schedule/'},
 {category:'Events',title:'AGHA Festival — The Global Homecoming',summary:'Planned for 26–29 December 2026 at SOL Beach, Lekki, Lagos. The official site lists music, culture and creative participation; check its site for lineup updates.',date:'Upcoming · Lagos',url:'https://www.aghafestival.com/'}
 ];
+async function loadLatestFeed(){
+ try {
+  const response=await fetch('./data/updates.json?refresh='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('Feed request failed: '+response.status);
+  const payload=await response.json();
+  if(Array.isArray(payload.items)&&payload.items.length){
+   stories=payload.items;
+   render();
+  }
+ } catch(error) {
+  console.warn('Using the saved news list because the latest feed is unavailable.',error);
+ }
+}
 let active='All';
 const screens=[...document.querySelectorAll('.screen')];
 function showScreen(name){screens.forEach(s=>s.classList.toggle('active',s.id===name));document.querySelectorAll('[data-screen]').forEach(b=>b.classList.toggle('active',b.classList.contains('nav-item')&&b.dataset.screen===name));}
@@ -22,6 +35,7 @@ function render(){
 }
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.category;render()}));
 render();
+loadLatestFeed();
 let installPrompt;const installBtn=document.querySelector('#installBtn'),help=document.querySelector('#installHelp');
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;installBtn.hidden=false});
 installBtn.addEventListener('click',async()=>{if(!installPrompt){help.hidden=false;return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installBtn.hidden=true});
