@@ -50,3 +50,28 @@ if('standalone'in navigator&&navigator.standalone)installBtn.hidden=true;
 // Weekly content deployment trigger.
 
 // Publish content after Cloudflare Pages path-filter adjustment.
+
+const notifyBtn=document.querySelector('#notifyBtn');
+const notifyStatus=document.querySelector('#notifyStatus');
+function notifyMessage(message){notifyStatus.textContent=message;notifyStatus.hidden=false;setTimeout(()=>{notifyStatus.hidden=true},7000)}
+const b64ToBytes=value=>Uint8Array.from(atob(value.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
+async function enableWorldNotifications(){
+ if(!('serviceWorker'in navigator)||!('PushManager'in window)||!('Notification'in window)){notifyMessage('This browser does not support website notifications. Try an updated Chrome, Edge or Safari browser.');return}
+ if(location.protocol!=='https:'){notifyMessage('Notifications need a secure HTTPS website.');return}
+ try{
+  const permission=await Notification.requestPermission();
+  if(permission!=='granted'){notifyMessage('Notifications are off. You can allow them later in your browser settings.');return}
+  const registration=await navigator.serviceWorker.ready;
+  const config=await fetch('/api/push/config',{cache:'no-store'}).then(r=>r.json());
+  if(!config.publicKey){notifyMessage('Notifications are being configured. Please try again later.');return}
+  let subscription=await registration.pushManager.getSubscription();
+  if(!subscription)subscription=await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64ToBytes(config.publicKey)});
+  const saved=await fetch('/api/push/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscription})});
+  if(!saved.ok)throw new Error('Subscription could not be saved');
+  notifyBtn.textContent='✓ Notifications on';notifyMessage('You are subscribed to OLATUNS WORLD alerts on this device.');
+ }catch(error){console.error(error);notifyMessage('Could not activate notifications yet. Please try again shortly.')}
+}
+if(notifyBtn){
+ notifyBtn.addEventListener('click',enableWorldNotifications);
+ if('serviceWorker'in navigator&&'PushManager'in window){navigator.serviceWorker.ready.then(r=>r.pushManager.getSubscription()).then(s=>{if(s)notifyBtn.textContent='✓ Notifications on'}).catch(()=>{})}
+}
