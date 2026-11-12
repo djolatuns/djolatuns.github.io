@@ -1,5 +1,546 @@
 {
-  "updatedAt": null,
-  "count": 0,
-  "items": []
+  "updatedAt": "2026-11-12T18:52:35.077Z",
+  "count": 60,
+  "items": [
+    {
+      "category": "Music",
+      "title": "Ae! Group’s ‘Emotion’ Tops Japan Hot 100 as back number’s ‘Christmas Song’ Returns",
+      "summary": "Plus: BE:FIRST’s “NOW U KNOW” bows at No. 2.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/music/chart-beat/ae-group-tops-japan-hot-100-back-number-christmas-song-1236380517/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T18:37:55.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Riho Sayashi on the Strength of ‘Not Pushing Too Hard,’ Learned After Walking Away from Idol Stardom at 17: Billboard Japan Women in Music Interview",
+      "summary": "Billboard Japan chatted with Sayashi about where she’s landed after a long and winding path, and what she’s feeling now.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/riho-sayashi-billboard-japan-women-in-music-interview-1236380512/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T18:35:13.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "NDC blames APC for Lagos attack, ruling party denies involvement",
+      "summary": "The Nigeria Democratic Congress has blamed the APC for an attack on its supporters in Lagos, but the ruling party denied any involvement in the incident. Read More: https://punchng.com/ndc-blames-apc-for-lagos-attack-ruling-party-denies-involvement/",
+      "date": "2026-11-12 · Punch Entertainment",
+      "url": "https://punchng.com/ndc-blames-apc-for-lagos-attack-ruling-party-denies-involvement/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-12T18:35:11.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "Usher & Chris Brown’s R&B Tour: All of the Surprise Guests So Far",
+      "summary": "The North American trek kicked off in Denver on June 26.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/lists/usher-chris-brown-rb-tour-guests/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T18:30:36.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Shawn Mendes Speaks Out on Gaza, Urges Artists to Join Him: ‘There Is a Genocide Happening Before Our Eyes’",
+      "summary": "\"The children and families in Palestine have suffered for far too long,\" the singer wrote.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/shawn-mendes-free-palestine-urges-artists-speak-up-1236380446/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T18:24:53.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "UNN confirms four students dead after off-campus party",
+      "summary": "The University of Nigeria, Nsukka, has confirmed the deaths of four students and the hospitalisation of six others after an off-campus party. Read More: https://punchng.com/unn-confirms-four-students-dead-after-off-campus-party/",
+      "date": "2026-11-12 · Punch Entertainment",
+      "url": "https://punchng.com/unn-confirms-four-students-dead-after-off-campus-party/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-12T18:07:40.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "LNGSHOT Talk Musical Attitude & Group’s Turning Point: ‘S.W.I.S.H.’",
+      "summary": "Ahead of the EP's release, Billboard Korea sat down with LNGSHOT for an exclusive interview.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/music/pop/lngshot-interview-swish-ep-bananas-title-track-1236380425/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T17:52:01.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Ronaldo makes TV production debut with football drama",
+      "summary": "Portuguese football star Cristiano Ronaldo has ventured into television, announcing his debut as an executive producer for a new football drama series, Day Read More: https://punchng.com/ronaldo-makes-tv-production-debut-with-football-drama/",
+      "date": "2026-11-12 · Punch Entertainment",
+      "url": "https://punchng.com/ronaldo-makes-tv-production-debut-with-football-drama/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-12T17:50:06.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "HYBE, SM, JYP, and YG incorporate Fanomenon festival JV with $3M in capital and a board seat each (report)",
+      "summary": "Fanomenon's CEO is Park Yun-suh, who is also its only inside director, according to The Korea Herald. Source",
+      "date": "2026-11-12 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/hybe-sm-jyp-and-yg-incorporate-fanomenon-festival-jv-with-3m-in-capital-and-a-board-seat-each-report/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-12T17:29:28.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "Here’s what U2’s ‘The Greatest Show On Earth’ stadium tour stage production will look like",
+      "summary": "“It’s a little play on shamanism and showbusiness” The post Here’s what U2’s ‘The Greatest Show On Earth’ stadium tour stage production will look like appeared first on NME .",
+      "date": "2026-11-12 · NME Music",
+      "url": "https://www.nme.com/news/music/heres-what-u2s-the-greatest-show-on-earth-stadium-tour-stage-production-will-look-like-3975805",
+      "source": "NME Music",
+      "publishedAt": "2026-11-12T17:02:20.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Gang Of Youths announce new album ‘Compañero’ with captivating single ‘Benny’s Video’",
+      "summary": "The singer explained that the record stemmed from the \"realisation that I didn't need to channel all this brutality anymore” The post Gang Of Youths announce new album ‘Compañero’ with captivating single ‘Benny’s Video’ appeared first on NME .",
+      "date": "2026-11-12 · NME Music",
+      "url": "https://www.nme.com/news/music/gang-of-youths-announce-new-album-companero-with-single-bennys-video-tour-3975794",
+      "source": "NME Music",
+      "publishedAt": "2026-11-12T15:47:55.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "A brief history of electroclash",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-intro field--type-text-long field--label-hidden field__item\"><p>Electroclash burned bright and fast at the turn of the millennium. Brash, bawdy and brilliant, the sound tangled its electro roots in new-wave pop sensibility and raw post-punk energy – a wrecking ball to genre purism that ignited dance",
+      "date": "2026-11-12 · DJ Mag",
+      "url": "https://djmag.com/features/brief-history-of-electroclash",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-12T15:29:41.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "Jamie T announces Kate Nash and Willie J Healey as tour support as he teases more “special guests”",
+      "summary": "“You will have to wait and see…” The post Jamie T announces Kate Nash and Willie J Healey as tour support as he teases more “special guests” appeared first on NME .",
+      "date": "2026-11-12 · NME Music",
+      "url": "https://www.nme.com/news/music/jamie-t-announces-kate-nash-and-willie-j-healey-as-tour-support-as-he-teases-more-special-guests-3975777",
+      "source": "NME Music",
+      "publishedAt": "2026-11-12T12:46:09.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Daft Punk’s ‘One More Time’ hits one billion streams on Spotify",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>It’s taken from the duo’s breakthrough 2001 album, ‘Discovery’, which surpassed three billion streams in September</p> </div>",
+      "date": "2026-11-12 · DJ Mag",
+      "url": "https://djmag.com/news/daft-punks-one-more-time-hits-one-billion-streams-spotify",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-12T12:32:04.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "This is what Interpol and Bloc Party played as their kicked off their 2026 European co-headline tour in Berlin",
+      "summary": "Some fans praised the night as “absolutely mind-blowing” The post This is what Interpol and Bloc Party played as their kicked off their 2026 European co-headline tour in Berlin appeared first on NME .",
+      "date": "2026-11-12 · NME Music",
+      "url": "https://www.nme.com/news/music/this-is-what-interpol-and-bloc-party-played-as-their-kicked-off-their-2026-european-co-headline-tour-in-berlin-3975762",
+      "source": "NME Music",
+      "publishedAt": "2026-11-12T11:55:22.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Drumcode unveils 30th anniversary compilation featuring Amelie Lens, Adam Beyer, more",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The '30 Years of Drumcode' compilation presents tracks by some of the techno mainstay's \"favourite artists\"</p> </div>",
+      "date": "2026-11-12 · DJ Mag",
+      "url": "https://djmag.com/news/drumcode-unveils-30th-anniversary-compilation-featuring-amelie-lens-adam-beyer-more",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-12T11:24:29.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Jake Bugg talks overcoming hardships for ‘Alamo’: “I’d spent so much time being an artist that I’d neglected being a human”",
+      "summary": "The indie star also opens up about returning to his folk roots, confronting issues of loneliness and burnout, and hoping to create a sense of comfort for those around him The post Jake Bugg talks overcoming hardships for ‘Alamo’: “I’d spent so much time being an artist that I’d neglected being a human” appeared first on NME .",
+      "date": "2026-11-12 · NME Music",
+      "url": "https://www.nme.com/news/music/jake-bugg-interview-new-album-alamo-mental-health-country-music-3975721",
+      "source": "NME Music",
+      "publishedAt": "2026-11-12T11:20:00.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Spiller and Sophie Ellis-Bextor’s ‘Groovejet’ soundtracks Sky’s 2026 Christmas advert",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The advert was directed by Dave Meyers, who has worked on music videos for Taylor Swift, Kendrick Lamar and more</p> </div>",
+      "date": "2026-11-12 · DJ Mag",
+      "url": "https://djmag.com/news/spiller-and-sophie-ellis-bextors-groovejet-soundtracks-skys-2026-christmas-advert",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-12T11:15:55.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Tributes paid after death of “legendary” former NME Editor and football broadcaster Danny Kelly: “His passion for football, music and life was infectious”",
+      "summary": "Manic Street Preachers wrote: “a wonderful man, his musical knowledge was vast and deep, his radio voice has been part of our lives for so long” The post Tributes paid after death of “legendary” former NME Editor and football broadcaster Danny Kelly: “His passion for football, music and life was infectious” appeared first on NME .",
+      "date": "2026-11-12 · NME Music",
+      "url": "https://www.nme.com/news/music/tributes-paid-after-death-of-legendary-nme-editor-and-football-broadcaster-danny-kelly-3975749",
+      "source": "NME Music",
+      "publishedAt": "2026-11-12T10:47:45.000Z"
+    },
+    {
+      "category": "DJ",
+      "title": "New Manchester club, Resident, to open this month",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>Resident's opening night features a set from DJ, producer and Free The Night co-founder Holly Lester</p> </div>",
+      "date": "2026-11-11 · DJ Mag",
+      "url": "https://djmag.com/news/new-manchester-club-resident-open-month",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-11T19:41:35.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "DistroKid launches music publishing service powered by Kobalt",
+      "summary": "To qualify, songwriters and artists need at least one release on DistroKid and more than $50 in streaming revenue over the past 12 months. Source",
+      "date": "2026-11-11 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/distrokid-launches-music-publishing-service-powered-by-kobalt/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-11T18:03:10.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "RZA invests in AYO Music Group, the music copyright administrator co-founded by Deborah Mannis-Gardner and Pär Almqvist",
+      "summary": "He joins Disturbing Tha Peace Records co-founders Chaka Zulu and Jeff Dixon, Atlanta- and Johannesburg-based family office CIH Group, and Ewing Athletics owner David Goldberg as investors in the company. Source",
+      "date": "2026-11-11 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/rza-invests-in-ayo-music-group-the-music-copyright-administrator-co-founded-by-deborah-mannis-gardner-and-par-almqvist/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-11T17:50:42.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Gang Starr vinyl test pressing sells for $8,500 at auction",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The vinyl features hand-written notes from Guru, including a dedication to legendary producer Marley Marl</p> </div>",
+      "date": "2026-11-11 · DJ Mag",
+      "url": "https://djmag.com/news/gang-starr-vinyl-test-pressing-sells-8500-auction",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-11T16:46:06.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "John Digweed pays tribute to Juan Atkins and Cevin Fisher on Transitions radio show",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>Digweed used the first hour of his show to take listeners through the histories and legacies of the two recently passed producers</p> </div>",
+      "date": "2026-11-11 · DJ Mag",
+      "url": "https://djmag.com/news/john-digweed-pays-tribute-juan-atkins-and-cevin-fisher-transitions-radio-show",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-11T16:17:59.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "U2: “You have to up your game when people step into the room like Fontaines D.C.”",
+      "summary": "Bono and The Edge sit down with NME to talk us through the secret to survival after 50 years, the “defiant joy” of new album ‘Carnaval de Luz’, America finally \"waking up\", and how their love of Geese, Wolf Alice and Lambrini Girls keeps them on their toes The post U2: “You have to up your game when people step into the room like Fontaines D.C.” appeared fir",
+      "date": "2026-11-11 · NME Music",
+      "url": "https://www.nme.com/news/music/u2-interview-carnaval-de-luz-bono-the-edge-new-music-tour-3975696",
+      "source": "NME Music",
+      "publishedAt": "2026-11-11T16:00:26.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Diplo and former Downtown CEO Andrew Bergman launch independent publisher Bison Music",
+      "summary": "Bergman is CEO of Bison, alongside COO Tom Lee, CCO Juba Lee, and General Manager Jenny Ilibassi. Source",
+      "date": "2026-11-11 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/diplo-and-former-downtown-ceo-andrew-bergman-launch-independent-publisher-bison-music/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-11T15:18:42.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "Tomorrowland Winter 2027: first names announced",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The festival will take over Alpe d’Huez from 20th to 27th March 2027</p> </div>",
+      "date": "2026-11-11 · DJ Mag",
+      "url": "https://djmag.com/news/tomorrowland-winter-2027-first-names-announced",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-11T15:17:55.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Carl Cox awarded OBE by Prince William at Windsor Castle",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>“This honour means so much, not just to me personally, but because of where our music has come from and how far it has travelled.”</p> </div>",
+      "date": "2026-11-11 · DJ Mag",
+      "url": "https://djmag.com/news/carl-cox-awarded-obe-prince-william-windsor-castle",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-11T13:54:14.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "NASA spacecraft carrying music from Earth will soon be one light-day away from our planet",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>Launched in 1977, the Voyager I spacecraft contains recordings of music from all over the world</p> </div>",
+      "date": "2026-11-11 · DJ Mag",
+      "url": "https://djmag.com/news/nasa-spacecraft-carrying-music-earth-will-soon-be-one-light-day-away-our-planet",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-11T13:18:17.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "TikTok’s SoundOn strikes ‘landmark’ deal to distribute Daddy Yankee’s ‘La Postal’ album, in what it calls its ‘biggest artist partnership to date’",
+      "summary": "TikTok is backing the album with a global campaign, including a Times Square billboard. Source",
+      "date": "2026-11-11 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/tiktoks-soundon-strikes-landmark-deal-to-distribute-daddy-yankees-la-postal-album-in-what-it-calls-its-biggest-artist-partnership-to-dat/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-11T12:22:00.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Too Lost signs Dubai-based Afterpeak, home to 25,000+ releases, to exclusive distribution deal with ‘multi-seven-figure’ financing",
+      "summary": "Founded in 2020 by CEO Avery Chauhan, Afterpeak says its catalog of originals, covers, and reworks has generated more than 3 billion Spotify streams. Source",
+      "date": "2026-11-11 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/too-lost-signs-dubai-based-afterpeak-home-to-25000-releases-to-exclusive-distribution-deal-with-multi-seven-figure-financing/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-11T11:56:09.000Z"
+    },
+    {
+      "category": "DJ",
+      "title": "Beloved Jersey club producer DJ Saucy P has died",
+      "summary": "He’s remembered for having a “heart of gold” and “living out his dreams through music” Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/jersey-club-producer-fatman-scoop-collaborator-dj-saucy-p-has-died-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "UK cultural organisations urge Andy Burnham to break EU touring deadlock",
+      "summary": "According to a survey from UK Music, 95% of touring musicians have reported a loss of earnings since Brexit Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/uk-cultural-organisations-urge-andy-burnham-break-eu-touring-deadlock-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Vinyl featuring music from Earth has travelled almost one light-day away, NASA says",
+      "summary": "After almost 50 years, a spacecraft carrying the record is due to reach 16 billion miles from Earth next week Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/vinyl-featuring-music-earth-travelled-almost-one-light-day-away-nasa-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Mix 130: Jacques Greene",
+      "summary": "The Montreal DJ and producer highlights the club obsessions that have informed his latest album 'jg', and speaks to Megan Townsend about post-COVID dancefloors, the Tiga DJ sets that rewired his brain, and the parallels between club and cinema Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/the-mix-130-jacques-greene-jg-montreal-dj-album-club",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Fundraiser launched to support vision loss treatment for US DJ Titonton Duvanté",
+      "summary": "The Ohio artist has suffered a “significant decline” in his vision over the last six months Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/fundraiser-launched-support-vision-loss-treatment-us-dj-titonton-duvanté-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Inside Ironworks, the new industrial dance music fortress overlooking London",
+      "summary": "Since opening its doors last month, the riverside warehouse space has welcomed global stars including Charlotte de Witte, Jamie Jones and Eric Prydz. Here’s what went down at the first run of shows Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/inside-ironworks-new-industrial-dance-music-fortress-overlooking-london",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "Daddy Yankee announced as Coachella 2027 headliner",
+      "summary": "The Puerto Rican reggaeton legend will be joined by fellow headliners SZA, Dua Lipa and Tame Impala at the Californian festival across two weekends next April Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/daddy-yankee-announced-as-headliner-coachella-2027-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Grimes to make film debut in “first-ever” AI-generated movie in cinemas",
+      "summary": "The Canadian musician voices a lookalike aristocratic character in Gods Don’t Give Gifts Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/grimes-make-film-debut-first-ever-ai-generated-movie-cinemas-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Carl Cox has been awarded an OBE",
+      "summary": "He picked up the prestigious honour at Windsor Castle for his outstanding contribution to music Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/carl-cox-has-been-awarded-an-obe-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "AlphaTheta unveils new four-channel mixer, DJM-A7",
+      "summary": "The mixer is designed for “a wide range of venues and environments”, the music tech giant says Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/alphatheta-unveils-new-four-channel-mixer-djm-a7-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "“I’m gutted”: Hannah Laing announces cancellation of doof in the Park 2027",
+      "summary": "Laing said that “behind the scenes” issues are to blame for the Dundee festival’s cancellation next year Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/hannah-laing-announces-cancellation-doof-in-the-park-2027-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Bristol bridge collapse could be linked to loud music, says councillor",
+      "summary": "Music being played through speakers on the shore could be to blame, a Lib Dems councillor claims Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/bristol-bridge-collapse-linked-loud-music-says-councillor-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Miami's Club Space to transform into GTA VI nightclub for game's launch",
+      "summary": "The venue will host three parties in collaboration with CircoLoco, inspired by the fictional Vice City nightspot The Vault Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/miami-club-space-transform-gta-vi-nightclub-games-launch-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best DJ Mixes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Jeff Mills on Juan Atkins: “His legacy is not something that can be fully measured”",
+      "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "MPH is going full throttle to the dancefloor",
+      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Cover Mix: MPH",
+      "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Tracks Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best tracks of the year 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-club-tracks-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "London Mayor Sadiq Khan gains licensing powers for music venues and festivals",
+      "summary": "The “historic” powers allow Khan to make direct decisions on licensing applications for the first time ever Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/london-mayor-sadiq-khan-gains-licensing-powers-music-venues-festivals-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "RIP Juan Atkins, the techno originator who changed the world",
+      "summary": "Juan Atkins was the pioneer whose foundational influence has inspired everyone. Not just an all-time titan of dance music, but of music full stop. Marcus Barnes pays tribute to the innovator who never stopped looking forwards Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/rip-juan-atkins-detroit-techno-pioneer-legend-obituary-tribute",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Police arrest over 400 people following raid on Kuala Lumpur nightclub",
+      "summary": "A police chief said that all detainees were taken for drug testing Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/police-arrest-over-400-people-following-raid-kuala-lumpur-nightclub-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Man arrested following stabbing at London nightclub Studio 338",
+      "summary": "The incident occurred during a Halloween event on Friday night Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/man-arrested-following-stabbing-london-nightclub-studio-338-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "New music on our radar this week: MK, Roza Terenzi, DJ Heartstring",
+      "summary": "All the biggest releases on our radar Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
+      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Influential New Jersey house DJ and producer Cevin Fisher has died aged 63",
+      "summary": "Across more than four decades, Fisher helped shape house music Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/influential-new-jersey-house-dj-and-producer-cevin-fisher-has-died-aged-63-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "“Good practice” guide launched for new and independent music promoters",
+      "summary": "The guide, which has been created by AFEM, lays out ethical approaches to ticketing, marketing, event insurance and more Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/good-practice-guide-launched-new-independent-music-promoters-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Unreleased Daft Punk mix from 1997 discovered by DJ Ralph Lawson",
+      "summary": "The 20/20 Vision founder discovered the \"mouldy\" tape, which was submitted by the French duo to his Kiss FM show, in a storage unit Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/unreleased-daft-punk-mix-from-1997-discovered-dj-ralph-lawson-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Minneapolis DJ school Slam Academy to shutter following misconduct concerns",
+      "summary": "The academy said that “conduct fell short of the professional boundaries we expect” Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/minneapolis-dj-school-slam-academy-to-shutter-following-misconduct-concerns-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    }
+  ]
 }
