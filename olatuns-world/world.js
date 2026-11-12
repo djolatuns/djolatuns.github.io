@@ -23,3 +23,5 @@ window.addEventListener('appinstalled',()=>{installBtn.hidden=true;installPrompt
 if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
 if('standalone'in navigator&&navigator.standalone)installBtn.hidden=true;
 // Weekly content refresh: 12 November 2026.
+
+// Cloudflare Pages path configuration corrected for this app.
