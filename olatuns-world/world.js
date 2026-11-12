@@ -9,7 +9,7 @@ let stories=[
 {category:'Music',title:'Music releases and new sounds',summary:'Discover new Afrobeats releases, singles, albums and collaborations. Fresh stories will appear here as music sources are connected.',date:'Music discovery',url:'https://audiomack.com/'},
 {category:'DJ',title:'DJAN announces national executives',summary:'The Deejays Association of Nigeria announced its National Executive Council after its 16th National Conference in Abuja. DJ Perfect International was re-elected president.',date:'9 Nov 2026 · DJ industry',url:'https://djan.ng/djan-elects-new-national-executive-council-at-16th-national-conference-2026/'},
 {category:'DJ',title:'DJ culture and industry spotlight',summary:'Follow DJ achievements, interviews, mixes, performances and stories from the Nigerian and global DJ community.',date:'DJ spotlight',url:'https://djan.ng/'},
- {category:'Events',title:'DJ shows and music events',summary:'Find DJ performances, concerts, music festivals and parties. Event listings will be added when dates and official details are confirmed.'',date:'Upcoming · Lagos',url:'https://www.aghafestival.com/'}
+{category:'Events',title:'DJ shows and music events',summary:'Find DJ performances, concerts, music festivals and parties. Event listings will be added when dates and official details are confirmed.',date:'Music events',url:'https://djan.ng/'}
 ];
 async function loadLatestFeed(){
  try {
