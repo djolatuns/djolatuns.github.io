@@ -24,9 +24,30 @@ section{padding:65px 0}.section-head{display:flex;justify-content:space-between;
 footer{background:#19182e;color:white;padding:48px 0 22px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}.footer-brand p{max-width:320px;color:#b8b6ce;font-size:12px;line-height:1.8}.footer-col h4{font-size:12px;letter-spacing:1px}.footer-col a{display:block;color:#b8b6ce;font-size:12px;margin:11px 0}.footer-col a:hover{color:white}.copyright{border-top:1px solid #ffffff1b;margin-top:35px;padding-top:18px;color:#a8a6be;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(max-width:760px){.links{display:none;position:absolute;top:76px;left:0;right:0;background:white;padding:18px 5%;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:18px}.links.open{display:flex}.navbtn{display:block}.hero{padding-top:35px}.hero-grid,.feature-grid{grid-template-columns:1fr}.hero-art{min-height:310px}.hero h1{letter-spacing:-2.5px}.cards{grid-template-columns:1fr 1fr}.section-head{align-items:flex-start;flex-direction:column}.newsletter{align-items:flex-start;flex-direction:column;padding:28px}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
 @media(max-width:460px){.cards{grid-template-columns:1fr}.card-art{height:155px}.topbar .wrap{font-size:10px}.hero p{font-size:14px}.footer-grid{grid-template-columns:1fr}.footer-brand{grid-column:auto}}
+
+/* OLATUNS WORLD opening splash */
+#openingSplash{position:fixed;inset:0;z-index:9999;background:#fff;display:grid;place-items:center;transition:opacity .45s ease,visibility .45s ease}
+#openingSplash.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.splash-inner{text-align:center;display:grid;justify-items:center;gap:15px}
+.splash-mark{width:94px;height:94px;border-radius:28px;background:linear-gradient(135deg,#6557e8,#3289f5);display:grid;place-items:center;color:#fff;font:700 34px 'Space Grotesk';letter-spacing:-3px;box-shadow:0 16px 38px #6557e844;position:relative}
+.splash-mark:after{content:"";position:absolute;inset:7px;border:1px solid #ffffff80;border-radius:22px}
+.splash-name{font:700 23px 'Space Grotesk';letter-spacing:-1px;color:#17172b}
+.splash-name span{color:#6557e8}
+.splash-tag{font-size:9px;font-weight:800;letter-spacing:3px;color:#85849b}
+.splash-loader{width:44px;height:3px;background:#e9e8f2;border-radius:5px;overflow:hidden;margin-top:5px}
+.splash-loader:after{content:"";display:block;width:45%;height:100%;border-radius:5px;background:linear-gradient(90deg,#6557e8,#3289f5);animation:splashLoad 1s ease-in-out infinite alternate}
+@keyframes splashLoad{from{transform:translateX(0)}to{transform:translateX(125%)}}
 </style>
 </head>
 <body>
+<div id="openingSplash" role="status" aria-label="Loading OLATUNS WORLD">
+  <div class="splash-inner">
+    <div class="splash-mark">OW</div>
+    <div class="splash-name">OLATUNS<span>WORLD.</span></div>
+    <div class="splash-tag">YOUR WORLD OF ENTERTAINMENT</div>
+    <div class="splash-loader"></div>
+  </div>
+</div>
 <div class="topbar"><div class="wrap"><span>THE HOME OF MUSIC, CULTURE & ENTERTAINMENT</span><strong>POWERED BY DJ OLATUNS</strong></div></div>
 <header><div class="wrap nav"><a class="brand" href="#home">OLATUNS<span>WORLD.</span><small>YOUR WORLD OF ENTERTAINMENT</small></a><nav class="links" id="navLinks"><a href="#home">Home</a><a href="#discover">Discover</a><a href="#music">Music</a><a href="#culture">Culture</a><a href="#about">About</a></nav><button class="navbtn" id="menuBtn" aria-label="Toggle navigation">☰</button></div></header>
 <main>
@@ -46,6 +67,8 @@ footer{background:#19182e;color:white;padding:48px 0 22px}.footer-grid{display:g
 </main>
 <footer><div class="wrap"><div class="footer-grid"><div class="footer-brand"><a class="brand" href="#home" style="color:#fff">OLATUNS<span>WORLD.</span><small style="color:#aaa8c1">YOUR WORLD OF ENTERTAINMENT</small></a><p>A destination for music, entertainment, culture and good energy. Proudly powered by DJ Olatuns.</p></div><div class="footer-col"><h4>EXPLORE</h4><a href="#discover">Discover</a><a href="#music">Music & Mixtapes</a><a href="#culture">Culture & Videos</a></div><div class="footer-col"><h4>CONNECT</h4><a href="https://djolatuns.github.io/" target="_blank" rel="noopener">DJ Olatuns Website</a><a href="#about">About OLATUNS WORLD</a></div></div><div class="copyright"><span>© <span id="year"></span> OLATUNS WORLD. All rights reserved.</span><span>Created with creativity • Powered by DJ Olatuns</span></div></div></footer>
 <script>
+const splash=document.getElementById('openingSplash');
+window.addEventListener('load',()=>setTimeout(()=>splash.classList.add('hidden'),850));
 const menuBtn=document.getElementById('menuBtn'),navLinks=document.getElementById('navLinks');
 menuBtn.addEventListener('click',()=>{navLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',navLinks.classList.contains('open'))});
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
