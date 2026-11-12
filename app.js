@@ -10,9 +10,11 @@ const originalMixHTML=mixHTML;$('#featuredMixes').innerHTML=enhancedMixCards();
 views.mixtapes=()=>{$('#main').innerHTML=mixHTML();renderMixLibrary()};
 function renderMixLibrary(){
  const grid=$('#main .mix-grid');if(!grid)return;
- grid.innerHTML=enhancedMixCards();
- const heading=$('#main .page-heading');
- if(!$('#mixSearch')){const search=document.createElement('input');search.id='mixSearch';search.className='field mix-search';search.type='search';search.placeholder='Search mixtapes…';search.setAttribute('aria-label','Search mixtapes');grid.parentNode.insertBefore(search,grid);search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();grid.innerHTML=enhancedMixCards(mixes.filter(m=>(m.title+' '+m.type+' '+m.note).toLowerCase().includes(q)))})}
+ let search=$('#mixSearch');
+ if(!search){search=document.createElement('input');search.id='mixSearch';search.className='field mix-search';search.type='search';search.placeholder='Search mixtapes…';search.setAttribute('aria-label','Search mixtapes');grid.parentNode.insertBefore(search,grid);search.addEventListener('input',()=>renderMixLibrary())}
+ const q=search.value.trim().toLowerCase();
+ const filtered=mixes.filter(m=>(m.title+' '+m.type+' '+m.note).toLowerCase().includes(q));
+ grid.innerHTML=filtered.length?enhancedMixCards(filtered):'<div class="empty-note">No mixtapes match that search. Try another title or keyword.</div>';
 }
 function savedHTML(){const saved=mixes.filter(m=>isSaved(m.key));return shell('Saved mixtapes','YOUR PERSONAL LIBRARY','Keep your favourite DJ Olatuns mixes close.','<div class="mix-grid">'+(saved.length?enhancedMixCards(saved):'<div class="content-panel"><h3>Your saved library is ready</h3><p>Save a mixtape from the Mixtapes page and it will appear here on this device.</p><button class="primary-btn" data-go="mixtapes">Explore mixtapes ↗</button></div>')+'</div>')}
 const wisdom=[
