@@ -6,10 +6,10 @@ if(refreshBtn)refreshBtn.addEventListener('click',async()=>{
  location.reload();
 });
 let stories=[
-{category:'Music',title:'Tems: Surround Sound premieres',summary:'Spotify has released a full-length concert film shot in Lagos, following Tems through songs from across her career.',date:'11 Nov 2026 · Entertainment',url:'https://guardian.ng/life/spotify-premieres-tems-lagos-concert-film-as-debut-ep-reaches-888m-streams/'},
+{category:'Music',title:'Music releases and new sounds',summary:'Discover new Afrobeats releases, singles, albums and collaborations. Fresh stories will appear here as music sources are connected.',date:'Music discovery',url:'https://audiomack.com/'},
 {category:'DJ',title:'DJAN announces national executives',summary:'The Deejays Association of Nigeria announced its National Executive Council after its 16th National Conference in Abuja. DJ Perfect International was re-elected president.',date:'9 Nov 2026 · DJ industry',url:'https://djan.ng/djan-elects-new-national-executive-council-at-16th-national-conference-2026/'},
-{category:'Events',title:'Entertainment Week Africa',summary:'17–22 November 2026 in Lagos. Six days of summits, markets, showcases and creative-industry networking across seven tracks.',date:'Upcoming · Lagos',url:'https://ewafrica.com/schedule/'},
-{category:'Events',title:'AGHA Festival — The Global Homecoming',summary:'Planned for 26–29 December 2026 at SOL Beach, Lekki, Lagos. The official site lists music, culture and creative participation; check its site for lineup updates.',date:'Upcoming · Lagos',url:'https://www.aghafestival.com/'}
+{category:'DJ',title:'DJ culture and industry spotlight',summary:'Follow DJ achievements, interviews, mixes, performances and stories from the Nigerian and global DJ community.',date:'DJ spotlight',url:'https://djan.ng/'},
+ {category:'Events',title:'DJ shows and music events',summary:'Find DJ performances, concerts, music festivals and parties. Event listings will be added when dates and official details are confirmed.'',date:'Upcoming · Lagos',url:'https://www.aghafestival.com/'}
 ];
 async function loadLatestFeed(){
  try {
@@ -21,7 +21,7 @@ async function loadLatestFeed(){
    render();
   }
  } catch(error) {
-  console.warn('Using the saved news list because the latest feed is unavailable.',error);
+  console.warn('Using the saved DJ and music list because the latest feed is unavailable.',error);
  }
 }
 let active='All';
