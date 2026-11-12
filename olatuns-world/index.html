@@ -80,5 +80,16 @@ menuBtn.addEventListener('click',()=>{navLinks.classList.toggle('open');menuBtn.
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
+
+<script>
+// OLATUNS WORLD has its own, more-specific service-worker scope and cache.
+if ("serviceWorker" in navigator && location.protocol === "https:") {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js", { scope: "./" })
+      .then(registration => registration.update())
+      .catch(error => console.error("OLATUNS WORLD service worker registration failed:", error));
+  });
+}
+</script>
 </body>
 </html>
