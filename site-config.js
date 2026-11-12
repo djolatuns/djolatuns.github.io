@@ -8,5 +8,5 @@ window.OLATUNS_CONFIG = {
     movement: "https://audiomack.com/dj_olatuns1/song/dj-olatuns-2026-movement-mixtape?share-user-id=153478386"
   },
   bookingEmail: "",
-  bookingWhatsApp: ""
+  bookingWhatsApp: "2348103327836"
 };
