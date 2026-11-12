@@ -3,31 +3,28 @@
   const readSaved = () => {
     try { return localStorage.getItem(KEY); } catch (_) { return null; }
   };
-  const normalize = value => value === "light" ? "light" : "dark";
+  // OLATUNS WORLD's light purple/blue identity is the default.
+  const normalize = value => value === "dark" ? "dark" : "light";
   const css = document.createElement("style");
   css.id = "dj-olatuns-theme-style";
-  css.textContent = `
+  css.textContent = String.raw\`
     html[data-dj-theme="light"] { color-scheme: light !important; }
     html[data-dj-theme="dark"] { color-scheme: dark !important; }
 
-    /* Global page canvas and typography */
     html[data-dj-theme="light"] body {
-      background: #f4f1e9 !important;
+      background: #f7f7fc !important;
       background-image: none !important;
-      color: #24211b !important;
+      color: #17172b !important;
     }
-    html[data-dj-theme="light"] body * {
-      scrollbar-color: #c9b98f #f4f1e9;
-    }
+    html[data-dj-theme="light"] body * { scrollbar-color: #c9c5ef #f7f7fc; }
     html[data-dj-theme="light"] p,
     html[data-dj-theme="light"] small,
     html[data-dj-theme="light"] .muted,
     html[data-dj-theme="light"] .sub,
     html[data-dj-theme="light"] .description,
     html[data-dj-theme="light"] .hint,
-    html[data-dj-theme="light"] .eyebrow,
     html[data-dj-theme="light"] .app-menu-caption {
-      color: #625d52 !important;
+      color: #707087 !important;
     }
     html[data-dj-theme="light"] h1,
     html[data-dj-theme="light"] h2,
@@ -38,18 +35,11 @@
     html[data-dj-theme="light"] strong,
     html[data-dj-theme="light"] b,
     html[data-dj-theme="light"] label {
-      color: #6f4d0b !important;
+      color: #17172b !important;
     }
 
-    /* Page chrome, navigation, menus, panels and common card patterns */
     html[data-dj-theme="light"] header,
     html[data-dj-theme="light"] nav,
-    html[data-dj-theme="light"] .bottomnav,
-    html[data-dj-theme="light"] .app-menu,
-    html[data-dj-theme="light"] .app-menu-head,
-    html[data-dj-theme="light"] .sidebar,
-    html[data-dj-theme="light"] .side-head,
-    html[data-dj-theme="light"] .topbar,
     html[data-dj-theme="light"] .toolbar,
     html[data-dj-theme="light"] .tabs,
     html[data-dj-theme="light"] .tab-bar,
@@ -80,96 +70,148 @@
     html[data-dj-theme="light"] .account-card,
     html[data-dj-theme="light"] .booking-card,
     html[data-dj-theme="light"] .lesson-card,
-    html[data-dj-theme="light"] .business-card {
-      background-color: #fffdf7 !important;
+    html[data-dj-theme="light"] .business-card,
+    html[data-dj-theme="light"] .quick-card,
+    html[data-dj-theme="light"] .discover-row,
+    html[data-dj-theme="light"] .settings-list button,
+    html[data-dj-theme="light"] .settings-list a {
+      background-color: #fff !important;
       background-image: none !important;
-      color: #24211b !important;
-      border-color: #ded4bd !important;
-      box-shadow: 0 6px 20px #5b4a2510 !important;
+      color: #17172b !important;
+      border-color: #e9e8f2 !important;
+      box-shadow: 0 8px 24px rgba(35,31,91,.07) !important;
     }
 
-    /* Inline dark backgrounds are a common reason individual pages stay dark */
-    html[data-dj-theme="light"] [style*="background:#"],
-    html[data-dj-theme="light"] [style*="background: #"],
-    html[data-dj-theme="light"] [style*="background-color:#"],
-    html[data-dj-theme="light"] [style*="background-color: #"],
-    html[data-dj-theme="light"] [style*="background:linear-gradient"],
-    html[data-dj-theme="light"] [style*="background: linear-gradient"],
-    html[data-dj-theme="light"] [style*="background:radial-gradient"],
-    html[data-dj-theme="light"] [style*="background: radial-gradient"] {
-      background-color: #fffdf7 !important;
-      background-image: none !important;
-      color: #24211b !important;
-      border-color: #ded4bd !important;
+    html[data-dj-theme="light"] .app-menu {
+      background: linear-gradient(160deg,#24213f,#19182e 72%) !important;
+      border-color: #5146b7 !important;
     }
-
-    html[data-dj-theme="light"] a {
-      color: #805b12;
-    }
-    html[data-dj-theme="light"] .bottomnav a,
-    html[data-dj-theme="light"] .app-menu > a {
-      color: #514832 !important;
-    }
-    html[data-dj-theme="light"] .bottomnav a.active,
+    html[data-dj-theme="light"] .app-menu-head strong,
+    html[data-dj-theme="light"] .app-menu > a,
     html[data-dj-theme="light"] .app-menu > a:hover,
     html[data-dj-theme="light"] .app-menu > a:focus {
-      background: #f1e7cf !important;
-      color: #6f4d0b !important;
-      border-color: #d8c79f !important;
+      color: #fff !important;
+    }
+    html[data-dj-theme="light"] .app-menu > a:hover,
+    html[data-dj-theme="light"] .app-menu > a:focus {
+      background: #5146b7 !important;
+      border-color: #8f83ff !important;
+    }
+    html[data-dj-theme="light"] .app-menu-button {
+      background: #fff !important;
+      border-color: #d9d6f2 !important;
+    }
+    html[data-dj-theme="light"] .app-menu-button span { background: #6557e8 !important; }
+
+    html[data-dj-theme="light"] .hero,
+    html[data-dj-theme="light"] .brief,
+    html[data-dj-theme="light"] .feature,
+    html[data-dj-theme="light"] .wisdom-share {
+      border-color: #e9e8f2 !important;
+    }
+    html[data-dj-theme="light"] .hero,
+    html[data-dj-theme="light"] .brief,
+    html[data-dj-theme="light"] .feature {
+      background: #fff !important;
+      color: #17172b !important;
+    }
+    html[data-dj-theme="light"] .home-banner,
+    html[data-dj-theme="light"] .feature-strip,
+    html[data-dj-theme="light"] .music-hero,
+    html[data-dj-theme="light"] .feature-art,
+    html[data-dj-theme="light"] .wisdom-share .primary {
+      background: linear-gradient(115deg,#6557e8,#3289f5) !important;
+      color: #fff !important;
+      border-color: transparent !important;
+    }
+    html[data-dj-theme="light"] .home-banner h2,
+    html[data-dj-theme="light"] .home-banner p,
+    html[data-dj-theme="light"] .feature-strip b,
+    html[data-dj-theme="light"] .feature-strip p,
+    html[data-dj-theme="light"] .music-hero h1,
+    html[data-dj-theme="light"] .music-hero p,
+    html[data-dj-theme="light"] .feature-art strong,
+    html[data-dj-theme="light"] .feature-art span,
+    html[data-dj-theme="light"] .wisdom-share .primary {
+      color: #fff !important;
+    }
+    html[data-dj-theme="light"] .eyebrow,
+    html[data-dj-theme="light"] .kicker,
+    html[data-dj-theme="light"] .tag,
+    html[data-dj-theme="light"] .text-action,
+    html[data-dj-theme="light"] .read,
+    html[data-dj-theme="light"] .page-welcome h1 span,
+    html[data-dj-theme="light"] .page-heading h1 span {
+      color: #6557e8 !important;
+    }
+    html[data-dj-theme="light"] .welcome-mark,
+    html[data-dj-theme="light"] .about-logo,
+    html[data-dj-theme="light"] .row-icon {
+      background: linear-gradient(135deg,#6557e8,#3289f5) !important;
+      color: #fff !important;
+    }
+    html[data-dj-theme="light"] .bottomnav {
+      background: rgba(25,24,46,.98) !important;
+      border-color: #5146b7 !important;
+    }
+    html[data-dj-theme="light"] .bottomnav a { color: #d6d4ec !important; }
+    html[data-dj-theme="light"] .bottomnav .ico { color: #a99fff !important; }
+    html[data-dj-theme="light"] .bottomnav a.active {
+      color: #fff !important;
+      background: #5146b7 !important;
     }
 
-    /* Form fields and interactive controls */
+    html[data-dj-theme="light"] a { color: #5146b7; }
+    html[data-dj-theme="light"] .btn,
+    html[data-dj-theme="light"] .toolbtn,
+    html[data-dj-theme="light"] .wisdom-share button,
+    html[data-dj-theme="light"] .wisdom-share a {
+      border-color: #d9d6f2 !important;
+      color: #5146b7 !important;
+      background: #f2f0ff !important;
+    }
+    html[data-dj-theme="light"] .btn.gold,
+    html[data-dj-theme="light"] .primary,
+    html[data-dj-theme="light"] .installbtn,
+    html[data-dj-theme="light"] .wisdom-share .primary {
+      background: linear-gradient(110deg,#6557e8,#3289f5) !important;
+      color: #fff !important;
+      border-color: transparent !important;
+    }
     html[data-dj-theme="light"] input,
     html[data-dj-theme="light"] textarea,
     html[data-dj-theme="light"] select,
     html[data-dj-theme="light"] [contenteditable="true"] {
       background: #fff !important;
-      color: #24211b !important;
-      border-color: #cbbd9e !important;
+      color: #17172b !important;
+      border-color: #d9d6f2 !important;
     }
     html[data-dj-theme="light"] input::placeholder,
-    html[data-dj-theme="light"] textarea::placeholder {
-      color: #8b8374 !important;
-    }
-    html[data-dj-theme="light"] button {
-      color: #3b2b0d;
-      border-color: #cbbd9e;
-    }
-    html[data-dj-theme="light"] button:not(.gold):not(.primary):not(.action),
-    html[data-dj-theme="light"] .secondary {
-      background-color: #f4eddd !important;
-      color: #51401d !important;
-    }
-    html[data-dj-theme="light"] .gold,
-    html[data-dj-theme="light"] .primary,
-    html[data-dj-theme="light"] .action:not(.secondary),
-    html[data-dj-theme="light"] .btn.gold {
-      background: linear-gradient(120deg,#ffe5a0,#c89431) !important;
-      color: #100d06 !important;
-      border-color: transparent !important;
+    html[data-dj-theme="light"] textarea::placeholder { color: #9291a8 !important; }
+    html[data-dj-theme="light"] button { border-color: #d9d6f2; }
+    html[data-dj-theme="light"] button:not(.primary):not(.action):not(.gold) {
+      background-color: #f2f0ff !important;
+      color: #5146b7 !important;
     }
     html[data-dj-theme="light"] table,
     html[data-dj-theme="light"] th,
     html[data-dj-theme="light"] td {
-      color: #24211b !important;
-      border-color: #ded4bd !important;
+      color: #17172b !important;
+      border-color: #e9e8f2 !important;
     }
     html[data-dj-theme="light"] footer {
-      color: #777064 !important;
+      background: #19182e !important;
+      color: #d6d4ec !important;
     }
-    html[data-dj-theme="light"] .app-menu-button,
     html[data-dj-theme="light"] .home-message-shortcut,
     html[data-dj-theme="light"] .home-message-link {
-      background: #fffdf7 !important;
-      color: #805b12 !important;
-      border-color: #d8c79f !important;
+      background: linear-gradient(135deg,#6557e8,#3289f5) !important;
+      color: #fff !important;
+      border-color: #6557e8 !important;
     }
-    html[data-dj-theme="light"] .app-menu-button span {
-      background: #805b12 !important;
-    }
-  `;
-  (document.head || document.documentElement).appendChild(css);
+  \`;
 
+  (document.head || document.documentElement).appendChild(css);
   document.documentElement.setAttribute("data-dj-theme", normalize(readSaved()));
   window.DJOLATUNS_THEME = {
     get() {
@@ -184,7 +226,7 @@
         button.setAttribute("aria-pressed", String(active));
       });
       const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute("content", next === "light" ? "#f4f1e9" : "#090909");
+      if (meta) meta.setAttribute("content", next === "light" ? "#6557e8" : "#090909");
     }
   };
   window.DJOLATUNS_THEME.set(readSaved());
