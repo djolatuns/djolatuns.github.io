@@ -109,6 +109,63 @@
     html[data-dj-theme="light"] :where(.home-message-link,.home-message-shortcut) {
       background:linear-gradient(135deg,var(--ow-purple),var(--ow-blue)) !important; color:#fff !important;
     }
+    /* Page-specific surfaces used by the account, community and chat screens */
+    html[data-dj-theme="light"] :where(.account-profile,.account-profile-main,.account-profile-stat,.account-profile-stats,.account-profile-tabs,.account-center-nav,.profile-editor,.profile-edit-preview,.account-wrap,.member-directory,.member-results,.community-highlights,.highlight-tile,.member-search,.member-results,.table-wrap,.stat,.stats,.notice,.update,.lesson,.profile-post,.empty,.empty-history,.history,.workspace,.assistant,.assistant-head,.sidebar,.side-head,.side-foot,.chat-area,.chat-body,.chat-head,.conversation-list,.chat,.composer,.composer-wrap,.history-load,.topic,.topics,.welcome,.privacy,.search,.links,.conversation,.post,.post-avatar,.member-profile,.avatar,.avatar-fallback) {
+      background-color:var(--ow-surface) !important;
+      background-image:none !important;
+      color:var(--ow-ink) !important;
+      border-color:var(--ow-line) !important;
+      box-shadow:0 8px 24px rgba(35,31,91,.055);
+    }
+    html[data-dj-theme="light"] :where(.account-center-nav,.account-profile-tabs,.bottom-app-nav,.bottom,.bottomnav,.bottom-nav) {
+      background:var(--ow-ink) !important; color:#fff !important; border-color:#5146b7 !important;
+    }
+    html[data-dj-theme="light"] :where(.account-center-nav,.account-profile-tabs,.bottom-app-nav,.bottom,.bottomnav,.bottom-nav) a {
+      color:#e5e4f2 !important;
+    }
+    html[data-dj-theme="light"] :where(.account-profile-stat,.stat,.highlight-tile,.topic,.tile,.setting-row) {
+      background:var(--ow-surface-soft) !important; border:1px solid var(--ow-line) !important;
+      border-radius:16px;
+    }
+    html[data-dj-theme="light"] :where(.highlight-main,.assistant-head,.chat-head,.side-head,.welcome,.orb) {
+      background:linear-gradient(125deg,var(--ow-purple),var(--ow-blue)) !important;
+      color:#fff !important; border-color:transparent !important;
+    }
+    html[data-dj-theme="light"] :where(.highlight-main,.assistant-head,.chat-head,.side-head,.welcome) :where(h1,h2,h3,p,span,strong,small,a) {
+      color:#fff !important;
+    }
+    html[data-dj-theme="light"] :where(.sidebar,.history,.conversation-list) {
+      background:#f0effb !important; border-color:var(--ow-line) !important;
+    }
+    html[data-dj-theme="light"] :where(.bubble,.message,.chat-message) {
+      background:#f0effb !important; color:var(--ow-ink) !important;
+      border:1px solid var(--ow-line) !important; border-radius:16px;
+    }
+    html[data-dj-theme="light"] :where(.user .bubble,.mine .bubble,.bubble.user,.message.user) {
+      background:#e9e6ff !important; color:var(--ow-ink) !important;
+    }
+    html[data-dj-theme="light"] :where(.assistant .bubble,.bubble.assistant,.bubble-row.assistant .bubble) {
+      background:#fff !important; color:var(--ow-ink) !important;
+    }
+    html[data-dj-theme="light"] :where(.avatar,.avatar-fallback,.ac-icon) {
+      background:linear-gradient(135deg,var(--ow-purple),var(--ow-blue)) !important;
+      color:#fff !important; border-color:transparent !important;
+    }
+    html[data-dj-theme="light"] :where(.notice,.status) {
+      background:#eef4ff !important; color:#334b82 !important; border-color:#d8e5ff !important;
+    }
+    html[data-dj-theme="light"] :where(.secondary,.outline,.navlink,.tab) {
+      color:#5146b7 !important; border-color:#d9d6f2 !important;
+    }
+    html[data-dj-theme="light"] :where(.tab.active,.navlink.active,.action.active) {
+      background:#e9e6ff !important; color:#5146b7 !important;
+    }
+    html[data-dj-theme="light"] :where(.post,.profile-post,.update,.lesson,.member-results) {
+      border:1px solid var(--ow-line) !important; border-radius:18px;
+    }
+    html[data-dj-theme="light"] :where(.account-heading,.account-heading-subtitle,.account-eyebrow,.account-section-label) {
+      color:var(--ow-purple) !important;
+    }
     html[data-dj-theme="dark"] { color-scheme:dark !important; }
     html[data-dj-theme="dark"] body { background:#090909 !important; color:#f5f1e8 !important; }
     html[data-dj-theme="dark"] header { background:#101010 !important; color:#f5f1e8 !important; }
