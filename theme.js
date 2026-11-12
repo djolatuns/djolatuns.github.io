@@ -166,6 +166,45 @@
     html[data-dj-theme="light"] :where(.account-heading,.account-heading-subtitle,.account-eyebrow,.account-section-label) {
       color:var(--ow-purple) !important;
     }
+    /* Remove the old gold palette from LIGHT mode only. Dark mode keeps its original accents. */
+    html[data-dj-theme="light"] body :where(.gold,.gold-link,.gold-text,.gold-accent,.golden,[class*="gold"]) {
+      color:var(--ow-purple) !important;
+      border-color:#d9d6f2 !important;
+      text-shadow:none !important;
+    }
+    html[data-dj-theme="light"] body :where(button.gold,.btn.gold,.gold.button,.gold-link.button,[class*="gold"].btn,[class*="gold"][role="button"]) {
+      background:linear-gradient(110deg,var(--ow-purple),var(--ow-blue)) !important;
+      color:#fff !important;
+      border-color:transparent !important;
+      box-shadow:0 8px 20px rgba(101,87,232,.18) !important;
+    }
+    html[data-dj-theme="light"] body :where(.gold:not(button):not(.btn),.gold-link:not(button):not(.btn),.gold-text,.gold-accent,.golden,[class*="gold"]:not(button):not(.btn)) {
+      background-color:transparent !important;
+      background-image:none !important;
+    }
+    html[data-dj-theme="light"] body [style*="#d9b45b"],
+    html[data-dj-theme="light"] body [style*="#dfb95f"],
+    html[data-dj-theme="light"] body [style*="#e7c36b"],
+    html[data-dj-theme="light"] body [style*="#d8ad52"],
+    html[data-dj-theme="light"] body [style*="#e3bd62"],
+    html[data-dj-theme="light"] body [style*="#e2b95f"],
+    html[data-dj-theme="light"] body [style*="#d9ad55"],
+    html[data-dj-theme="light"] body [style*="#e0bd69"],
+    html[data-dj-theme="light"] body [style*="#d8ad52"],
+    html[data-dj-theme="light"] body [style*="#e2bd69"] {
+      color:var(--ow-purple) !important;
+      border-color:#d9d6f2 !important;
+      text-shadow:none !important;
+    }
+    html[data-dj-theme="light"] body [style*="background:#d9b45b"],
+    html[data-dj-theme="light"] body [style*="background-color:#d9b45b"],
+    html[data-dj-theme="light"] body [style*="background:#dfb95f"],
+    html[data-dj-theme="light"] body [style*="background-color:#dfb95f"],
+    html[data-dj-theme="light"] body [style*="background:#e7c36b"],
+    html[data-dj-theme="light"] body [style*="background-color:#e7c36b"] {
+      background:linear-gradient(110deg,var(--ow-purple),var(--ow-blue)) !important;
+      color:#fff !important;
+    }
     html[data-dj-theme="dark"] { color-scheme:dark !important; }
     html[data-dj-theme="dark"] body { background:#090909 !important; color:#f5f1e8 !important; }
     html[data-dj-theme="dark"] header { background:#101010 !important; color:#f5f1e8 !important; }
