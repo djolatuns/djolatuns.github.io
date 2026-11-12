@@ -5,7 +5,7 @@ if(refreshBtn)refreshBtn.addEventListener('click',async()=>{
  catch(error){console.warn('App update check failed',error)}
  location.reload();
 });
-const stories=[
+let stories=[
 {category:'Music',title:'Tems: Surround Sound premieres',summary:'Spotify has released a full-length concert film shot in Lagos, following Tems through songs from across her career.',date:'11 Nov 2026 · Entertainment',url:'https://guardian.ng/life/spotify-premieres-tems-lagos-concert-film-as-debut-ep-reaches-888m-streams/'},
 {category:'DJ',title:'DJAN announces national executives',summary:'The Deejays Association of Nigeria announced its National Executive Council after its 16th National Conference in Abuja. DJ Perfect International was re-elected president.',date:'9 Nov 2026 · DJ industry',url:'https://djan.ng/djan-elects-new-national-executive-council-at-16th-national-conference-2026/'},
 {category:'Events',title:'Entertainment Week Africa',summary:'17–22 November 2026 in Lagos. Six days of summits, markets, showcases and creative-industry networking across seven tracks.',date:'Upcoming · Lagos',url:'https://ewafrica.com/schedule/'},
