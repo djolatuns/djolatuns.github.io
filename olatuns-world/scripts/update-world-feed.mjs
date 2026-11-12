@@ -14,31 +14,36 @@ function clean(value = '') {
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
 }
 function tag(xml, name) {
-  const m = xml.match(new RegExp('<' + name + '(?:\\s[^>]*)?>([\\s\\S]*?)<\\/' + name + '>', 'i'));
-  return m ? clean(m[1]) : '';
+  const escaped = name.replace(':', '\\:');
+  const match = xml.match(new RegExp('<' + escaped + '\\b[^>]*>([\\s\\S]*?)<\\/' + escaped + '>', 'i'));
+  return match ? clean(match[1]) : '';
 }
 function category(title, description) {
   const s = (title + ' ' + description).toLowerCase();
-  if (/dj |deejay|disc jockey|turntab|mix( |tape)|nightclub/.test(s)) return 'DJ';
+  if (/\bdj\b|deejay|disc jockey|turntab|mixtape|nightclub/.test(s)) return 'DJ';
   if (/concert|festival|show|gig|party|event|tour|tickets/.test(s)) return 'Events';
   if (/music|song|album|singer|artist|afrobeats|afropop|spotify|audiomack/.test(s)) return 'Music';
   return 'News';
 }
+
 const cutoff = Date.now() - 10 * 24 * 60 * 60 * 1000;
 const results = [];
 for (const feed of feeds) {
   try {
-    const response = await fetch(feed.url, { headers: { 'user-agent': 'OlatunsWorldNewsBot/1.0' }, signal: AbortSignal.timeout(15000) });
+    const response = await fetch(feed.url, {
+      headers: { 'user-agent': 'OlatunsWorldNewsBot/1.0' },
+      signal: AbortSignal.timeout(15000)
+    });
     if (!response.ok) throw new Error('HTTP ' + response.status);
     const xml = await response.text();
-    const items = [...xml.matchAll(/<item(?:\\s[^>]*)?>([\\s\\S]*?)<\\/item>/gi)].map(m => m[1]);
+    const items = [...xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)].map(match => match[1]);
     for (const item of items) {
       const title = tag(item, 'title');
-      const url = tag(item, 'link') || (item.match(/<link[^>]*href=["']([^"']+)/i) || [])[1] || '';
+      const url = tag(item, 'link');
       const description = tag(item, 'description') || tag(item, 'content:encoded');
       const rawDate = tag(item, 'pubDate') || tag(item, 'dc:date');
       const timestamp = Date.parse(rawDate);
-      if (!title || !url || !/^https?:\\/\\//i.test(url) || (Number.isFinite(timestamp) && timestamp < cutoff)) continue;
+      if (!title || !url || !/^https?:\/\//i.test(url) || (Number.isFinite(timestamp) && timestamp < cutoff)) continue;
       results.push({
         category: category(title, description),
         title: title.slice(0, 180),
@@ -52,8 +57,8 @@ for (const feed of feeds) {
   }
 }
 const unique = [...new Map(results.map(item => [item.url, item])).values()]
-  .sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).slice(0, 24);
-if (!unique.length) throw new Error('No feed items retrieved; keeping the existing app feed unchanged.');
+  .slice(0, 24);
+if (!unique.length) throw new Error('No recent feed items retrieved; existing app content will be kept.');
 await writeFile('olatuns-world/data/updates.json', JSON.stringify({
   updatedAt: new Date().toISOString(),
   count: unique.length,
