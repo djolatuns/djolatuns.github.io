@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-12T19:52:54.497Z",
+  "updatedAt": "2026-11-12T20:48:04.392Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Offset Reveals He & Quavo Talked ‘for a Long Time’ Before Reuniting Publicly: ‘We Had to Heal Behind the Scenes’",
+      "summary": "The two Migos members have plans of a final album and a tour to honor their late brother Takeoff.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/music/rb-hip-hop/offset-quavo-talked-long-time-before-reuniting-1236380383/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T19:54:36.000Z"
+    },
     {
       "category": "Events",
       "title": "Shannon Sanders promoted to AVP, Creative, Nashville at BMI",
@@ -202,15 +211,6 @@
     },
     {
       "category": "Music",
-      "title": "RZA invests in AYO Music Group, the music copyright administrator co-founded by Deborah Mannis-Gardner and Pär Almqvist",
-      "summary": "He joins Disturbing Tha Peace Records co-founders Chaka Zulu and Jeff Dixon, Atlanta- and Johannesburg-based family office CIH Group, and Ewing Athletics owner David Goldberg as investors in the company. Source",
-      "date": "2026-11-11 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/rza-invests-in-ayo-music-group-the-music-copyright-administrator-co-founded-by-deborah-mannis-gardner-and-par-almqvist/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-11T17:50:42.000Z"
-    },
-    {
-      "category": "Music",
       "title": "Gang Starr vinyl test pressing sells for $8,500 at auction",
       "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The vinyl features hand-written notes from Guru, including a dedication to legendary producer Marley Marl</p> </div>",
       "date": "2026-11-11 · DJ Mag",
@@ -235,15 +235,6 @@
       "url": "https://www.nme.com/news/music/u2-interview-carnaval-de-luz-bono-the-edge-new-music-tour-3975696",
       "source": "NME Music",
       "publishedAt": "2026-11-11T16:00:26.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Diplo and former Downtown CEO Andrew Bergman launch independent publisher Bison Music",
-      "summary": "Bergman is CEO of Bison, alongside COO Tom Lee, CCO Juba Lee, and General Manager Jenny Ilibassi. Source",
-      "date": "2026-11-11 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/diplo-and-former-downtown-ceo-andrew-bergman-launch-independent-publisher-bison-music/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-11T15:18:42.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "The new collaborative single is out now, which will feature in Rockstar Games' highly-anticipated video game upon release next month Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/justice-share-details-grand-theft-auto-vi-original-score-album-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "EXIT Festival to return to Serbia following Vučić election defeat",
+      "summary": "Director Dušan Kovačević has pledged to bring the festival back to its home nation after editions in Macedonia and Egypt this year, Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/exit-festival-return-serbia-following-vucic-election-defeat-news",
       "source": "Mixmag",
       "publishedAt": null
     }
