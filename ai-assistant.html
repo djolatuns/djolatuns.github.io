@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090909"><meta name="description" content="DJ OLATUNS AI Support Centre — private, saved member support conversations.">
+<meta name="theme-color" content="#6557e8"><meta name="description" content="DJ OLATUNS AI Support Centre — private, saved member support conversations.">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon-192.png">
 <title>AI Support Centre | DJ OLATUNS</title>
 <style>
@@ -76,5 +76,5 @@ async function init(){try{const response=await fetch("/business-chat.html",{cach
 async function send(){const q=promptBox.value.trim();if(!q||busy)return;if(!db||!me){await init();if(!me)return;}busy=true;sendButton.disabled=true;promptBox.disabled=true;bubble(q,"user");conversation.push({role:"user",content:q});promptBox.value="";setStatus("AI Support is preparing your answer…");try{await saveMessage("user",q);const result=await db.functions.invoke("dj-olatuns-ai",{body:{messages:conversation.slice(-20)}});if(result.error){let detail="";try{detail=await result.error.context?.json?.().then(x=>x.error||x.message||"").catch(()=> "");}catch(_){}throw new Error(detail||result.error.message||"The assistant could not reply.");}const data=result.data||{};const answer=typeof data.reply==="string"?data.reply:(typeof data.answer==="string"?data.answer:(typeof data.message==="string"?data.message:""));if(!answer.trim())throw new Error(data.error||"The assistant returned an empty reply. Please try again.");conversation.push({role:"assistant",content:answer});bubble(answer,"assistant");await saveMessage("assistant",answer);setStatus("Answer saved. You can continue this chat anytime from History.");}catch(e){setStatus(e.message||"The assistant could not reply. Please try again.");if(conversation.at(-1)?.role==="user")conversation.pop();}finally{busy=false;promptBox.disabled=false;sendButton.disabled=!me;promptBox.focus();}}
 sendButton.addEventListener("click",send);promptBox.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();}});init();
 </script>
-<script src="/theme.js"></script>
+<script src="/theme.js?v=olatuns-world-20261112-v3"></script>
 </body></html>
