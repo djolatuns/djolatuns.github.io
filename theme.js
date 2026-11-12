@@ -1,5 +1,5 @@
 (() => {
-  const KEY = "djOlatunsTheme";
+  const KEY = "djOlatunsThemeV2";
   const readSaved = () => {
     try { return localStorage.getItem(KEY); } catch (_) { return null; }
   };
