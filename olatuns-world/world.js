@@ -27,3 +27,5 @@ if('standalone'in navigator&&navigator.standalone)installBtn.hidden=true;
 // Cloudflare Pages path configuration corrected for this app.
 
 // Weekly content deployment trigger.
+
+// Publish content after Cloudflare Pages path-filter adjustment.
