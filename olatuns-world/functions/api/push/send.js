@@ -7,7 +7,7 @@ async function hkdf(ikm,salt,info,len){
 }
 async function vapidToken(endpoint,env){
  const input=b64u(te.encode(JSON.stringify({typ:"JWT",alg:"ES256"})))+"."+b64u(te.encode(JSON.stringify({aud:new URL(endpoint).origin,exp:Math.floor(Date.now()/1000)+3600,sub:"mailto:notifications@olatuns-world.pages.dev"})));
- const key=await crypto.subtle.importKey("jwk",JSON.parse(env.VAPID_PRIVATE_JWK),{name:"ECDSA",namedCurve:"P-256"},false,["sign"]);
+ const key=await crypto.subtle.importKey("jwk",cfg.privateJwk,{name:"ECDSA",namedCurve:"P-256"},false,["sign"]);
  return input+"."+b64u(await crypto.subtle.sign({name:"ECDSA",hash:"SHA-256"},key,te.encode(input)));
 }
 async function encryptPayload(s,payload){
@@ -27,13 +27,14 @@ async function encryptPayload(s,payload){
  return new Uint8Array([...head,...cipher]);
 }
 export async function onRequestPost({request,env}){
- if(!env.PUSH_ADMIN_TOKEN||request.headers.get("Authorization")!=="Bearer "+env.PUSH_ADMIN_TOKEN)return Response.json({error:"Unauthorized."},{status:401});
- if(!env.PUSH_SUBSCRIPTIONS||!env.VAPID_PRIVATE_JWK||!env.VAPID_PUBLIC_KEY)return Response.json({error:"Push secrets are not configured."},{status:503});
+ if(!env.PUSH_SUBSCRIPTIONS)return Response.json({error:"Push storage is not configured."},{status:503});
+ const cfg=await env.PUSH_SUBSCRIPTIONS.get("_push_config","json");
+ if(!cfg||request.headers.get("Authorization")!=="Bearer "+cfg.adminToken)return Response.json({error:"Unauthorized."},{status:401});
  let d;try{d=await request.json()}catch{return Response.json({error:"Invalid JSON."},{status:400})}
  const payload={title:String(d.title||"OLATUNS WORLD").slice(0,80),body:String(d.body||"Fresh DJ and music updates are waiting.").slice(0,180),url:String(d.url||"/").startsWith("/")?String(d.url||"/"):"/",tag:String(d.tag||"olatuns-world-update").slice(0,80)};
  const listed=await env.PUSH_SUBSCRIPTIONS.list({prefix:"sub:",limit:1000});let sent=0,removed=0,failed=0;
  for(const item of listed.keys){const saved=await env.PUSH_SUBSCRIPTIONS.get(item.name,"json");if(!saved?.subscription)continue;const s=saved.subscription;
-  try{const token=await vapidToken(s.endpoint,env),body=await encryptPayload(s,payload);const res=await fetch(s.endpoint,{method:"POST",headers:{"Authorization":"vapid t="+token+", k="+env.VAPID_PUBLIC_KEY,"Content-Encoding":"aes128gcm","Content-Type":"application/octet-stream","TTL":"86400"},body});if(res.status===201||res.status===202)sent++;else if(res.status===404||res.status===410){await env.PUSH_SUBSCRIPTIONS.delete(item.name);removed++;}else failed++;}catch{failed++;}
+  try{const token=await vapidToken(s.endpoint,env),body=await encryptPayload(s,payload);const res=await fetch(s.endpoint,{method:"POST",headers:{"Authorization":"vapid t="+token+", k="+cfg.publicKey,"Content-Encoding":"aes128gcm","Content-Type":"application/octet-stream","TTL":"86400"},body});if(res.status===201||res.status===202)sent++;else if(res.status===404||res.status===410){await env.PUSH_SUBSCRIPTIONS.delete(item.name);removed++;}else failed++;}catch{failed++;}
  }
  return Response.json({ok:true,sent,removed,failed,checked:listed.keys.length});
 }
