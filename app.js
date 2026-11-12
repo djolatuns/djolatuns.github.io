@@ -4,9 +4,9 @@ const SAVED_KEY='djolatuns_saved_mixes_v1';
 function getSaved(){try{return JSON.parse(localStorage.getItem(SAVED_KEY)||'[]')}catch{return[]}}
 function setSaved(items){localStorage.setItem(SAVED_KEY,JSON.stringify([...new Set(items)]))}
 function isSaved(key){return getSaved().includes(key)}
-function toggleSaved(key){const current=getSaved();setSaved(current.includes(key)?current.filter(x=>x!==key):[...current,key]);toast(isSaved(key)?'Mixtape saved to your library.':'Mixtape removed from saved items.')}
+function toggleSaved(key){const current=getSaved(),removing=current.includes(key);setSaved(removing?current.filter(x=>x!==key):[...current,key]);toast(removing?'Mixtape removed from saved items.':'Mixtape saved to your library.')}
 function enhancedMixCards(items=mixes){return items.map(m=>'<article class="mix-card"><div class="mix-cover '+m.tone+'"><b>OLATUNS</b><span>'+escapeHTML(m.type)+'</span></div><div class="mix-info"><strong>'+escapeHTML(m.title)+'</strong><p>'+escapeHTML(m.note)+'</p><div class="mix-actions"><a class="mix-play" href="'+escapeHTML(window.OLATUNS_CONFIG.mixtapes[m.key])+'" target="_blank" rel="noopener">Listen ↗</a><button class="save-mix '+(isSaved(m.key)?'saved':'')+'" data-save-mix="'+m.key+'" aria-label="'+(isSaved(m.key)?'Remove saved mixtape':'Save mixtape')+'">'+(isSaved(m.key)?'♥ Saved':'♡ Save')+'</button></div></div></article>').join('')}
-const originalMixHTML=mixHTML;
+const originalMixHTML=mixHTML;$('#featuredMixes').innerHTML=enhancedMixCards();
 views.mixtapes=()=>{$('#main').innerHTML=mixHTML();renderMixLibrary()};
 function renderMixLibrary(){
  const grid=$('#main .mix-grid');if(!grid)return;
