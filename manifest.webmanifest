@@ -1,17 +1,14 @@
 {
-  "id": "/",
-  "name": "Ismail Olatunji Taiwo - DJ Olatuns Official App",
+  "name": "DJ Olatuns Official App",
   "short_name": "DJ Olatuns",
-  "description": "The official DJ Olatuns app by Ismail Olatunji Taiwo. Explore mixtapes, bookings, community and music updates.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#f7f7fc",
-  "theme_color": "#6557e8",
+  "theme_color": "#111126",
+  "description": "Music, mixtapes, community and bookings.",
   "icons": [
     {
-      "src": "/icon-circle.svg?v=olatuns-world-20261112",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

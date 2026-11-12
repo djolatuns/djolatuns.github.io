@@ -1,16 +1,13 @@
 {
-  "id": "./",
   "name": "OLATUNS WORLD",
-  "short_name": "OLATUNS WORLD",
-  "description": "Your World of Unlimited Entertainment",
+  "short_name": "Olatuns World",
   "start_url": "./",
-  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#6557e8",
+  "background_color": "#f7f7fc",
+  "theme_color": "#111126",
   "icons": [
     {
-      "src": "./olatuns-world-icon.svg",
+      "src": "world-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

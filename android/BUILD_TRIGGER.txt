@@ -1,1 +1,0 @@
-Trigger cloud APK build. This file is not used by the Android app.
