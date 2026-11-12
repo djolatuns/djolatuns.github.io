@@ -7,7 +7,7 @@
   const normalize = value => value === "dark" ? "dark" : "light";
   const css = document.createElement("style");
   css.id = "dj-olatuns-theme-style";
-  css.textContent = String.raw\`
+  css.textContent = String.raw`
     html[data-dj-theme="light"] { color-scheme: light !important; }
     html[data-dj-theme="dark"] { color-scheme: dark !important; }
 
@@ -209,7 +209,7 @@
       color: #fff !important;
       border-color: #6557e8 !important;
     }
-  \`;
+  `;
 
   (document.head || document.documentElement).appendChild(css);
   document.documentElement.setAttribute("data-dj-theme", normalize(readSaved()));
