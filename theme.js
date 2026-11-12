@@ -203,6 +203,64 @@
       background: #19182e !important;
       color: #d6d4ec !important;
     }
+
+    /* Homepage's original black-and-gold layout: explicitly restyle it */
+    html[data-dj-theme="light"] body {
+      background: #f7f7fc !important;
+      background-image: none !important;
+      color: #17172b !important;
+    }
+    html[data-dj-theme="light"] header {
+      background: #fff !important;
+      border-bottom: 1px solid #e9e8f2 !important;
+    }
+    html[data-dj-theme="light"] header h1,
+    html[data-dj-theme="light"] header p {
+      color: #17172b !important;
+    }
+    html[data-dj-theme="light"] main .hero,
+    html[data-dj-theme="light"] main .brief {
+      background: #fff !important;
+      background-image: none !important;
+      color: #17172b !important;
+      border: 1px solid #e9e8f2 !important;
+      box-shadow: 0 18px 45px rgba(35,31,91,.08) !important;
+    }
+    html[data-dj-theme="light"] main .hero h1,
+    html[data-dj-theme="light"] main .brief h1,
+    html[data-dj-theme="light"] main .hero h2,
+    html[data-dj-theme="light"] main .brief h2,
+    html[data-dj-theme="light"] main .hero h3,
+    html[data-dj-theme="light"] main .brief h3 {
+      color: #6557e8 !important;
+    }
+    html[data-dj-theme="light"] main .hero p,
+    html[data-dj-theme="light"] main .brief p,
+    html[data-dj-theme="light"] main .hero li,
+    html[data-dj-theme="light"] main .brief li {
+      color: #707087 !important;
+    }
+    html[data-dj-theme="light"] main .hero a,
+    html[data-dj-theme="light"] main .brief a,
+    html[data-dj-theme="light"] main button {
+      background: linear-gradient(110deg,#6557e8,#3289f5) !important;
+      color: #fff !important;
+      border-color: transparent !important;
+    }
+    html[data-dj-theme="light"] main .hero:after {
+      color: rgba(101,87,232,.07) !important;
+    }
+    html[data-dj-theme="light"] footer {
+      background: #19182e !important;
+      color: #d6d4ec !important;
+      border-top: 0 !important;
+    }
+    html[data-dj-theme="light"] .home-message-link {
+      background: linear-gradient(135deg,#6557e8,#3289f5) !important;
+      color: #fff !important;
+      border-color: #6557e8 !important;
+    }
+
     html[data-dj-theme="light"] .home-message-shortcut,
     html[data-dj-theme="light"] .home-message-link {
       background: linear-gradient(135deg,#6557e8,#3289f5) !important;
