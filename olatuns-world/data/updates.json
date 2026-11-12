@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-12T21:44:36.790Z",
+  "updatedAt": "2026-11-12T22:45:03.004Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "FLO, Ravyn Lenae & Durand Bernarr: Who’s Getting Nominated for Best Progressive R&B Album at the 2026 Grammys?",
+      "summary": "The field may not be as wide open as it appears.",
+      "date": "2026-11-12 · Billboard Music",
+      "url": "https://www.billboard.com/music/awards/2027-grammy-nomination-predictions-progressive-rb-album-flo-1236378518/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-12T22:00:03.000Z"
+    },
     {
       "category": "Music",
       "title": "Rapper & Convicted Murderer Tay-K Loves Olivia Rodrigo’s Music, Listens to Her Behind Bars: ‘I F–k With That S–t’",
@@ -58,30 +67,12 @@
     },
     {
       "category": "Events",
-      "title": "NDC blames APC for Lagos attack, ruling party denies involvement",
-      "summary": "The Nigeria Democratic Congress has blamed the APC for an attack on its supporters in Lagos, but the ruling party denied any involvement in the incident. Read More: https://punchng.com/ndc-blames-apc-for-lagos-attack-ruling-party-denies-involvement/",
-      "date": "2026-11-12 · Punch Entertainment",
-      "url": "https://punchng.com/ndc-blames-apc-for-lagos-attack-ruling-party-denies-involvement/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-12T18:35:11.000Z"
-    },
-    {
-      "category": "Events",
       "title": "Usher & Chris Brown’s R&B Tour: All of the Surprise Guests So Far",
       "summary": "The North American trek kicked off in Denver on June 26.",
       "date": "2026-11-12 · Billboard Music",
       "url": "https://www.billboard.com/lists/usher-chris-brown-rb-tour-guests/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-12T18:30:36.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Shawn Mendes Speaks Out on Gaza, Urges Artists to Join Him: ‘There Is a Genocide Happening Before Our Eyes’",
-      "summary": "\"The children and families in Palestine have suffered for far too long,\" the singer wrote.",
-      "date": "2026-11-12 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/shawn-mendes-free-palestine-urges-artists-speak-up-1236380446/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-12T18:24:53.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "Director Dušan Kovačević has pledged to bring the festival back to its home nation after editions in Macedonia and Egypt this year, Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/exit-festival-return-serbia-following-vucic-election-defeat-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Massive Attack’s Robert Del Naja soundtracks new Gaza-focused documentary",
+      "summary": "The 13-track score, which is curated by Del Naja, also features music Kneecap Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/massive-attack-robert-del-naja-soundtracks-new-gaza-focused-documentary-palestine-news",
       "source": "Mixmag",
       "publishedAt": null
     }
