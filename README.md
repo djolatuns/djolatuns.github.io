@@ -9,7 +9,7 @@ The community feed uses a Cloudflare Worker API backed by a Cloudflare D1 databa
 ## Configuration
 Edit `site-config.js` to add the confirmed public Audiomack profile/release URL and public booking email or business WhatsApp number:
 - `audiomackProfile`
-- `newWaveMixtape`
+- `mixtapes.newWave`, `mixtapes.dance`, `mixtapes.faaja`, and `mixtapes.movement`
 - `bookingEmail`
 - `bookingWhatsApp` (international digits only)
 
