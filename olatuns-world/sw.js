@@ -1,4 +1,4 @@
-const CACHE='olatuns-world-v6';
+const CACHE='olatuns-world-v7';
 const ASSETS=['./','./index.html','./world.css','./world.js','./manifest.webmanifest','./world-icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
@@ -9,4 +9,17 @@ self.addEventListener('fetch',event=>{
   if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(request,copy));}
   return response;
  }).catch(()=>caches.match(request).then(cached=>cached||caches.match('./index.html'))));
+});
+self.addEventListener('push',event=>{
+ let data={title:'OLATUNS WORLD',body:'Fresh DJ and music updates are waiting.',url:'/'};
+ try{if(event.data)data={...data,...event.data.json()}}catch{}
+ event.waitUntil(self.registration.showNotification(data.title,{body:data.body,icon:'./world-icon.svg',badge:'./world-icon.svg',tag:data.tag||'olatuns-world-update',data:{url:data.url||'/'},renotify:false}));
+});
+self.addEventListener('notificationclick',event=>{
+ event.notification.close();
+ const target=new URL(event.notification.data?.url||'/',self.location.origin).href;
+ event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{
+  for(const client of list){if(new URL(client.url).origin===self.location.origin){client.navigate(target);return client.focus()}}
+  return clients.openWindow(target);
+ }));
 });
