@@ -1,9 +1,10 @@
 import { writeFile } from 'node:fs/promises';
 
 const feeds = [
-  { url: 'https://guardian.ng/feed/', source: 'The Guardian Nigeria' },
-  { url: 'https://punchng.com/feed/', source: 'Punch Nigeria' },
-  { url: 'https://feeds.bbci.co.uk/news/world/africa/rss.xml', source: 'BBC News Africa' }
+  { url: 'https://guardian.ng/category/entertainment/music/feed/', source: 'The Guardian Nigeria Music' },
+  { url: 'https://guardian.ng/category/entertainment/feed/', source: 'The Guardian Nigeria Entertainment' },
+  { url: 'https://punchng.com/topics/entertainment/feed/', source: 'Punch Entertainment' },
+  { url: 'https://www.musicinafrica.net/rss.xml', source: 'Music In Africa' }
 ];
 
 function clean(value = '') {
@@ -23,7 +24,7 @@ function category(title, description) {
   if (/\bdj\b|deejay|disc jockey|turntab|mixtape|nightclub/.test(s)) return 'DJ';
   if (/concert|festival|show|gig|party|event|tour|tickets/.test(s)) return 'Events';
   if (/music|song|album|singer|artist|afrobeats|afropop|spotify|audiomack/.test(s)) return 'Music';
-  return 'News';
+  return null;
 }
 
 const cutoff = Date.now() - 10 * 24 * 60 * 60 * 1000;
@@ -44,8 +45,10 @@ for (const feed of feeds) {
       const rawDate = tag(item, 'pubDate') || tag(item, 'dc:date');
       const timestamp = Date.parse(rawDate);
       if (!title || !url || !/^https?:\/\//i.test(url) || (Number.isFinite(timestamp) && timestamp < cutoff)) continue;
+      const storyCategory = category(title, description);
+      if (!storyCategory) continue;
       results.push({
-        category: category(title, description),
+        category: storyCategory,
         title: title.slice(0, 180),
         summary: (description || 'Open the original report for details.').slice(0, 360),
         date: (Number.isFinite(timestamp) ? new Date(timestamp).toISOString().slice(0, 10) : 'Recently published') + ' · ' + feed.source,
@@ -64,4 +67,4 @@ await writeFile('olatuns-world/data/updates.json', JSON.stringify({
   count: unique.length,
   items: unique
 }, null, 2) + '\n');
-console.log('Wrote ' + unique.length + ' attributed news items.');
+console.log('Wrote ' + unique.length + ' DJ and music items.');
