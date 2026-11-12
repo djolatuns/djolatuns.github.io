@@ -5,7 +5,7 @@ async function hkdf(ikm,salt,info,len){
  const key=await crypto.subtle.importKey("raw",ikm,"HKDF",false,["deriveBits"]);
  return new Uint8Array(await crypto.subtle.deriveBits({name:"HKDF",hash:"SHA-256",salt,info},key,len*8));
 }
-async function vapidToken(endpoint,env){
+async function vapidToken(endpoint,cfg){
  const input=b64u(te.encode(JSON.stringify({typ:"JWT",alg:"ES256"})))+"."+b64u(te.encode(JSON.stringify({aud:new URL(endpoint).origin,exp:Math.floor(Date.now()/1000)+3600,sub:"mailto:notifications@olatuns-world.pages.dev"})));
  const key=await crypto.subtle.importKey("jwk",cfg.privateJwk,{name:"ECDSA",namedCurve:"P-256"},false,["sign"]);
  return input+"."+b64u(await crypto.subtle.sign({name:"ECDSA",hash:"SHA-256"},key,te.encode(input)));
@@ -34,7 +34,7 @@ export async function onRequestPost({request,env}){
  const payload={title:String(d.title||"OLATUNS WORLD").slice(0,80),body:String(d.body||"Fresh DJ and music updates are waiting.").slice(0,180),url:String(d.url||"/").startsWith("/")?String(d.url||"/"):"/",tag:String(d.tag||"olatuns-world-update").slice(0,80)};
  const listed=await env.PUSH_SUBSCRIPTIONS.list({prefix:"sub:",limit:1000});let sent=0,removed=0,failed=0;
  for(const item of listed.keys){const saved=await env.PUSH_SUBSCRIPTIONS.get(item.name,"json");if(!saved?.subscription)continue;const s=saved.subscription;
-  try{const token=await vapidToken(s.endpoint,env),body=await encryptPayload(s,payload);const res=await fetch(s.endpoint,{method:"POST",headers:{"Authorization":"vapid t="+token+", k="+cfg.publicKey,"Content-Encoding":"aes128gcm","Content-Type":"application/octet-stream","TTL":"86400"},body});if(res.status===201||res.status===202)sent++;else if(res.status===404||res.status===410){await env.PUSH_SUBSCRIPTIONS.delete(item.name);removed++;}else failed++;}catch{failed++;}
+  try{const token=await vapidToken(s.endpoint,cfg),body=await encryptPayload(s,payload);const res=await fetch(s.endpoint,{method:"POST",headers:{"Authorization":"vapid t="+token+", k="+cfg.publicKey,"Content-Encoding":"aes128gcm","Content-Type":"application/octet-stream","TTL":"86400"},body});if(res.status===201||res.status===202)sent++;else if(res.status===404||res.status===410){await env.PUSH_SUBSCRIPTIONS.delete(item.name);removed++;}else failed++;}catch{failed++;}
  }
  return Response.json({ok:true,sent,removed,failed,checked:listed.keys.length});
 }
