@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-13T07:09:23.745Z",
+  "updatedAt": "2026-11-13T07:29:45.099Z",
   "count": 60,
   "items": [
+    {
+      "category": "DJ",
+      "title": "DMC World DJ Championships return to London this weekend",
+      "summary": "The 2026 DMC World DJ Championships take place in London on November 13–14. Friday’s Battleground eliminations feature DJ KOCO and Craze, while Saturday’s world finals at KOKO include A‑Trak and Skratch Bastid.",
+      "date": "2026-11-13 · DMC World",
+      "url": "https://www.dmcdjchamps.com/post/the-dmc-world-dj-championships-return-to-london-early-bird-tickets-on-sale-now",
+      "source": "DMC World",
+      "publishedAt": "2026-11-13T07:29:45.079Z"
+    },
     {
       "category": "Music",
       "title": "‘The Hunger Games’ Soundtrack, ATEEZ, U2 Feat. Dolly Parton & More: New Music Friday Guide",
@@ -530,15 +539,6 @@
       "summary": "The new collaborative single is out now, which will feature in Rockstar Games' highly-anticipated video game upon release next month Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/justice-share-details-grand-theft-auto-vi-original-score-album-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "EXIT Festival to return to Serbia following Vučić election defeat",
-      "summary": "Director Dušan Kovačević has pledged to bring the festival back to its home nation after editions in Macedonia and Egypt this year, Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/exit-festival-return-serbia-following-vucic-election-defeat-news",
       "source": "Mixmag",
       "publishedAt": null
     }
