@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-13T13:00:36.368Z",
+  "updatedAt": "2026-11-13T14:13:05.086Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Watch Peppa Pig Celebrate Baby Evie’s First Christmas With Merry Music Video From ‘Festive Fun’ Album",
+      "summary": "The four-song project, including \"What We Love About Christmas,\" comes ahead of Festive Fun With Peppa arriving in theaters this weekend.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/pop/peppa-pig-christmas-album-music-video-festive-fun-1236379686/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T14:00:00.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "Blink-182, Bring Me the Horizon, Turnstile, Motley Crue and The Prodigy to Headline 2027 Download Festival",
+      "summary": "The 24th edition of the event will take place at Donington Park in Leicestershire, England from June 9-13.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/concerts/2027-download-festival-blink-182-evanescence-turnstile-lineup-1236381601/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T13:24:32.000Z"
+    },
     {
       "category": "Events",
       "title": "Accord urges police to probe attack on NDC supporters in Lagos",
@@ -46,24 +64,6 @@
       "url": "https://www.billboard.com/music/music-news/ateez-u2-dolly-parton-new-music-friday-guide-1236379613/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-13T06:14:37.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Daddy Yankee Surprised by Janet Jackson Upon Receiving his POTY Award: ‘Your Music Has Inspired an Entire Generation’",
-      "summary": "The reggaeton icon received the recognition from the American legend at Thursday’s ceremony in Las Vegas.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/daddy-yankee-janet-jackson-latin-grammys-2026-poty-1236381424/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T06:11:09.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "All the 2026 Latin Grammys Performances, Ranked",
-      "summary": "Which artists stood out at this year's ceremony?",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/lists/all-2026-latin-grammys-performances-ranked/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T06:08:16.000Z"
     },
     {
       "category": "Events",
@@ -120,6 +120,15 @@
       "publishedAt": "2026-11-12T15:47:55.000Z"
     },
     {
+      "category": "Events",
+      "title": "Djakarta Warehouse Project announces second phase of 2026 line-up",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The festival takes place in December at IEXPO Kemayoran in Jakarta</p> </div>",
+      "date": "2026-11-12 · DJ Mag",
+      "url": "https://djmag.com/news/djakarta-warehouse-project-announces-second-phase-of-2026-line",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-12T15:41:48.000Z"
+    },
+    {
       "category": "Music",
       "title": "A brief history of electroclash",
       "summary": "<div class=\"clearfix text-formatted field field--name-field-intro field--type-text-long field--label-hidden field__item\"><p>Electroclash burned bright and fast at the turn of the millennium. Brash, bawdy and brilliant, the sound tangled its electro roots in new-wave pop sensibility and raw post-punk energy – a wrecking ball to genre purism that ignited dance",
@@ -127,6 +136,15 @@
       "url": "https://djmag.com/features/brief-history-of-electroclash",
       "source": "DJ Mag",
       "publishedAt": "2026-11-12T15:29:41.000Z"
+    },
+    {
+      "category": "DJ",
+      "title": "Kelly Lee Owens to curate two-day festival in North Wales, Hometown Meltdown",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The festival will feature a DJ set from Gruff Rhys, two performances from Lee Owens, and more</p> </div>",
+      "date": "2026-11-12 · DJ Mag",
+      "url": "https://djmag.com/news/kelly-lee-owens-curate-two-day-festival-north-wales-hometown-meltdown",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-12T15:26:01.000Z"
     },
     {
       "category": "Events",
@@ -210,13 +228,13 @@
       "publishedAt": "2026-11-11T15:17:55.000Z"
     },
     {
-      "category": "Music",
-      "title": "Carl Cox awarded OBE by Prince William at Windsor Castle",
-      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>“This honour means so much, not just to me personally, but because of where our music has come from and how far it has travelled.”</p> </div>",
-      "date": "2026-11-11 · DJ Mag",
-      "url": "https://djmag.com/news/carl-cox-awarded-obe-prince-william-windsor-castle",
-      "source": "DJ Mag",
-      "publishedAt": "2026-11-11T13:54:14.000Z"
+      "category": "DJ",
+      "title": "New nightclub and record store opens in Manchester, Resident",
+      "summary": "The venue also comprises a five-floor bar and kitchen Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/new-nightclub-record-store-opens-manchester-resident-news",
+      "source": "Mixmag",
+      "publishedAt": null
     },
     {
       "category": "Music",
@@ -521,24 +539,6 @@
       "summary": "The 13-track score, which is curated by Del Naja, also features music Kneecap Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/massive-attack-robert-del-naja-soundtracks-new-gaza-focused-documentary-palestine-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "At Portola Music Festival, the long shadow of EDM unravels",
-      "summary": "Generations of dance music collide at the San Francisco event, shining a light on the US' twisting relationship with electronic music and shifting tides in the global landscape Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/portola-festival-2026-review-edm-dance-music-us-europe-connection",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "The Mix 129: Braga Circuit",
-      "summary": "Braga Circuit gets deep in the mix and speaks to Patrick Hinton about emotional dance music and the Kent scene Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/the-mix-129-braga-circuit-interview-dj-margate-deep-house-rinse",
       "source": "Mixmag",
       "publishedAt": null
     }
