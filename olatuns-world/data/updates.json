@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T04:56:29.265Z",
+  "updatedAt": "2026-11-13T05:57:26.256Z",
   "count": 60,
   "items": [
     {
@@ -67,30 +67,12 @@
     },
     {
       "category": "Music",
-      "title": "CA7RIEL & Paco Amoroso, Jorge Drexler, Milo J & Rosalía Among Early 2026 Latin Grammy Winners: Full List (Updating)",
-      "summary": "Edgar Barrera wins producer of the year for a fourth year.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/lists/latin-grammys-2026-list-of-winners/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T00:00:00.000Z"
-    },
-    {
-      "category": "Music",
       "title": "Bobby Pulido Wins New Latin Grammy After Winning Seat in Congress: ‘We Need to Get to Work & Use Our Voices for Something Else’",
       "summary": "The Tejano music star was honored on Thursday (Nov. 12), days after being elected to U.S. Congress.",
       "date": "2026-11-12 · Billboard Music",
       "url": "https://www.billboard.com/music/latin/bobby-pulido-wins-latin-grammy-after-becoming-congressman-1236380872/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-12T22:50:40.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "FLO, Ravyn Lenae & Durand Bernarr: Who’s Getting Nominated for Best Progressive R&B Album at the 2026 Grammys?",
-      "summary": "The field may not be as wide open as it appears.",
-      "date": "2026-11-12 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/2027-grammy-nomination-predictions-progressive-rb-album-flo-1236378518/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-12T22:00:03.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +521,24 @@
       "summary": "The academy said that “conduct fell short of the professional boundaries we expect” Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/minneapolis-dj-school-slam-academy-to-shutter-following-misconduct-concerns-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "2027 edition of Wales' Madruga will be its last, festival confirms",
+      "summary": "The Hay-on-Wye festival will shut up shop after five years following its next edition Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/wales-madruga-festival-will-no-longer-go-ahead-after-2027-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Justice share first-ever Gesaffelstein collab from Grand Theft Auto VI score album",
+      "summary": "The new collaborative single is out now, which will feature in Rockstar Games' highly-anticipated video game upon release next month Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/justice-share-details-grand-theft-auto-vi-original-score-album-news",
       "source": "Mixmag",
       "publishedAt": null
     }
