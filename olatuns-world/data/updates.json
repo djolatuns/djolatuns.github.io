@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-13T21:45:49.657Z",
+  "updatedAt": "2026-11-13T22:42:23.966Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Viva La Lisa! 5 Best Moments From LISA’s Opening Night in Las Vegas",
+      "summary": "The BLACKPINK superstar made history at The Colosseum at Caesars Palace with seven live debuts & an unreleased song.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/lists/lisa-las-vegas-opening-night-review-best-moments/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T22:32:15.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Drake Finally Makes ‘Take Care’ Bonus Track ‘Hate Sleeping Alone’ Available Across All Streaming Platforms",
+      "summary": "The fan-favorite song wasn't previously available on YouTube or Spotify.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/rb-hip-hop/drake-hate-sleeping-alone-streaming-take-care-bonus-track-1236381994/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T22:15:30.000Z"
+    },
     {
       "category": "Events",
       "title": "‘I Didn’t Want to Become Fat, Bloated, Naked Elvis’: Why KISS Called It Quits on Touring (And What They’re Up to Now)",
@@ -521,24 +539,6 @@
       "summary": "The guide, which has been created by AFEM, lays out ethical approaches to ticketing, marketing, event insurance and more Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/good-practice-guide-launched-new-independent-music-promoters-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Unreleased Daft Punk mix from 1997 discovered by DJ Ralph Lawson",
-      "summary": "The 20/20 Vision founder discovered the \"mouldy\" tape, which was submitted by the French duo to his Kiss FM show, in a storage unit Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/unreleased-daft-punk-mix-from-1997-discovered-dj-ralph-lawson-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Minneapolis DJ school Slam Academy to shutter following misconduct concerns",
-      "summary": "The academy said that “conduct fell short of the professional boundaries we expect” Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/minneapolis-dj-school-slam-academy-to-shutter-following-misconduct-concerns-news",
       "source": "Mixmag",
       "publishedAt": null
     }
