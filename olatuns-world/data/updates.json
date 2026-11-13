@@ -1,7 +1,34 @@
 {
-  "updatedAt": "2026-11-13T05:57:26.256Z",
+  "updatedAt": "2026-11-13T07:09:23.745Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "‘The Hunger Games’ Soundtrack, ATEEZ, U2 Feat. Dolly Parton & More: New Music Friday Guide",
+      "summary": "Check out the must-hear releases of the week.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/ateez-u2-dolly-parton-new-music-friday-guide-1236379613/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T06:14:37.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Daddy Yankee Surprised by Janet Jackson Upon Receiving his POTY Award: ‘Your Music Has Inspired an Entire Generation’",
+      "summary": "The reggaeton icon received the recognition from the American legend at Thursday’s ceremony in Las Vegas.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/awards/daddy-yankee-janet-jackson-latin-grammys-2026-poty-1236381424/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T06:11:09.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "All the 2026 Latin Grammys Performances, Ranked",
+      "summary": "Which artists stood out at this year's ceremony?",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/lists/all-2026-latin-grammys-performances-ranked/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T06:08:16.000Z"
+    },
     {
       "category": "Events",
       "title": "El-Rufai loyalists, ADC members defect to APC, party dismisses move",
@@ -30,49 +57,13 @@
       "publishedAt": "2026-11-13T02:41:48.000Z"
     },
     {
-      "category": "Events",
-      "title": "When 112 rings like 419",
-      "summary": "An APC chieftain’s attempt to showcase Nigeria’s emergency number 112 on live TV backfired, exposing the system’s failures and lack of readiness. Read More: https://punchng.com/when-112-rings-like-419/",
-      "date": "2026-11-13 · Punch Entertainment",
-      "url": "https://punchng.com/when-112-rings-like-419/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-13T02:40:38.000Z"
-    },
-    {
       "category": "Music",
       "title": "Toluwanisings: Envy + Jealousy = Wickedness",
-      "summary": "A columnist reflects on the death of gospel singer Toluwanisings, who slumped and died amid immense financial pressure from his maternal family. Read More: https://punchng.com/toluwanisings-envy-jealousy-wickedness/",
+      "summary": "An opinion on the death of gospel singer Toluwanisings, linking it to the immense financial pressure from relatives revealed in leaked voice notes. Read More: https://punchng.com/toluwanisings-envy-jealousy-wickedness/",
       "date": "2026-11-13 · Punch Entertainment",
       "url": "https://punchng.com/toluwanisings-envy-jealousy-wickedness/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-13T02:40:09.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "50 Cent Trolls Former Nvidia CEO Jensen Huang’s Affair With ‘P.I.M.P.’ Music Video AI Deepfake: ‘Jensen Don’t Sweat It’",
-      "summary": "50 posted a second AI-generated clip with Huang as Justin Bieber in Drake's \"Popstar\" video.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/rb-hip-hop/50-cent-trolls-former-nvidia-ceo-jensen-huang-pimp-video-ai-1236381001/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T01:38:19.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Thai Idol TEN Talks SM Entertainment Departure & Forming His Own Agency: ‘I’m Starting Again From Zero’",
-      "summary": "Following his exit from one of K-pop's most prominent labels, the Thai superstar is taking a big solo step with his 14-city U.S. tour.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/pop/ten-sm-entertainment-departure-us-tour-interview-1236377194/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T00:33:20.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Bobby Pulido Wins New Latin Grammy After Winning Seat in Congress: ‘We Need to Get to Work & Use Our Voices for Something Else’",
-      "summary": "The Tejano music star was honored on Thursday (Nov. 12), days after being elected to U.S. Congress.",
-      "date": "2026-11-12 · Billboard Music",
-      "url": "https://www.billboard.com/music/latin/bobby-pulido-wins-latin-grammy-after-becoming-congressman-1236380872/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-12T22:50:40.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "The new collaborative single is out now, which will feature in Rockstar Games' highly-anticipated video game upon release next month Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/justice-share-details-grand-theft-auto-vi-original-score-album-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "EXIT Festival to return to Serbia following Vučić election defeat",
+      "summary": "Director Dušan Kovačević has pledged to bring the festival back to its home nation after editions in Macedonia and Egypt this year, Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/exit-festival-return-serbia-following-vucic-election-defeat-news",
       "source": "Mixmag",
       "publishedAt": null
     }
