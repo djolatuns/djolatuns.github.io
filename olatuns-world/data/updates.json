@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-13T20:51:01.389Z",
+  "updatedAt": "2026-11-13T21:45:49.657Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "‘I Didn’t Want to Become Fat, Bloated, Naked Elvis’: Why KISS Called It Quits on Touring (And What They’re Up to Now)",
+      "summary": "Gene Simmons and Paul Stanley are gearing up for the release of the KISS: End of the Road documentary.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/rock/kiss-end-of-the-road-documentary-1236382015/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T21:44:17.000Z"
+    },
     {
       "category": "Events",
       "title": "Oluremi Tinubu seeks APC unity ahead of 2027 polls",
@@ -10,6 +19,15 @@
       "url": "https://punchng.com/oluremi-tinubu-seeks-apc-unity-ahead-of-2027-polls/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-13T21:42:17.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Going Green: Miss Monique Debuts Her Nature-Centric Biorhythm Show in the U.S. This Weekend — With Bigger Plans For America to Follow",
+      "summary": "“I feel like my relationship with the U.S. is having an amazing start,\" the Ukrainian producer says ahead of her Nov. 13 show at Brooklyn Pacha.",
+      "date": "2026-11-13 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/miss-monique-biorhythm-brooklyn-pacha-interview-new-york-1236381968/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-13T21:26:16.000Z"
     },
     {
       "category": "Music",
@@ -64,15 +82,6 @@
       "url": "https://punchng.com/us-urges-nigeria-to-free-musician-on-death-row-over-blasphemy/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-13T18:52:52.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "The Italy-Based Kappa FuturFestival Debuts in Mexico This Weekend — Can It Find Its Groove in a Crowded Market?",
-      "summary": "The first international edition of the long-running Turin electronic event happens at Monterrey's Parque Fundidora on Nov. 13-14.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/kappa-futur-festival-italy-mexico-debut-monterrey-interview-1236380510/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T18:32:09.000Z"
     },
     {
       "category": "Music",
@@ -530,15 +539,6 @@
       "summary": "The academy said that “conduct fell short of the professional boundaries we expect” Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/minneapolis-dj-school-slam-academy-to-shutter-following-misconduct-concerns-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "2027 edition of Wales' Madruga will be its last, festival confirms",
-      "summary": "The Hay-on-Wye festival will shut up shop after five years following its next edition Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/wales-madruga-festival-will-no-longer-go-ahead-after-2027-news",
       "source": "Mixmag",
       "publishedAt": null
     }
