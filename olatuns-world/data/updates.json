@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T08:54:50.015Z",
+  "updatedAt": "2026-11-13T09:56:56.936Z",
   "count": 60,
   "items": [
     {
@@ -55,24 +55,6 @@
       "url": "https://www.billboard.com/lists/all-2026-latin-grammys-performances-ranked/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-13T06:08:16.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "El-Rufai loyalists, ADC members defect to APC, party dismisses move",
-      "summary": "Hundreds of former Governor Nasir El-Rufai’s supporters and ADC members have defected to the APC to support Governor Uba Sani of Kaduna State. Read More: https://punchng.com/el-rufai-loyalists-adc-members-defect-to-apc-party-dismisses-move/",
-      "date": "2026-11-13 · Punch Entertainment",
-      "url": "https://punchng.com/el-rufai-loyalists-adc-members-defect-to-apc-party-dismisses-move/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-13T05:24:35.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Aria Vega Wins Best New Artist at the 2026 Latin Grammys: ‘Dreams Know No Fear’",
-      "summary": "At the media center backstage, the Colombian artist broke down crying in total awe of her first Latin Grammy win.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/latin/aria-vega-best-new-artist-2026-latin-grammys-speech-1236381295/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T03:22:18.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +521,24 @@
       "summary": "The new collaborative single is out now, which will feature in Rockstar Games' highly-anticipated video game upon release next month Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/justice-share-details-grand-theft-auto-vi-original-score-album-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "EXIT Festival to return to Serbia following Vučić election defeat",
+      "summary": "Director Dušan Kovačević has pledged to bring the festival back to its home nation after editions in Macedonia and Egypt this year, Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/exit-festival-return-serbia-following-vucic-election-defeat-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Massive Attack’s Robert Del Naja soundtracks new Gaza-focused documentary",
+      "summary": "The 13-track score, which is curated by Del Naja, also features music Kneecap Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/massive-attack-robert-del-naja-soundtracks-new-gaza-focused-documentary-palestine-news",
       "source": "Mixmag",
       "publishedAt": null
     }
