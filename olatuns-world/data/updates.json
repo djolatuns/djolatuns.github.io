@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T09:56:56.936Z",
+  "updatedAt": "2026-11-13T10:57:21.272Z",
   "count": 60,
   "items": [
     {
@@ -217,15 +217,6 @@
       "url": "https://djmag.com/news/john-digweed-pays-tribute-juan-atkins-and-cevin-fisher-transitions-radio-show",
       "source": "DJ Mag",
       "publishedAt": "2026-11-11T16:17:59.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "U2: “You have to up your game when people step into the room like Fontaines D.C.”",
-      "summary": "Bono and The Edge sit down with NME to talk us through the secret to survival after 50 years, the “defiant joy” of new album ‘Carnaval de Luz’, America finally \"waking up\", and how their love of Geese, Wolf Alice and Lambrini Girls keeps them on their toes The post U2: “You have to up your game when people step into the room like Fontaines D.C.” appeared fir",
-      "date": "2026-11-11 · NME Music",
-      "url": "https://www.nme.com/news/music/u2-interview-carnaval-de-luz-bono-the-edge-new-music-tour-3975696",
-      "source": "NME Music",
-      "publishedAt": "2026-11-11T16:00:26.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "The 13-track score, which is curated by Del Naja, also features music Kneecap Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/massive-attack-robert-del-naja-soundtracks-new-gaza-focused-documentary-palestine-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "At Portola Music Festival, the long shadow of EDM unravels",
+      "summary": "Generations of dance music collide at the San Francisco event, shining a light on the US' twisting relationship with electronic music and shifting tides in the global landscape Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/portola-festival-2026-review-edm-dance-music-us-europe-connection",
       "source": "Mixmag",
       "publishedAt": null
     }
