@@ -21,6 +21,25 @@ $('#storySearch').addEventListener('input',render);$('#clearSearch').addEventLis
 document.addEventListener('click',e=>{const r=e.target.closest('[data-read]'),s=e.target.closest('[data-save]');if(r){const url=decodeURIComponent(r.dataset.read),title=decodeURIComponent(r.dataset.title);openReader(stories.find(x=>x.url===url&&x.title===title)||{url,title,summary:'Open the original publisher report for the full story.'})}if(s){const url=decodeURIComponent(s.dataset.save),title=decodeURIComponent(s.dataset.title),item=stories.find(x=>x.url===url&&x.title===title)||getSaved().find(x=>x.url===url&&x.title===title);if(item)saveStory(item)}});
 $('#closeReader').addEventListener('click',()=>$('#reader').hidden=true);$('#reader').addEventListener('click',e=>{if(e.target===$('#reader'))$('#reader').hidden=true});$('#readerSave').addEventListener('click',()=>currentStory&&saveStory(currentStory));
 $('#readerShare').addEventListener('click',async()=>{if(!currentStory)return;const data={title:currentStory.title,text:currentStory.summary,url:currentStory.url||location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(data.url);toast('Story link copied.')}}catch(e){}});
+
+const wisdomThoughts=[
+'Consistency turns small practice into lasting skill.',
+'Respect the music, respect the crowd, and respect the moment.',
+'A great DJ does more than play songs: a great DJ understands the energy in the room.',
+'Keep learning your craft. Every transition is a chance to improve.',
+'Build your name through preparation, professionalism and good character.',
+'The best playlist is not only about popular songs; it is about the right song at the right moment.',
+'Stay creative, stay humble, and let your work speak clearly.',
+'Every successful performance begins long before the first track plays.'
+];
+let wisdomIndex=Math.floor(Date.now()/86400000)%wisdomThoughts.length;
+function showWisdom(){const el=$('#wisdomText');if(el)el.textContent=wisdomThoughts[wisdomIndex]}
+function nextWisdom(){wisdomIndex=(wisdomIndex+1)%wisdomThoughts.length;showWisdom()}
+$('#nextWisdom').addEventListener('click',nextWisdom);
+$('#shareWisdom').addEventListener('click',async()=>{const quote=$('#wisdomText').textContent+' — Olatuns World';try{if(navigator.share)await navigator.share({title:'Words of Wisdom · Olatuns World',text:quote,url:location.href});else{await navigator.clipboard.writeText(quote);toast('Thought copied.')}}catch(e){}});
+$('#saveWisdom').addEventListener('click',()=>{const quote=$('#wisdomText').textContent+'\\n\\n— Olatuns World · Words of Wisdom';const blob=new Blob([quote],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Olatuns-World-Words-of-Wisdom.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast('Wisdom file prepared.')});
+showWisdom();
+
 render();renderSaved();renderFeatured();loadLatestFeed();setInterval(()=>{if(document.visibilityState==='visible')loadLatestFeed()},600000);
 let installPrompt;const installBtn=$('#installBtn');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;installBtn.hidden=false});installBtn.addEventListener('click',async()=>{if(!installPrompt){toast('Use your browser menu and choose Install app or Add to Home screen.');return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installBtn.hidden=true});window.addEventListener('appinstalled',()=>installBtn.hidden=true);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
