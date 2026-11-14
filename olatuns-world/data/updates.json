@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T05:48:17.891Z",
+  "updatedAt": "2026-11-14T06:55:17.225Z",
   "count": 60,
   "items": [
     {
@@ -10,24 +10,6 @@
       "url": "https://punchng.com/i-woke-up-to-n100m-alert-after-apc-campaign-portable/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-14T05:19:04.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Abia PDP kicks off LG campaigns",
-      "summary": "The Peoples Democratic Party in Abia State has kicked off its local government campaigns for the 2027 general elections, starting from Obingwa LGA. Read More: https://punchng.com/abia-pdp-kicks-off-lg-campaigns/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/abia-pdp-kicks-off-lg-campaigns/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T00:31:18.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Airlines warn 12.5% ticket tax threatens survival",
-      "summary": "Nigerian airline operators say a 12.5% tax on tickets threatens their survival, accusing revenue agencies of harassment despite government waivers on some Read More: https://punchng.com/airlines-warn-12-5-ticket-tax-threatens-survival/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/airlines-warn-12-5-ticket-tax-threatens-survival/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T00:30:15.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +521,24 @@
       "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Influential New Jersey house DJ and producer Cevin Fisher has died aged 63",
+      "summary": "Across more than four decades, Fisher helped shape house music Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/influential-new-jersey-house-dj-and-producer-cevin-fisher-has-died-aged-63-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "“Good practice” guide launched for new and independent music promoters",
+      "summary": "The guide, which has been created by AFEM, lays out ethical approaches to ticketing, marketing, event insurance and more Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/good-practice-guide-launched-new-independent-music-promoters-news",
       "source": "Mixmag",
       "publishedAt": null
     }
