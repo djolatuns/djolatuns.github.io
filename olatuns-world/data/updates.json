@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T09:43:44.467Z",
+  "updatedAt": "2026-11-14T10:40:22.833Z",
   "count": 60,
   "items": [
     {
@@ -31,6 +31,15 @@
     },
     {
       "category": "Music",
+      "title": "I woke up to N100m alert after APC campaign – Portable",
+      "summary": "Nigerian singer, Portable, has claimed he received a N100m alert after participating in campaign activities for the All Progressives Congress (APC). Read More: https://punchng.com/i-woke-up-to-n100m-alert-after-apc-campaign-portable/",
+      "date": "2026-11-14 · Punch Entertainment",
+      "url": "https://punchng.com/i-woke-up-to-n100m-alert-after-apc-campaign-portable/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-14T09:02:04.000Z"
+    },
+    {
+      "category": "Music",
       "title": "Symphonic inks deal to bring ‘hundreds of thousands’ of songs to Roblox – with artists paid royalties for all plays",
       "summary": "According to Symphonic, artists will receive royalties for all plays of their music on Roblox Source",
       "date": "2026-11-14 · Music Business Worldwide",
@@ -46,15 +55,6 @@
       "url": "https://www.billboard.com/music/rock/journey-deen-castronovo-steps-away-steve-murphy-drummer-1236382208/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-14T06:59:25.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "I woke up to N100m alert after APC campaign – Portable",
-      "summary": "Nigerian singer, Portable, has claimed he received a N100m alert after participating in campaign activities for the All Progressives Congress (APC). Read More: https://punchng.com/i-woke-up-to-n100m-alert-after-apc-campaign-portable/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/i-woke-up-to-n100m-alert-after-apc-campaign-portable/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T05:19:04.000Z"
     },
     {
       "category": "Events",
@@ -244,15 +244,6 @@
       "url": "https://www.nme.com/news/music/muse-debut-new-songs-live-and-stage-wow-signal-2026-uk-tour-footage-setlist-3975861",
       "source": "NME Music",
       "publishedAt": "2026-11-13T11:51:41.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Alt-J announce first UK tour in five years, including huge London O2 show: “Break time is over”",
-      "summary": "Tickets go on sale next week The post Alt-J announce first UK tour in five years, including huge London O2 show: “Break time is over” appeared first on NME .",
-      "date": "2026-11-13 · NME Music",
-      "url": "https://www.nme.com/news/music/alt-j-announce-first-uk-tour-in-five-years-london-o2-date-buy-tickets-3975854",
-      "source": "NME Music",
-      "publishedAt": "2026-11-13T11:47:31.000Z"
     },
     {
       "category": "DJ",
@@ -539,6 +530,15 @@
       "summary": "All the biggest releases on our radar Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
+      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
       "source": "Mixmag",
       "publishedAt": null
     }
