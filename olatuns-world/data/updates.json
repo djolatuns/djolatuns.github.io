@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-14T20:36:25.610Z",
+  "updatedAt": "2026-11-14T21:35:50.019Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "The Latin Recording Academy Celebrates Leading Ladies of Entertainment & More Uplifting Moments",
+      "summary": "Billboard rounds up inspiring news in Latin music from the past week.",
+      "date": "2026-11-14 · Billboard Music",
+      "url": "https://www.billboard.com/music/latin/latin-grammy-leading-ladies-entertainment-uplifting-moments-1236382250/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-14T21:25:03.000Z"
+    },
     {
       "category": "Events",
       "title": "Soludo’s wife hails Anambra students’ victory at international debate",
@@ -10,6 +19,15 @@
       "url": "https://punchng.com/soludos-wife-hails-anambra-students-victory-at-international-debate/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-14T21:21:08.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "‘Grand Theft Auto VI’ Soundtrack: See the Full 34-Song Tracklist",
+      "summary": "The album arrives Nov. 19 alongside the long-awaited video game.",
+      "date": "2026-11-14 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/gta-6-album-tracklist-grand-theft-auto-vi-soundtrack-1236382244/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-14T20:45:56.000Z"
     },
     {
       "category": "Events",
@@ -127,24 +145,6 @@
       "url": "https://www.billboard.com/music/music-news/il-volo-our-christmas-billboard-italy-1236382101/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-13T22:42:25.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Viva La Lisa! 5 Best Moments From LISA’s Opening Night in Las Vegas",
-      "summary": "The BLACKPINK superstar made history at The Colosseum at Caesars Palace with seven live debuts & an unreleased song.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/lists/lisa-las-vegas-opening-night-review-best-moments/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T22:32:15.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Drake Finally Makes ‘Take Care’ Bonus Track ‘Hate Sleeping Alone’ Available Across All Streaming Platforms",
-      "summary": "The fan-favorite song wasn't previously available on YouTube or Spotify.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/rb-hip-hop/drake-hate-sleeping-alone-streaming-take-care-bonus-track-1236381994/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T22:15:30.000Z"
     },
     {
       "category": "Music",
