@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-14T19:40:59.884Z",
+  "updatedAt": "2026-11-14T20:36:25.610Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Soludo’s wife hails Anambra students’ victory at international debate",
+      "summary": "Anambra State Governor’s wife, Nonye Soludo, has celebrated five students who emerged champions at the 2026 Nigeria-Malaysia Bilateral Debate Tournament. Read More: https://punchng.com/soludos-wife-hails-anambra-students-victory-at-international-debate/",
+      "date": "2026-11-14 · Punch Entertainment",
+      "url": "https://punchng.com/soludos-wife-hails-anambra-students-victory-at-international-debate/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-14T21:21:08.000Z"
+    },
     {
       "category": "Events",
       "title": "Simple Plan, Hoobastank & More Take Warped Tour Mid-Flight Amid FAA Ground Stop",
@@ -37,24 +46,6 @@
       "url": "https://punchng.com/2027-adc-will-win-13-northern-states-amaechi-boasts/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-14T17:24:49.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "2027: I can’t work against Tinubu – Oriyomi Hamzat",
-      "summary": "Oyo Accord Party governorship candidate, Oriyomi Hamzat, says he cannot work against President Bola Tinubu’s re-election in 2027 due to party loyalty. Read More: https://punchng.com/2027-i-cant-work-against-tinubu-oriyomi-hamzat/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/2027-i-cant-work-against-tinubu-oriyomi-hamzat/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T14:42:40.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Old national anthem: Keyamo gives Dickson 48 hours to clarify NDC’s position",
-      "summary": "Aviation Minister Festus Keyamo has given NDC leader Seriake Dickson 48 hours to clarify the party’s position on Nigeria’s old national anthem. Read More: https://punchng.com/old-national-anthem-keyamo-gives-dickson-48-hours-to-clarify-ndcs-position/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/old-national-anthem-keyamo-gives-dickson-48-hours-to-clarify-ndcs-position/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T14:28:40.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "The incident occurred during a Halloween event on Friday night Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/man-arrested-following-stabbing-london-nightclub-studio-338-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "New music on our radar this week: MK, Roza Terenzi, DJ Heartstring",
+      "summary": "All the biggest releases on our radar Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
       "source": "Mixmag",
       "publishedAt": null
     }

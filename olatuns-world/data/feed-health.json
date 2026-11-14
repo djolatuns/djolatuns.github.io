@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-14T19:40:59.886Z",
+  "checkedAt": "2026-11-14T20:36:25.612Z",
   "summary": {
     "configured": 9,
     "healthy": 6,
@@ -18,8 +18,8 @@
       "acceptedItems": 8,
       "staleItems": 0,
       "irrelevantItems": 2,
-      "checkedAt": "2026-11-14T19:40:58.784Z",
-      "durationMs": 129
+      "checkedAt": "2026-11-14T20:36:24.791Z",
+      "durationMs": 959
     },
     {
       "source": "DJ Mag",
@@ -30,8 +30,8 @@
       "acceptedItems": 11,
       "staleItems": 0,
       "irrelevantItems": 4,
-      "checkedAt": "2026-11-14T19:40:59.034Z",
-      "durationMs": 381
+      "checkedAt": "2026-11-14T20:36:24.827Z",
+      "durationMs": 997
     },
     {
       "source": "Mixmag",
@@ -42,8 +42,8 @@
       "acceptedItems": 61,
       "staleItems": 0,
       "irrelevantItems": 19,
-      "checkedAt": "2026-11-14T19:40:58.827Z",
-      "durationMs": 173
+      "checkedAt": "2026-11-14T20:36:24.601Z",
+      "durationMs": 771
     },
     {
       "source": "Music Business Worldwide",
@@ -54,16 +54,16 @@
       "acceptedItems": 5,
       "staleItems": 0,
       "irrelevantItems": 5,
-      "checkedAt": "2026-11-14T19:40:58.961Z",
-      "durationMs": 305
+      "checkedAt": "2026-11-14T20:36:24.805Z",
+      "durationMs": 973
     },
     {
       "source": "Music In Africa",
       "url": "https://www.musicinafrica.net/rss.xml",
       "status": "error",
       "error": "HTTP 404",
-      "checkedAt": "2026-11-14T19:40:59.884Z",
-      "durationMs": 1232
+      "checkedAt": "2026-11-14T20:36:25.610Z",
+      "durationMs": 1781
     },
     {
       "source": "NME Music",
@@ -74,8 +74,8 @@
       "acceptedItems": 5,
       "staleItems": 0,
       "irrelevantItems": 5,
-      "checkedAt": "2026-11-14T19:40:58.783Z",
-      "durationMs": 128
+      "checkedAt": "2026-11-14T20:36:24.578Z",
+      "durationMs": 747
     },
     {
       "source": "Punch Entertainment",
@@ -83,27 +83,27 @@
       "status": "ok",
       "httpStatus": 200,
       "parsedItems": 30,
-      "acceptedItems": 5,
+      "acceptedItems": 4,
       "staleItems": 0,
-      "irrelevantItems": 25,
-      "checkedAt": "2026-11-14T19:40:59.402Z",
-      "durationMs": 751
+      "irrelevantItems": 26,
+      "checkedAt": "2026-11-14T20:36:25.159Z",
+      "durationMs": 1331
     },
     {
       "source": "The Guardian Nigeria Entertainment",
       "url": "https://guardian.ng/category/entertainment/feed/",
       "status": "error",
       "error": "HTTP 403",
-      "checkedAt": "2026-11-14T19:40:58.731Z",
-      "durationMs": 82
+      "checkedAt": "2026-11-14T20:36:24.492Z",
+      "durationMs": 666
     },
     {
       "source": "The Guardian Nigeria Music",
       "url": "https://guardian.ng/category/entertainment/music/feed/",
       "status": "error",
       "error": "HTTP 403",
-      "checkedAt": "2026-11-14T19:40:58.746Z",
-      "durationMs": 212
+      "checkedAt": "2026-11-14T20:36:24.497Z",
+      "durationMs": 782
     }
   ]
 }
