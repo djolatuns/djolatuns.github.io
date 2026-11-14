@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T00:56:18.633Z",
+  "updatedAt": "2026-11-14T01:58:29.054Z",
   "count": 60,
   "items": [
     {
@@ -19,15 +19,6 @@
       "url": "https://punchng.com/airlines-warn-12-5-ticket-tax-threatens-survival/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-14T00:30:15.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "CBN deputy governor to grace Spires soccer finale",
-      "summary": "The Central Bank of Nigeria Deputy Governor, Corporate Services, Dr Muhammad Sani Abdullahi, will lead a list of dignitaries to the grand finale of the 2026 Spires 5-Aside Naija Street Soccer Tournament in Lagos on Saturday (today). Read More: https://punchng.com/cbn-deputy-governor-to-grace-spires-soccer-finale/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/cbn-deputy-governor-to-grace-spires-soccer-finale/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T00:20:54.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Influential New Jersey house DJ and producer Cevin Fisher has died aged 63",
+      "summary": "Across more than four decades, Fisher helped shape house music Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/influential-new-jersey-house-dj-and-producer-cevin-fisher-has-died-aged-63-news",
       "source": "Mixmag",
       "publishedAt": null
     }
