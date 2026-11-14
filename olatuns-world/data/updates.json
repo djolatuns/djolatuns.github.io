@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-14T17:33:47.134Z",
+  "updatedAt": "2026-11-14T18:40:52.584Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Simple Plan, Hoobastank & More Take Warped Tour Mid-Flight Amid FAA Ground Stop",
+      "summary": "The Used and LØLØ also joined Southwest’s Live at 35 concert series aboard a flight to Orlando, Fla.",
+      "date": "2026-11-14 · Billboard Music",
+      "url": "https://www.billboard.com/music/rock/simple-plan-hoobastank-warped-tour-flight-faa-ground-stop-1236382214/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-14T18:28:41.000Z"
+    },
     {
       "category": "Events",
       "title": "2030 World Cup final will be in Spain, federation boss insists",
@@ -32,20 +41,11 @@
     {
       "category": "Events",
       "title": "Old national anthem: Keyamo gives Dickson 48 hours to clarify NDC’s position",
-      "summary": "Aviation Minister Festus Keyamo has given NDC leader Seriake Dickson 48 hours to clarify the party’s stance on the old national anthem after an incident. Read More: https://punchng.com/old-national-anthem-keyamo-gives-dickson-48-hours-to-clarify-ndcs-position/",
+      "summary": "Aviation Minister Festus Keyamo has given NDC leader Seriake Dickson 48 hours to clarify the party’s position on Nigeria’s old national anthem. Read More: https://punchng.com/old-national-anthem-keyamo-gives-dickson-48-hours-to-clarify-ndcs-position/",
       "date": "2026-11-14 · Punch Entertainment",
       "url": "https://punchng.com/old-national-anthem-keyamo-gives-dickson-48-hours-to-clarify-ndcs-position/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-14T14:28:40.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "ADC accuses NBA of siding with ruling party over Kalu’s comments",
-      "summary": "The African Democratic Congress has accused the Nigerian Bar Association of bias for referring lawyer Kalu Kalu to a disciplinary panel over his comments. Read More: https://punchng.com/adc-accuses-nba-of-siding-with-ruling-party-over-kalus-comments/",
-      "date": "2026-11-14 · Punch Entertainment",
-      "url": "https://punchng.com/adc-accuses-nba-of-siding-with-ruling-party-over-kalus-comments/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-14T12:57:00.000Z"
     },
     {
       "category": "Events",
@@ -154,15 +154,6 @@
       "url": "https://www.billboard.com/music/rock/kiss-end-of-the-road-documentary-1236382015/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-13T21:44:17.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Going Green: Miss Monique Debuts Her Nature-Centric Biorhythm Show in the U.S. This Weekend — With Bigger Plans For America to Follow",
-      "summary": "“I feel like my relationship with the U.S. is having an amazing start,\" the Ukrainian producer says ahead of her Nov. 13 show at Brooklyn Pacha.",
-      "date": "2026-11-13 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/miss-monique-biorhythm-brooklyn-pacha-interview-new-york-1236381968/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-13T21:26:16.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "A police chief said that all detainees were taken for drug testing Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/police-arrest-over-400-people-following-raid-kuala-lumpur-nightclub-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Man arrested following stabbing at London nightclub Studio 338",
+      "summary": "The incident occurred during a Halloween event on Friday night Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/man-arrested-following-stabbing-london-nightclub-studio-338-news",
       "source": "Mixmag",
       "publishedAt": null
     }
