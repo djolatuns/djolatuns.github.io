@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-15T05:51:31.670Z",
+  "updatedAt": "2026-11-15T06:58:46.468Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Simi suspends Abuja concert, promises refunds",
+      "summary": "Nigerian singer, Simi, has suspended her SimiLive Abuja concert due to logistical issues with the venue and has promised full refunds to ticket holders. Read More: https://punchng.com/simi-suspends-abuja-concert-promises-refunds/",
+      "date": "2026-11-15 · Punch Entertainment",
+      "url": "https://punchng.com/simi-suspends-abuja-concert-promises-refunds/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-15T07:05:15.000Z"
+    },
     {
       "category": "Music",
       "title": "Phil Collins Tells Rock Hall Crowd: ‘You Haven’t Heard the Last of Me’",
@@ -46,33 +55,6 @@
       "url": "https://www.billboard.com/music/country/richard-sterban-death-oak-ridge-boys-1236382272/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-15T01:57:44.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "African film industry woos investors in Lagos",
-      "summary": "Filmmakers and investors met in Lagos for the African Producers Accelerator and African Film Investor Roundtable to explore funding and cross-border collab Read More: https://punchng.com/african-film-industry-woos-investors-in-lagos/",
-      "date": "2026-11-15 · Punch Entertainment",
-      "url": "https://punchng.com/african-film-industry-woos-investors-in-lagos/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-15T01:13:28.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Lord’s Dry Gin showcases versatility at Lagos Cocktail Week",
-      "summary": "Lord’s Dry Gin showcased its versatility at the 2026 Lagos Cocktail Week with a curated menu featuring different flavour combinations for enthusiasts. Read More: https://punchng.com/lords-dry-gin-showcases-versatility-at-lagos-cocktail-week/",
-      "date": "2026-11-15 · Punch Entertainment",
-      "url": "https://punchng.com/lords-dry-gin-showcases-versatility-at-lagos-cocktail-week/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-15T01:10:41.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Singer Ella Black releases single, ‘Ginger’",
-      "summary": "Nigerian singer and songwriter, Ella Black, has released her latest single titled ‘Ginger’, a track blending Afropop, Amapiano, and R&B influences. Read More: https://punchng.com/singer-ella-black-releases-single-ginger/",
-      "date": "2026-11-15 · Punch Entertainment",
-      "url": "https://punchng.com/singer-ella-black-releases-single-ginger/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-15T01:07:41.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +521,24 @@
       "summary": "The incident occurred during a Halloween event on Friday night Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/man-arrested-following-stabbing-london-nightclub-studio-338-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "New music on our radar this week: MK, Roza Terenzi, DJ Heartstring",
+      "summary": "All the biggest releases on our radar Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
+      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
       "source": "Mixmag",
       "publishedAt": null
     }
