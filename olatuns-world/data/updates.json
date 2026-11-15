@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-15T08:03:56.493Z",
+  "updatedAt": "2026-11-15T08:52:58.620Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Watch Noel Gallagher join Goldie and Skunk Anansie’s Skin on stage for first performance since Oasis reunion tour",
+      "summary": "The trio shared the stage at the London Jazz Festival, backed by a live band, choir and orchestra The post Watch Noel Gallagher join Goldie and Skunk Anansie’s Skin on stage for first performance since Oasis reunion tour appeared first on NME .",
+      "date": "2026-11-15 · NME Music",
+      "url": "https://www.nme.com/news/music/watch-noel-gallagher-goldie-skunk-anansie-skin-first-performance-oasis-reunion-3975973",
+      "source": "NME Music",
+      "publishedAt": "2026-11-15T08:42:10.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Daniel Hall, Co-Founder of Australian Rock Band Taxiride, Dies at 48",
+      "summary": "The guitarist and singer helped write and record “Get Set,” which won an ARIA Award and reached Billboard’s Modern Rock Tracks chart in 1999.",
+      "date": "2026-11-15 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/taxiride-co-founder-daniel-hall-dies-48-1236382339/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-15T08:09:14.000Z"
+    },
     {
       "category": "Music",
       "title": "U2 Opens 2026 Rock & Roll Hall of Fame Ceremony With Surprise Performance",
@@ -127,15 +145,6 @@
       "url": "https://www.musicbusinessworldwide.com/symphonic-inks-deal-to-bring-hundreds-of-thousands-of-songs-to-roblox/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-14T09:02:03.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Journey Drummer Deen Castronovo Exits Mid-Tour to Focus on His Health",
-      "summary": "Steve Murphy will fill in for the rest of November, weeks after Castronovo suffered an onstage medical emergency in Tulsa.",
-      "date": "2026-11-14 · Billboard Music",
-      "url": "https://www.billboard.com/music/rock/journey-deen-castronovo-steps-away-steve-murphy-drummer-1236382208/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-14T06:59:25.000Z"
     },
     {
       "category": "Music",
@@ -530,15 +539,6 @@
       "summary": "All the biggest releases on our radar Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
-      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
       "source": "Mixmag",
       "publishedAt": null
     }
