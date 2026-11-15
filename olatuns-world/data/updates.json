@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T16:39:31.739Z",
+  "updatedAt": "2026-11-15T17:34:58.623Z",
   "count": 60,
   "items": [
     {
@@ -55,15 +55,6 @@
       "url": "https://www.nme.com/news/music/lana-del-rey-dua-lipa-zara-larsson-gta-vi-the-album-full-tracklist-3975990",
       "source": "NME Music",
       "publishedAt": "2026-11-15T12:23:01.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "BBNaija’s Sultana Named Cross River Tourism Ambassador",
-      "summary": "Former Big Brother Naija housemate, Sultana, has been appointed as the Tourism Ambassador of Cross River State for Creative Industries by the state governm Read More: https://punchng.com/bbnaijas-sultana-named-cross-river-tourism-ambassador/",
-      "date": "2026-11-15 · Punch Entertainment",
-      "url": "https://punchng.com/bbnaijas-sultana-named-cross-river-tourism-ambassador/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-15T12:03:57.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "Juan Atkins was the pioneer whose foundational influence has inspired everyone. Not just an all-time titan of dance music, but of music full stop. Marcus Barnes pays tribute to the innovator who never stopped looking forwards Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/rip-juan-atkins-detroit-techno-pioneer-legend-obituary-tribute",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Police arrest over 400 people following raid on Kuala Lumpur nightclub",
+      "summary": "A police chief said that all detainees were taken for drug testing Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/police-arrest-over-400-people-following-raid-kuala-lumpur-nightclub-news",
       "source": "Mixmag",
       "publishedAt": null
     }
