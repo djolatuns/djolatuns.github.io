@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-15T04:53:38.664Z",
+  "updatedAt": "2026-11-15T05:51:31.670Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Phil Collins Tells Rock Hall Crowd: ‘You Haven’t Heard the Last of Me’",
+      "summary": "Travis Barker inducted the Genesis frontman as a solo artist, while Cynthia Erivo performed “In the Air Tonight” in his place.",
+      "date": "2026-11-15 · Billboard Music",
+      "url": "https://www.billboard.com/music/rock/phil-collins-rock-hall-induction-speech-travis-barker-cynthia-erivo-1236382323/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-15T05:28:25.000Z"
+    },
     {
       "category": "Music",
       "title": "BTS & ROSÉ Lead a Big Night for K-Pop at 2026 Kids’ Choice Awards: Full Winners List",
@@ -530,15 +539,6 @@
       "summary": "The incident occurred during a Halloween event on Friday night Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/man-arrested-following-stabbing-london-nightclub-studio-338-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "New music on our radar this week: MK, Roza Terenzi, DJ Heartstring",
-      "summary": "All the biggest releases on our radar Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
       "source": "Mixmag",
       "publishedAt": null
     }
