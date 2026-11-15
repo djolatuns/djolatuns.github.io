@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T20:37:47.846Z",
+  "updatedAt": "2026-11-15T21:36:25.347Z",
   "count": 60,
   "items": [
     {
@@ -37,15 +37,6 @@
       "url": "https://www.billboard.com/music/music-news/phoebe-bridgers-snl-bobby-still-standing-performances-1236382415/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-15T17:41:02.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "McIlroy dedicates record-equalling Dubai title to father",
-      "summary": "Rory McIlroy secures a record-equalling eighth Race to Dubai title after finishing second at the DP World Tour Championship, dedicating the win to his fath Read More: https://punchng.com/mcilroy-dedicates-record-equalling-dubai-title-to-father/",
-      "date": "2026-11-15 · Punch Entertainment",
-      "url": "https://punchng.com/mcilroy-dedicates-record-equalling-dubai-title-to-father/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-15T16:41:48.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "All the biggest releases on our radar Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
+      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
       "source": "Mixmag",
       "publishedAt": null
     }
