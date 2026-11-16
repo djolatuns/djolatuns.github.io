@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-16T20:49:14.762Z",
+  "updatedAt": "2026-11-16T21:47:33.559Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Jackson scores as Senegal move closer to 2027 AFCON",
+      "summary": "Nicolas Jackson and El Hadji Malick Diouf scored as Senegal beat Sudan 4-2 to virtually clinch a place at the 2027 Africa Cup of Nations tournament. Read More: https://punchng.com/jackson-scores-as-senegal-move-closer-to-2027-afcon/",
+      "date": "2026-11-16 · Punch Entertainment",
+      "url": "https://punchng.com/jackson-scores-as-senegal-move-closer-to-2027-afcon/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-16T22:06:19.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Led By Ella Langley, Women Artists Shine in Grammys Country Categories",
+      "summary": "Women artists land all five spots in best contemporary country album category, and dominate other country categories.",
+      "date": "2026-11-16 · Billboard Music",
+      "url": "https://www.billboard.com/music/awards/grammys-country-categories-ella-langley-women-artists-1236383476/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-16T21:33:15.000Z"
+    },
     {
       "category": "Music",
       "title": "Carter Faith Helps Give Netflix Film ‘Heartland’ Its Country Soul: ‘The Basis of Country Music Is Storytelling’",
@@ -55,42 +73,6 @@
       "url": "https://www.billboard.com/music/latin/c-tangana-agorazein-madrid-show-recap-1236383284/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-16T19:36:56.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "RAYE Tearfully Reacts to Scoring 11 2027 Grammy Nods, More Than Any Other Artist: ‘WHAT IS HAPPENING’",
-      "summary": "The star is up for song, record and album of the year.",
-      "date": "2026-11-16 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/raye-reacts-grammy-2027-nominations-tearful-video-1236383142/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-16T19:04:21.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Ella Langley’s ‘Choosin’ Texas’ Holds for Record-Extending 28th Week Atop Hot 100",
-      "summary": "The hit also now solely has the most weeks at No. 1 on Streaming Songs.",
-      "date": "2026-11-16 · Billboard Music",
-      "url": "https://www.billboard.com/lists/ella-langley-choosin-texas-hot-100-number-one-28-weeks/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-16T18:58:18.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Watch Olivia Dean Have a Full-On, Four-Alarm Freakout Over Her Six Grammy Nominations",
-      "summary": "Last year's best new artist winner got lots of love for her The Art of Loving album and massive \"Man I Need\" single on Monday morning (Nov. 16).",
-      "date": "2026-11-16 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/olivia-dean-freakout-six-2027-grammy-nominations-watch-1236383144/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-16T18:31:26.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "2027 Grammys: 10 female artistes leading nominations",
-      "summary": "It’s women o’clock at the 2027 Grammy Awards, as female musicians take centre stage in this year’s nominations, dominating several major categories and emerging as the biggest contenders for some of the music industry’s most prestigious honours. Read More: https://punchng.com/2027-grammys-10-female-artistes-leading-nominations/",
-      "date": "2026-11-16 · Punch Entertainment",
-      "url": "https://punchng.com/2027-grammys-10-female-artistes-leading-nominations/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-16T17:55:27.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +521,24 @@
       "summary": "All the biggest releases on our radar Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
+      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Influential New Jersey house DJ and producer Cevin Fisher has died aged 63",
+      "summary": "Across more than four decades, Fisher helped shape house music Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/influential-new-jersey-house-dj-and-producer-cevin-fisher-has-died-aged-63-news",
       "source": "Mixmag",
       "publishedAt": null
     }
