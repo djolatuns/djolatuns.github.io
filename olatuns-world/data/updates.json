@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-11-15T23:43:47.366Z",
+  "updatedAt": "2026-11-16T01:17:48.616Z",
   "count": 60,
   "items": [
     {
-      "category": "Events",
-      "title": "Tinubu’s reforms had no easy alternative – Asekun-Shittu, PCC member",
-      "summary": "In this interview with DAMILOLA AINA, a member of the All Progressives Congress Presidential Campaign Council, Kemi Asekun-Shittu argues that the party’s biggest challenge ahead of the 2027 elections… Read More: https://punchng.com/tinubus-reforms-had-no-easy-alternative-asekun-shittu-pcc-member/",
-      "date": "2026-11-16 · Punch Entertainment",
-      "url": "https://punchng.com/tinubus-reforms-had-no-easy-alternative-asekun-shittu-pcc-member/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-16T00:02:25.000Z"
+      "category": "Music",
+      "title": "Fans Choose U2 & Dolly Parton’s ‘Torn’ as This Week’s Favorite New Music",
+      "summary": "Parton's posthumous collaboration with U2 brought in 40% of the vote.",
+      "date": "2026-11-16 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/u2-dolly-parton-torn-best-new-music-poll-results-1236382556/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-16T00:26:34.000Z"
     },
     {
       "category": "Events",
@@ -127,15 +127,6 @@
       "url": "https://www.billboard.com/lists/2026-kids-choice-awards-full-winners-list/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-15T04:41:14.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Filipino Singer Carmelle Storms to Victory in Eurovision Asia Debut in Bangkok",
-      "summary": "The 19-year-old said her winning song celebrated female empowerment and was intended as \"a tribute to all Filipino women.\"",
-      "date": "2026-11-15 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/carmelle-eurovision-asia-winner-2026-1236382296/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-15T02:26:10.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Influential New Jersey house DJ and producer Cevin Fisher has died aged 63",
+      "summary": "Across more than four decades, Fisher helped shape house music Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/influential-new-jersey-house-dj-and-producer-cevin-fisher-has-died-aged-63-news",
       "source": "Mixmag",
       "publishedAt": null
     }
