@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T06:04:31.203Z",
+  "updatedAt": "2026-11-16T08:44:47.027Z",
   "count": 60,
   "items": [
     {
@@ -145,15 +145,6 @@
       "url": "https://www.billboard.com/music/music-news/taxiride-co-founder-daniel-hall-dies-48-1236382339/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-15T08:09:14.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "U2 Opens 2026 Rock & Roll Hall of Fame Ceremony With Surprise Performance",
-      "summary": "Bono and co. played “Silencio” and “Pride (In the Name of Love)” at the Peacock Theatre, with riot police staging on the new song.",
-      "date": "2026-11-15 · Billboard Music",
-      "url": "https://www.billboard.com/music/rock/u2-surprise-performance-2026-rock-hall-induction-ceremony-1236382327/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-15T07:06:30.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "Juan Atkins was the pioneer whose foundational influence has inspired everyone. Not just an all-time titan of dance music, but of music full stop. Marcus Barnes pays tribute to the innovator who never stopped looking forwards Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/rip-juan-atkins-detroit-techno-pioneer-legend-obituary-tribute",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Police arrest over 400 people following raid on Kuala Lumpur nightclub",
+      "summary": "A police chief said that all detainees were taken for drug testing Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/police-arrest-over-400-people-following-raid-kuala-lumpur-nightclub-news",
       "source": "Mixmag",
       "publishedAt": null
     }
