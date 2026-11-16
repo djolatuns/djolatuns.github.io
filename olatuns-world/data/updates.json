@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-16T21:47:33.559Z",
-  "count": 60,
+  "updatedAt": "2026-11-16T22:45:45.262Z",
+  "count": 26,
   "items": [
+    {
+      "category": "Events",
+      "title": "Detty December: Lagos warns visitors against hotel, ticket scams",
+      "summary": "The Lagos State Government has warned tourists visiting for Detty December festivities against fraudulent hotel reservations, fake tickets and other scams. Read More: https://punchng.com/detty-december-lagos-warns-visitors-against-hotel-ticket-scams/",
+      "date": "2026-11-16 · Punch Entertainment",
+      "url": "https://punchng.com/detty-december-lagos-warns-visitors-against-hotel-ticket-scams/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-16T23:22:52.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "What Did 1998 Actually Sound Like? A Look Back at the Year That Changed Pop Music",
+      "summary": "From hip-hop's growing influence to the boy band explosion, 1998 was a year of musical reinvention that helped shape the sound of a new millennium.",
+      "date": "2026-11-16 · Billboard Music",
+      "url": "https://www.billboard.com/music/features/what-did-1998-actually-sound-like-1236383571/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-16T22:28:32.000Z"
+    },
     {
       "category": "Events",
       "title": "Jackson scores as Senegal move closer to 2027 AFCON",
@@ -49,30 +67,12 @@
     },
     {
       "category": "Music",
-      "title": "The New James Bond Has Been Cast. Who Will Do the Next Theme Song?",
-      "summary": "Adele, Billie Eilish and Madonna are just some of the legendary artists who have signed on to be part of the Bond musical legacy. Here we look at the artists who might be next to join them.",
-      "date": "2026-11-16 · Billboard Music",
-      "url": "https://www.billboard.com/lists/james-bond-song-next-artist-theme/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-16T19:55:26.000Z"
-    },
-    {
-      "category": "Music",
       "title": "Beyoncé becomes first artiste to earn 100 Grammy nominations",
       "summary": "Beyoncé has become the first artist in history to receive 100 career Grammy nominations after her song “Morning Dew (Donk)” was nominated for the 2027 awar Read More: https://punchng.com/beyonce-becomes-first-artiste-to-earn-100-grammy-nominations/",
       "date": "2026-11-16 · Punch Entertainment",
       "url": "https://punchng.com/beyonce-becomes-first-artiste-to-earn-100-grammy-nominations/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-16T19:54:17.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "C. Tangana & Spanish Rap Collective Agorazein Move Madrid 10 Years Later With Its Return: ‘This Is Our Legacy’",
-      "summary": "The lyrical troupe that helped introduce “El Madrileño” is bringing back the songs and style of its early days for four shows at Movistar Arena.",
-      "date": "2026-11-16 · Billboard Music",
-      "url": "https://www.billboard.com/music/latin/c-tangana-agorazein-madrid-show-recap-1236383284/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-16T19:36:56.000Z"
     },
     {
       "category": "Events",
@@ -235,312 +235,6 @@
       "url": "https://djmag.com/news/listen-floating-points-sunflower-sound-system-sets-ben-ufo-avalon-emerson-more",
       "source": "DJ Mag",
       "publishedAt": "2026-11-13T14:10:52.000Z"
-    },
-    {
-      "category": "DJ",
-      "title": "Wigan-based radio station Alltrax is offering paid DJ residencies",
-      "summary": "The station hopes to tackle the \"often unpaid model of grassroots radio\" while championing emerging talent outside of Manchester's city centre Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/wigan-based-radio-station-alltrax-offer-paid-dj-residencies-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "New music discovery website lets you scroll through over 70,000 DJ sets",
-      "summary": "58 different channels feature on The Selector, with almost 2,000 Mixmag sets available to watch Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/new-music-discovery-website-lets-you-scroll-through-over-70-000-dj-sets-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Robyn says Eurovision Song Contest is \"just shit\" now",
-      "summary": "The Swedish musician claims that she \"doesn't really watch\" the yearly contest because \"we don't have ABBA anymore\" Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/robyn-says-eurovision-song-contest-is-just-shit-now-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "New music on our radar this week: Ecco2k, Bonobo, Saint Ludo and Ceebo",
-      "summary": "All the biggest releases on our radar Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-ecco2k-saint-ludo-bonobo-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "Festival line-ups you might have missed: RALLY, Øya, Terminal V",
-      "summary": "Rounding up festival news from across the dance and electronic world Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/festival-line-ups-you-might-have-missed-rally-øya-terminal-v-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Independent record stores to host GTA VI album listening parties next week",
-      "summary": "Stores across the US, UK, Germany, South Korea, France, Australia and more will play the record ahead of the game's release on November 19 Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/independent-record-stores-to-host-gta-vi-album-listening-parties-next-week-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "New nightclub and record store opens in Manchester, Resident",
-      "summary": "The venue also comprises a five-floor bar and kitchen Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/new-nightclub-record-store-opens-manchester-resident-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "12 DJs pay tribute to Juan Atkins",
-      "summary": "The late techno originator seeded influence across the very breadth of dance music, inspiring DJs all over the globe. We ask 12 artists what Juan Atkins meant to them. Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/12-djs-pay-tribute-to-juan-atkins",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Beloved Jersey club producer DJ Saucy P has died",
-      "summary": "He’s remembered for having a “heart of gold” and “living out his dreams through music” Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/jersey-club-producer-fatman-scoop-collaborator-dj-saucy-p-has-died-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "UK cultural organisations urge Andy Burnham to break EU touring deadlock",
-      "summary": "According to a survey from UK Music, 95% of touring musicians have reported a loss of earnings since Brexit Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/uk-cultural-organisations-urge-andy-burnham-break-eu-touring-deadlock-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Vinyl featuring music from Earth has travelled almost one light-day away, NASA says",
-      "summary": "After almost 50 years, a spacecraft carrying the record is due to reach 16 billion miles from Earth next week Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/vinyl-featuring-music-earth-travelled-almost-one-light-day-away-nasa-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Mix 130: Jacques Greene",
-      "summary": "The Montreal DJ and producer highlights the club obsessions that have informed his latest album 'jg', and speaks to Megan Townsend about post-COVID dancefloors, the Tiga DJ sets that rewired his brain, and the parallels between club and cinema Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/the-mix-130-jacques-greene-jg-montreal-dj-album-club",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Fundraiser launched to support vision loss treatment for US DJ Titonton Duvanté",
-      "summary": "The Ohio artist has suffered a “significant decline” in his vision over the last six months Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/fundraiser-launched-support-vision-loss-treatment-us-dj-titonton-duvanté-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Inside Ironworks, the new industrial dance music fortress overlooking London",
-      "summary": "Since opening its doors last month, the riverside warehouse space has welcomed global stars including Charlotte de Witte, Jamie Jones and Eric Prydz. Here’s what went down at the first run of shows Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/inside-ironworks-new-industrial-dance-music-fortress-overlooking-london",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "Daddy Yankee announced as Coachella 2027 headliner",
-      "summary": "The Puerto Rican reggaeton legend will be joined by fellow headliners SZA, Dua Lipa and Tame Impala at the Californian festival across two weekends next April Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/daddy-yankee-announced-as-headliner-coachella-2027-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Grimes to make film debut in “first-ever” AI-generated movie in cinemas",
-      "summary": "The Canadian musician voices a lookalike aristocratic character in Gods Don’t Give Gifts Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/grimes-make-film-debut-first-ever-ai-generated-movie-cinemas-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Carl Cox has been awarded an OBE",
-      "summary": "He picked up the prestigious honour at Windsor Castle for his outstanding contribution to music Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/carl-cox-has-been-awarded-an-obe-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "AlphaTheta unveils new four-channel mixer, DJM-A7",
-      "summary": "The mixer is designed for “a wide range of venues and environments”, the music tech giant says Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/alphatheta-unveils-new-four-channel-mixer-djm-a7-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "“I’m gutted”: Hannah Laing announces cancellation of doof in the Park 2027",
-      "summary": "Laing said that “behind the scenes” issues are to blame for the Dundee festival’s cancellation next year Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/hannah-laing-announces-cancellation-doof-in-the-park-2027-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Bristol bridge collapse could be linked to loud music, says councillor",
-      "summary": "Music being played through speakers on the shore could be to blame, a Lib Dems councillor claims Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/bristol-bridge-collapse-linked-loud-music-says-councillor-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Miami's Club Space to transform into GTA VI nightclub for game's launch",
-      "summary": "The venue will host three parties in collaboration with CircoLoco, inspired by the fictional Vice City nightspot The Vault Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/miami-club-space-transform-gta-vi-nightclub-games-launch-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Best DJ Mixes Of The Year 2026 So Far",
-      "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
-      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Jeff Mills on Juan Atkins: “His legacy is not something that can be fully measured”",
-      "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "MPH is going full throttle to the dancefloor",
-      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Cover Mix: MPH",
-      "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Best Tracks Of The Year 2026 So Far",
-      "summary": "Mixmag's guide to the best tracks of the year 2026 Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/best-dance-electronic-club-tracks-2026",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "London Mayor Sadiq Khan gains licensing powers for music venues and festivals",
-      "summary": "The “historic” powers allow Khan to make direct decisions on licensing applications for the first time ever Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/london-mayor-sadiq-khan-gains-licensing-powers-music-venues-festivals-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "RIP Juan Atkins, the techno originator who changed the world",
-      "summary": "Juan Atkins was the pioneer whose foundational influence has inspired everyone. Not just an all-time titan of dance music, but of music full stop. Marcus Barnes pays tribute to the innovator who never stopped looking forwards Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/rip-juan-atkins-detroit-techno-pioneer-legend-obituary-tribute",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Police arrest over 400 people following raid on Kuala Lumpur nightclub",
-      "summary": "A police chief said that all detainees were taken for drug testing Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/police-arrest-over-400-people-following-raid-kuala-lumpur-nightclub-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Man arrested following stabbing at London nightclub Studio 338",
-      "summary": "The incident occurred during a Halloween event on Friday night Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/man-arrested-following-stabbing-london-nightclub-studio-338-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "New music on our radar this week: MK, Roza Terenzi, DJ Heartstring",
-      "summary": "All the biggest releases on our radar Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/new-music-on-our-radar-this-week-roza-terenzi-mk-dj-heartstring-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Music",
-      "title": "Music tech releases you might have missed: Roland TD-07, Native Instruments Massive XL, AudioFuse Studio Rev2",
-      "summary": "Whether you’re in the market for some new software or want to upgrade your studio — here are some of the biggest recent releases from the world of tech Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/tech-releases-you-might-have-missed-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Influential New Jersey house DJ and producer Cevin Fisher has died aged 63",
-      "summary": "Across more than four decades, Fisher helped shape house music Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/influential-new-jersey-house-dj-and-producer-cevin-fisher-has-died-aged-63-news",
-      "source": "Mixmag",
-      "publishedAt": null
     }
   ]
 }
