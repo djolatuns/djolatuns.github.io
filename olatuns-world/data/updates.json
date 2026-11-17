@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-17T21:52:21.727Z",
+  "updatedAt": "2026-11-17T22:52:54.895Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "WTC Abuja unveils sports tournament to strengthen business ties",
+      "summary": "The World Trade Centre Abuja has introduced a sports competition for its tenants and occupants as part of efforts to promote workplace wellness, strengthen business relationships and build a more connected commercial community. Read More: https://punchng.com/wtc-abuja-unveils-sports-tournament-to-strengthen-business-ties/",
+      "date": "2026-11-17 · Punch Entertainment",
+      "url": "https://punchng.com/wtc-abuja-unveils-sports-tournament-to-strengthen-business-ties/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-17T23:26:22.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "These 12 Follow-Ups to Grammy Album of the Year Winners Didn’t Receive a Single Nomination: Full List",
+      "summary": "Harry Styles is in good company. Such music legends as Carole King, George Harrison and Lionel Richie experienced the same fate.",
+      "date": "2026-11-17 · Billboard Music",
+      "url": "https://www.billboard.com/lists/grammy-album-of-the-year-winners-followups-not-nominated/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-17T22:43:55.000Z"
+    },
     {
       "category": "Events",
       "title": "2027: YPP presidential candidate condemns attacks on Obi, Kwankwaso",
@@ -111,15 +129,6 @@
       "publishedAt": "2026-11-17T19:44:31.000Z"
     },
     {
-      "category": "Events",
-      "title": "Adeleke, Ooni, APC celebrate Oyebamiji on birthday",
-      "summary": "Osun State Governor, Ademola Adeleke, the Ooni of Ife, Oba Adeyeye Ogunwusi and the All Progressives Congress in Osun, on Tuesday, congratulated the party’s candidate in the recently held… Read More: https://punchng.com/adeleke-ooni-apc-celebrate-oyebamiji-on-birthday/",
-      "date": "2026-11-17 · Punch Entertainment",
-      "url": "https://punchng.com/adeleke-ooni-apc-celebrate-oyebamiji-on-birthday/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-17T19:25:00.000Z"
-    },
-    {
       "category": "Music",
       "title": "Notes.fm partners with Musixmatch to bring time-synced lyrics to its distribution platform for independent artists",
       "summary": "Notes.fm is a music royalty collection and distribution platform from Stem co-founder Tim Luckow Source",
@@ -127,24 +136,6 @@
       "url": "https://www.musicbusinessworldwide.com/notes-fm-partners-with-musixmatch-to-bring-time-synced-lyrics-to-its-distribution-platform-for-independent-artists/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-17T18:55:35.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Ashley Gorley, Matthew West, Wynonna, Josiah Queen Lead ASCAP Nashville Music Awards Winners",
-      "summary": "Gorley earned his 13th ASCAP country songwriter of the year honor.",
-      "date": "2026-11-17 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/ascap-nashville-music-awards-winners-2026-ashley-gorely-1236383814/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-17T18:50:17.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "The Game Torches the Grammys After His Album ‘The Documentary III’ Gets Zero Nominations: ‘This Is Completely Hilarious’",
-      "summary": "\"Anybody who actually listened to my album knows wtf it is & how amazing of a project it is,\" he wrote.",
-      "date": "2026-11-17 · Billboard Music",
-      "url": "https://www.billboard.com/music/rb-hip-hop/the-game-slams-grammys-the-documentary-iii-shut-out-1236384103/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-17T18:44:33.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
