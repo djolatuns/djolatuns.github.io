@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-17T13:00:31.638Z",
+  "updatedAt": "2026-11-17T14:17:15.085Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Megadeth to Nearly Reunite Big Four on 2027 North American Outbreak: Vaccination of the Nations Tour",
+      "summary": "The band is expanding its global farewell outing with an extensive North American swing slated to kick off on May 14 in Albuquerque.",
+      "date": "2026-11-17 · Billboard Music",
+      "url": "https://www.billboard.com/music/rock/megadeth-big-four-2027-north-american-tour-anthrax-king-dates-1236383856/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-17T13:27:03.000Z"
+    },
     {
       "category": "Events",
       "title": "Hayley Williams-Curated 2027 Outbreak Festival to Feature Blood Orange, Dinosaur Jr., Rico Nasty & More",
@@ -67,15 +76,6 @@
     },
     {
       "category": "Music",
-      "title": "FULL LIST: Nigerian artistes with the most Grammy nominations of all time",
-      "summary": "Grammy-winning singer Burna Boy has extended his record as Nigeria’s most-nominated artiste at the Grammy Awards, with 14 career nominations, following the announcement of the 2027 nominees. Read More: https://punchng.com/full-list-nigerian-artistes-with-the-most-grammy-nominations-of-all-time/",
-      "date": "2026-11-17 · Punch Entertainment",
-      "url": "https://punchng.com/full-list-nigerian-artistes-with-the-most-grammy-nominations-of-all-time/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-17T09:13:11.000Z"
-    },
-    {
-      "category": "Music",
       "title": "Miley Cyrus Reacts to Shared Grammy Nod With Dolly Parton: ‘A Beautiful Way to Honor Her Enormous Heart’",
       "summary": "\"My Aunt Dolly is one of the greatest songwriters the world has ever known,\" the pop star wrote.",
       "date": "2026-11-16 · Billboard Music",
@@ -100,15 +100,6 @@
       "url": "https://www.billboard.com/music/features/what-did-1998-actually-sound-like-1236383571/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-16T22:28:32.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Led By Ella Langley, Women Artists Shine in Grammys Country Categories",
-      "summary": "Women artists land all five spots in best contemporary country album category, and dominate other country categories.",
-      "date": "2026-11-16 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/grammys-country-categories-ella-langley-women-artists-1236383476/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-16T21:33:15.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "The 20/20 Vision founder discovered the \"mouldy\" tape, which was submitted by the French duo to his Kiss FM show, in a storage unit Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/unreleased-daft-punk-mix-from-1997-discovered-dj-ralph-lawson-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Minneapolis DJ school Slam Academy to shutter following misconduct concerns",
+      "summary": "The academy said that “conduct fell short of the professional boundaries we expect” Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/minneapolis-dj-school-slam-academy-to-shutter-following-misconduct-concerns-news",
       "source": "Mixmag",
       "publishedAt": null
     }
