@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T09:59:50.149Z",
+  "updatedAt": "2026-11-17T10:59:19.924Z",
   "count": 60,
   "items": [
     {
@@ -154,15 +154,6 @@
       "url": "https://www.nme.com/news/music/sasha-keable-the-cover-playlist-3976012",
       "source": "NME Music",
       "publishedAt": "2026-11-16T09:30:26.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Dave Grohl tells us about Foo Fighters’ all-star 2027 UK and European stadium tour",
-      "summary": "\"Those shows at the end of a tour are usually the ones where you have the most energy because it’s the final hundred yards,\" shares the frontman, as the band announce massive gigs with Garbage, St Vincent, Yard Act and more The post Dave Grohl tells us about Foo Fighters’ all-star 2027 UK and European stadium tour appeared first on NME .",
-      "date": "2026-11-16 · NME Music",
-      "url": "https://www.nme.com/news/music/foo-fighters-2027-uk-european-tour-interview-dates-tickets-support-acts-3975793",
-      "source": "NME Music",
-      "publishedAt": "2026-11-16T09:08:31.000Z"
     },
     {
       "category": "DJ",
@@ -539,6 +530,15 @@
       "summary": "The guide, which has been created by AFEM, lays out ethical approaches to ticketing, marketing, event insurance and more Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/good-practice-guide-launched-new-independent-music-promoters-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "Unreleased Daft Punk mix from 1997 discovered by DJ Ralph Lawson",
+      "summary": "The 20/20 Vision founder discovered the \"mouldy\" tape, which was submitted by the French duo to his Kiss FM show, in a storage unit Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/unreleased-daft-punk-mix-from-1997-discovered-dj-ralph-lawson-news",
       "source": "Mixmag",
       "publishedAt": null
     }
