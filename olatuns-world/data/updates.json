@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T04:58:44.448Z",
+  "updatedAt": "2026-11-18T06:00:06.647Z",
   "count": 60,
   "items": [
     {
@@ -37,15 +37,6 @@
       "url": "https://punchng.com/abia-pdp-candidate-pledges-552-boreholes-in-100-days/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-18T01:42:12.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Experts seek greater govt investment in visual arts",
-      "summary": "Nigeria’s visual arts industry needs stronger government backing, corporate investment and international support to sustain local galleries in the country, improve the visibility of artists and build a viable market, art professionals have said. Read More: https://punchng.com/experts-seek-greater-govt-investment-in-visual-arts/",
-      "date": "2026-11-18 · Punch Entertainment",
-      "url": "https://punchng.com/experts-seek-greater-govt-investment-in-visual-arts/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-18T00:45:19.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Tracks Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best tracks of the year 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-club-tracks-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
