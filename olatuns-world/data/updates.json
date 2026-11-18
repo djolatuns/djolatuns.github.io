@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-18T07:12:56.449Z",
+  "updatedAt": "2026-11-18T08:59:41.782Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Ex-Ajax academy captain dumps football for music",
+      "summary": "Former Ajax academy captain Elikia Mbinga has traded his football dreams for a career in music, emerging as one of the Netherlands’ rising Afrobeat artists with more than 30 million Spotify streams. Read More: https://punchng.com/ex-ajax-academy-captain-dumps-football-for-music/",
+      "date": "2026-11-18 · Punch Entertainment",
+      "url": "https://punchng.com/ex-ajax-academy-captain-dumps-football-for-music/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-18T09:06:28.000Z"
+    },
+    {
+      "category": "Events",
+      "title": "Harry Styles, Sam Fender & Billie Eilish to Headline Glastonbury Festival 2027: See Lineup",
+      "summary": "The festival will take place from June 23-27 in Somerset, England.",
+      "date": "2026-11-18 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/glastonbury-2027-headliners-lineup-1236384106/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-18T08:24:22.000Z"
+    },
     {
       "category": "Events",
       "title": "Beyond the Asphalt: How Jetour’s High-Octane Lagos Convoy Brought Clean Water and Hope to Iwerekun Orile",
@@ -9,16 +27,7 @@
       "date": "2026-11-18 · Punch Entertainment",
       "url": "https://punchng.com/beyond-the-asphalt-how-jetours-high-octane-lagos-convoy-brought-clean-water-and-hope-to-iwerekun-orile/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
-      "publishedAt": "2026-11-18T06:17:45.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Democrats secure 56-seat Senate majority as Peltola wins Alaska",
-      "summary": "Democrat Mary Peltola has defeated Republican incumbent Dan Sullivan to win Alaska’s United States Senate race, ending the last unresolved Senate contest in the 2026 midterm elections and expanding her party’s majority in the chamber to 56 seats. Read More: https://punchng.com/democrats-secure-56-seat-senate-majority-as-peltola-wins-alaska/",
-      "date": "2026-11-18 · Punch Entertainment",
-      "url": "https://punchng.com/democrats-secure-56-seat-senate-majority-as-peltola-wins-alaska/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-18T05:49:34.000Z"
+      "publishedAt": "2026-11-18T07:17:45.000Z"
     },
     {
       "category": "Events",
@@ -39,15 +48,6 @@
       "publishedAt": "2026-11-18T02:50:32.000Z"
     },
     {
-      "category": "Events",
-      "title": "Abia PDP candidate pledges 552 boreholes in 100 days",
-      "summary": "The governorship candidate of the Peoples Democratic Party in Abia State, Dr Kelechi Anosike, has promised to construct 552 solar-powered boreholes across the state’s 184 political wards within his first 100 days in office if elected in 2027. Read More: https://punchng.com/abia-pdp-candidate-pledges-552-boreholes-in-100-days/",
-      "date": "2026-11-18 · Punch Entertainment",
-      "url": "https://punchng.com/abia-pdp-candidate-pledges-552-boreholes-in-100-days/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-18T01:42:12.000Z"
-    },
-    {
       "category": "Music",
       "title": "These 12 Follow-Ups to Grammy Album of the Year Winners Didn’t Receive a Single Nomination: Full List",
       "summary": "Harry Styles is in good company. Such music legends as Carole King, George Harrison and Lionel Richie experienced the same fate.",
@@ -55,15 +55,6 @@
       "url": "https://www.billboard.com/lists/grammy-album-of-the-year-winners-followups-not-nominated/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-17T22:43:55.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Justice, Pretty Lights, Honey Dijon & RL Grime Lead Lightning In a Bottle 2027 Lineup",
-      "summary": "The festival returns to SoCal on May 26-30.",
-      "date": "2026-11-17 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/lightning-in-a-bottle-2027-lineup-justice-pretty-lights-1236384006/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-17T21:33:29.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Tracks Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best tracks of the year 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-club-tracks-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
