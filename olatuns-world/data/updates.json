@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T17:00:50.427Z",
+  "updatedAt": "2026-11-18T17:55:53.678Z",
   "count": 60,
   "items": [
     {
@@ -75,6 +75,15 @@
       "publishedAt": "2026-11-18T15:00:25.000Z"
     },
     {
+      "category": "DJ",
+      "title": "Tomorrowland 2027 dates and ticket details announced",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The Belgium festival was crowned No. 1 in DJ Mag's Top 100 Festivals poll for the sixth time this year </p> </div>",
+      "date": "2026-11-18 · DJ Mag",
+      "url": "https://djmag.com/news/tomorrowland-2027-dates-and-ticket-details-announced",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-18T14:57:01.000Z"
+    },
+    {
       "category": "Music",
       "title": "Ignacio Meyer appointed President of Universal Music Latin America & Iberian Peninsula",
       "summary": "Meyer will report to Felipe Holguin, who was named CEO of the division on Tuesday (November 17). Source",
@@ -94,39 +103,12 @@
     },
     {
       "category": "Music",
-      "title": "Boston Museum of Fine Arts Announces Expansive ‘Taylor Swift: The Eras Collection’ Exhibition",
-      "summary": "The show will include more than 50 instruments, outfits and objects from throughout the singer's career.",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/pop/taylor-swift-eras-collection-boston-museum-fine-arts-details-1236384740/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T14:20:03.000Z"
-    },
-    {
-      "category": "Music",
       "title": "TikTok says 94% of songs that entered the Billboard Global 200 in 2025 went viral on its platform first",
       "summary": "That figure is up from 84% in 2024, according to the platform's 2026 Music Impact Report, which was prepared by Luminate and published on Wednesday (November 18). Source",
       "date": "2026-11-18 · Music Business Worldwide",
       "url": "https://www.musicbusinessworldwide.com/tiktok-says-94-of-songs-that-entered-the-billboard-global-200-in-2025-went-viral-on-its-platform-first/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-18T14:00:07.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "‘Threads: My Songs in Symphony’ To Celebrate Dolly Parton’s Legacy on 2027 Orchestral Tour of U.S., U.K. and Australia",
-      "summary": "The tour is slated to kick off in Rochester, N.Y. on Jan. 12.",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/country/dolly-parton-threads-my-songs-symphony-2027-orchestral-tour-dates-1236384734/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T13:44:31.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "RAYE Adds Second Date at BST Hyde Park 2027 With Special Guest Sienna Spiro",
-      "summary": "The recent Mercury Prize winner will top the bill at the London concert series next summer.",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/raye-bst-hyde-park-london-show-sienna-spiro-2027-1236371864/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T13:15:43.000Z"
     },
     {
       "category": "Music",
@@ -282,13 +264,13 @@
       "publishedAt": "2026-11-17T12:55:42.000Z"
     },
     {
-      "category": "Events",
-      "title": "Nyege Nyege Festival 2026 line-up announced",
-      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The festival returns to Adrift, Kalagala Falls, Kangulumira in Uganda from 19th-22nd November</p> </div>",
-      "date": "2026-11-16 · DJ Mag",
-      "url": "https://djmag.com/news/nyege-nyege-festival-2026-line-announced",
-      "source": "DJ Mag",
-      "publishedAt": "2026-11-16T16:20:08.000Z"
+      "category": "Music",
+      "title": "The Mix 131: Mietze Conte",
+      "summary": "The Austrian artist shares a free-flowing mix that feels like levitating in a digital breeze for listeners, and speaks to Martyn Pepperell about the “magic” of discovering DAWs, surviving the LA songwriting system, and creating formative clubbing experiences for young people in Vienna Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/the-mix-131-mietze-conte-austria-dj-interview",
+      "source": "Mixmag",
+      "publishedAt": null
     },
     {
       "category": "Events",
@@ -539,6 +521,24 @@
       "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Jeff Mills on Juan Atkins: “His legacy is not something that can be fully measured”",
+      "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "MPH is going full throttle to the dancefloor",
+      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
       "source": "Mixmag",
       "publishedAt": null
     }
