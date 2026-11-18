@@ -1,7 +1,34 @@
 {
-  "updatedAt": "2026-11-18T14:53:05.522Z",
+  "updatedAt": "2026-11-18T15:57:43.573Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Live experiences platform Speakeasy, backed by Yamaha’s music fund, raises $18.8M Series A",
+      "summary": "The round brings the company's total funding to approximately USD $27M. Source",
+      "date": "2026-11-18 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/live-experiences-platform-speakeasy-backed-by-yamahas-music-fund-raises-18-8m-series-a/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-18T15:53:59.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Universal Music Canada strikes A&R and distribution partnership with First Class Music Group",
+      "summary": "The two companies will jointly sign and develop Canadian artists, with the shared goal of “breaking artists on a global scale.” Source",
+      "date": "2026-11-18 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/universal-music-canada-strikes-ar-and-distribution-partnership-with-first-class-music-group/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-18T15:00:40.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "$11M-backed AI startup Sonilo, founded by TikTok veterans, inks licensing deal with Symphonic to train its model on opted-in indie recordings",
+      "summary": "The agreement allows Sonilo to train its AI music model on recordings from Symphonic’s independent artists and labels – but only those that choose to opt in. Source",
+      "date": "2026-11-18 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/11m-backed-ai-startup-sonilo-founded-by-tiktok-veterans-inks-licensing-deal-with-symphonic-to-train-its-model-on-opted-in-indie-recordings/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-18T15:00:25.000Z"
+    },
     {
       "category": "Music",
       "title": "Ignacio Meyer appointed President of Universal Music Latin America & Iberian Peninsula",
@@ -120,24 +147,6 @@
       "publishedAt": "2026-11-18T10:00:30.000Z"
     },
     {
-      "category": "Music",
-      "title": "Don Toliver Hits the ‘Nitrous,’ Readies Second Album for 2026: ‘Press the Button’",
-      "summary": "The Cactus Jack rapper will make his Saturday Night Live debut on Dec. 5. following Nitrous' arrival.",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/rb-hip-hop/don-toliver-nitrous-album-release-date-1236381755/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T09:09:03.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Harry Styles, Sam Fender & Billie Eilish to Headline Glastonbury Festival 2027: See The Lineup",
-      "summary": "The festival will take place from June 23-27 in Somerset, England.",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/glastonbury-2027-headliners-lineup-1236384106/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T08:24:22.000Z"
-    },
-    {
       "category": "DJ",
       "title": "Mau P to become first DJ to play open-to-close solo set at Madison Square Garden",
       "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The Dutch artist reveals his debut album will be titled Generation Rebrand — out next year</p> </div>",
@@ -184,30 +193,12 @@
     },
     {
       "category": "Music",
-      "title": "Tencent Music doubles down on K-pop content with an early-release window for music from BLACKPINK’s JISOO – and a renewed HYBE deal",
-      "summary": "Tencent Music Entertainment is building out its K-pop business on several fronts at once. Source",
-      "date": "2026-11-17 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/tencent-music-doubles-down-on-k-pop-content-with-an-early-release-window-for-music-from-blackpinks-jisoo-and-a-renewed-hybe-deal/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-17T20:04:29.000Z"
-    },
-    {
-      "category": "Music",
       "title": "Grammys 2027: Skrillex, Fred again.., Robyn, more nominated in Dance/Electronic categories",
       "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>John Summit, who was not nominated, made his complaints about the \"pop\" nominees known, with a larger conversation spurred about house music representation</p> </div>",
       "date": "2026-11-17 · DJ Mag",
       "url": "https://djmag.com/news/grammys-2027-skrillex-fred-again-robyn-more-nominated-danceelectronic-categories",
       "source": "DJ Mag",
       "publishedAt": "2026-11-17T19:07:01.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Notes.fm partners with Musixmatch to bring time-synced lyrics to its distribution platform for independent artists",
-      "summary": "Notes.fm is a music royalty collection and distribution platform from Stem co-founder Tim Luckow Source",
-      "date": "2026-11-17 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/notes-fm-partners-with-musixmatch-to-bring-time-synced-lyrics-to-its-distribution-platform-for-independent-artists/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-17T18:55:35.000Z"
     },
     {
       "category": "DJ",
@@ -539,6 +530,15 @@
       "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
