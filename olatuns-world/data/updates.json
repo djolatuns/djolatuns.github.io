@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-18T21:51:44.940Z",
+  "updatedAt": "2026-11-18T22:51:07.099Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Ella Langley Becomes First Act to Earn Top Two of TouchTunes Frontline Chart",
+      "summary": "“Choosin’ Texas” was the most-played song of the third quarter of 2026 on TouchTunes jukeboxes, while Langley’s “Be Her” is No. 2 on the Frontline list.",
+      "date": "2026-11-18 · Billboard Music",
+      "url": "https://www.billboard.com/music/chart-beat/ella-langley-first-act-top-two-touchtunes-frontline-chart-1236385082/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-18T22:19:52.000Z"
+    },
     {
       "category": "Music",
       "title": "El Coyote Earns Third Regional Mexican Airplay No. 1 With ‘Ranchero Enamorado’",
@@ -530,15 +539,6 @@
       "summary": "Music being played through speakers on the shore could be to blame, a Lib Dems councillor claims Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/bristol-bridge-collapse-linked-loud-music-says-councillor-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "Miami's Club Space to transform into GTA VI nightclub for game's launch",
-      "summary": "The venue will host three parties in collaboration with CircoLoco, inspired by the fictional Vice City nightspot The Vault Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/read/miami-club-space-transform-gta-vi-nightclub-games-launch-news",
       "source": "Mixmag",
       "publishedAt": null
     }
