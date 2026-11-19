@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-19T02:51:42.742Z",
+  "updatedAt": "2026-11-19T03:55:50.736Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Taylor Swift Presents Brooks & Dunn With Willie Nelson Lifetime Achievement Award at 2026 CMAs",
+      "summary": "The boot-scootin' duo served as mentors to a young Swift when she got her start in country music.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/music/awards/taylor-swift-brooks-dunn-cma-awards-1236385362/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T03:49:28.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Lainey Wilson Takes Brief Break From Hosting CMA Awards To Live Debut New Song ‘Just a Woman’",
+      "summary": "The country star pulled double duty as performer and host of the 60th annual award show.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/music/awards/lainey-wilson-just-a-woman-cma-awards-2026-performance-1236385293/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T02:53:49.000Z"
+    },
     {
       "category": "Music",
       "title": "GNJB’s ‘Love Reason’ Hits No. 1 on Japan Hot 100 as Akira Senju’s ‘Beppan Gireikyoku’ From ‘VIVANT’ Debuts",
@@ -521,24 +539,6 @@
       "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Cover Mix: MPH",
-      "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "DJ",
-      "title": "The Best Tracks Of The Year 2026 So Far",
-      "summary": "Mixmag's guide to the best tracks of the year 2026 Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/best-dance-electronic-club-tracks-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
