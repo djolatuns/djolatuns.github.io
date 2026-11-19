@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-19T18:57:40.593Z",
+  "updatedAt": "2026-11-19T20:00:24.701Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Doja Cat Blasts Rockstar Games for Leaving Her Music Out of ‘GTA 6’: ‘I’m So F–kin Bitter’",
+      "summary": "Grand Theft Auto VI arrived on Nov. 19, with the album hitting streaming services the next day.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/music/rb-hip-hop/doja-cat-slams-rockstar-games-grand-theft-auto-6-music-1236385746/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T19:25:25.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Producer sues Travis Scott, Don Toliver, and Sony Music, claiming he owns half the master of JackBoys track ‘What To Do?’",
+      "summary": "Early Yellow claims Sony and Epic filed false counter-notices to get the 2019 track back on Spotify, Apple Music, and YouTube after his takedowns. Source",
+      "date": "2026-11-19 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/producer-sues-travis-scott-don-toliver-and-sony-music-claiming-he-owns-half-the-master-of-jackboys-track-what-to-do/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-19T19:09:58.000Z"
+    },
     {
       "category": "Music",
       "title": "Chvrches share tongue-in-cheek new single ‘Evil’ and announce UK album launch shows in churches",
@@ -19,15 +37,6 @@
       "url": "https://www.billboard.com/music/rb-hip-hop/eminem-spotify-billions-club-video-goes-down-memory-lane-1236385673/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-19T17:53:14.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "2027: Oborevwori seeks support, showcases Delta infrastructure projects",
-      "summary": "Delta Governor Sheriff Oborevwori showcased the PTI and DSC flyovers at APC rallies in Warri South and Uvwie and urged voters to back the party in 2027. Read More: https://punchng.com/2027-oborevwori-seeks-support-showcases-delta-infrastructure-projects/",
-      "date": "2026-11-19 · Punch Entertainment",
-      "url": "https://punchng.com/2027-oborevwori-seeks-support-showcases-delta-infrastructure-projects/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-19T17:36:43.000Z"
     },
     {
       "category": "Music",
@@ -55,15 +64,6 @@
       "url": "https://djmag.com/news/listen-azzi-beats-debut-album-mara-gram",
       "source": "DJ Mag",
       "publishedAt": "2026-11-19T16:46:16.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Belfast Duo CHALK Is Killing It on Fontaines D.C.’s European Tour: ‘Performing Live Is the Core of Our Band’",
-      "summary": "The electro-punks recently scooped best live act at the Northern Ireland Music Awards. Billboard UK catches them backstage in Amsterdam on their biggest tour yet.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/rock/belfast-chalk-fontaines-dc-tour-1236385553/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T15:21:45.000Z"
     },
     {
       "category": "Music",
@@ -190,15 +190,6 @@
       "url": "https://djmag.com/news/tomorrowland-2027-dates-and-ticket-details-announced",
       "source": "DJ Mag",
       "publishedAt": "2026-11-18T14:57:01.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Ignacio Meyer appointed President of Universal Music Latin America & Iberian Peninsula",
-      "summary": "Meyer will report to Felipe Holguin, who was named CEO of the division on Tuesday (November 17). Source",
-      "date": "2026-11-18 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/ignacio-meyer-appointed-president-of-universal-music-latin-america-iberian-peninsula/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-18T14:51:23.000Z"
     },
     {
       "category": "DJ",
@@ -539,6 +530,15 @@
       "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Cover Mix: MPH",
+      "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
       "source": "Mixmag",
       "publishedAt": null
     }
