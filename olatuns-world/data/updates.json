@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-19T11:56:49.801Z",
+  "updatedAt": "2026-11-19T13:10:49.707Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "P!nk Adds 2028 Dates to Sphere Residency Due to Huge Demand: ‘This Is Crazy’",
+      "summary": "In a video promoting the six-pack of fresh dates, the \"Trustfall\" singer said there were three million people queued up for tix.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/music/concerts/pink-adds-2028-dates-sphere-residency-1236385549/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T12:40:14.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Switzerland’s MusicBird secures up to $200M revolving credit facility arranged by Truist and Fifth Third",
+      "summary": "MusicBird says the new financing will help it scale its portfolio Source",
+      "date": "2026-11-19 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/switzerlands-musicbird-secures-up-to-200m-revolving-credit-facility-arranged-by-truist-and-fifth-third/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-19T12:01:50.000Z"
+    },
     {
       "category": "Events",
       "title": "Kalu, NHIA boss seek investment to curb medical tourism",
@@ -21,15 +39,6 @@
       "publishedAt": "2026-11-19T11:04:34.000Z"
     },
     {
-      "category": "Events",
-      "title": "UNN to introduce random drug tests after deaths of four students",
-      "summary": "UNN will introduce random drug tests for students, including those off campus, after four died at an off-campus house party in Nsukka, says the VC. Read More: https://punchng.com/unn-to-introduce-random-drug-tests-after-deaths-of-four-students/",
-      "date": "2026-11-19 · Punch Entertainment",
-      "url": "https://punchng.com/unn-to-introduce-random-drug-tests-after-deaths-of-four-students/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-19T10:25:04.000Z"
-    },
-    {
       "category": "Music",
       "title": "Boardmasters 2027: Chase & Status, Disclosure and Wolf Alice to headline, with music on the Thursday for first time ever",
       "summary": "Others on the line-up so far include Becky Hill, Ezra Collective, Two Door Cinema Club, Skye Newman, Blossoms, Declan McKenna, and Holly Humberstone The post Boardmasters 2027: Chase & Status, Disclosure and Wolf Alice to headline, with music on the Thursday for first time ever appeared first on NME .",
@@ -37,15 +46,6 @@
       "url": "https://www.nme.com/news/music/boardmasters-2027-chase-status-disclosure-and-wolf-alice-to-headline-with-music-on-the-thursday-for-first-time-ever-3976286",
       "source": "NME Music",
       "publishedAt": "2026-11-19T10:00:42.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "2027 polls will reveal PDP’s strength in Jigawa, says Lamido",
-      "summary": "Sule Lamido says the 2027 elections will show the PDP’s strength in Jigawa as the party flags off its campaign in Dutse and dismisses APC defection claims. Read More: https://punchng.com/2027-polls-will-reveal-pdps-strength-in-jigawa-says-lamido/",
-      "date": "2026-11-19 · Punch Entertainment",
-      "url": "https://punchng.com/2027-polls-will-reveal-pdps-strength-in-jigawa-says-lamido/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-19T09:49:12.000Z"
     },
     {
       "category": "Music",
@@ -163,15 +163,6 @@
       "url": "https://www.musicbusinessworldwide.com/tiktok-says-94-of-songs-that-entered-the-billboard-global-200-in-2025-went-viral-on-its-platform-first/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-18T14:00:07.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Carlyle-backed Litmus Music secures $475M in new capital, with KKR joining as an investor",
-      "summary": "Litmus' portfolio includes more than 100,000 copyrights and recordings, featuring music from Katy Perry, Benny Blanco, Randy Newman, and Keith Urban. Source",
-      "date": "2026-11-18 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/carlyle-backed-litmus-music-secures-475m-in-new-capital-with-kkr-joining-as-an-investor/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-18T12:00:48.000Z"
     },
     {
       "category": "DJ",
@@ -539,6 +530,15 @@
       "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "MPH is going full throttle to the dancefloor",
+      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
       "source": "Mixmag",
       "publishedAt": null
     }
