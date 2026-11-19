@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-19T15:57:04.977Z",
+  "updatedAt": "2026-11-19T17:02:26.279Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "2027: Oborevwori seeks support, showcases Delta infrastructure projects",
+      "summary": "Delta Governor Sheriff Oborevwori showcased the PTI and DSC flyovers at APC rallies in Warri South and Uvwie and urged voters to back the party in 2027. Read More: https://punchng.com/2027-oborevwori-seeks-support-showcases-delta-infrastructure-projects/",
+      "date": "2026-11-19 · Punch Entertainment",
+      "url": "https://punchng.com/2027-oborevwori-seeks-support-showcases-delta-infrastructure-projects/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-19T17:36:43.000Z"
+    },
     {
       "category": "Events",
       "title": "2027: Radda warns Katsina voters against ‘irresponsible’ politicians",
@@ -58,6 +67,15 @@
     },
     {
       "category": "Events",
+      "title": "Yazz condemns Reform UK use of Coldcut-produced 1988 hit ‘The Only Way Is Up’ in campaign video",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>“Their political party goes against everything I and this song stands for,” the British singer responded</p> </div>",
+      "date": "2026-11-19 · DJ Mag",
+      "url": "https://djmag.com/news/yazz-condemns-reform-uk-use-of-coldcut-produced-1988-hit-only-way-campaign-video",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-19T13:48:52.000Z"
+    },
+    {
+      "category": "Events",
       "title": "Taylor Swift returns to country roots for first CMA Awards performance in 13 Years with ‘Our Song’ and ‘I Knew It, I Knew You’",
       "summary": "Keith Urban also joined her for the performance, having toured with her when she was a teenager The post Taylor Swift returns to country roots for first CMA Awards performance in 13 Years with ‘Our Song’ and ‘I Knew It, I Knew You’ appeared first on NME .",
       "date": "2026-11-19 · NME Music",
@@ -109,24 +127,6 @@
       "url": "https://www.nme.com/news/music/boardmasters-2027-chase-status-disclosure-and-wolf-alice-to-headline-with-music-on-the-thursday-for-first-time-ever-3976286",
       "source": "NME Music",
       "publishedAt": "2026-11-19T10:00:42.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Tom Busby’s ‘Rockhampton Hangover’ Named 2026 Queensland Album of the Year",
-      "summary": "Busby beat out a shortlist of albums from the likes of Clea, Radium Dolls, Platonic Sex, 2 Charm and The Jungle Giants.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/tom-busby-rockhampton-hangover-queensland-album-of-the-year-1236385524/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T08:17:22.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "‘Never Go Backwards, Just Make Things Bigger and Better’: How Paul O’Neill Chartered Trans-Siberian Orchestra’s Journey Ahead",
-      "summary": "\"Paul left us a huge body of unfinished work we need to get to,\" says Al Pitrelli, TSO's musical director.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/rock/trans-siberian-orchestra-interview-1236385507/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T07:07:23.000Z"
     },
     {
       "category": "Music",
@@ -253,15 +253,6 @@
       "url": "https://djmag.com/news/ableton-live-ranked-most-popular-daw-among-dance-music-artists-study-finds",
       "source": "DJ Mag",
       "publishedAt": "2026-11-17T16:33:41.000Z"
-    },
-    {
-      "category": "DJ",
-      "title": "Watch a young David Guetta interviewed in 1989 about his beginnings as a “bedroom DJ”",
-      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The archival French television footage from 1989 features pre-stardom Guetta and Laurent Garnier </p> </div>",
-      "date": "2026-11-17 · DJ Mag",
-      "url": "https://djmag.com/news/watch-young-david-guetta-interviewed-1989-about-his-beginnings-bedroom-dj",
-      "source": "DJ Mag",
-      "publishedAt": "2026-11-17T14:48:48.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
