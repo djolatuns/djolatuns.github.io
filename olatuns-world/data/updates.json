@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-18T23:48:56.526Z",
+  "updatedAt": "2026-11-19T01:05:49.540Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Sanwo-Olu backs Daniel Ford Int’l table tennis tourney",
+      "summary": "Lagos Governor Sanwo-Olu pledges support for youth table tennis as Daniel Ford International invites him to the championship final on December 20, 2026. Read More: https://punchng.com/sanwo-olu-backs-daniel-ford-intl-table-tennis-tourney/",
+      "date": "2026-11-19 · Punch Entertainment",
+      "url": "https://punchng.com/sanwo-olu-backs-daniel-ford-intl-table-tennis-tourney/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-19T01:36:13.000Z"
+    },
     {
       "category": "Music",
       "title": "Ella Langley Becomes First Act to Earn Top Two of TouchTunes Frontline Chart",
@@ -73,24 +82,6 @@
       "url": "https://www.billboard.com/pro/ella-langley-choosin-texas-number-1-most-weeks-streaming-songs/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-18T18:59:14.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "‘They Can Take My Stage’: Macklemore Teases New Song Benefiting Palestinian Mothers & Children",
-      "summary": "\"They can't take my faith/ When love is the call,\" he raps on \"Where's Our Love.\"",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/macklemore-new-song-wheres-our-love-palestinian-moms-kids-1236384950/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T18:52:44.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Grimes & Elon Musk Feud Over AI ‘Sex Slave,’ Singer Urges Ex to ‘Step Up’ and Be ‘the King He Used to Be’",
-      "summary": "\"A man who worries so publicly abt the birth rate should not publicly advocate for its demise,\" she wrote.",
-      "date": "2026-11-18 · Billboard Music",
-      "url": "https://www.billboard.com/music/music-news/elon-musk-grimes-feud-ai-sex-slave-he-should-be-king-1236384843/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-18T18:18:43.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
       "source": "Mixmag",
       "publishedAt": null
     }
