@@ -1,15 +1,33 @@
 {
-  "updatedAt": "2026-11-19T20:52:04.073Z",
+  "updatedAt": "2026-11-19T21:49:28.125Z",
   "count": 60,
   "items": [
     {
+      "category": "Music",
+      "title": "Margin Call: On Spotify, ‘Marketplace’, and the price labels pay for promotion.",
+      "summary": "The latest 'Tim's Take' from Music Business Worldwide founder, Tim Ingham. Source",
+      "date": "2026-11-19 · Music Business Worldwide",
+      "url": "https://www.musicbusinessworldwide.com/margin-call-on-spotify-marketplace-and-the-price-labels-pay-for-promotion/",
+      "source": "Music Business Worldwide",
+      "publishedAt": "2026-11-19T21:32:52.000Z"
+    },
+    {
       "category": "DJ",
-      "title": "DJ Chicken apologises to Seyi Tinubu, pledges to campaign for President Tinubu",
-      "summary": "DJ Chicken’s lawyers have written to Seyi Tinubu seeking forgiveness over a publication seen as a threat, offering to campaign for President Tinubu in 2027 Read More: https://punchng.com/dj-chicken-apologises-to-seyi-tinubu-pledges-to-campaign-for-president-tinubu/",
+      "title": "DJ Chicken apologises to Seyi Tinubu, pledges to campaign for Tinubu",
+      "summary": "DJ Chicken apologises to Seyi Tinubu in a letter by his lawyers, offering to campaign for President Tinubu ahead of 2027 as the court awaits a settlement r Read More: https://punchng.com/dj-chicken-apologises-to-seyi-tinubu-pledges-to-campaign-for-president-tinubu/",
       "date": "2026-11-19 · Punch Entertainment",
       "url": "https://punchng.com/dj-chicken-apologises-to-seyi-tinubu-pledges-to-campaign-for-president-tinubu/?utm_source=rss.punchng.com&utm_medium=web",
       "source": "Punch Entertainment",
       "publishedAt": "2026-11-19T21:29:53.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Grimes & Elon Musk Feud Over AI ‘Sex Slave,’ Singer Urges Ex to ‘Step Up’ and Be ‘the King He Used to Be’",
+      "summary": "\"A man who worries so publicly abt the birth rate should not publicly advocate for its demise,\" she wrote.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/music/music-news/elon-musk-grimes-feud-ai-sex-slave-he-should-be-king-1236384843/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T21:29:09.000Z"
     },
     {
       "category": "Music",
@@ -181,15 +199,6 @@
       "url": "https://www.musicbusinessworldwide.com/universal-music-canada-strikes-ar-and-distribution-partnership-with-first-class-music-group/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-18T15:00:40.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "$11M-backed AI startup Sonilo, founded by TikTok veterans, inks licensing deal with Symphonic to train its model on opted-in indie recordings",
-      "summary": "The agreement allows Sonilo to train its AI music model on recordings from Symphonic’s independent artists and labels – but only those that choose to opt in. Source",
-      "date": "2026-11-18 · Music Business Worldwide",
-      "url": "https://www.musicbusinessworldwide.com/11m-backed-ai-startup-sonilo-founded-by-tiktok-veterans-inks-licensing-deal-with-symphonic-to-train-its-model-on-opted-in-indie-recordings/",
-      "source": "Music Business Worldwide",
-      "publishedAt": "2026-11-18T15:00:25.000Z"
     },
     {
       "category": "DJ",
@@ -530,15 +539,6 @@
       "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
-      "source": "Mixmag",
-      "publishedAt": null
-    },
-    {
-      "category": "Events",
-      "title": "MPH is going full throttle to the dancefloor",
-      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
-      "date": "Recently published · Mixmag",
-      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
       "source": "Mixmag",
       "publishedAt": null
     }
