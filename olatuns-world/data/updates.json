@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-19T17:56:03.126Z",
+  "updatedAt": "2026-11-19T18:57:40.593Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Chvrches share tongue-in-cheek new single ‘Evil’ and announce UK album launch shows in churches",
+      "summary": "\"This song is sort of like taking the handbrake off the rage – leaning into all the things I wish I could say, with a wink and a smile,\" said Lauren Mayberry The post Chvrches share tongue-in-cheek new single ‘Evil’ and announce UK album launch shows in churches appeared first on NME .",
+      "date": "2026-11-19 · NME Music",
+      "url": "https://www.nme.com/news/music/chvrches-release-new-single-evil-announce-uk-album-launch-shows-buy-tickets-3976473",
+      "source": "NME Music",
+      "publishedAt": "2026-11-19T18:08:32.000Z"
+    },
     {
       "category": "Music",
       "title": "Eminem Takes a Trip Down Memory Lane for ‘The Slim Shady Show’-Inspired Episode of Spotify’s ‘Billions Club’",
@@ -40,12 +49,12 @@
     },
     {
       "category": "Events",
-      "title": "2027: Radda warns Katsina voters against ‘irresponsible’ politicians",
-      "summary": "Katsina Governor Dikko Radda urged Kankia voters to back the APC, Tinubu and party candidates in 2027, warning against disrespectful and irresponsible poli Read More: https://punchng.com/2027-radda-warns-katsina-voters-against-irresponsible-politicians/",
-      "date": "2026-11-19 · Punch Entertainment",
-      "url": "https://punchng.com/2027-radda-warns-katsina-voters-against-irresponsible-politicians/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-19T16:50:27.000Z"
+      "title": "Listen to Azzi On The Beat’s debut album, ‘Mara Gram’",
+      "summary": "<div class=\"clearfix text-formatted field field--name-field-standfirst field--type-text-long field--label-hidden field__item\"><p>The Lagos-born producer is a leading figure in mara, a fast-paced dance sound rooted in the city’s street party culture</p> </div>",
+      "date": "2026-11-19 · DJ Mag",
+      "url": "https://djmag.com/news/listen-azzi-beats-debut-album-mara-gram",
+      "source": "DJ Mag",
+      "publishedAt": "2026-11-19T16:46:16.000Z"
     },
     {
       "category": "Events",
@@ -73,15 +82,6 @@
       "url": "https://djmag.com/news/pinkpantheress-radio-host-gta-vi-i-get-play-whatever-fuck-i-want-247",
       "source": "DJ Mag",
       "publishedAt": "2026-11-19T14:39:51.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Olivia Dean, Amy Lee & More Receive PLUS1 Impact Awards: Full List",
-      "summary": "The awards, now in their third year, recognize artists and industry leaders making meaningful impact across communities worldwide.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/pro/plus1-impact-awards-2026-full-list/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T14:17:00.000Z"
     },
     {
       "category": "Events",
@@ -154,15 +154,6 @@
       "url": "https://www.nme.com/news/music/sex-pistols-glen-matlock-reveals-work-on-first-faces-album-since-1973-never-a-dull-moment-3976338",
       "source": "NME Music",
       "publishedAt": "2026-11-18T16:38:53.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Skylar Grey hits out at Olivia Rodrigo and Phoebe Bridgers’ ‘rock’ Grammy nominations",
-      "summary": "“Hey Alexa, did the Grammys forget what rock music is?” The post Skylar Grey hits out at Olivia Rodrigo and Phoebe Bridgers’ ‘rock’ Grammy nominations appeared first on NME .",
-      "date": "2026-11-18 · NME Music",
-      "url": "https://www.nme.com/news/music/skylar-grey-hits-out-at-olivia-rodrigo-and-phoebe-bridgers-rock-grammy-nominations-3976334",
-      "source": "NME Music",
-      "publishedAt": "2026-11-18T15:59:21.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "MPH is going full throttle to the dancefloor",
+      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
       "source": "Mixmag",
       "publishedAt": null
     }
