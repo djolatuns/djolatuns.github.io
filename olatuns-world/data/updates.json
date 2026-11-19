@@ -1,7 +1,25 @@
 {
-  "updatedAt": "2026-11-19T05:02:14.126Z",
+  "updatedAt": "2026-11-19T06:02:38.157Z",
   "count": 60,
   "items": [
+    {
+      "category": "Music",
+      "title": "Taylor Swift & Jack Antonoff, Ludwig Göransson Win at 2026 Hollywood Music in Media Awards: Full Winners List",
+      "summary": "And so the long march to the Oscars begins.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/lists/2026-hollywood-music-in-media-awards-full-winners-list/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T06:00:00.000Z"
+    },
+    {
+      "category": "Music",
+      "title": "Artists With the Most CMA Awards: Updated Through 2026 Show",
+      "summary": "Miranda Lambert, Chris Stapleton, Brooks & Dunn and Tim McGraw moved up the leaderboard this year.",
+      "date": "2026-11-19 · Billboard Music",
+      "url": "https://www.billboard.com/lists/artists-with-most-cma-awards-full-list/",
+      "source": "Billboard Music",
+      "publishedAt": "2026-11-19T04:59:00.000Z"
+    },
     {
       "category": "Music",
       "title": "Taylor Swift Presents Brooks & Dunn With Willie Nelson Lifetime Achievement Award at 2026 CMAs",
@@ -19,33 +37,6 @@
       "url": "https://www.billboard.com/music/awards/lainey-wilson-just-a-woman-cma-awards-2026-performance-1236385293/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-19T02:53:49.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "GNJB’s ‘Love Reason’ Hits No. 1 on Japan Hot 100 as Akira Senju’s ‘Beppan Gireikyoku’ From ‘VIVANT’ Debuts",
-      "summary": "EBiDAN’s “Yes! Tokyo” climbs 3-2, leading video views and coming in at No. 3 on streaming. 4U.’s “BLOOM WORLD” debuts at No. 3.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/chart-beat/gnjb-love-reason-japan-hot-100-akira-senju-beppan-gireikyoku-1236385301/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T02:18:53.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Kacey Musgraves and Miranda Lambert Perform ‘Horses and Divorces’ at the CMA Awards 2026",
-      "summary": "The duet appears on Musgraves' album Middle of Nowhere .",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/country/kacey-musgraves-miranda-lambert-horses-divorces-cma-awards-1236385212/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T01:54:20.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Lainey Wilson and Brad Paisley Joke About Taylor Swift’s Wedding By Parodying a Country Classic",
-      "summary": "They also cracked wise about data centers and dating apps during a hilarious musical monologue at the 2026 CMA Awards.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/awards/lainey-wilson-brad-paisley-taylor-swift-wedding-cma-awards-1236385272/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T01:49:30.000Z"
     },
     {
       "category": "Events",
@@ -539,6 +530,15 @@
       "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Cover Mix: MPH",
+      "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
       "source": "Mixmag",
       "publishedAt": null
     }
