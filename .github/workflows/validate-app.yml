@@ -31,11 +31,9 @@ jobs:
           const onclick=[...html.matchAll(/onclick=["'][^"']*go\(['"]([^'"]+)['"]\)[^"']*["']/g)].map(m=>m[1]);
           const missingGo=onclick.filter(p=>!pages.includes(p));
           if(missingGo.length) throw Error('go() points to missing pages: '+[...new Set(missingGo)].join(', '));
-          const scripts=[...html.matchAll(/<script[^>]*src=["']([^"']+)["'][^>]*>/gi)].map(m=>m[1]).filter(src=>src.startsWith('./'));
-          if(!scripts.some(src=>src.startsWith('./app-core.js?')) || !scripts.some(src=>src.startsWith('./app-auth.js?'))) throw Error('Required app scripts are not linked');
-          for(const src of scripts){const file=src.split('?')[0].replace('./','');if(!fs.existsSync(file))throw Error('Missing local script: '+file);}
-          if(!/<link[^>]+href=["']\.\/styles\.css\?v=20261120-2["'][^>]*>/i.test(html)||!fs.existsSync('styles.css'))throw Error('App stylesheet is missing');
-          console.log('HTML checks passed: '+ids.length+' IDs, '+pages.length+' pages, '+scripts.length+' local app scripts.');
+          const scripts=[...html.matchAll(/<script\b(?![^>]*\bsrc=)(?![^>]*\btype=["']application\/ld\+json["'])[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
+          if(!scripts.length) throw Error('No inline app scripts found');
+          scripts.forEach((script,i)=>fs.writeFileSync('/tmp/olatuns-inline-'+i+'.js',script));
+          console.log('HTML checks passed: '+ids.length+' IDs, '+pages.length+' pages, '+scripts.length+' inline scripts.');
           NODE
-          node --check app-core.js
-          node --check app-auth.js
+          for file in /tmp/olatuns-inline-*.js; do node --check "$file"; done
