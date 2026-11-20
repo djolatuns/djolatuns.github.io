@@ -144,3 +144,5 @@ document.getElementById('announcementForm').addEventListener('submit',async e=>{
  else{e.target.reset();safeMessage('announcementMsg','Announcement published.');await loadAnnouncements()}
  button.disabled=false;
 });
+
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=20261120-2').catch(()=>{}));
