@@ -1,12 +1,20 @@
-name: Validate app JavaScript
+name: Validate and deploy Olatuns App
 on:
   push:
     branches: [main]
-    paths:
-      - 'index.html'
-      - '.github/workflows/validate-app.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  syntax:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,3 +22,20 @@ jobs:
         run: |
           node -e "const fs=require('fs');const html=fs.readFileSync('index.html','utf8');const match=html.match(/<script>([\\s\\S]*?)<\\/script>/);if(!match)throw Error('Script not found');fs.writeFileSync('/tmp/app.js',match[1]);"
           node --check /tmp/app.js
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
