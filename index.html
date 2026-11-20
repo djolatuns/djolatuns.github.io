@@ -1,32 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080808">
-<meta name="description" content="Olatuns App — a fresh digital home for ideas, creativity and the Olatuns world.">
-<title>Olatuns App</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909"><title>Olatuns App</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#090909;color:#f7f2e8;font-family:system-ui,-apple-system,Segoe UI,sans-serif}button{font:inherit}.shell{max-width:760px;margin:auto;min-height:100vh;padding:20px 18px 100px}.top{display:flex;align-items:center;justify-content:space-between;padding:10px 0 22px}.brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.5px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#f0c75e,#9b6d18);color:#080808;display:grid;place-items:center;font-weight:900}.pill{border:1px solid #40351c;border-radius:99px;color:#d8b354;padding:8px 12px;font-size:12px}.hero{border:1px solid #42331a;border-radius:26px;padding:28px 24px;background:radial-gradient(ellipse at top right,#3b2b12,transparent 65%),#111;min-height:260px}.eyebrow{color:#d5ae53;font-size:12px;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(34px,9vw,58px);line-height:1.02;margin:15px 0}.hero p{color:#bcb7ac;max-width:420px;line-height:1.6}.cta{background:#d9b456;color:#111;border:0;border-radius:14px;padding:13px 17px;font-weight:800;margin-top:10px}.section{margin-top:28px}.section h2{font-size:18px}.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.tile{border:1px solid #262626;background:#121212;border-radius:18px;padding:18px;min-height:115px}.tile .symbol{color:#d8b354;font-size:22px}.tile h3{margin:10px 0 4px;font-size:15px}.tile p{margin:0;color:#999;font-size:13px}.quote{padding:20px;border-radius:18px;background:#141414;color:#d7d0c2;border-left:2px solid #c59b43;line-height:1.65}.nav{position:fixed;bottom:0;left:0;right:0;background:#0e0e0ef2;backdrop-filter:blur(14px);border-top:1px solid #262626;display:flex;justify-content:center;gap:0;padding:10px 8px env(safe-area-inset-bottom)}.nav button{background:none;border:0;color:#999;padding:8px 13px;font-size:12px}.nav button.active{color:#d7b354}.view{display:none}.view.active{display:block}.content-card{margin-top:18px;background:#121212;border:1px solid #262626;border-radius:20px;padding:20px;line-height:1.65;color:#bbb}a{color:#d7b354}
+</style>
 </head>
-<body>
-<div class="app-shell">
-<header class="topbar"><a class="brand" href="#" aria-label="Olatuns App home"><span class="logo">O</span><span>OLATUNS <small>APP</small></span></a><button id="themeToggle" class="icon-btn" aria-label="Toggle theme">☼</button></header>
+<body><div class="shell">
+<header class="top"><div class="brand"><div class="logo">O</div><span>OLATUNS APP</span></div><span class="pill">NEW EXPERIENCE</span></header>
 <main>
-<section class="hero">
-<div class="eyebrow"><span class="dot"></span> YOUR NEW DIGITAL SPACE</div>
-<h1>Welcome to<br><span>Olatuns App.</span></h1>
-<p class="lead">A fresh beginning. A place for creativity, ideas, music, and everything that comes next.</p>
-<div class="actions"><a class="primary" href="#explore">Explore the app <span>↗</span></a><button id="installBtn" class="secondary" hidden>Install app</button></div>
-<div class="hero-art" aria-hidden="true"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="core">O<span>.</span></div><div class="spark s1">✦</div><div class="spark s2">✧</div></div>
-</section>
-<section id="explore" class="section"><div class="section-heading"><p class="eyebrow">START HERE</p><h2>Make this space yours.</h2><p>Olatuns App is ready for its next chapter. Explore the ideas and build something meaningful.</p></div>
-<div class="cards"><article class="feature"><span class="card-icon">✦</span><h3>Discover</h3><p>Explore what's new as this app grows into a connected digital experience.</p></article><article class="feature"><span class="card-icon">♫</span><h3>Creative energy</h3><p>A home for music, inspiration, creative projects and new possibilities.</p></article><article class="feature"><span class="card-icon">↗</span><h3>What's next</h3><p>More features will arrive over time. This is the starting point.</p></article></div>
-</section>
-<section class="closing"><div><p class="eyebrow">THE NEXT CHAPTER</p><h2>Built to grow.<br><span>Made to move.</span></h2></div><p class="closing-note">Olatuns App<br>One space. Endless possibilities.</p></section>
-</main>
-<footer><span>© <span id="year"></span> Olatuns App</span><span>Made for what's next.</span></footer>
-</div>
-<script src="app.js"></script>
-</body></html>
+<section class="view active" id="home"><div class="hero"><div class="eyebrow">Welcome to your space</div><h1>Ideas.<br>People.<br>Possibilities.</h1><p>A fresh digital home built to connect, discover, create and grow.</p><button class="cta" onclick="go('discover')">Explore the app ↗</button></div><div class="section"><h2>Daily inspiration</h2><div class="quote" id="quote">Your future is shaped by the small decisions you make consistently.</div></div><div class="section"><h2>Explore Olatuns</h2><div class="tiles"><div class="tile" onclick="go('discover')"><div class="symbol">✦</div><h3>Discover</h3><p>Explore what's ahead</p></div><div class="tile" onclick="go('community')"><div class="symbol">◎</div><h3>Community</h3><p>Connect and share</p></div><div class="tile" onclick="go('profile')"><div class="symbol">♙</div><h3>Your profile</h3><p>Your space, your identity</p></div><div class="tile" onclick="go('about')"><div class="symbol">✧</div><h3>About</h3><p>Learn about Olatuns App</p></div></div></div></section>
+<section class="view" id="discover"><div class="hero"><div class="eyebrow">Discover</div><h1>What's<br>possible.</h1><p>Find new ideas, experiences and opportunities. More discovery features are coming.</p></div><div class="content-card">This is the starting point of Olatuns App. New features will be introduced as the app grows.</div></section>
+<section class="view" id="community"><div class="hero"><div class="eyebrow">Community</div><h1>Better<br>together.</h1><p>A place for connection, positive ideas and meaningful conversations.</p></div><div class="content-card">Community tools are coming. This space will grow into a place where members can connect and share.</div></section>
+<section class="view" id="profile"><div class="hero"><div class="eyebrow">Personal space</div><h1>Your<br>profile.</h1><p>Your Olatuns App identity and personal space.</p></div><div class="content-card">Profile and account features will be added in a future update.</div></section>
+<section class="view" id="about"><div class="hero"><div class="eyebrow">About Olatuns</div><h1>Built for<br>what's next.</h1><p>Olatuns App is an evolving digital experience created to bring useful ideas and experiences together in one place.</p></div><div class="content-card">A new beginning. A growing vision. Welcome to Olatuns App.</div></section>
+</main></div>
+<nav class="nav"><button class="active" onclick="go('home')">⌂ Home</button><button onclick="go('discover')">✦ Discover</button><button onclick="go('community')">◎ Community</button><button onclick="go('profile')">♙ Profile</button><button onclick="go('about')">ⓘ About</button></nav>
+<script>
+function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));const map=['home','discover','community','profile','about'];document.querySelectorAll('.nav button')[map.indexOf(id)].classList.add('active');window.scrollTo(0,0)}
+const q=['Your future is shaped by the small decisions you make consistently.','Progress begins the moment you decide to keep moving.','Your possibilities are bigger than your present circumstances.','Be patient with the process. Keep showing up.'];document.getElementById('quote').textContent=q[new Date().getDate()%q.length];
+</script></body></html>
