@@ -30,15 +30,15 @@ jobs:
           node <<'NODE'
           const fs=require('fs');
           const html=fs.readFileSync('index.html','utf8');
-          const ids=[...html.matchAll(/\\bid=["']([^"']+)["']/g)].map(m=>m[1]);
+          const ids=[...html.matchAll(/\bid=["']([^"']+)["']/g)].map(m=>m[1]);
           const duplicates=ids.filter((id,i)=>ids.indexOf(id)!==i);
           if(duplicates.length) throw Error('Duplicate IDs: '+[...new Set(duplicates)].join(', '));
-          const pages=[...html.matchAll(/<section\\b[^>]*class=["'][^"']*\\bpage\\b[^"']*["'][^>]*id=["']([^"']+)["']/gi)].map(m=>m[1]);
+          const pages=[...html.matchAll(/<section\b[^>]*class=["'][^"']*\bpage\b[^"']*["'][^>]*id=["']([^"']+)["']/gi)].map(m=>m[1]);
           const nav=[...html.matchAll(/data-page=["']([^"']+)["']/g)].map(m=>m[1]);
           const missing=nav.filter(p=>!pages.includes(p));
           if(missing.length) throw Error('Navigation points to missing pages: '+missing.join(', '));
           for(const asset of ['styles.css','app-core.js','app-cloud.js','manifest.webmanifest','icon.svg']) if(!html.includes(asset)) throw Error('Missing asset reference: '+asset);
-          console.log('Passed: '+ids.length+' unique IDs; '+pages.length+' pages; '+nav.length+' navigation links.');
+          console.log('Passed: '+ids.length+' IDs; '+pages.length+' pages; '+nav.length+' navigation links.');
           NODE
       - name: Check JavaScript syntax
         run: |
