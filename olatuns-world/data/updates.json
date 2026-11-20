@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T10:58:41.902Z",
+  "updatedAt": "2026-11-20T11:56:10.162Z",
   "count": 60,
   "items": [
     {
@@ -64,15 +64,6 @@
       "url": "https://www.billboard.com/music/chart-beat/p1harmony-first-no1-top-album-sales-blow-up-1236386121/",
       "source": "Billboard Music",
       "publishedAt": "2026-11-20T03:42:01.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Bruno Mars Mourns Death of Father Peter Hernandez: ‘The Man That Taught Me Everything I Know’",
-      "summary": "\"In my eyes, he was the greatest dad in the world,\" the Grammy-winning artist wrote.",
-      "date": "2026-11-20 · Billboard Music",
-      "url": "https://www.billboard.com/music/pop/bruno-mars-father-death-peter-hernandez-1236386082/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-20T01:18:29.000Z"
     },
     {
       "category": "Music",
@@ -145,15 +136,6 @@
       "url": "https://djmag.com/news/yazz-condemns-reform-uks-use-of-coldcut-produced-1988-hit-only-way-campaign-video",
       "source": "DJ Mag",
       "publishedAt": "2026-11-19T13:48:52.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Taylor Swift returns to country roots for first CMA Awards performance in 13 Years with ‘Our Song’ and ‘I Knew It, I Knew You’",
-      "summary": "Keith Urban also joined her for the performance, having toured with her when she was a teenager The post Taylor Swift returns to country roots for first CMA Awards performance in 13 Years with ‘Our Song’ and ‘I Knew It, I Knew You’ appeared first on NME .",
-      "date": "2026-11-19 · NME Music",
-      "url": "https://www.nme.com/news/music/taylor-swift-returns-to-country-roots-for-first-cma-awards-performance-in-13-years-with-our-song-and-i-knew-it-i-knew-you-3976409",
-      "source": "NME Music",
-      "publishedAt": "2026-11-19T13:42:24.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +521,24 @@
       "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "MPH is going full throttle to the dancefloor",
+      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Cover Mix: MPH",
+      "summary": "MPH turned the Mixmag Lab into one of the sweatiest dancefloors we've ever been on Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-mixmag-lab-dj-cover-mix-garage",
       "source": "Mixmag",
       "publishedAt": null
     }
