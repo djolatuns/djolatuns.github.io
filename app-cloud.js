@@ -13,7 +13,7 @@ document.getElementById('recoveryForm').addEventListener('submit',async e=>{e.pr
 async function forgotPassword(){const identity=document.getElementById('loginIdentity').value.trim();if(!identity.includes('@')){authMsg('Enter your email address first, then choose Forgot password.');return}authMsg('Sending reset email…');const {error}=await cloud.auth.resetPasswordForEmail(identity,{redirectTo:location.origin+location.pathname});authMsg(error?error.message:'If an account exists for that email, a password reset email has been sent.')}
 async function signOutApp(){await cloud.auth.signOut();cloudUser=null;document.body.classList.add('locked');showLogin();authMsg('You have signed out.')}
 function profileInitials(n){return (String(n||'O').trim().split(/\s+/).slice(0,2).map(s=>s[0]||'').join('').toUpperCase()||'O')}
-async function loadCloudProfile(){if(!cloudUser)return;let {data,error}=await cloud.from('profiles').select('*').eq('id',cloudUser.id).maybeSingle();if(error){console.error(error);authMsg('Signed in, but profile could not load.');return}if(!data){authMsg('Profile is being prepared. Refresh in a moment.');return}cloudProfile=data;user={name:data.display_name||'',username:data.username||'',bio:data.bio||'',photo:data.avatar_path||'',cover:data.cover_photo_path||''};updateProfileUI();document.getElementById('profileDisplay').textContent=user.name||'Member';document.getElementById('profileHeading').textContent=user.name||'Member profile';document.getElementById('profileUsername').textContent=user.username?'@'+user.username:'';document.getElementById('profileUsernameInput').value=user.username;document.getElementById('profileCover').style.backgroundImage=user.cover?'url('+user.cover+')':'';document.getElementById('profileCover').classList.toggle('hascover',!!user.cover);document.getElementById('profileCover').textContent=user.cover?'':'Cover photo · add yours below';document.getElementById('name').value=user.name;document.getElementById('bio').value=user.bio}
+async function loadCloudProfile(){if(!cloudUser)return;let {data,error}=await cloud.from('profiles').select('*').eq('id',cloudUser.id).maybeSingle();if(error){console.error(error);authMsg('Signed in, but profile could not load.');return}if(!data){authMsg('Profile is being prepared. Refresh in a moment.');return}cloudProfile=data;user={name:data.display_name||'',username:data.username||'',bio:data.bio||'',photo:data.avatar_path||'',cover:data.cover_photo_path||''};updateProfileUI();document.getElementById('profileDisplay').textContent=user.name||'Member';document.getElementById('profileHeading').textContent=user.name||'Member profile';document.getElementById('profileUsername').textContent=user.username?'@'+user.username:'';document.getElementById('profileUsernameInput').value=user.username;document.getElementById('profileCover').style.backgroundImage=user.cover?'url('+user.cover+')':'';document.getElementById('profileCover').classList.toggle('hascover',!!user.cover);document.getElementById('profileCover').textContent=user.cover?'':'Cover photo · add yours below';document.getElementById('name').value=user.name;document.getElementById('bio').value=user.bio;const [followers,following]=await Promise.all([cloud.from('community_follows').select('follower_id',{count:'exact',head:true}).eq('following_id',cloudUser.id),cloud.from('community_follows').select('following_id',{count:'exact',head:true}).eq('follower_id',cloudUser.id)]);const stats=document.getElementById('followStats');if(stats)stats.textContent='Followers '+(followers.count||0)+' · Following '+(following.count||0)}
 function showApp(){document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity()}
 cloud.auth.onAuthStateChange((event,session)=>{cloudUser=session?.user||null;if(cloudUser){showApp();if(event==='PASSWORD_RECOVERY'){document.getElementById('loginForm').style.display='none';document.getElementById('signupForm').style.display='none';document.getElementById('recoveryForm').style.display='block';document.getElementById('authTitle').textContent='Reset password.';authMsg('Choose a new password.');document.body.classList.add('locked');document.getElementById('authGate').style.display='flex';document.body.classList.add('locked')}}else{document.body.classList.add('locked');document.getElementById('authGate').style.display='flex';showLogin()}});
 async function removeCoverPhoto(){if(!cloudUser){document.getElementById('profileMsg').textContent='Please sign in first.';return}if(!user.cover&&!coverSelected){document.getElementById('profileMsg').textContent='There is no cover photo to remove.';return}if(coverSelected){coverSelected=null;document.getElementById('coverFile').value='';document.getElementById('coverPreview').innerHTML='';document.getElementById('profileMsg').textContent='Selected cover cleared. Save profile to keep this change.';return}const msg=document.getElementById('profileMsg');msg.textContent='Removing cover photo…';const {error}=await cloud.from('profiles').update({cover_photo_path:null,updated_at:new Date().toISOString()}).eq('id',cloudUser.id);if(error){msg.textContent='Could not remove cover: '+error.message;return}user.cover='';coverSelected=null;document.getElementById('coverFile').value='';document.getElementById('coverPreview').innerHTML='';await loadCloudProfile();msg.textContent='Cover photo removed from your profile.'}
@@ -39,6 +39,9 @@ async function loadCommunity(){
  if(!cloudUser)return;
  const adminCheck=await cloud.from('admin_users').select('user_id').eq('user_id',cloudUser.id).maybeSingle();
  isOlatunsAdmin=!!adminCheck.data;
+ window.olatunsAdmin=isOlatunsAdmin;
+ document.querySelectorAll('[data-page="drafts"]').forEach(el=>el.hidden=!isOlatunsAdmin);
+ document.getElementById('drafts').hidden=!isOlatunsAdmin;
  document.getElementById('announcementForm').style.display=isOlatunsAdmin?'block':'none';
  document.getElementById('moderationSection').style.display=isOlatunsAdmin?'block':'none';
  await Promise.all([loadAnnouncements(),loadCloudFeed()]);
@@ -51,26 +54,49 @@ async function loadCloudFeed(){
  cloudPosts=data||[];
  if(!cloudPosts.length){feed.innerHTML='<div class="card">No community posts yet. Be the first to share something.</div>';return}
  const ids=[...new Set(cloudPosts.map(p=>p.created_by))],postIds=cloudPosts.map(p=>p.id);
- const [profilesResult,likesResult]=await Promise.all([
+ const [profilesResult,likesResult,commentsResult,followsResult]=await Promise.all([
   cloud.from('profiles').select('id,display_name,username,avatar_path').in('id',ids),
-  cloud.from('community_post_likes').select('post_id,user_id').in('post_id',postIds)
+  cloud.from('community_post_likes').select('post_id,user_id').in('post_id',postIds),
+  cloud.from('community_post_comments').select('id,post_id,user_id,body,created_at').in('post_id',postIds).order('created_at',{ascending:true}).limit(150),
+  cloud.from('community_follows').select('follower_id,following_id').in('following_id',ids)
  ]);
  const profileMap=new Map((profilesResult.data||[]).map(p=>[p.id,p]));
- const likeRows=likesResult.data||[];
+ const likeRows=likesResult.data||[],commentRows=commentsResult.data||[],followRows=followsResult.data||[];
  cloudLikeIds=new Set(likeRows.filter(x=>x.user_id===cloudUser.id).map(x=>x.post_id));
+ const commentsByPost=new Map();
+ commentRows.forEach(c=>{if(!commentsByPost.has(c.post_id))commentsByPost.set(c.post_id,[]);commentsByPost.get(c.post_id).push(c)});
  const mediaPaths=cloudPosts.filter(p=>p.media_url&&p.media_type==='image').map(p=>p.media_url);
  let signedMap=new Map();
  if(mediaPaths.length){const {data:signed}=await cloud.storage.from('community-media').createSignedUrls(mediaPaths,3600);(signed||[]).forEach((item,i)=>{if(item.signedUrl)signedMap.set(mediaPaths[i],item.signedUrl)})}
  feed.innerHTML=cloudPosts.map(p=>{
   const profile=profileMap.get(p.created_by)||{},name=profile.display_name||'Olatuns member',photo=profile.avatar_path||'';
   const count=likeRows.filter(x=>x.post_id===p.id).length,liked=cloudLikeIds.has(p.id),mine=p.created_by===cloudUser.id;
-  const media=signedMap.get(p.media_url);
+  const media=signedMap.get(p.media_url),comments=commentsByPost.get(p.id)||[];
+  const followers=followRows.filter(x=>x.following_id===p.created_by).length,following=followRows.some(x=>x.following_id===p.created_by&&x.follower_id===cloudUser.id);
   const status=p.moderation_status==='pending'&&mine?'<span class="chip">Awaiting review</span>':'';
-  return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><b>'+esc(name)+'</b><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+(media?'<img class="postimg" alt="Community post image" src="'+esc(media)+'">':'')+'<div class="postfoot">'+(p.moderation_status==='published'?'<button type="button" onclick="toggleCloudLike(\''+p.id+'\')">'+(liked?'♥':'♡')+' '+count+' Like</button>':'<span class="small">Post is being reviewed</span>')+(mine?'<button type="button" onclick="deleteCloudPost(\''+p.id+'\')">Delete</button>':'')+'</div></article>';
+  const commentHtml=comments.map(c=>'<div class="comment-row"><span>'+esc(c.body)+'</span><small>'+esc(displayDate(c.created_at))+'</small></div>').join('');
+  const social=p.moderation_status==='published'?'<div class="postfoot"><button type="button" onclick="toggleCloudLike(\''+p.id+'\')">'+(liked?'♥':'♡')+' '+count+' Like</button>'+(mine?'<button type="button" onclick="deleteCloudPost(\''+p.id+'\')">Delete</button>':'')+(!mine?'<button type="button" onclick="toggleCommunityFollow(\''+p.created_by+'\')">'+(following?'Following':'Follow')+' · '+followers+'</button>':'')+'</div><div class="post-comments"><div class="comment-list">'+commentHtml+'</div><form class="comment-form" onsubmit="submitCommunityComment(event,\''+p.id+'\')"><input maxlength="1500" aria-label="Write a comment" placeholder="Write a comment…" required><button type="submit">Send</button></form></div>':'<div class="postfoot"><span class="small">Post is being reviewed</span></div>';
+  return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><b>'+esc(name)+'</b><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+(media?'<img class="postimg" alt="Community post image" src="'+esc(media)+'">':'')+social+'</article>';
  }).join('');
  const own=cloudPosts.filter(p=>p.created_by===cloudUser.id),ownIds=own.map(p=>p.id);
  document.getElementById('postCount').textContent=own.length;
  document.getElementById('likesCount').textContent=likeRows.filter(x=>ownIds.includes(x.post_id)).length;
+}
+async function submitCommunityComment(event,postId){
+ event.preventDefault();if(!cloudUser)return;
+ const form=event.currentTarget,input=form.querySelector('input'),body=input.value.trim();if(!body)return;
+ const button=form.querySelector('button');button.disabled=true;
+ const {error}=await cloud.from('community_post_comments').insert({post_id:postId,user_id:cloudUser.id,body});
+ if(error){alert('Could not add comment: '+error.message);button.disabled=false;return}
+ await loadCloudFeed();
+}
+async function toggleCommunityFollow(targetId){
+ if(!cloudUser||targetId===cloudUser.id)return;
+ const {data,error}=await cloud.from('community_follows').select('follower_id').eq('follower_id',cloudUser.id).eq('following_id',targetId).maybeSingle();
+ if(error){alert('Could not check follow status: '+error.message);return}
+ const result=data?await cloud.from('community_follows').delete().eq('follower_id',cloudUser.id).eq('following_id',targetId):await cloud.from('community_follows').insert({follower_id:cloudUser.id,following_id:targetId});
+ if(result.error){alert('Could not update follow: '+result.error.message);return}
+ await Promise.all([loadCloudFeed(),loadCloudProfile()]);
 }
 async function loadPendingPosts(){
  const el=document.getElementById('moderationList');

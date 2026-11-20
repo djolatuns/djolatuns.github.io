@@ -1,5 +1,5 @@
 const pageNames=['home','mixtapes','discover','community','profile','drafts','about'];
-function go(name){if(!pageNames.includes(name))return;document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
+function go(name){if(!pageNames.includes(name))return;if(name==='drafts'&&window.olatunsAdmin!==true)return;document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
 function esc(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function read(key,def){try{return JSON.parse(localStorage.getItem(key))??def}catch(e){return def}}
 function save(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch(e){return false}}
