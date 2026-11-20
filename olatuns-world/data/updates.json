@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-20T09:58:54.149Z",
+  "updatedAt": "2026-11-20T10:58:41.902Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Muse’s Matt Bellamy wants an AI guitar – but still calls for human-made art and live performance",
+      "summary": "An AI robot recently featured on their current UK tour The post Muse’s Matt Bellamy wants an AI guitar – but still calls for human-made art and live performance appeared first on NME .",
+      "date": "2026-11-20 · NME Music",
+      "url": "https://www.nme.com/news/music/muses-matt-bellamy-wants-an-ai-guitar-but-still-calls-for-human-made-art-and-live-performance-3976513",
+      "source": "NME Music",
+      "publishedAt": "2026-11-20T10:23:04.000Z"
+    },
     {
       "category": "Events",
       "title": "Blondie drop sweeping single ‘Come Back Home’ and tell us about their “big metropolis” of a new album",
@@ -10,24 +19,6 @@
       "url": "https://www.nme.com/news/music/blondie-interview-new-single-come-back-home-album-high-noon-rosalia-geese-tour-3976474",
       "source": "NME Music",
       "publishedAt": "2026-11-20T09:30:04.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "Jonathan’s sacrifice rare among politicians – LP chair",
-      "summary": "Labour Party chairman Nenadi Usman says Goodluck Jonathan’s sacrifice for peace is rare, asking if any 2027 presidential candidate can match it. Read More: https://punchng.com/jonathans-sacrifice-rare-among-politicians-lp-chair/",
-      "date": "2026-11-20 · Punch Entertainment",
-      "url": "https://punchng.com/jonathans-sacrifice-rare-among-politicians-lp-chair/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-20T07:34:55.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "How Technology Is Reshaping the Online Casino Experience",
-      "summary": "Online casino technology is changing play through mobile-first design, live dealer streaming, instant payments and personalised bonuses, say industry figur Read More: https://punchng.com/how-technology-is-reshaping-the-online-casino-experience/",
-      "date": "2026-11-20 · Punch Entertainment",
-      "url": "https://punchng.com/how-technology-is-reshaping-the-online-casino-experience/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-20T07:30:52.000Z"
     },
     {
       "category": "Music",
@@ -181,24 +172,6 @@
       "url": "https://www.musicbusinessworldwide.com/switzerlands-musicbird-secures-up-to-200m-revolving-credit-facility-arranged-by-truist-and-fifth-third/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-19T12:01:50.000Z"
-    },
-    {
-      "category": "Events",
-      "title": "The Cardigans announce 2027 UK tour",
-      "summary": "Dates come around the same time that they join The Libertines for a huge show supporting Manic Street Preachers in Cardiff The post The Cardigans announce 2027 UK tour appeared first on NME .",
-      "date": "2026-11-19 · NME Music",
-      "url": "https://www.nme.com/news/music/the-cardigans-announce-2027-uk-tour-tickets-3976373",
-      "source": "NME Music",
-      "publishedAt": "2026-11-19T11:04:34.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Boardmasters 2027: Chase & Status, Disclosure and Wolf Alice to headline, with music on the Thursday for first time ever",
-      "summary": "Others on the line-up so far include Becky Hill, Ezra Collective, Two Door Cinema Club, Skye Newman, Blossoms, Declan McKenna, and Holly Humberstone The post Boardmasters 2027: Chase & Status, Disclosure and Wolf Alice to headline, with music on the Thursday for first time ever appeared first on NME .",
-      "date": "2026-11-19 · NME Music",
-      "url": "https://www.nme.com/news/music/boardmasters-2027-chase-status-disclosure-and-wolf-alice-to-headline-with-music-on-the-thursday-for-first-time-ever-3976286",
-      "source": "NME Music",
-      "publishedAt": "2026-11-19T10:00:42.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +512,33 @@
       "summary": "The venue will host three parties in collaboration with CircoLoco, inspired by the fictional Vice City nightspot The Vault Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/miami-club-space-transform-gta-vi-nightclub-games-launch-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best DJ Mixes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best DJ mixes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dj-mixes-dance-electronic-club-radio-stream-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "DJ",
+      "title": "The Best Albums, EPs And Mixtapes Of The Year 2026 So Far",
+      "summary": "Mixmag's guide to the best albums, EPs and mixtapes of 2026 Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/best-dance-electronic-rap-albums-eps-mixtapes-2026",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Music",
+      "title": "Jeff Mills on Juan Atkins: “His legacy is not something that can be fully measured”",
+      "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
       "source": "Mixmag",
       "publishedAt": null
     }
