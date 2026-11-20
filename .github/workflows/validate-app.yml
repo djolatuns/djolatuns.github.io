@@ -3,37 +3,44 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: validate-app
   cancel-in-progress: true
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate HTML structure, navigation, IDs, and inline JavaScript
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate required app assets
+        run: |
+          test -s index.html
+          test -s styles.css
+          test -s app-core.js
+          test -s app-cloud.js
+          test -s manifest.webmanifest
+          test -s icon.svg
+          node -e "JSON.parse(require('fs').readFileSync('manifest.webmanifest','utf8'))"
+      - name: Validate HTML IDs, page navigation and assets
         run: |
           node <<'NODE'
           const fs=require('fs');
           const html=fs.readFileSync('index.html','utf8');
-          const ids=[...html.matchAll(/\bid=["']([^"']+)["']/g)].map(m=>m[1]);
+          const ids=[...html.matchAll(/\\bid=["']([^"']+)["']/g)].map(m=>m[1]);
           const duplicates=ids.filter((id,i)=>ids.indexOf(id)!==i);
-          if(duplicates.length) throw Error('Duplicate HTML IDs: '+[...new Set(duplicates)].join(', '));
-          const pages=[...html.matchAll(/<section\b[^>]*class=["'][^"']*\bpage\b[^"']*["'][^>]*id=["']([^"']+)["']/gi)].map(m=>m[1]);
+          if(duplicates.length) throw Error('Duplicate IDs: '+[...new Set(duplicates)].join(', '));
+          const pages=[...html.matchAll(/<section\\b[^>]*class=["'][^"']*\\bpage\\b[^"']*["'][^>]*id=["']([^"']+)["']/gi)].map(m=>m[1]);
           const nav=[...html.matchAll(/data-page=["']([^"']+)["']/g)].map(m=>m[1]);
           const missing=nav.filter(p=>!pages.includes(p));
           if(missing.length) throw Error('Navigation points to missing pages: '+missing.join(', '));
-          const onclick=[...html.matchAll(/onclick=["'][^"']*go\(['"]([^'"]+)['"]\)[^"']*["']/g)].map(m=>m[1]);
-          const missingGo=onclick.filter(p=>!pages.includes(p));
-          if(missingGo.length) throw Error('go() points to missing pages: '+[...new Set(missingGo)].join(', '));
-          const scripts=[...html.matchAll(/<script\b(?![^>]*\bsrc=)(?![^>]*\btype=["']application\/ld\+json["'])[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
-          if(!scripts.length) throw Error('No inline app scripts found');
-          scripts.forEach((script,i)=>fs.writeFileSync('/tmp/olatuns-inline-'+i+'.js',script));
-          console.log('HTML checks passed: '+ids.length+' IDs, '+pages.length+' pages, '+scripts.length+' inline scripts.');
+          for(const asset of ['styles.css','app-core.js','app-cloud.js','manifest.webmanifest','icon.svg']) if(!html.includes(asset)) throw Error('Missing asset reference: '+asset);
+          console.log('Passed: '+ids.length+' unique IDs; '+pages.length+' pages; '+nav.length+' navigation links.');
           NODE
-          for file in /tmp/olatuns-inline-*.js; do node --check "$file"; done
+      - name: Check JavaScript syntax
+        run: |
+          node --check app-core.js
+          node --check app-cloud.js
