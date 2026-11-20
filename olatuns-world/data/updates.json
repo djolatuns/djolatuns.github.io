@@ -1,7 +1,16 @@
 {
-  "updatedAt": "2026-11-19T23:42:48.545Z",
+  "updatedAt": "2026-11-20T00:59:06.535Z",
   "count": 60,
   "items": [
+    {
+      "category": "Events",
+      "title": "Kalu, NHIA DG seek investment in robotic healthcare",
+      "summary": "Benjamin Kalu and NHIA DG Kelechi Ohiri urge investment in robotic surgery to curb medical tourism at Eleos Specialist Hospital’s new Abuja platform. Read More: https://punchng.com/kalu-nhia-dg-seek-investment-in-robotic-healthcare/",
+      "date": "2026-11-20 · Punch Entertainment",
+      "url": "https://punchng.com/kalu-nhia-dg-seek-investment-in-robotic-healthcare/?utm_source=rss.punchng.com&utm_medium=web",
+      "source": "Punch Entertainment",
+      "publishedAt": "2026-11-20T01:11:40.000Z"
+    },
     {
       "category": "Music",
       "title": "Chucho Valdés Turns 85 & Keeps Rocking His 88 Keys",
@@ -19,15 +28,6 @@
       "url": "https://www.musicbusinessworldwide.com/margin-call-on-spotify-marketplace-and-the-price-labels-pay-for-promotion/",
       "source": "Music Business Worldwide",
       "publishedAt": "2026-11-19T21:32:52.000Z"
-    },
-    {
-      "category": "DJ",
-      "title": "DJ Chicken apologises to Seyi Tinubu, pledges to campaign for Tinubu",
-      "summary": "DJ Chicken apologises to Seyi Tinubu in a letter by his lawyers, offering to campaign for President Tinubu ahead of 2027 as the court awaits a settlement r Read More: https://punchng.com/dj-chicken-apologises-to-seyi-tinubu-pledges-to-campaign-for-president-tinubu/",
-      "date": "2026-11-19 · Punch Entertainment",
-      "url": "https://punchng.com/dj-chicken-apologises-to-seyi-tinubu-pledges-to-campaign-for-president-tinubu/?utm_source=rss.punchng.com&utm_medium=web",
-      "source": "Punch Entertainment",
-      "publishedAt": "2026-11-19T21:29:53.000Z"
     },
     {
       "category": "Music",
@@ -64,15 +64,6 @@
       "url": "https://www.nme.com/news/music/chvrches-release-new-single-evil-announce-uk-album-launch-shows-buy-tickets-3976473",
       "source": "NME Music",
       "publishedAt": "2026-11-19T18:08:32.000Z"
-    },
-    {
-      "category": "Music",
-      "title": "Eminem Takes a Trip Down Memory Lane for ‘The Slim Shady Show’-Inspired Episode of Spotify’s ‘Billions Club’",
-      "summary": "Em gets quizzed about his classic hits by his alter ego.",
-      "date": "2026-11-19 · Billboard Music",
-      "url": "https://www.billboard.com/music/rb-hip-hop/eminem-spotify-billions-club-video-goes-down-memory-lane-1236385673/",
-      "source": "Billboard Music",
-      "publishedAt": "2026-11-19T17:53:14.000Z"
     },
     {
       "category": "Music",
@@ -539,6 +530,15 @@
       "summary": "Mills spoke on the legacy of his friend and fellow artist, who passed away last week Continue reading...",
       "date": "Recently published · Mixmag",
       "url": "https://mixmag.net/read/jeff-mills-juan-atkins-legacy-not-fully-measured-news",
+      "source": "Mixmag",
+      "publishedAt": null
+    },
+    {
+      "category": "Events",
+      "title": "MPH is going full throttle to the dancefloor",
+      "summary": "One of the biggest stars of the UKG and speed garage resurgence, MPH is about to release his most club-focused album yet, made on-the-move amid a relentless tour schedule. Between gigs, he spoke to Felicity Martin about conquering America, stagnation in the wider scene, and keeping it real Continue reading...",
+      "date": "Recently published · Mixmag",
+      "url": "https://mixmag.net/feature/mph-cover-feature-interview-uk-garage-here-forever",
       "source": "Mixmag",
       "publishedAt": null
     }
