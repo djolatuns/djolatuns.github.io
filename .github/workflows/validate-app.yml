@@ -1,0 +1,16 @@
+name: Validate app JavaScript
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - '.github/workflows/validate-app.yml'
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract and syntax-check inline JavaScript
+        run: |
+          node -e "const fs=require('fs');const html=fs.readFileSync('index.html','utf8');const match=html.match(/<script>([\\s\\S]*?)<\\/script>/);if(!match)throw Error('Script not found');fs.writeFileSync('/tmp/app.js',match[1]);"
+          node --check /tmp/app.js
