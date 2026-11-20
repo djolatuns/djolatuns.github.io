@@ -19,6 +19,9 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     const res=await page.request.get('https://djolatuns.github.io/'+asset+'?smoke='+Date.now());
     if(!res.ok()) throw new Error('Required asset failed: '+asset+' HTTP '+res.status());
    }
+   const cloudSource=await (await page.request.get('https://djolatuns.github.io/app-cloud.js?smoke='+Date.now())).text();
+   if(!cloudSource.includes('submitCommunityComment')||!cloudSource.includes('toggleCommunityFollow')) throw new Error('Live community comments/follows code is not updated yet');
+   if(!await page.locator('#followStats').count()) throw new Error('Live profile follower statistics are missing');
    const pages=await page.locator('section.page').evaluateAll(nodes=>nodes.map(n=>n.id));
    const expected=['home','mixtapes','discover','community','profile','drafts','about'];
    for(const id of expected) if(!pages.includes(id)) throw new Error('Missing app page: '+id);
