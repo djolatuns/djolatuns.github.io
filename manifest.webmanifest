@@ -1,12 +1,1 @@
-{
-  "name": "DJ Olatuns Official App",
-  "short_name": "DJ Olatuns",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#10051f",
-  "theme_color": "#8d22df",
-  "description": "Music, mixtapes, community and bookings.",
-  "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
-  ]
-}
+{"name":"Olatuns App","short_name":"Olatuns","description":"A fresh digital home for creativity, ideas and the Olatuns world.","start_url":"./","scope":"./","display":"standalone","background_color":"#080808","theme_color":"#080808","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}

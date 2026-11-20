@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://djolatuns.github.io/sitemap.xml
