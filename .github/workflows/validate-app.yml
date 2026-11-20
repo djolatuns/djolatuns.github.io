@@ -23,17 +23,17 @@ jobs:
           node <<'NODE'
           const fs=require('fs');
           const html=fs.readFileSync('index.html','utf8');
-          const ids=[...html.matchAll(/\\bid=["']([^"']+)["']/g)].map(m=>m[1]);
+          const ids=[...html.matchAll(/\bid=["']([^"']+)["']/g)].map(m=>m[1]);
           const duplicates=ids.filter((id,i)=>ids.indexOf(id)!==i);
           if(duplicates.length) throw Error('Duplicate HTML IDs: '+[...new Set(duplicates)].join(', '));
-          const pages=[...html.matchAll(/<section\\b[^>]*class=["'][^"']*\\bpage\\b[^"']*["'][^>]*id=["']([^"']+)["']/gi)].map(m=>m[1]);
+          const pages=[...html.matchAll(/<section\b[^>]*class=["'][^"']*\bpage\b[^"']*["'][^>]*id=["']([^"']+)["']/gi)].map(m=>m[1]);
           const nav=[...html.matchAll(/data-page=["']([^"']+)["']/g)].map(m=>m[1]);
           const missing=nav.filter(p=>!pages.includes(p));
           if(missing.length) throw Error('Navigation points to missing pages: '+missing.join(', '));
-          const onclick=[...html.matchAll(/onclick=["'][^"']*go\\(['"]([^'"]+)['"]\\)[^"']*["']/g)].map(m=>m[1]);
+          const onclick=[...html.matchAll(/onclick=["'][^"']*go\(['"]([^'"]+)['"]\)[^"']*["']/g)].map(m=>m[1]);
           const missingGo=onclick.filter(p=>!pages.includes(p));
           if(missingGo.length) throw Error('go() points to missing pages: '+[...new Set(missingGo)].join(', '));
-          const scripts=[...html.matchAll(/<script\\b(?![^>]*\\bsrc=)[^>]*>([\\s\\S]*?)<\\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
+          const scripts=[...html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
           if(!scripts.length) throw Error('No inline app scripts found');
           scripts.forEach((script,i)=>fs.writeFileSync('/tmp/olatuns-inline-'+i+'.js',script));
           console.log('HTML checks passed: '+ids.length+' IDs, '+pages.length+' pages, '+scripts.length+' inline scripts.');
