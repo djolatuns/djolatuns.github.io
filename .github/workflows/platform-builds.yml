@@ -1,0 +1,60 @@
+name: DJ Olatuns Platform Builds
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'capacitor.config.ts'
+      - 'scripts/**'
+      - 'src-tauri/**'
+      - '.github/workflows/platform-builds.yml'
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: android-actions/setup-android@v3
+      - run: npm install
+      - run: npx cap add android
+      - run: npm run cap:sync
+      - run: cd android && ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dj-olatuns-android-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm install
+      - run: npm run desktop:build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dj-olatuns-windows-installer
+          path: src-tauri/target/release/bundle/**
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm install
+      - run: npm run desktop:build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dj-olatuns-macos-installer
+          path: src-tauri/target/release/bundle/**
