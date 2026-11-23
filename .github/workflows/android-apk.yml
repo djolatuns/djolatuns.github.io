@@ -21,9 +21,6 @@ jobs:
   build-apk:
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    env:
-      ANDROID_HOME: /usr/local/android/sdk
-      ANDROID_SDK_ROOT: /usr/local/android/sdk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,13 +39,26 @@ jobs:
       - name: Locate Android SDK manager and install required packages
         shell: bash
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          echo "Searching SDK manager in installed Android SDK..."
-          SDKMANAGER="$(find "$ANDROID_HOME" -type f -name sdkmanager -path '*/bin/sdkmanager' -print -quit 2>/dev/null || true)"
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          if [ -z "$SDK_ROOT" ]; then
+            echo "Runner did not provide ANDROID_HOME/ANDROID_SDK_ROOT. Searching common locations."
+            for candidate in /usr/local/lib/android/sdk /opt/android-sdk /usr/local/android-sdk; do
+              if [ -d "$candidate" ]; then SDK_ROOT="$candidate"; break; fi
+            done
+          fi
+          if [ -z "$SDK_ROOT" ] || [ ! -d "$SDK_ROOT" ]; then
+            echo "Android SDK not found. Runner environment:"
+            env | grep -E 'ANDROID|SDK' || true
+            exit 1
+          fi
+          echo "Using Android SDK: $SDK_ROOT"
+          echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
+          SDKMANAGER="$(find "$SDK_ROOT" -type f -name sdkmanager -path '*/bin/sdkmanager' -print -quit 2>/dev/null || true)"
           if [ -z "$SDKMANAGER" ]; then
             echo "sdkmanager was not found. Android SDK directory contents:"
-            ls -la "$ANDROID_HOME" || true
-            ls -la "$ANDROID_HOME/cmdline-tools" || true
+            ls -la "$SDK_ROOT" || true
+            ls -la "$SDK_ROOT/cmdline-tools" || true
             exit 1
           fi
           echo "Found sdkmanager: $SDKMANAGER"
