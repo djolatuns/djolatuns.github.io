@@ -71,7 +71,7 @@ jobs:
           p = Path("android/app/build.gradle")
           s = p.read_text()
           if "signingConfigs" not in s:
-              marker = re.search(r"(?m)^\\s*buildTypes\\s*\\{", s)
+              marker = re.search(r"(?m)^\s*buildTypes\s*\{", s)
               if not marker:
                   raise SystemExit("Could not find android buildTypes block")
               signing = """    signingConfigs {
@@ -85,11 +85,11 @@ jobs:
 
               """
               s = s[:marker.start()] + signing + s[marker.start():]
-          release = re.search(r"(?ms)(buildTypes\\s*\\{.*?release\\s*\\{)", s)
+          release = re.search(r"(?ms)(buildTypes\s*\{.*?release\s*\{)", s)
           if not release:
               raise SystemExit("Could not find release buildType block")
           if "signingConfig signingConfigs.release" not in s[release.start():]:
-              s = s[:release.end()] + "\\n            signingConfig signingConfigs.release" + s[release.end():]
+              s = s[:release.end()] + "\n            signingConfig signingConfigs.release" + s[release.end():]
           p.write_text(s)
           PY
           rm -f android/app/release-keystore.jks
@@ -101,7 +101,7 @@ jobs:
           DJ_OLATUNS_KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
         run: cd android && ./gradlew assembleRelease --stacktrace
 
-      - name: Verify signed APK
+      - name: Remove keystore file\n        if: always()\n        run: rm -f android/app/release-keystore.jks\n\n      - name: Verify signed APK
         shell: bash
         run: |
           APK="android/app/build/outputs/apk/release/app-release.apk"
