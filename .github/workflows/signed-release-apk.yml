@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check signing secrets
+      - name: Validate release signing secrets
         env:
           KEYSTORE_BASE64: ${{ secrets.DJ_OLATUNS_KEYSTORE_BASE64 }}
           STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
@@ -55,26 +55,28 @@ jobs:
           npx cap add android
           npx cap sync android
 
-      - name: Configure release signing securely
+      - name: Build signed release APK
         shell: bash
         env:
           KEYSTORE_BASE64: ${{ secrets.DJ_OLATUNS_KEYSTORE_BASE64 }}
-          STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.DJ_OLATUNS_KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
+          DJ_OLATUNS_STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
+          DJ_OLATUNS_KEY_ALIAS: ${{ secrets.DJ_OLATUNS_KEY_ALIAS }}
+          DJ_OLATUNS_KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
         run: |
+          set -euo pipefail
           mkdir -p android/app
-          echo "$KEYSTORE_BASE64" | base64 --decode > android/app/release-keystore.jks
+          trap 'rm -f android/app/release-keystore.jks' EXIT
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > android/app/release-keystore.jks
           python3 - <<'PY'
           from pathlib import Path
           import re
           p = Path("android/app/build.gradle")
           s = p.read_text()
           if "signingConfigs" not in s:
-              marker = re.search(r"(?m)^\s*buildTypes\s*\{", s)
+              marker = re.search(r"(?m)^\\s*buildTypes\\s*\\{", s)
               if not marker:
-                  raise SystemExit("Could not find android buildTypes block")
-              signing = """    signingConfigs {
+                  raise SystemExit("Could not locate buildTypes block in generated Gradle file")
+              config = """    signingConfigs {
                   release {
                       storeFile file("release-keystore.jks")
                       storePassword System.getenv("DJ_OLATUNS_STORE_PASSWORD")
@@ -84,24 +86,18 @@ jobs:
               }
 
               """
-              s = s[:marker.start()] + signing + s[marker.start():]
-          release = re.search(r"(?ms)(buildTypes\s*\{.*?release\s*\{)", s)
-          if not release:
-              raise SystemExit("Could not find release buildType block")
-          if "signingConfig signingConfigs.release" not in s[release.start():]:
-              s = s[:release.end()] + "\n            signingConfig signingConfigs.release" + s[release.end():]
+              s = s[:marker.start()] + config + s[marker.start():]
+          match = re.search(r"(?ms)(buildTypes\\s*\\{.*?release\\s*\\{)", s)
+          if not match:
+              raise SystemExit("Could not locate release buildType")
+          if "signingConfig signingConfigs.release" not in s[match.start():]:
+              s = s[:match.end()] + "\\n            signingConfig signingConfigs.release" + s[match.end():]
           p.write_text(s)
           PY
-          rm -f android/app/release-keystore.jks
+          cd android
+          ./gradlew assembleRelease --stacktrace
 
-      - name: Build signed release APK
-        env:
-          DJ_OLATUNS_STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
-          DJ_OLATUNS_KEY_ALIAS: ${{ secrets.DJ_OLATUNS_KEY_ALIAS }}
-          DJ_OLATUNS_KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
-        run: cd android && ./gradlew assembleRelease --stacktrace
-
-      - name: Remove keystore file\n        if: always()\n        run: rm -f android/app/release-keystore.jks\n\n      - name: Verify signed APK
+      - name: Verify release APK
         shell: bash
         run: |
           APK="android/app/build/outputs/apk/release/app-release.apk"
@@ -113,7 +109,7 @@ jobs:
           sha256sum "$APK"
           ls -lh "$APK"
 
-      - name: Upload signed APK artifact
+      - name: Upload signed APK
         uses: actions/upload-artifact@v4
         with:
           name: DJ-Olatuns-Signed-Release-APK
