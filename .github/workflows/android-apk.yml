@@ -39,10 +39,22 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Accept Android SDK licenses and install required packages
+      - name: Locate Android SDK manager and install required packages
+        shell: bash
         run: |
-          yes | "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" --licenses
-          "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "Searching SDK manager in installed Android SDK..."
+          SDKMANAGER="$(find "$ANDROID_HOME" -type f -name sdkmanager -path '*/bin/sdkmanager' -print -quit 2>/dev/null || true)"
+          if [ -z "$SDKMANAGER" ]; then
+            echo "sdkmanager was not found. Android SDK directory contents:"
+            ls -la "$ANDROID_HOME" || true
+            ls -la "$ANDROID_HOME/cmdline-tools" || true
+            exit 1
+          fi
+          echo "Found sdkmanager: $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          echo "SDKMANAGER_PATH=$SDKMANAGER" >> "$GITHUB_ENV"
 
       - name: Install Node dependencies
         run: npm install --no-audit --no-fund
@@ -93,7 +105,8 @@ jobs:
           npm --version || true
           java -version || true
           echo "===== Android SDK ====="
-          "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" --list_installed || true
+          SDKMANAGER="$(find "$ANDROID_HOME" -type f -name sdkmanager -path '*/bin/sdkmanager' -print -quit 2>/dev/null || true)"
+          if [ -n "$SDKMANAGER" ]; then "$SDKMANAGER" --list_installed || true; else echo "sdkmanager missing"; fi
           echo "===== Repository root ====="
           ls -la || true
           echo "===== Generated Android project ====="
