@@ -1,0 +1,23 @@
+{
+  "name": "dj-olatuns-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DJ Olatuns cross-platform app shell",
+  "scripts": {
+    "prepare:web": "node scripts/prepare-web.js",
+    "cap:sync": "npm run prepare:web && cap sync",
+    "android": "npm run cap:sync && cap open android",
+    "ios": "npm run cap:sync && cap open ios",
+    "desktop:dev": "npm run prepare:web && tauri dev",
+    "desktop:build": "npm run prepare:web && tauri build"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/ios": "^7.4.3",
+    "@tauri-apps/cli": "^2.8.4"
+  }
+}
