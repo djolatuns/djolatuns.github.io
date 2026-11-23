@@ -11,7 +11,7 @@ on:
       - '.github/workflows/android-apk.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: dj-olatuns-android-${{ github.ref }}
@@ -97,6 +97,21 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
+
+
+      - name: Publish APK for direct Chrome download
+        run: |
+          mkdir -p downloads
+          cp android/app/build/outputs/apk/debug/app-debug.apk downloads/DJ-Olatuns.apk
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads/DJ-Olatuns.apk
+          if git diff --cached --quiet; then
+            echo "APK is unchanged; no publish commit needed."
+          else
+            git commit -m "Publish latest DJ Olatuns Android APK"
+            git push
+          fi
 
       - name: Build diagnostics on failure
         if: failure()
