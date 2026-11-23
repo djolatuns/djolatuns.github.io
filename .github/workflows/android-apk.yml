@@ -110,7 +110,20 @@ jobs:
             echo "APK is unchanged; no publish commit needed."
           else
             git commit -m "Publish latest DJ Olatuns Android APK"
-            git push
+            # The APK build can finish after other commits have landed on main.
+            # Rebase the publish commit onto the latest main and retry the push.
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                echo "APK published successfully."
+                exit 0
+              fi
+              echo "Push attempt $attempt failed; refreshing main and retrying."
+              sleep 2
+            done
+            echo "Unable to publish APK after 5 attempts."
+            exit 1
           fi
 
       - name: Build diagnostics on failure
