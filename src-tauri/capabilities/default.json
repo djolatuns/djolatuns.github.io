@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default access for DJ Olatuns desktop window",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}
