@@ -216,7 +216,8 @@ async function loadOlatunsMixtapes(){
  const cards=tracks.map(t=>{
   const cover=signed.get(t.cover_path),audio=signed.get(t.audio_path);
   return '<article class="release">'+(cover?'<img class="postimg" style="width:100%;height:150px;object-fit:cover;margin:0;border-radius:0" src="'+esc(cover)+'" alt="'+esc(t.title)+' artwork">':'<div class="cover">DJ OLATUNS</div>')+'<div class="release-body"><h3>'+esc(t.title)+'</h3><p>'+esc(t.description||'Official DJ Olatuns mixtape')+'</p><audio controls preload="none" controlsList="nodownload noplaybackrate" disablePictureInPicture src="'+esc(audio||'')+'" onplay="recordMixtapePlay(\''+t.id+'\')"></audio><p class="small"><span id="mixplays-'+t.id+'">'+Number(t.play_count||0).toLocaleString()+'</span> plays · <span id="mixfollows-'+t.id+'">'+(counts[t.id]||0)+'</span> followers</p><button class="btn secondary" type="button" onclick="toggleMixtapeFollow(\''+t.id+'\')">'+(mine.has(t.id)?'Following':'Follow mixtape')+'</button></div></article>'
- }).join('');
+ });
+ const html=cards.join('');
  const mixGrid=document.getElementById('mixGrid'),homeMix=document.getElementById('homeMix');
  if(mixGrid)mixGrid.innerHTML=html;if(homeMix)homeMix.innerHTML=cards.slice(0,2).join('');
 }
