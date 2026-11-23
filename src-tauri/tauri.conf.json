@@ -30,9 +30,6 @@
     "targets": "all",
     "category": "Music",
     "shortDescription": "Official DJ Olatuns app",
-    "longDescription": "DJ Olatuns mixtapes, community, updates and creative experiences.",
-    "icon": [
-      "../icon.svg"
-    ]
+    "longDescription": "DJ Olatuns mixtapes, community, updates and creative experiences."
   }
 }
