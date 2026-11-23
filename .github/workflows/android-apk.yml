@@ -52,7 +52,9 @@ jobs:
             exit 1
           fi
           echo "Found sdkmanager: $SDKMANAGER"
+          set +o pipefail
           yes | "$SDKMANAGER" --licenses
+          set -o pipefail
           "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
           echo "SDKMANAGER_PATH=$SDKMANAGER" >> "$GITHUB_ENV"
 
