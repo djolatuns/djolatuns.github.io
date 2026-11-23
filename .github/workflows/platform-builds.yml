@@ -19,8 +19,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
       - uses: android-actions/setup-android@v3
+      - run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
       - run: npm install
+      - run: npm run prepare:web
       - run: npx cap add android
       - run: npm run cap:sync
       - run: cd android && ./gradlew assembleDebug
@@ -28,6 +35,7 @@ jobs:
         with:
           name: dj-olatuns-android-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
 
   windows:
     runs-on: windows-latest
@@ -36,6 +44,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
       - uses: dtolnay/rust-toolchain@stable
       - run: npm install
       - run: npm run desktop:build
@@ -43,6 +52,7 @@ jobs:
         with:
           name: dj-olatuns-windows-installer
           path: src-tauri/target/release/bundle/**
+          if-no-files-found: error
 
   macos:
     runs-on: macos-latest
@@ -51,6 +61,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
       - uses: dtolnay/rust-toolchain@stable
       - run: npm install
       - run: npm run desktop:build
@@ -58,3 +69,4 @@ jobs:
         with:
           name: dj-olatuns-macos-installer
           path: src-tauri/target/release/bundle/**
+          if-no-files-found: error
