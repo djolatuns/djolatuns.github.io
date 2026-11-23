@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "DJ Olatuns",
+  "version": "1.0.0",
+  "identifier": "com.djolatuns.app",
+  "build": {
+    "beforeBuildCommand": "npm run prepare:web",
+    "beforeDevCommand": "npm run prepare:web",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "DJ Olatuns",
+        "width": 1200,
+        "height": 820,
+        "minWidth": 360,
+        "minHeight": 640,
+        "center": true,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "Music",
+    "shortDescription": "Official DJ Olatuns app",
+    "longDescription": "DJ Olatuns mixtapes, community, updates and creative experiences.",
+    "icon": [
+      "../icon.svg"
+    ]
+  }
+}
