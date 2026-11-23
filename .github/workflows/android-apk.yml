@@ -13,40 +13,92 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: dj-olatuns-android-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Node
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
+          cache: gradle
+
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-      - name: Install SDK components
-        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
-      - name: Install npm dependencies
-        run: npm install
-      - name: Prepare web bundle
+
+      - name: Install Android SDK components
+        run: |
+          sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          sdkmanager --licenses
+
+      - name: Install Node dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Prepare web assets
         run: npm run prepare:web
-      - name: Generate Android native project
+
+      - name: Verify prepared web assets
+        run: |
+          test -f dist/index.html
+          test -f dist/app-core.js
+          test -f dist/app-cloud.js
+          echo "Web bundle ready. Files: $(find dist -maxdepth 1 -type f | wc -l)"
+
+      - name: Add Android platform
         run: npx cap add android
-      - name: Sync Capacitor
+
+      - name: Sync Capacitor Android
         run: npx cap sync android
+
+      - name: Verify Android project
+        run: |
+          test -f android/gradlew
+          test -f android/app/build.gradle
+          echo "Android project generated."
+
       - name: Build debug APK
-        run: cd android && ./gradlew assembleDebug
-      - name: Upload APK
+        run: cd android && ./gradlew assembleDebug --stacktrace
+
+      - name: Verify APK exists
+        run: |
+          test -s android/app/build/outputs/apk/debug/app-debug.apk
+          ls -lh android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload installable APK
         uses: actions/upload-artifact@v4
         with:
-          name: DJ-Olatuns-Android-debug-APK
+          name: DJ-Olatuns-Android-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 30
+
+      - name: Build diagnostics on failure
+        if: failure()
+        run: |
+          echo "===== Versions ====="
+          node --version || true
+          npm --version || true
+          java -version || true
+          echo "===== Android SDK ====="
+          sdkmanager --list_installed || true
+          echo "===== Repository root ====="
+          ls -la || true
+          echo "===== Generated Android project ====="
+          ls -la android || true
+          echo "===== Gradle outputs ====="
+          find android -maxdepth 5 -type f -name "*.apk" -o -name "*.log" 2>/dev/null | head -100 || true
