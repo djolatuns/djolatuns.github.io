@@ -22,8 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      ANDROID_HOME: /usr/local/lib/android/sdk
-      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      ANDROID_HOME: /usr/local/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/android/sdk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -85,10 +85,25 @@ jobs:
       - name: Build debug APK
         run: cd android && ./gradlew assembleDebug --stacktrace
 
-      - name: Verify APK exists
+      - name: Verify APK package, signature and install metadata
+        shell: bash
         run: |
-          test -s android/app/build/outputs/apk/debug/app-debug.apk
-          ls -lh android/app/build/outputs/apk/debug/app-debug.apk
+          APK="android/app/build/outputs/apk/debug/app-debug.apk"
+          test -s "$APK"
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          AAPT="$BUILD_TOOLS/aapt"
+          APKSIGNER="$BUILD_TOOLS/apksigner"
+          test -x "$AAPT"
+          test -x "$APKSIGNER"
+          echo "===== APK package metadata ====="
+          "$AAPT" dump badging "$APK" | tee apk-badging.txt
+          grep -q "package: name='com.djolatuns.app'" apk-badging.txt
+          echo "===== APK signature verification ====="
+          "$APKSIGNER" verify --verbose "$APK"
+          echo "===== APK file details ====="
+          sha256sum "$APK"
+          ls -lh "$APK"
+          echo "APK integrity and package checks passed."
 
       - name: Upload installable APK
         uses: actions/upload-artifact@v4
@@ -97,7 +112,6 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
-
 
       - name: Publish APK for direct Chrome download
         run: |
