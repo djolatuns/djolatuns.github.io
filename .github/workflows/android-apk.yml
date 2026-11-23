@@ -21,6 +21,10 @@ jobs:
   build-apk:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      PATH: /usr/local/lib/android/sdk/cmdline-tools/16.0/bin:/usr/local/lib/android/sdk/platform-tools:/usr/local/lib/android/sdk/build-tools/35.0.0:/usr/local/lib/android/sdk/tools/bin:${{ env.PATH }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,13 +40,10 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install Android SDK components
+      - name: Accept Android SDK licenses and install required packages
         run: |
-          sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
           yes | sdkmanager --licenses
+          sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
 
       - name: Install Node dependencies
         run: npm install --no-audit --no-fund
@@ -99,4 +100,4 @@ jobs:
           echo "===== Generated Android project ====="
           ls -la android || true
           echo "===== Gradle outputs ====="
-          find android -maxdepth 5 -type f -name "*.apk" -o -name "*.log" 2>/dev/null | head -100 || true
+          find android -maxdepth 5 -type f \( -name "*.apk" -o -name "*.log" \) 2>/dev/null | head -100 || true
