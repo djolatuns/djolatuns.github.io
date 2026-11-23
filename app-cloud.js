@@ -219,7 +219,7 @@ async function loadOlatunsMixtapes(){
  });
  const html=cards.join('');
  const mixGrid=document.getElementById('mixGrid'),homeMix=document.getElementById('homeMix');
- if(mixGrid)mixGrid.innerHTML=html;if(homeMix)homeMix.innerHTML=cards.slice(0,2).join('');
+ if(mixGrid)mixGrid.innerHTML=html+mixes.map(mixCard).join('');if(homeMix)homeMix.innerHTML=cards.slice(0,2).join('')+mixes.slice(0,2).map(mixCard).join('');
 }
 async function recordMixtapePlay(id){
  if(!cloudUser||olatunsMixPlayStarted.has(id))return;olatunsMixPlayStarted.add(id);
