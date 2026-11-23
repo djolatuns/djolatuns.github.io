@@ -24,7 +24,6 @@ jobs:
     env:
       ANDROID_HOME: /usr/local/lib/android/sdk
       ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-      PATH: /usr/local/lib/android/sdk/cmdline-tools/16.0/bin:/usr/local/lib/android/sdk/platform-tools:/usr/local/lib/android/sdk/build-tools/35.0.0:/usr/local/lib/android/sdk/tools/bin:${{ env.PATH }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,8 +41,8 @@ jobs:
 
       - name: Accept Android SDK licenses and install required packages
         run: |
-          yes | sdkmanager --licenses
-          sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          yes | "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" --licenses
+          "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
 
       - name: Install Node dependencies
         run: npm install --no-audit --no-fund
@@ -94,7 +93,7 @@ jobs:
           npm --version || true
           java -version || true
           echo "===== Android SDK ====="
-          sdkmanager --list_installed || true
+          "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" --list_installed || true
           echo "===== Repository root ====="
           ls -la || true
           echo "===== Generated Android project ====="
