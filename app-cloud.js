@@ -213,12 +213,12 @@ async function loadOlatunsMixtapes(){
  const {data:follows}=await cloud.from('olatuns_mixtape_follows').select('mixtape_id,user_id');
  const rows=follows||[],counts={},mine=new Set();
  rows.forEach(x=>{counts[x.mixtape_id]=(counts[x.mixtape_id]||0)+1;if(x.user_id===cloudUser.id)mine.add(x.mixtape_id)});
- const html=tracks.map(t=>{
+ const cards=tracks.map(t=>{
   const cover=signed.get(t.cover_path),audio=signed.get(t.audio_path);
   return '<article class="release">'+(cover?'<img class="postimg" style="width:100%;height:150px;object-fit:cover;margin:0;border-radius:0" src="'+esc(cover)+'" alt="'+esc(t.title)+' artwork">':'<div class="cover">DJ OLATUNS</div>')+'<div class="release-body"><h3>'+esc(t.title)+'</h3><p>'+esc(t.description||'Official DJ Olatuns mixtape')+'</p><audio controls preload="none" controlsList="nodownload noplaybackrate" disablePictureInPicture src="'+esc(audio||'')+'" onplay="recordMixtapePlay(\''+t.id+'\')"></audio><p class="small"><span id="mixplays-'+t.id+'">'+Number(t.play_count||0).toLocaleString()+'</span> plays · <span id="mixfollows-'+t.id+'">'+(counts[t.id]||0)+'</span> followers</p><button class="btn secondary" type="button" onclick="toggleMixtapeFollow(\''+t.id+'\')">'+(mine.has(t.id)?'Following':'Follow mixtape')+'</button></div></article>'
  }).join('');
  const mixGrid=document.getElementById('mixGrid'),homeMix=document.getElementById('homeMix');
- if(mixGrid)mixGrid.innerHTML=html;if(homeMix)homeMix.innerHTML=tracks.slice(0,2).map(t=>html.match(new RegExp('<article class="release">.*?</article>','s'))?.[0]||'').join('')||html;
+ if(mixGrid)mixGrid.innerHTML=html;if(homeMix)homeMix.innerHTML=cards.slice(0,2).join('');
 }
 async function recordMixtapePlay(id){
  if(!cloudUser||olatunsMixPlayStarted.has(id))return;olatunsMixPlayStarted.add(id);
