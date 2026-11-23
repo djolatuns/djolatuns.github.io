@@ -43,7 +43,7 @@ async function forgotPassword(){const identity=document.getElementById('loginIde
 async function signOutApp(){await cloud.auth.signOut();cloudUser=null;document.body.classList.add('locked');showLogin();authMsg('You have signed out.')}
 function profileInitials(n){return (String(n||'O').trim().split(/\s+/).slice(0,2).map(s=>s[0]||'').join('').toUpperCase()||'O')}
 async function loadCloudProfile(){if(!cloudUser)return;let {data,error}=await cloud.from('profiles').select('*').eq('id',cloudUser.id).maybeSingle();if(error){console.error(error);authMsg('Signed in, but profile could not load.');return}if(!data){authMsg('Profile is being prepared. Refresh in a moment.');return}cloudProfile=data;user={name:data.display_name||'',username:data.username||'',bio:data.bio||'',photo:data.avatar_path||'',cover:data.cover_photo_path||''};updateProfileUI();document.getElementById('profileDisplay').textContent=user.name||'Member';document.getElementById('profileHeading').textContent=user.name||'Member profile';document.getElementById('profileUsername').textContent=user.username?'@'+user.username:'';document.getElementById('profileUsernameInput').value=user.username;document.getElementById('profileCover').style.backgroundImage=user.cover?'url('+user.cover+')':'';document.getElementById('profileCover').classList.toggle('hascover',!!user.cover);document.getElementById('profileCover').textContent=user.cover?'':'Cover photo · add yours below';document.getElementById('name').value=user.name;document.getElementById('bio').value=user.bio;const [followers,following]=await Promise.all([cloud.from('community_follows').select('follower_id',{count:'exact',head:true}).eq('following_id',cloudUser.id),cloud.from('community_follows').select('following_id',{count:'exact',head:true}).eq('follower_id',cloudUser.id)]);const stats=document.getElementById('followStats');if(stats)stats.textContent='Followers '+(followers.count||0)+' · Following '+(following.count||0)}
-function showApp(){document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity()}
+function showApp(){document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity();loadOlatunsMixtapes()}
 cloud.auth.onAuthStateChange((event,session)=>{cloudUser=session?.user||null;if(cloudUser){showApp();if(event==='PASSWORD_RECOVERY'){document.getElementById('loginForm').style.display='none';document.getElementById('signupForm').style.display='none';document.getElementById('recoveryForm').style.display='block';document.getElementById('authTitle').textContent='Reset password.';authMsg('Choose a new password.');document.body.classList.add('locked');document.getElementById('authGate').style.display='flex';document.body.classList.add('locked')}}else{document.body.classList.add('locked');document.getElementById('authGate').style.display='flex';showLogin()}});
 async function removeCoverPhoto(){if(!cloudUser){document.getElementById('profileMsg').textContent='Please sign in first.';return}if(!user.cover&&!coverSelected){document.getElementById('profileMsg').textContent='There is no cover photo to remove.';return}if(coverSelected){coverSelected=null;document.getElementById('coverFile').value='';document.getElementById('coverPreview').innerHTML='';document.getElementById('profileMsg').textContent='Selected cover cleared. Save profile to keep this change.';return}const msg=document.getElementById('profileMsg');msg.textContent='Removing cover photo…';const {error}=await cloud.from('profiles').update({cover_photo_path:null,updated_at:new Date().toISOString()}).eq('id',cloudUser.id);if(error){msg.textContent='Could not remove cover: '+error.message;return}user.cover='';coverSelected=null;document.getElementById('coverFile').value='';document.getElementById('coverPreview').innerHTML='';await loadCloudProfile();msg.textContent='Cover photo removed from your profile.'}
 async function uploadProfileAsset(file,kind){if(!file)return null;if(!['image/jpeg','image/png','image/webp'].includes(file.type)){throw new Error('Use a JPG, PNG or WebP image.')}if(file.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');const ext=file.type.split('/')[1].replace('jpeg','jpg'),path=cloudUser.id+'/'+kind+'-'+Date.now()+'.'+ext;const {error}=await cloud.storage.from('member-profile-media').upload(path,file,{upsert:false,contentType:file.type});if(error)throw error;const {data}=cloud.storage.from('member-profile-media').getPublicUrl(path);return data.publicUrl}
@@ -199,3 +199,37 @@ document.getElementById('announcementForm').addEventListener('submit',async e=>{
  else{e.target.reset();safeMessage('announcementMsg','Announcement published.');await loadAnnouncements()}
  button.disabled=false;
 });
+
+let olatunsMixPlayStarted=new Set();
+async function loadOlatunsMixtapes(){
+ if(!cloudUser)return;
+ const {data:tracks,error}=await cloud.from('olatuns_mixtapes').select('id,title,description,cover_path,audio_path,published,play_count,created_at').eq('published',true).order('created_at',{ascending:false});
+ if(error){console.warn('Mixtape cloud library:',error.message);return}
+ if(!tracks?.length)return;
+ const paths=[...tracks.map(t=>t.audio_path),...tracks.map(t=>t.cover_path).filter(Boolean)];
+ const {data:signs,error:signError}=await cloud.storage.from('olatuns-mixtapes').createSignedUrls(paths,3600);
+ if(signError){console.warn('Could not create playback URLs:',signError.message);return}
+ const signed=new Map();(signs||[]).forEach((s,i)=>{if(s.signedUrl)signed.set(paths[i],s.signedUrl)});
+ const {data:follows}=await cloud.from('olatuns_mixtape_follows').select('mixtape_id,user_id');
+ const rows=follows||[],counts={},mine=new Set();
+ rows.forEach(x=>{counts[x.mixtape_id]=(counts[x.mixtape_id]||0)+1;if(x.user_id===cloudUser.id)mine.add(x.mixtape_id)});
+ const html=tracks.map(t=>{
+  const cover=signed.get(t.cover_path),audio=signed.get(t.audio_path);
+  return '<article class="release">'+(cover?'<img class="postimg" style="width:100%;height:150px;object-fit:cover;margin:0;border-radius:0" src="'+esc(cover)+'" alt="'+esc(t.title)+' artwork">':'<div class="cover">DJ OLATUNS</div>')+'<div class="release-body"><h3>'+esc(t.title)+'</h3><p>'+esc(t.description||'Official DJ Olatuns mixtape')+'</p><audio controls preload="none" controlsList="nodownload noplaybackrate" disablePictureInPicture src="'+esc(audio||'')+'" onplay="recordMixtapePlay(\''+t.id+'\')"></audio><p class="small"><span id="mixplays-'+t.id+'">'+Number(t.play_count||0).toLocaleString()+'</span> plays · <span id="mixfollows-'+t.id+'">'+(counts[t.id]||0)+'</span> followers</p><button class="btn secondary" type="button" onclick="toggleMixtapeFollow(\''+t.id+'\')">'+(mine.has(t.id)?'Following':'Follow mixtape')+'</button></div></article>'
+ }).join('');
+ const mixGrid=document.getElementById('mixGrid'),homeMix=document.getElementById('homeMix');
+ if(mixGrid)mixGrid.innerHTML=html;if(homeMix)homeMix.innerHTML=tracks.slice(0,2).map(t=>html.match(new RegExp('<article class="release">.*?</article>','s'))?.[0]||'').join('')||html;
+}
+async function recordMixtapePlay(id){
+ if(!cloudUser||olatunsMixPlayStarted.has(id))return;olatunsMixPlayStarted.add(id);
+ const {data,error}=await cloud.rpc('olatuns_increment_mixtape_play',{p_mixtape_id:id});
+ if(error){olatunsMixPlayStarted.delete(id);console.warn('Play count not recorded:',error.message);return}
+ const el=document.getElementById('mixplays-'+id);if(el)el.textContent=Number(data||0).toLocaleString();
+}
+async function toggleMixtapeFollow(id){
+ if(!cloudUser)return;const {data,error}=await cloud.from('olatuns_mixtape_follows').select('mixtape_id').eq('mixtape_id',id).eq('user_id',cloudUser.id).maybeSingle();
+ if(error){alert('Follow status could not be checked.');return}
+ const result=data?await cloud.from('olatuns_mixtape_follows').delete().eq('mixtape_id',id).eq('user_id',cloudUser.id):await cloud.from('olatuns_mixtape_follows').insert({mixtape_id:id,user_id:cloudUser.id});
+ if(result.error){alert('Could not update follow: '+result.error.message);return}
+ await loadOlatunsMixtapes();
+}
