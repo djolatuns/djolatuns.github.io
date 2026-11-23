@@ -1,0 +1,28 @@
+name: DJ Olatuns iOS Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'capacitor.config.ts'
+      - 'scripts/**'
+      - '.github/workflows/mobile-ios-build.yml'
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npx cap add ios
+      - run: npm run cap:sync
+      - run: xcodebuild -workspace ios/App/App.xcworkspace -scheme App -sdk iphonesimulator -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath build build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dj-olatuns-ios-simulator-build
+          path: build/Build/Products/Debug-iphonesimulator/App.app
