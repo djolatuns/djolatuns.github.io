@@ -8,7 +8,36 @@ function showSignup(){document.getElementById('loginForm').style.display='none';
 
 document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();const identity=document.getElementById('loginIdentity').value.trim(),password=document.getElementById('loginPassword').value;authMsg('Signing in…');let email=identity;if(!identity.includes('@')){authMsg('Please sign in using your email address. Username is your public handle.');return}const {error}=await cloud.auth.signInWithPassword({email,password});if(error){authMsg(error.message);return}authMsg('Signed in.')}
 );
-document.getElementById('signupForm').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget,button=form.querySelector('button[type="submit"]');if(button.disabled)return;const name=document.getElementById('signupName').value.trim(),username=document.getElementById('signupUsername').value.trim().toLowerCase(),email=document.getElementById('signupEmail').value.trim().toLowerCase(),password=document.getElementById('signupPassword').value,confirm=document.getElementById('signupConfirm').value;if(!name){authMsg('Please enter your display name.');return}if(!/^[a-z0-9_]{3,20}$/.test(username)){authMsg('Username must be 3–20 letters, numbers or underscores.');return}if(password.length<8){authMsg('Password must be at least 8 characters.');return}if(password!==confirm){authMsg('Passwords do not match.');return}button.disabled=true;button.textContent='Creating account…';authMsg('Creating your account…');let timeoutId;try{const signupPromise=cloud.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname,data:{display_name:name,username}}});const result=await Promise.race([signupPromise,new Promise((_,reject)=>{timeoutId=setTimeout(()=>reject(new Error('SIGNUP_TIMEOUT')),15000)})]);clearTimeout(timeoutId);const {data,error}=result;if(error){const m=String(error.message||'');authMsg(/already registered|already exists|user already/i.test(m)?'An account may already exist with this email. Try signing in or use Forgot password.':/invalid email/i.test(m)?'Please enter a valid email address.':/password/i.test(m)?'Please choose a stronger password (at least 8 characters).':'Signup could not be completed. Please try again.');return}if(data.session){authMsg('Account created successfully. Welcome to Olatuns!')}else{authMsg('Account created! Check your email for the confirmation link, then return here to sign in.')}}catch(err){authMsg(err?.message==='SIGNUP_TIMEOUT'?'This is taking longer than expected. Check your connection; if you received a confirmation email, your account may already be created. Please avoid submitting again immediately.':'Something went wrong while creating your account. Check your internet connection and try again.')}finally{clearTimeout(timeoutId);button.disabled=false;button.textContent='Create account'}})
+document.getElementById('signupForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const form=e.currentTarget,button=form.querySelector('button[type="submit"]');
+ if(button.disabled)return;
+ const name=document.getElementById('signupName').value.trim(),username=document.getElementById('signupUsername').value.trim().toLowerCase(),email=document.getElementById('signupEmail').value.trim().toLowerCase(),password=document.getElementById('signupPassword').value,confirm=document.getElementById('signupConfirm').value;
+ if(!name){authMsg('Please enter your display name.');return}
+ if(!/^[a-z0-9_]{3,20}$/.test(username)){authMsg('Username must be 3–20 letters, numbers or underscores.');return}
+ if(password.length<8){authMsg('Password must be at least 8 characters.');return}
+ if(password!==confirm){authMsg('Passwords do not match.');return}
+ button.disabled=true;button.textContent='Please wait…';authMsg('Connecting securely…');
+ let timeoutId=null,finished=false;
+ try{
+  const request=cloud.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname,data:{display_name:name,username}}});
+  const timeout=new Promise((_,reject)=>{timeoutId=setTimeout(()=>{if(!finished)reject(new Error('SIGNUP_TIMEOUT'))},10000)});
+  const result=await Promise.race([request,timeout]);finished=true;clearTimeout(timeoutId);
+  const {data,error}=result;
+  if(error){
+   const m=String(error.message||'');
+   authMsg(/already registered|already exists|user already/i.test(m)?'This email may already have an account. Try signing in or Forgot password.':/invalid email/i.test(m)?'Please enter a valid email address.':/password/i.test(m)?'Please choose a stronger password (at least 8 characters).':'Account creation failed. Please try again.');
+   return
+  }
+  if(data.session){authMsg('Account created. Welcome to Olatuns!')}
+  else{authMsg('Almost done! Check your email for the confirmation link, then sign in here.')}
+ }catch(err){
+  finished=true;clearTimeout(timeoutId);
+  authMsg(err?.message==='SIGNUP_TIMEOUT'?'The server is taking too long to respond. Your request may still be processing—check your email before trying again.':'Connection interrupted. Check your internet and try again.');
+ }finally{
+  clearTimeout(timeoutId);button.disabled=false;button.textContent='Create account'
+ }
+});
 document.getElementById('recoveryForm').addEventListener('submit',async e=>{e.preventDefault();const p=document.getElementById('recoveryPassword').value,confirm=document.getElementById('recoveryConfirm').value;if(p.length<8){authMsg('Password must be at least 8 characters.');return}if(p!==confirm){authMsg('Passwords do not match.');return}authMsg('Updating password…');const {error}=await cloud.auth.updateUser({password:p});if(error){authMsg(error.message);return}authMsg('Password updated. You can now sign in.');await cloud.auth.signOut();showLogin()});
 async function forgotPassword(){const identity=document.getElementById('loginIdentity').value.trim();if(!identity.includes('@')){authMsg('Enter your email address first, then choose Forgot password.');return}authMsg('Sending reset email…');const {error}=await cloud.auth.resetPasswordForEmail(identity,{redirectTo:location.origin+location.pathname});authMsg(error?error.message:'If an account exists for that email, a password reset email has been sent.')}
 async function signOutApp(){await cloud.auth.signOut();cloudUser=null;document.body.classList.add('locked');showLogin();authMsg('You have signed out.')}
