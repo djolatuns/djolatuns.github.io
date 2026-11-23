@@ -1,0 +1,122 @@
+name: DJ Olatuns Signed Release APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  signed-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check signing secrets
+        env:
+          KEYSTORE_BASE64: ${{ secrets.DJ_OLATUNS_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.DJ_OLATUNS_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
+        run: |
+          test -n "$KEYSTORE_BASE64" || { echo "Missing DJ_OLATUNS_KEYSTORE_BASE64"; exit 1; }
+          test -n "$STORE_PASSWORD" || { echo "Missing DJ_OLATUNS_STORE_PASSWORD"; exit 1; }
+          test -n "$KEY_ALIAS" || { echo "Missing DJ_OLATUNS_KEY_ALIAS"; exit 1; }
+          test -n "$KEY_PASSWORD" || { echo "Missing DJ_OLATUNS_KEY_PASSWORD"; exit 1; }
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install Android SDK packages
+        shell: bash
+        run: |
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          test -n "$SDK_ROOT" && test -d "$SDK_ROOT"
+          echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
+          SDKMANAGER="$(find "$SDK_ROOT" -type f -name sdkmanager -path '*/bin/sdkmanager' -print -quit)"
+          yes | "$SDKMANAGER" --licenses || true
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+
+      - name: Install Node packages and prepare app
+        run: |
+          npm install --no-audit --no-fund
+          npm run prepare:web
+          npx cap add android
+          npx cap sync android
+
+      - name: Configure release signing securely
+        shell: bash
+        env:
+          KEYSTORE_BASE64: ${{ secrets.DJ_OLATUNS_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.DJ_OLATUNS_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
+        run: |
+          mkdir -p android/app
+          echo "$KEYSTORE_BASE64" | base64 --decode > android/app/release-keystore.jks
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path("android/app/build.gradle")
+          s = p.read_text()
+          if "signingConfigs" not in s:
+              marker = re.search(r"(?m)^\\s*buildTypes\\s*\\{", s)
+              if not marker:
+                  raise SystemExit("Could not find android buildTypes block")
+              signing = """    signingConfigs {
+                  release {
+                      storeFile file("release-keystore.jks")
+                      storePassword System.getenv("DJ_OLATUNS_STORE_PASSWORD")
+                      keyAlias System.getenv("DJ_OLATUNS_KEY_ALIAS")
+                      keyPassword System.getenv("DJ_OLATUNS_KEY_PASSWORD")
+                  }
+              }
+
+              """
+              s = s[:marker.start()] + signing + s[marker.start():]
+          release = re.search(r"(?ms)(buildTypes\\s*\\{.*?release\\s*\\{)", s)
+          if not release:
+              raise SystemExit("Could not find release buildType block")
+          if "signingConfig signingConfigs.release" not in s[release.start():]:
+              s = s[:release.end()] + "\\n            signingConfig signingConfigs.release" + s[release.end():]
+          p.write_text(s)
+          PY
+          rm -f android/app/release-keystore.jks
+
+      - name: Build signed release APK
+        env:
+          DJ_OLATUNS_STORE_PASSWORD: ${{ secrets.DJ_OLATUNS_STORE_PASSWORD }}
+          DJ_OLATUNS_KEY_ALIAS: ${{ secrets.DJ_OLATUNS_KEY_ALIAS }}
+          DJ_OLATUNS_KEY_PASSWORD: ${{ secrets.DJ_OLATUNS_KEY_PASSWORD }}
+        run: cd android && ./gradlew assembleRelease --stacktrace
+
+      - name: Verify signed APK
+        shell: bash
+        run: |
+          APK="android/app/build/outputs/apk/release/app-release.apk"
+          test -s "$APK"
+          BT="$ANDROID_HOME/build-tools/35.0.0"
+          "$BT/aapt" dump badging "$APK" | tee release-badging.txt
+          grep -q "package: name='com.djolatuns.app'" release-badging.txt
+          "$BT/apksigner" verify --verbose "$APK"
+          sha256sum "$APK"
+          ls -lh "$APK"
+
+      - name: Upload signed APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DJ-Olatuns-Signed-Release-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+          retention-days: 30
