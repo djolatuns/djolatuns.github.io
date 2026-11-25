@@ -72,7 +72,7 @@ jobs:
           const core=fs.readFileSync('app-core.js','utf8');
           if(!core.includes('requestedPage')) throw Error('Notification deep links are not supported.');
           const sw=fs.readFileSync('sw.js','utf8');
-          if(!sw.includes('olatuns-shell-v22')||!sw.includes('styles.css?v=11')||!sw.includes('app-core.js?v=7')||!sw.includes('app-cloud.js?v=15')||!sw.includes('app-experience.js?v=6')||!sw.includes('./booking.html')||!sw.includes('./admin.html')) throw Error('Service worker shell cache is stale.');
+          if(!sw.includes('olatuns-shell-v22')||!sw.includes('styles.css?v=11')||!sw.includes('app-core.js?v=7')||!sw.includes('app-cloud.js?v=15')||!sw.includes('app-experience.js?v=7')||!sw.includes('./booking.html')||!sw.includes('./admin.html')) throw Error('Service worker shell cache is stale.');
           if(cloud.indexOf('let isOlatunsAdmin')>cloud.indexOf('cloud.auth.onAuthStateChange')) throw Error('Community state must initialize before auth events.');
           if(!cloud.includes('resetCloudProfile')||!cloud.includes("username_available")) throw Error('Account reset or username availability protection is missing.');
           if(!cloud.includes('video/webm')||!cloud.includes('postvideo')) throw Error('Community video upload or playback is missing.');
