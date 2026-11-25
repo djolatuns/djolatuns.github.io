@@ -25,5 +25,5 @@ updateProfileUI();
 
 function toggleAppMenu(open){const drawer=document.getElementById('appDrawer'),scrim=document.getElementById('drawerScrim'),trigger=document.querySelector('.menu-trigger');if(!drawer||!scrim)return;const show=typeof open==='boolean'?open:!drawer.classList.contains('open');drawer.classList.toggle('open',show);drawer.setAttribute('aria-hidden',String(!show));scrim.hidden=!show;if(trigger)trigger.setAttribute('aria-expanded',String(show));document.body.classList.toggle('menu-open',show)}
 function drawerGo(page){toggleAppMenu(false);hideExperiencePanels?.();go(page)}
-function drawerPanel(panel,loader){toggleAppMenu(false);go('profile');showExperiencePanel(panel);if(typeof window[loader]==='function')window[loader]()}
+function drawerPanel(panel,loader){toggleAppMenu(false);go(panel==='notificationsPanel'?'community':'profile');showExperiencePanel(panel);if(typeof window[loader]==='function')window[loader]()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleAppMenu(false)});
