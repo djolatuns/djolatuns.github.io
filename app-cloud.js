@@ -177,7 +177,7 @@ async function loadCommunity(){
 }
 async function loadCloudFeed(){
  const feed=document.getElementById('feed');
- const {data,error}=await cloud.from('community_posts').select('id,title,caption,media_url,media_type,created_by,created_at,moderation_status').order('created_at',{ascending:false}).limit(50);
+ const {data,error}=await cloud.from('community_posts').select('id,title,caption,media_url,media_type,created_by,created_at,moderation_status').order('created_at',{ascending:false}).limit(30);
  if(error){feed.innerHTML='<div class="card">Could not load the community feed. Please refresh and try again.</div>';console.error(error);return}
  cloudPosts=data||[];
  if(!cloudPosts.length){feed.innerHTML='<div class="card">No community posts yet. Be the first to share something.</div>';return}
@@ -204,7 +204,7 @@ async function loadCloudFeed(){
   const status=p.moderation_status==='pending'&&mine?'<span class="chip">Awaiting review</span>':'';
   const commentHtml=comments.map(c=>'<div class="comment-row"><span>'+esc(c.body)+'</span><small>'+esc(displayDate(c.created_at))+'</small></div>').join('');
   const social=p.moderation_status==='published'?'<div class="postfoot"><button type="button" onclick="toggleCloudLike(\''+p.id+'\')">'+(liked?'♥':'♡')+' '+count+' Like</button>'+(mine?'<button type="button" onclick="deleteCloudPost(\''+p.id+'\')">Delete</button>':'')+(!mine?'<button type="button" onclick="toggleCommunityFollow(\''+p.created_by+'\')">'+(following?'Following':'Follow')+' · '+followers+'</button>':'')+'</div><div class="post-comments"><div class="comment-list">'+commentHtml+'</div><form class="comment-form" onsubmit="submitCommunityComment(event,\''+p.id+'\')"><input maxlength="1500" aria-label="Write a comment" placeholder="Write a comment…" required><button type="submit">Send</button></form></div>':'<div class="postfoot"><span class="small">Post is being reviewed</span></div>';
-  const mediaHtml=media?(p.media_type==='video'?'<video class="postvideo" controls preload="metadata" playsinline src="'+esc(media)+'"></video>':'<img class="postimg" alt="Community post image" src="'+esc(media)+'">'):'';
+  const mediaHtml=media?(p.media_type==='video'?'<video class="postvideo" controls preload="metadata" playsinline src="'+esc(media)+'"></video>':'<img class="postimg" loading="lazy" decoding="async" alt="Community post image" src="'+esc(media)+'">'):'';
   return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><button class="profile-link" type="button" onclick="openMemberProfile(\''+p.created_by+'\')">'+esc(name)+'</button><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+mediaHtml+social+'</article>';
  }).join('');
  const own=cloudPosts.filter(p=>p.created_by===cloudUser.id),ownIds=own.map(p=>p.id);
@@ -245,7 +245,7 @@ async function loadFollowList(kind){
  const followingSet=new Set((myFollowing||[]).map(row=>row.following_id));
  list.innerHTML=ids.map(id=>{
   const profile=profileMap.get(id)||{},name=profile.display_name||profile.username||'Olatuns member',username=profile.username?'@'+profile.username:'Olatuns member';
-  const photo=profile.avatar_path?'<img src="'+esc(profile.avatar_path)+'" alt="" style="width:42px;height:42px;border-radius:50%;object-fit:cover">':'<span class="avatar" style="width:42px;height:42px;min-width:42px;font-size:14px">'+esc(profileInitials(name))+'</span>';
+  const photo=profile.avatar_path?'<img loading="lazy" decoding="async" src="'+esc(profile.avatar_path)+'" alt="" style="width:42px;height:42px;border-radius:50%;object-fit:cover">':'<span class="avatar" style="width:42px;height:42px;min-width:42px;font-size:14px">'+esc(profileInitials(name))+'</span>';
   const isFollowing=followingSet.has(id),isSelf=id===cloudUser.id;
   const action=!isSelf?'<button class="btn secondary" type="button" onclick="toggleCommunityFollow(\''+id+'\')">'+(isFollowing?'Following · Unfollow':kind==='followers'?'Follow back':'Follow')+'</button>':'';
   return '<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0"><div style="display:flex;align-items:center;gap:10px;min-width:0">'+photo+'<div><button class="profile-link" type="button" onclick="openMemberProfile(\''+id+'\')">'+esc(name)+'</button><div class="small">'+esc(username)+'</div></div></div>'+action+'</div>';
@@ -353,7 +353,7 @@ document.getElementById('announcementForm').addEventListener('submit',async e=>{
 let olatunsMixPlayStarted=new Set();
 async function loadOlatunsMixtapes(){
  if(!cloudUser)return;
- const {data:tracks,error}=await cloud.from('olatuns_mixtapes').select('id,title,description,cover_path,audio_path,published,play_count,created_at').eq('published',true).order('created_at',{ascending:false});
+ const {data:tracks,error}=await cloud.from('olatuns_mixtapes').select('id,title,description,cover_path,audio_path,published,play_count,created_at').eq('published',true).order('created_at',{ascending:false}).limit(50);
  if(error){console.warn('Mixtape cloud library:',error.message);return}
  if(!tracks?.length)return;
  const paths=[...tracks.map(t=>t.audio_path),...tracks.map(t=>t.cover_path).filter(Boolean)];
