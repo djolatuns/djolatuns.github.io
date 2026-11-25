@@ -59,6 +59,8 @@ jobs:
           const booking=fs.readFileSync('booking.html','utf8');
           const admin=fs.readFileSync('admin.html','utf8');
           if(!booking.includes("action:'booking-created'")||!admin.includes("from('booking_requests')")) throw Error('Booking submission or admin management is incomplete.');
+          const download=fs.readFileSync('download.html','utf8');
+          if(!download.includes('downloads/DJ-Olatuns.apk')) throw Error('Direct APK download link is missing.');
           const smoke=fs.readFileSync('.github/scripts/live-smoke.cjs','utf8');
           if(smoke.includes("'drafts'")||smoke.includes('"drafts"')) throw Error('Live smoke test still expects the removed drafts page.');
           if(!smoke.includes("const expected=['home','mixtapes','discover','community','profile','about'];")) throw Error('Live smoke test page list is out of date.');
