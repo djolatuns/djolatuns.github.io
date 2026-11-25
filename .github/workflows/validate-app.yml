@@ -36,7 +36,7 @@ jobs:
           from pathlib import Path
           import struct, zlib
           data = Path('src-tauri/icons/icon.png').read_bytes()
-          assert data.startswith(b'\\x89PNG\\r\\n\\x1a\\n'), 'Invalid PNG signature'
+          assert data.startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])), 'Invalid PNG signature'
           offset = 8
           while offset < len(data):
               length = struct.unpack('>I', data[offset:offset+4])[0]
