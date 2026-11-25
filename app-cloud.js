@@ -40,7 +40,33 @@ document.getElementById('signupForm').addEventListener('submit',async e=>{
 });
 document.getElementById('recoveryForm').addEventListener('submit',async e=>{e.preventDefault();const p=document.getElementById('recoveryPassword').value,confirm=document.getElementById('recoveryConfirm').value;if(p.length<8){authMsg('Password must be at least 8 characters.');return}if(p!==confirm){authMsg('Passwords do not match.');return}authMsg('Updating password…');const {error}=await cloud.auth.updateUser({password:p});if(error){authMsg(error.message);return}authMsg('Password updated. You can now sign in.');await cloud.auth.signOut();showLogin()});
 async function forgotPassword(){const identity=document.getElementById('loginIdentity').value.trim();if(!identity.includes('@')){authMsg('Enter your email address first, then choose Forgot password.');return}authMsg('Sending reset email…');const {error}=await cloud.auth.resetPasswordForEmail(identity,{redirectTo:location.origin+location.pathname});authMsg(error?error.message:'If an account exists for that email, a password reset email has been sent.')}
-async function signOutApp(){await cloud.auth.signOut();cloudUser=null;document.body.classList.add('locked');showLogin();authMsg('You have signed out.')}
+function resetCloudProfile(){
+ cloudProfile=null;
+ user={name:'',username:'',bio:'',photo:'',cover:''};
+ updateProfileUI();
+ document.getElementById('profileDisplay').textContent='Member';
+ document.getElementById('profileHeading').textContent='Your profile';
+ document.getElementById('profileUsername').textContent='';
+ document.getElementById('profileUsernameInput').value='';
+ document.getElementById('profileCover').style.backgroundImage='';
+ document.getElementById('profileCover').classList.remove('hascover');
+ document.getElementById('profileCover').textContent='Cover photo · add yours below';
+ document.getElementById('followStats').textContent='Followers 0 · Following 0';
+ document.getElementById('bioCard').textContent='Your bio will appear here.';
+ document.getElementById('postCount').textContent='0';
+ document.getElementById('likesCount').textContent='0';
+}
+async function signOutApp(){
+ await cloud.auth.signOut();
+ cloudUser=null;cloudPosts=[];cloudLikeIds=new Set();isOlatunsAdmin=false;window.olatunsAdmin=false;
+ selectedCommunityFile=null;profileFileSelected=null;coverSelected=null;
+ resetCloudProfile();
+ const adminCard=document.getElementById('adminUploadAccountCard');if(adminCard)adminCard.remove();
+ document.getElementById('announcementForm').style.display='none';
+ document.getElementById('moderationSection').style.display='none';
+ document.body.classList.add('locked');showLogin();authMsg('You have signed out.');
+ if(typeof go==='function')go('home');
+}
 function profileInitials(n){return (String(n||'O').trim().split(/\s+/).slice(0,2).map(s=>s[0]||'').join('').toUpperCase()||'O')}
 async function loadAdminAccountLink(){
  const section=document.getElementById('profileSavedSection');if(!section||!cloudUser)return;
@@ -51,9 +77,61 @@ async function loadAdminAccountLink(){
  card.innerHTML='<div class="eyebrow">ADMINISTRATOR · PRIVATE</div><h3 style="margin:8px 0">Mixtape Upload</h3><p class="small">Upload new mixtapes, publish releases and manage the library statistics.</p><a class="btn" href="admin-upload.html" style="display:block;text-align:center;text-decoration:none">Open Mixtape Upload ↗</a>';
  section.insertBefore(card,section.firstChild);
 }
-async function loadCloudProfile(){if(!cloudUser)return;loadAdminAccountLink();let {data,error}=await cloud.from('profiles').select('*').eq('id',cloudUser.id).maybeSingle();if(error){console.error(error);authMsg('Signed in, but profile could not load.');return}if(!data){authMsg('Profile is being prepared. Refresh in a moment.');return}cloudProfile=data;user={name:data.display_name||'',username:data.username||'',bio:data.bio||'',photo:data.avatar_path||'',cover:data.cover_photo_path||''};updateProfileUI();document.getElementById('profileDisplay').textContent=user.name||'Member';document.getElementById('profileHeading').textContent=user.name||'Member profile';document.getElementById('profileUsername').textContent=user.username?'@'+user.username:'';document.getElementById('profileUsernameInput').value=user.username;document.getElementById('profileCover').style.backgroundImage=user.cover?'url('+user.cover+')':'';document.getElementById('profileCover').classList.toggle('hascover',!!user.cover);document.getElementById('profileCover').textContent=user.cover?'':'Cover photo · add yours below';document.getElementById('name').value=user.name;document.getElementById('bio').value=user.bio;const [followers,following]=await Promise.all([cloud.from('community_follows').select('follower_id',{count:'exact',head:true}).eq('following_id',cloudUser.id),cloud.from('community_follows').select('following_id',{count:'exact',head:true}).eq('follower_id',cloudUser.id)]);const stats=document.getElementById('followStats');if(stats)stats.textContent='Followers '+(followers.count||0)+' · Following '+(following.count||0)}
+async function loadCloudProfile(){
+ if(!cloudUser)return;
+ const section=document.getElementById('profileSavedSection');
+ const old=document.getElementById('adminUploadAccountCard');if(old)old.remove();
+ resetCloudProfile();
+ const {data,error}=await cloud.from('profiles').select('*').eq('id',cloudUser.id).maybeSingle();
+ if(error){console.error(error);authMsg('Signed in, but your profile could not load. Check your connection and refresh.');return}
+ if(!data){authMsg('Your account is signed in, but its profile has not been created yet. Please contact support if this continues.');return}
+ cloudProfile=data;
+ user={name:data.display_name||'',username:data.username||'',bio:data.bio||'',photo:data.avatar_path||'',cover:data.cover_photo_path||''};
+ updateProfileUI();
+ document.getElementById('profileDisplay').textContent=user.name||'Member';
+ document.getElementById('profileHeading').textContent=user.name||'Member profile';
+ document.getElementById('profileUsername').textContent=user.username?'@'+user.username:'';
+ document.getElementById('profileUsernameInput').value=user.username;
+ document.getElementById('profileCover').style.backgroundImage=user.cover?'url('+user.cover+')':'';
+ document.getElementById('profileCover').classList.toggle('hascover',!!user.cover);
+ document.getElementById('profileCover').textContent=user.cover?'':'Cover photo · add yours below';
+ document.getElementById('name').value=user.name;
+ document.getElementById('bio').value=user.bio;
+ await loadAdminAccountLink();
+ const [followers,following]=await Promise.all([
+  cloud.from('community_follows').select('follower_id',{count:'exact',head:true}).eq('following_id',cloudUser.id),
+  cloud.from('community_follows').select('following_id',{count:'exact',head:true}).eq('follower_id',cloudUser.id)
+ ]);
+ const stats=document.getElementById('followStats');
+ if(stats)stats.textContent='Followers '+(followers.count||0)+' · Following '+(following.count||0);
+}
 function showApp(){document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity();loadOlatunsMixtapes()}
-cloud.auth.onAuthStateChange((event,session)=>{cloudUser=session?.user||null;if(cloudUser){showApp();if(event==='PASSWORD_RECOVERY'){document.getElementById('loginForm').style.display='none';document.getElementById('signupForm').style.display='none';document.getElementById('recoveryForm').style.display='block';document.getElementById('authTitle').textContent='Reset password.';authMsg('Choose a new password.');document.body.classList.add('locked');document.getElementById('authGate').style.display='flex';document.body.classList.add('locked')}}else{document.body.classList.add('locked');document.getElementById('authGate').style.display='flex';showLogin()}});
+cloud.auth.onAuthStateChange((event,session)=>{
+ const previousId=cloudUser?.id||null;
+ cloudUser=session?.user||null;
+ if(cloudUser){
+  if(previousId!==cloudUser.id||event==='SIGNED_IN'||event==='INITIAL_SESSION')showApp();
+  if(event==='PASSWORD_RECOVERY'){
+   document.getElementById('loginForm').style.display='none';
+   document.getElementById('signupForm').style.display='none';
+   document.getElementById('recoveryForm').style.display='block';
+   document.getElementById('authTitle').textContent='Reset password.';
+   authMsg('Choose a new password.');
+   document.body.classList.add('locked');
+   document.getElementById('authGate').style.display='flex';
+  }
+ }else{
+  cloudPosts=[];cloudLikeIds=new Set();isOlatunsAdmin=false;window.olatunsAdmin=false;
+  selectedCommunityFile=null;profileFileSelected=null;coverSelected=null;
+  resetCloudProfile();
+  const adminCard=document.getElementById('adminUploadAccountCard');if(adminCard)adminCard.remove();
+  document.getElementById('announcementForm').style.display='none';
+  document.getElementById('moderationSection').style.display='none';
+  document.body.classList.add('locked');
+  document.getElementById('authGate').style.display='flex';
+  showLogin();
+ }
+});
 async function removeCoverPhoto(){if(!cloudUser){document.getElementById('profileMsg').textContent='Please sign in first.';return}if(!user.cover&&!coverSelected){document.getElementById('profileMsg').textContent='There is no cover photo to remove.';return}if(coverSelected){coverSelected=null;document.getElementById('coverFile').value='';document.getElementById('coverPreview').innerHTML='';document.getElementById('profileMsg').textContent='Selected cover cleared. Save profile to keep this change.';return}const msg=document.getElementById('profileMsg');msg.textContent='Removing cover photo…';const {error}=await cloud.from('profiles').update({cover_photo_path:null,updated_at:new Date().toISOString()}).eq('id',cloudUser.id);if(error){msg.textContent='Could not remove cover: '+error.message;return}user.cover='';coverSelected=null;document.getElementById('coverFile').value='';document.getElementById('coverPreview').innerHTML='';await loadCloudProfile();msg.textContent='Cover photo removed from your profile.'}
 async function uploadProfileAsset(file,kind){if(!file)return null;if(!['image/jpeg','image/png','image/webp'].includes(file.type)){throw new Error('Use a JPG, PNG or WebP image.')}if(file.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');const ext=file.type.split('/')[1].replace('jpeg','jpg'),path=cloudUser.id+'/'+kind+'-'+Date.now()+'.'+ext;const {error}=await cloud.storage.from('member-profile-media').upload(path,file,{upsert:false,contentType:file.type});if(error)throw error;const {data}=cloud.storage.from('member-profile-media').getPublicUrl(path);return data.publicUrl}
 document.getElementById('photoFile').addEventListener('change',e=>{profileFileSelected=e.target.files[0]||null;if(profileFileSelected)document.getElementById('profilePreview').textContent='Selected: '+profileFileSelected.name});
