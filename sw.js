@@ -1,6 +1,6 @@
-const CACHE_VERSION = 'olatuns-shell-v16';
+const CACHE_VERSION = 'olatuns-shell-v17';
 const SHELL_FILES = [
-  './', './index.html', './styles.css?v=10', './app-core.js?v=5',
+  './', './index.html', './styles.css?v=10', './app-core.js?v=6',
   './app-cloud.js?v=13','./app-experience.js?v=2', './manifest.webmanifest', './icon.svg',
   './icon-192.svg', './icon-512.svg', './download.html','./booking.html','./admin.html','./admin-upload.html'
 ];
