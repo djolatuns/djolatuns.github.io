@@ -347,9 +347,21 @@ document.getElementById('announcementForm').addEventListener('submit',async e=>{
  const title=document.getElementById('announcementTitle').value.trim(),message=document.getElementById('announcementMessage').value.trim();
  if(!title||!message)return;
  const button=e.target.querySelector('button[type="submit"]');button.disabled=true;safeMessage('announcementMsg','Publishing…');
- const {error}=await cloud.from('site_notifications').insert({title,message,published:true});
+ const {data:announcement,error}=await cloud.from('site_notifications').insert({title,message,published:true}).select('id').single();
  if(error)safeMessage('announcementMsg','Could not publish: '+error.message);
- else{e.target.reset();safeMessage('announcementMsg','Announcement published.');await loadAnnouncements()}
+ else{
+  e.target.reset();safeMessage('announcementMsg','Announcement published. Sending device alerts…');
+  try{
+   const {data:pushData,error:pushError}=await cloud.functions.invoke('member-push',{body:{action:'announcement-published',announcement_id:announcement.id}});
+   if(pushError)throw pushError;
+   if(pushData?.error)throw new Error(pushData.error);
+   safeMessage('announcementMsg','Announcement published. Device alerts sent to '+(pushData?.sent||0)+' subscribed device(s).');
+  }catch(pushError){
+   console.warn('Announcement push notification unavailable:',pushError);
+   safeMessage('announcementMsg','Announcement published, but push delivery needs attention: '+(pushError?.message||'unknown error'));
+  }
+  await loadAnnouncements()
+ }
  button.disabled=false;
 });
 
