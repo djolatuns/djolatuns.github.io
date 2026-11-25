@@ -160,7 +160,11 @@ window.enablePushNotifications=async function(){
   const {data:saveData,error:saveError}=await cloud.functions.invoke('member-push',{body:{action:'subscribe',subscription:subscription.toJSON()}});
   if(saveError)throw saveError;
   if(saveData?.error)throw new Error(saveData.error);
-  if(status)status.textContent='Device notifications are enabled on this device.';
+  if(status)status.textContent='Device registered. Sending a test alert…';
+  const {data:testData,error:testError}=await cloud.functions.invoke('member-push',{body:{action:'test-device'}});
+  if(testError)throw testError;
+  if(testData?.error)throw new Error(testData.error);
+  if(status)status.textContent=testData?.sent>0?'Notifications are enabled. A test alert has been sent to this device.':'Device registered, but the test alert was not delivered. Check the browser notification permission and try again.';
  }catch(error){
   console.error('Device notification setup failed:',error);
   if(status)status.textContent=error?.message||'Could not enable device notifications. Please try again.';
