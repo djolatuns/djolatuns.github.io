@@ -43,11 +43,12 @@ jobs:
           const cloud=fs.readFileSync('app-cloud.js','utf8');
           if(cloud.split('createClient(').length-1!==1) throw Error('Expected exactly one Supabase client initialization.');
           if(html.includes('Creator Studio')||html.includes('data-page="drafts"')) throw Error('Obsolete Creator Studio navigation found.');
-          if(!html.includes('app-cloud.js?v=6')) throw Error('App cloud cache-busting version is stale.');
+          if(!html.includes('app-cloud.js?v=7')) throw Error('App cloud cache-busting version is stale.');
           const sw=fs.readFileSync('sw.js','utf8');
-          if(!sw.includes('olatuns-shell-v6')||!sw.includes('app-cloud.js?v=6')) throw Error('Service worker shell cache is stale.');
+          if(!sw.includes('olatuns-shell-v7')||!sw.includes('app-cloud.js?v=6')) throw Error('Service worker shell cache is stale.');
           if(cloud.indexOf('let isOlatunsAdmin')>cloud.indexOf('cloud.auth.onAuthStateChange')) throw Error('Community state must initialize before auth events.');
           if(!cloud.includes('resetCloudProfile')||!cloud.includes("username_available")) throw Error('Account reset or username availability protection is missing.');
+          if(!cloud.includes('video/webm')||!cloud.includes('postvideo')) throw Error('Community video upload or playback is missing.');
           const smoke=fs.readFileSync('.github/scripts/live-smoke.cjs','utf8');
           if(smoke.includes("'drafts'")||smoke.includes('"drafts"')) throw Error('Live smoke test still expects the removed drafts page.');
           if(!smoke.includes("const expected=['home','mixtapes','discover','community','profile','about'];")) throw Error('Live smoke test page list is out of date.');
