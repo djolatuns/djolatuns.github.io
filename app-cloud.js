@@ -65,7 +65,7 @@ async function signOutApp(){
  cloudUser=null;cloudPosts=[];cloudLikeIds=new Set();isOlatunsAdmin=false;window.olatunsAdmin=false;
  selectedCommunityFile=null;profileFileSelected=null;coverSelected=null;
  resetCloudProfile();
- const adminCard=document.getElementById('adminUploadAccountCard');if(adminCard)adminCard.remove();
+ const adminSection=document.getElementById('adminToolsSection');if(adminSection)adminSection.style.display='none';
  document.getElementById('announcementForm').style.display='none';
  document.getElementById('moderationSection').style.display='none';
  document.body.classList.add('locked');showLogin();authMsg('You have signed out.');
@@ -92,7 +92,7 @@ async function loadAdminAccountLink(){
 async function loadCloudProfile(){
  if(!cloudUser)return;
  const section=document.getElementById('profileSavedSection');
- const old=document.getElementById('adminUploadAccountCard');if(old)old.remove();
+ const adminSection=document.getElementById('adminToolsSection');if(adminSection)adminSection.style.display='none';
  resetCloudProfile();
  const {data,error}=await cloud.from('profiles').select('*').eq('id',cloudUser.id).maybeSingle();
  if(error){console.error(error);authMsg('Signed in, but your profile could not load. Check your connection and refresh.');return}
@@ -136,7 +136,7 @@ cloud.auth.onAuthStateChange((event,session)=>{
   cloudPosts=[];cloudLikeIds=new Set();isOlatunsAdmin=false;window.olatunsAdmin=false;
   selectedCommunityFile=null;profileFileSelected=null;coverSelected=null;
   resetCloudProfile();
-  const adminCard=document.getElementById('adminUploadAccountCard');if(adminCard)adminCard.remove();
+  const adminSection=document.getElementById('adminToolsSection');if(adminSection)adminSection.style.display='none';
   document.getElementById('announcementForm').style.display='none';
   document.getElementById('moderationSection').style.display='none';
   document.body.classList.add('locked');
