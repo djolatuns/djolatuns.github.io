@@ -38,8 +38,37 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-      - uses: android-actions/setup-android@v3
-      - run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+      - name: Locate Android SDK manager and install required packages
+        shell: bash
+        run: |
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+          if [ -z "$SDK_ROOT" ]; then
+            echo "Runner did not provide ANDROID_HOME/ANDROID_SDK_ROOT. Searching common locations."
+            for candidate in /usr/local/lib/android/sdk /opt/android-sdk /usr/local/android-sdk; do
+              if [ -d "$candidate" ]; then SDK_ROOT="$candidate"; break; fi
+            done
+          fi
+          if [ -z "$SDK_ROOT" ] || [ ! -d "$SDK_ROOT" ]; then
+            echo "Android SDK not found. Runner environment:"
+            env | grep -E 'ANDROID|SDK' || true
+            exit 1
+          fi
+          echo "Using Android SDK: $SDK_ROOT"
+          echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
+          SDKMANAGER="$(find "$SDK_ROOT" -type f -name sdkmanager -path '*/bin/sdkmanager' -print -quit 2>/dev/null || true)"
+          if [ -z "$SDKMANAGER" ]; then
+            echo "sdkmanager was not found. Android SDK directory contents:"
+            ls -la "$SDK_ROOT" || true
+            ls -la "$SDK_ROOT/cmdline-tools" || true
+            exit 1
+          fi
+          echo "Found sdkmanager: $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses || true
+          echo "License acceptance completed; package installation will verify access."
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          echo "SDKMANAGER_PATH=$SDKMANAGER" >> "$GITHUB_ENV"
+
       - run: npm install
       - run: npm run prepare:web
       - run: npx cap add android
@@ -71,6 +100,8 @@ jobs:
           node-version: 22
       - uses: dtolnay/rust-toolchain@stable
       - run: npm install
+      - name: Generate Windows/macOS application icons
+        run: npx tauri icon src-tauri/icons/icon.png --output src-tauri/icons
       - run: npm run desktop:build
       - uses: actions/upload-artifact@v4
         with:
@@ -87,6 +118,8 @@ jobs:
           node-version: 22
       - uses: dtolnay/rust-toolchain@stable
       - run: npm install
+      - name: Generate Windows/macOS application icons
+        run: npx tauri icon src-tauri/icons/icon.png --output src-tauri/icons
       - run: npm run desktop:build
       - uses: actions/upload-artifact@v4
         with:
