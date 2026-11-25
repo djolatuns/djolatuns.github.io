@@ -38,7 +38,12 @@ jobs:
           const missing=nav.filter(p=>!pages.includes(p));
           if(missing.length) throw Error('Navigation points to missing pages: '+missing.join(', '));
           for(const asset of ['styles.css','app-core.js','app-cloud.js','manifest.webmanifest','icon.svg']) if(!html.includes(asset)) throw Error('Missing asset reference: '+asset);
-          console.log('Passed: '+ids.length+' IDs; '+pages.length+' pages; '+nav.length+' navigation links.');
+          if((html.match(/app-cloud\\.js/g)||[]).length!==1) throw Error('app-cloud.js must be loaded exactly once.');
+          if(html.includes('const SUPABASE_URL')) throw Error('Supabase initialization must live only in app-cloud.js.');
+          const cloud=fs.readFileSync('app-cloud.js','utf8');
+          if((cloud.match(/createClient\\(/g)||[]).length!==1) throw Error('Expected exactly one Supabase client initialization.');
+          if(html.includes('Creator Studio')||html.includes('data-page="drafts"')) throw Error('Obsolete Creator Studio navigation found.');
+          console.log('Passed: '+ids.length+' IDs; '+pages.length+' pages; '+nav.length+' navigation links; single Supabase client.');
           NODE
       - name: Check JavaScript syntax
         run: |
