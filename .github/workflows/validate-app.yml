@@ -24,6 +24,8 @@ jobs:
           test -s app-cloud.js
           test -s manifest.webmanifest
           test -s icon.svg
+          test -s booking.html
+          test -s admin.html
           node -e "JSON.parse(require('fs').readFileSync('manifest.webmanifest','utf8'))"
       - name: Validate HTML IDs, page navigation and assets
         run: |
@@ -43,12 +45,18 @@ jobs:
           const cloud=fs.readFileSync('app-cloud.js','utf8');
           if(cloud.split('createClient(').length-1!==1) throw Error('Expected exactly one Supabase client initialization.');
           if(html.includes('Creator Studio')||html.includes('data-page="drafts"')) throw Error('Obsolete Creator Studio navigation found.');
-          if(!html.includes('app-cloud.js?v=7')) throw Error('App cloud cache-busting version is stale.');
+          if(!html.includes('app-cloud.js?v=7')||!html.includes('app-core.js?v=3')) throw Error('App script cache-busting version is stale.');
+          if(!html.includes('booking.html')) throw Error('Public booking link is missing.');
+          const core=fs.readFileSync('app-core.js','utf8');
+          if(!core.includes('requestedPage')) throw Error('Notification deep links are not supported.');
           const sw=fs.readFileSync('sw.js','utf8');
-          if(!sw.includes('olatuns-shell-v7')||!sw.includes('styles.css?v=5')||!sw.includes('app-cloud.js?v=7')) throw Error('Service worker shell cache is stale.');
+          if(!sw.includes('olatuns-shell-v8')||!sw.includes('styles.css?v=5')||!sw.includes('app-core.js?v=3')||!sw.includes('./booking.html')||!sw.includes('./admin.html')) throw Error('Service worker shell cache is stale.');
           if(cloud.indexOf('let isOlatunsAdmin')>cloud.indexOf('cloud.auth.onAuthStateChange')) throw Error('Community state must initialize before auth events.');
           if(!cloud.includes('resetCloudProfile')||!cloud.includes("username_available")) throw Error('Account reset or username availability protection is missing.');
           if(!cloud.includes('video/webm')||!cloud.includes('postvideo')) throw Error('Community video upload or playback is missing.');
+          const booking=fs.readFileSync('booking.html','utf8');
+          const admin=fs.readFileSync('admin.html','utf8');
+          if(!booking.includes("action:'booking-created'")||!admin.includes("from('booking_requests')")) throw Error('Booking submission or admin management is incomplete.');
           const smoke=fs.readFileSync('.github/scripts/live-smoke.cjs','utf8');
           if(smoke.includes("'drafts'")||smoke.includes('"drafts"')) throw Error('Live smoke test still expects the removed drafts page.');
           if(!smoke.includes("const expected=['home','mixtapes','discover','community','profile','about'];")) throw Error('Live smoke test page list is out of date.');
@@ -59,3 +67,12 @@ jobs:
           node --check app-core.js
           node --check app-cloud.js
           node --check .github/scripts/live-smoke.cjs
+          node <<'NODE'
+          const fs=require('fs'),vm=require('vm');
+          for(const file of ['booking.html','admin.html']){
+            const html=fs.readFileSync(file,'utf8');
+            const scripts=[...html.matchAll(/<script\\b[^>]*>([\\s\\S]*?)<\\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
+            if(!scripts.length) throw Error('No inline JavaScript found in '+file);
+            scripts.forEach((source,index)=>new vm.Script(source,{filename:file+' inline '+index}));
+          }
+          NODE
