@@ -56,6 +56,9 @@ function resetCloudProfile(){
  document.getElementById('profileCover').classList.remove('hascover');
  document.getElementById('profileCover').textContent='Cover photo · add yours below';
  document.getElementById('followStats').textContent='Followers 0 · Following 0';
+ const followerCount=document.getElementById('followersCount');if(followerCount)followerCount.textContent='0';
+ const followingCount=document.getElementById('followingCount');if(followingCount)followingCount.textContent='0';
+ const followPanel=document.getElementById('followListPanel');if(followPanel)followPanel.style.display='none';
  document.getElementById('bioCard').textContent='Your bio will appear here.';
  document.getElementById('postCount').textContent='0';
  document.getElementById('likesCount').textContent='0';
@@ -114,8 +117,11 @@ async function loadCloudProfile(){
   cloud.from('community_follows').select('follower_id',{count:'exact',head:true}).eq('following_id',cloudUser.id),
   cloud.from('community_follows').select('following_id',{count:'exact',head:true}).eq('follower_id',cloudUser.id)
  ]);
+ const followerTotal=followers.count||0,followingTotal=following.count||0;
  const stats=document.getElementById('followStats');
- if(stats)stats.textContent='Followers '+(followers.count||0)+' · Following '+(following.count||0);
+ if(stats)stats.textContent='Followers '+followerTotal+' · Following '+followingTotal;
+ const followerButtonCount=document.getElementById('followersCount');if(followerButtonCount)followerButtonCount.textContent=followerTotal;
+ const followingButtonCount=document.getElementById('followingCount');if(followingButtonCount)followingButtonCount.textContent=followingTotal;
 }
 function showApp(){document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity();loadOlatunsMixtapes()}
 cloud.auth.onAuthStateChange((event,session)=>{
@@ -213,6 +219,38 @@ async function submitCommunityComment(event,postId){
  if(error){alert('Could not add comment: '+error.message);button.disabled=false;return}
  await loadCloudFeed();
 }
+let activeFollowList=null;
+async function loadFollowList(kind){
+ if(!cloudUser)return;
+ if(!['followers','following'].includes(kind))return;
+ activeFollowList=kind;
+ const panel=document.getElementById('followListPanel'),title=document.getElementById('followListTitle'),list=document.getElementById('followListItems');
+ if(!panel||!title||!list)return;
+ panel.style.display='block';
+ title.textContent=kind==='followers'?'Your followers':'People you follow';
+ list.innerHTML='<div class="small">Loading members…</div>';
+ const column=kind==='followers'?'follower_id':'following_id';
+ const matchColumn=kind==='followers'?'following_id':'follower_id';
+ const {data:rows,error}=await cloud.from('community_follows').select('follower_id,following_id,created_at').eq(matchColumn,cloudUser.id).order('created_at',{ascending:false}).limit(100);
+ if(error){list.innerHTML='<div class="small">Could not load this list. Please try again.</div>';console.error('Follow list error:',error);return}
+ if(!rows?.length){list.innerHTML='<div class="small">'+(kind==='followers'?'You do not have any followers yet.':'You are not following anyone yet.')+'</div>';return}
+ const ids=rows.map(row=>row[column]).filter(id=>id!==cloudUser.id);
+ if(!ids.length){list.innerHTML='<div class="small">No members to display yet.</div>';return}
+ const [{data:profiles,error:profileError},{data:myFollowing,error:followingError}]=await Promise.all([
+  cloud.from('profiles').select('id,display_name,username,avatar_path').in('id',ids),
+  cloud.from('community_follows').select('following_id').eq('follower_id',cloudUser.id).in('following_id',ids)
+ ]);
+ if(profileError||followingError){list.innerHTML='<div class="small">Could not load member details. Please try again.</div>';console.error(profileError||followingError);return}
+ const profileMap=new Map((profiles||[]).map(profile=>[profile.id,profile]));
+ const followingSet=new Set((myFollowing||[]).map(row=>row.following_id));
+ list.innerHTML=ids.map(id=>{
+  const profile=profileMap.get(id)||{},name=profile.display_name||profile.username||'Olatuns member',username=profile.username?'@'+profile.username:'Olatuns member';
+  const photo=profile.avatar_path?'<img src="'+esc(profile.avatar_path)+'" alt="" style="width:42px;height:42px;border-radius:50%;object-fit:cover">':'<span class="avatar" style="width:42px;height:42px;min-width:42px;font-size:14px">'+esc(profileInitials(name))+'</span>';
+  const isFollowing=followingSet.has(id),isSelf=id===cloudUser.id;
+  const action=!isSelf?'<button class="btn secondary" type="button" onclick="toggleCommunityFollow(\''+id+'\')">'+(isFollowing?'Following · Unfollow':kind==='followers'?'Follow back':'Follow')+'</button>':'';
+  return '<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0"><div style="display:flex;align-items:center;gap:10px;min-width:0">'+photo+'<div><b>'+esc(name)+'</b><div class="small">'+esc(username)+'</div></div></div>'+action+'</div>';
+ }).join('');
+}
 async function toggleCommunityFollow(targetId){
  if(!cloudUser||targetId===cloudUser.id)return;
  const {data,error}=await cloud.from('community_follows').select('follower_id').eq('follower_id',cloudUser.id).eq('following_id',targetId).maybeSingle();
@@ -220,6 +258,7 @@ async function toggleCommunityFollow(targetId){
  const result=data?await cloud.from('community_follows').delete().eq('follower_id',cloudUser.id).eq('following_id',targetId):await cloud.from('community_follows').insert({follower_id:cloudUser.id,following_id:targetId});
  if(result.error){alert('Could not update follow: '+result.error.message);return}
  await Promise.all([loadCloudFeed(),loadCloudProfile()]);
+ if(activeFollowList)await loadFollowList(activeFollowList);
 }
 async function loadPendingPosts(){
  const el=document.getElementById('moderationList');
