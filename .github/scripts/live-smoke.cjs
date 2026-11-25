@@ -20,10 +20,11 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     if(!res.ok()) throw new Error('Required asset failed: '+asset+' HTTP '+res.status());
    }
    const cloudSource=await (await page.request.get('https://djolatuns.github.io/app-cloud.js?smoke='+Date.now())).text();
+   if(!cloudSource.includes('resetCloudProfile')||!cloudSource.includes("username_available")) throw new Error('Live account protections are not updated yet');
    if(!cloudSource.includes('submitCommunityComment')||!cloudSource.includes('toggleCommunityFollow')) throw new Error('Live community comments/follows code is not updated yet');
    if(!await page.locator('#followStats').count()) throw new Error('Live profile follower statistics are missing');
    const pages=await page.locator('section.page').evaluateAll(nodes=>nodes.map(n=>n.id));
-   const expected=['home','mixtapes','discover','community','profile','drafts','about'];
+   const expected=['home','mixtapes','discover','community','profile','about'];
    for(const id of expected) if(!pages.includes(id)) throw new Error('Missing app page: '+id);
    const css=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
    if(!css||css==='rgba(0, 0, 0, 0)'||css==='rgb(255, 255, 255)') throw new Error('App stylesheet did not apply a dark background: '+css);
