@@ -19,6 +19,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: live-olatuns-smoke
+  cancel-in-progress: true
 jobs:
   live-smoke:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
