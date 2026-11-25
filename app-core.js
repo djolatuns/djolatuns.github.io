@@ -22,3 +22,8 @@ function editProfile(){document.getElementById('profileEditorSection').style.dis
 function cancelProfileEdit(){if(user.name){document.getElementById('profileEditorSection').style.display='none';document.getElementById('profileSavedSection').style.display='block';}else{document.getElementById('profileMsg').textContent='Complete your profile to save it.';}}
 function readImage(file,max,cb){if(!file)return;if(!file.type.startsWith('image/')){alert('Select an image file.');return}if(file.size>max){alert('Image is too large. Please choose a smaller file.');return}const reader=new FileReader();reader.onload=()=>cb(reader.result);reader.onerror=()=>alert('Could not read image. Try again.');reader.readAsDataURL(file)}
 updateProfileUI();
+
+function toggleAppMenu(open){const drawer=document.getElementById('appDrawer'),scrim=document.getElementById('drawerScrim'),trigger=document.querySelector('.menu-trigger');if(!drawer||!scrim)return;const show=typeof open==='boolean'?open:!drawer.classList.contains('open');drawer.classList.toggle('open',show);drawer.setAttribute('aria-hidden',String(!show));scrim.hidden=!show;if(trigger)trigger.setAttribute('aria-expanded',String(show));document.body.classList.toggle('menu-open',show)}
+function drawerGo(page){toggleAppMenu(false);hideExperiencePanels?.();go(page)}
+function drawerPanel(panel,loader){toggleAppMenu(false);go('profile');showExperiencePanel(panel);if(typeof window[loader]==='function')window[loader]()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleAppMenu(false)});
