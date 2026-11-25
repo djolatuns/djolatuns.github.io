@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'olatuns-shell-v17';
+const CACHE_VERSION = 'olatuns-shell-v18';
 const SHELL_FILES = [
   './', './index.html', './styles.css?v=10', './app-core.js?v=6',
   './app-cloud.js?v=13','./app-experience.js?v=2', './manifest.webmanifest', './icon.svg',
@@ -23,6 +23,37 @@ self.addEventListener('activate', event => {
     const keys = await caches.keys();
     await Promise.all(keys.filter(key => key.startsWith('olatuns-shell-') && key !== CACHE_VERSION).map(key => caches.delete(key)));
     await self.clients.claim();
+  })());
+});
+
+
+self.addEventListener('push', event => {
+  let payload = {};
+  try { payload = event.data ? event.data.json() : {}; }
+  catch (_) { payload = { body: event.data ? event.data.text() : '' }; }
+  const title = payload.title || 'DJ OLATUNS';
+  const options = {
+    body: payload.body || 'You have a new update.',
+    icon: payload.icon || './icon-192.svg',
+    badge: payload.badge || './icon-192.svg',
+    tag: payload.tag || 'dj-olatuns-update',
+    data: { url: payload.url || './' },
+    renotify: false
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const target = new URL(event.notification.data?.url || './', self.location.origin).href;
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const client of windows) {
+      if (client.url.startsWith(self.location.origin) && 'focus' in client) {
+        await client.navigate(target);
+        return client.focus();
+      }
+    }
+    return self.clients.openWindow(target);
   })());
 });
 
