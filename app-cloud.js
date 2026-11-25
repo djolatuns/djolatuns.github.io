@@ -78,9 +78,7 @@ async function loadCommunity(){
  const adminCheck=await cloud.from('admin_users').select('user_id').eq('user_id',cloudUser.id).maybeSingle();
  isOlatunsAdmin=!!adminCheck.data;
  window.olatunsAdmin=isOlatunsAdmin;
- document.querySelectorAll('[data-page="drafts"]').forEach(el=>el.hidden=!isOlatunsAdmin);
- document.getElementById('drafts').hidden=!isOlatunsAdmin;
- document.getElementById('announcementForm').style.display=isOlatunsAdmin?'block':'none';
+  document.getElementById('announcementForm').style.display=isOlatunsAdmin?'block':'none';
  document.getElementById('moderationSection').style.display=isOlatunsAdmin?'block':'none';
  await Promise.all([loadAnnouncements(),loadCloudFeed()]);
  if(isOlatunsAdmin)await loadPendingPosts();
