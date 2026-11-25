@@ -45,7 +45,7 @@ jobs:
           if(html.includes('Creator Studio')||html.includes('data-page="drafts"')) throw Error('Obsolete Creator Studio navigation found.');
           if(!html.includes('app-cloud.js?v=7')) throw Error('App cloud cache-busting version is stale.');
           const sw=fs.readFileSync('sw.js','utf8');
-          if(!sw.includes('olatuns-shell-v7')||!sw.includes('app-cloud.js?v=6')) throw Error('Service worker shell cache is stale.');
+          if(!sw.includes('olatuns-shell-v7')||!sw.includes('styles.css?v=5')||!sw.includes('app-cloud.js?v=7')) throw Error('Service worker shell cache is stale.');
           if(cloud.indexOf('let isOlatunsAdmin')>cloud.indexOf('cloud.auth.onAuthStateChange')) throw Error('Community state must initialize before auth events.');
           if(!cloud.includes('resetCloudProfile')||!cloud.includes("username_available")) throw Error('Account reset or username availability protection is missing.');
           if(!cloud.includes('video/webm')||!cloud.includes('postvideo')) throw Error('Community video upload or playback is missing.');
