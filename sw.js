@@ -2,7 +2,7 @@ const CACHE_VERSION = 'olatuns-shell-v16';
 const SHELL_FILES = [
   './', './index.html', './styles.css?v=10', './app-core.js?v=5',
   './app-cloud.js?v=13','./app-experience.js?v=2', './manifest.webmanifest', './icon.svg',
-  './icon-192.svg', './icon-512.svg', './download.html','./booking.html','./admin.html','./admin-upload.html','./app-experience.js?v=1'
+  './icon-192.svg', './icon-512.svg', './download.html','./booking.html','./admin.html','./admin-upload.html'
 ];
 
 self.addEventListener('install', event => {
