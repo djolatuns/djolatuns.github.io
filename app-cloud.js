@@ -205,7 +205,7 @@ async function loadCloudFeed(){
   const commentHtml=comments.map(c=>'<div class="comment-row"><span>'+esc(c.body)+'</span><small>'+esc(displayDate(c.created_at))+'</small></div>').join('');
   const social=p.moderation_status==='published'?'<div class="postfoot"><button type="button" onclick="toggleCloudLike(\''+p.id+'\')">'+(liked?'♥':'♡')+' '+count+' Like</button>'+(mine?'<button type="button" onclick="deleteCloudPost(\''+p.id+'\')">Delete</button>':'')+(!mine?'<button type="button" onclick="toggleCommunityFollow(\''+p.created_by+'\')">'+(following?'Following':'Follow')+' · '+followers+'</button>':'')+'</div><div class="post-comments"><div class="comment-list">'+commentHtml+'</div><form class="comment-form" onsubmit="submitCommunityComment(event,\''+p.id+'\')"><input maxlength="1500" aria-label="Write a comment" placeholder="Write a comment…" required><button type="submit">Send</button></form></div>':'<div class="postfoot"><span class="small">Post is being reviewed</span></div>';
   const mediaHtml=media?(p.media_type==='video'?'<video class="postvideo" controls preload="metadata" playsinline src="'+esc(media)+'"></video>':'<img class="postimg" alt="Community post image" src="'+esc(media)+'">'):'';
-  return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><b>'+esc(name)+'</b><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+mediaHtml+social+'</article>';
+  return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><button class="profile-link" type="button" onclick="openMemberProfile(\\''+p.created_by+'\\')">'+esc(name)+'</button><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+mediaHtml+social+'</article>';
  }).join('');
  const own=cloudPosts.filter(p=>p.created_by===cloudUser.id),ownIds=own.map(p=>p.id);
  document.getElementById('postCount').textContent=own.length;
@@ -248,7 +248,7 @@ async function loadFollowList(kind){
   const photo=profile.avatar_path?'<img src="'+esc(profile.avatar_path)+'" alt="" style="width:42px;height:42px;border-radius:50%;object-fit:cover">':'<span class="avatar" style="width:42px;height:42px;min-width:42px;font-size:14px">'+esc(profileInitials(name))+'</span>';
   const isFollowing=followingSet.has(id),isSelf=id===cloudUser.id;
   const action=!isSelf?'<button class="btn secondary" type="button" onclick="toggleCommunityFollow(\''+id+'\')">'+(isFollowing?'Following · Unfollow':kind==='followers'?'Follow back':'Follow')+'</button>':'';
-  return '<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0"><div style="display:flex;align-items:center;gap:10px;min-width:0">'+photo+'<div><b>'+esc(name)+'</b><div class="small">'+esc(username)+'</div></div></div>'+action+'</div>';
+  return '<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0"><div style="display:flex;align-items:center;gap:10px;min-width:0">'+photo+'<div><button class="profile-link" type="button" onclick="openMemberProfile(\\''+id+'\\')">'+esc(name)+'</button><div class="small">'+esc(username)+'</div></div></div>'+action+'</div>';
  }).join('');
 }
 async function toggleCommunityFollow(targetId){
@@ -360,6 +360,7 @@ async function loadOlatunsMixtapes(){
  const {data:signs,error:signError}=await cloud.storage.from('olatuns-mixtapes').createSignedUrls(paths,3600);
  if(signError){console.warn('Could not create playback URLs:',signError.message);return}
  const signed=new Map();(signs||[]).forEach((s,i)=>{if(s.signedUrl)signed.set(paths[i],s.signedUrl)});
+ window.olatunsMixSources=Object.fromEntries(tracks.map(t=>[t.id,signed.get(t.audio_path)]));window.olatunsMixTitles=Object.fromEntries(tracks.map(t=>[t.id,t.title]));
  const [{data:follows},{data:savedRows}]=await Promise.all([cloud.from('olatuns_mixtape_follows').select('mixtape_id,user_id'),cloud.from('user_saved_mixtapes').select('mixtape_id').eq('user_id',cloudUser.id)]);const savedIds=new Set((savedRows||[]).map(x=>x.mixtape_id));
  const rows=follows||[],counts={},mine=new Set();
  rows.forEach(x=>{counts[x.mixtape_id]=(counts[x.mixtape_id]||0)+1;if(x.user_id===cloudUser.id)mine.add(x.mixtape_id)});
