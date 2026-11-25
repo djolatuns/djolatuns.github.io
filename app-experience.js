@@ -47,7 +47,9 @@ window.openConversation=async function(id){
 };
 async function sendDirectMessage(e){
  e.preventDefault();if(!activeConversationId)return expMsg('directMessageStatus','Choose a conversation first.');const input=document.getElementById('directMessageInput'),body=input.value.trim();if(!body)return;
- const {error}=await cloud.from('direct_messages').insert({conversation_id:activeConversationId,sender_id:cloudUser.id,body});if(error){expMsg('directMessageStatus',error.message);return}input.value='';expMsg('directMessageStatus','Sent.');await openConversation(activeConversationId);await loadMessages();
+ const {data:sentMessage,error}=await cloud.from('direct_messages').insert({conversation_id:activeConversationId,sender_id:cloudUser.id,body}).select('id').single();if(error){expMsg('directMessageStatus',error.message);return}
+ try{const {error:pushError}=await cloud.functions.invoke('member-push',{body:{action:'direct-message-created',message_id:sentMessage.id}});if(pushError)console.warn('Message push notification unavailable:',pushError.message)}catch(pushError){console.warn('Message push notification unavailable:',pushError)}
+ input.value='';expMsg('directMessageStatus','Sent.');await openConversation(activeConversationId);await loadMessages();
 }
 async function loadMemberNotifications(){
  if(!cloudUser)return;const list=document.getElementById('memberNotificationList');if(!list)return;
