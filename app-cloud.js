@@ -2,6 +2,7 @@ const SUPABASE_URL='https://tiqracqtgggoctyvtuqo.supabase.co';
 const SUPABASE_KEY='sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO';
 const cloud=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let cloudUser=null,cloudProfile=null,coverSelected=null,profileFileSelected=null;
+let isOlatunsAdmin=false,cloudPosts=[],cloudLikeIds=new Set(),selectedCommunityFile=null;
 function authMsg(t){document.getElementById('authMessage').textContent=t||''}
 function showLogin(){document.getElementById('loginForm').style.display='block';document.getElementById('signupForm').style.display='none';document.getElementById('recoveryForm').style.display='none';document.getElementById('authTitle').textContent='Welcome back.'}
 function showSignup(){document.getElementById('loginForm').style.display='none';document.getElementById('signupForm').style.display='block';document.getElementById('recoveryForm').style.display='none';document.getElementById('authTitle').textContent='Join Olatuns.';authMsg('')}
@@ -138,10 +139,6 @@ document.getElementById('photoFile').addEventListener('change',e=>{profileFileSe
 document.getElementById('coverFile').addEventListener('change',e=>{coverSelected=e.target.files[0]||null;if(coverSelected){const preview=document.getElementById('coverPreview');preview.innerHTML='<p class="small">Cover selected: '+esc(coverSelected.name)+'</p>';readImage(coverSelected,5*1024*1024,data=>preview.innerHTML='<img class="postimg" alt="Cover preview" src="'+data+'">')}});
 document.getElementById('profileForm').addEventListener('submit',async e=>{e.preventDefault();if(!cloudUser){document.getElementById('profileMsg').textContent='Please sign in first.';return}const name=document.getElementById('name').value.trim(),username=document.getElementById('profileUsernameInput').value.trim().toLowerCase(),bio=document.getElementById('bio').value.trim();if(!name||!username){document.getElementById('profileMsg').textContent='Display name and username are required.';return}if(!/^[a-z0-9_]{3,20}$/.test(username)){document.getElementById('profileMsg').textContent='Username must be 3–20 letters, numbers or underscores.';return}const msg=document.getElementById('profileMsg');msg.textContent='Saving profile securely…';try{let avatarUrl=user.photo||null,coverUrl=user.cover||null;if(profileFileSelected)avatarUrl=await uploadProfileAsset(profileFileSelected,'avatar');if(coverSelected)coverUrl=await uploadProfileAsset(coverSelected,'cover');const {data:collision}=await cloud.from('profiles').select('id').ilike('username',username).neq('id',cloudUser.id).maybeSingle();if(collision){msg.textContent='Username already taken. Please choose another.';return}const {error}=await cloud.from('profiles').update({display_name:name,username,bio,avatar_path:avatarUrl,cover_photo_path:coverUrl,updated_at:new Date().toISOString()}).eq('id',cloudUser.id);if(error)throw error;user={name,username,bio,photo:avatarUrl||'',cover:coverUrl||''};profileFileSelected=null;coverSelected=null;msg.textContent='Profile saved to your account. It will sync across devices.';await loadCloudProfile()}catch(err){msg.textContent='Save failed: '+(err.message||'Please try again.')}})
 
-let isOlatunsAdmin=false;
-let cloudPosts=[];
-let cloudLikeIds=new Set();
-let selectedCommunityFile=null;
 function safeMessage(id,message){const el=document.getElementById(id);if(el)el.textContent=message||''}
 function displayDate(value){const d=new Date(value);return Number.isNaN(d.getTime())?'':d.toLocaleString()}
 async function loadAnnouncements(){
