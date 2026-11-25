@@ -73,13 +73,21 @@ async function signOutApp(){
 }
 function profileInitials(n){return (String(n||'O').trim().split(/\s+/).slice(0,2).map(s=>s[0]||'').join('').toUpperCase()||'O')}
 async function loadAdminAccountLink(){
- const section=document.getElementById('profileSavedSection');if(!section||!cloudUser)return;
- const {data,error}=await cloud.from('admin_users').select('user_id').eq('user_id',cloudUser.id).maybeSingle();
- const old=document.getElementById('adminUploadAccountCard');if(old)old.remove();
- if(error||!data)return;
- const card=document.createElement('div');card.id='adminUploadAccountCard';card.className='card';card.style.cssText='margin-top:14px;border:1px solid #6b5128;background:linear-gradient(135deg,#19140d,#101010);padding:16px;border-radius:14px';
- card.innerHTML='<div class="eyebrow">ADMINISTRATOR · PRIVATE</div><h3 style="margin:8px 0">Mixtape Upload</h3><p class="small">Upload new mixtapes, publish releases and manage the library statistics.</p><a class="btn" href="admin-upload.html" style="display:block;text-align:center;text-decoration:none">Open Mixtape Upload ↗</a>';
- section.insertBefore(card,section.firstChild);
+ const section=document.getElementById('adminToolsSection');
+ const status=document.getElementById('adminToolsStatus');
+ if(!section||!cloudUser)return;
+ section.style.display='none';
+ if(status)status.textContent='Checking administrator access…';
+ try{
+  const {data,error}=await cloud.from('admin_users').select('user_id').eq('user_id',cloudUser.id).maybeSingle();
+  if(error)throw error;
+  if(!data){if(status)status.textContent='Administrator tools are not enabled for this account.';return}
+  section.style.display='block';
+  if(status)status.textContent='Administrator access verified.';
+ }catch(error){
+  console.error('Administrator access check failed:',error);
+  if(status)status.textContent='Could not verify administrator access. Refresh and try again.';
+ }
 }
 async function loadCloudProfile(){
  if(!cloudUser)return;
