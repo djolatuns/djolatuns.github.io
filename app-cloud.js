@@ -282,6 +282,9 @@ async function reviewCommunityPost(id,status){
  const {error}=await cloud.from('community_posts').update({moderation_status:status,reviewed_by:cloudUser.id,reviewed_at:new Date().toISOString()}).eq('id',id);
  if(error){alert('Could not update this post: '+error.message);return}
  await Promise.all([loadCloudFeed(),loadPendingPosts()]);
+ if(status==='published'){
+  try{const {error:pushError}=await cloud.functions.invoke('member-push',{body:{action:'community-post-published',post_id:id}});if(pushError)console.warn('Community push notification was not delivered:',pushError.message)}catch(pushError){console.warn('Community push notification unavailable:',pushError)}
+ }
 }
 async function toggleCloudLike(id){
  if(!cloudUser)return;
