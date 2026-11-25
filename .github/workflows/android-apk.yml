@@ -8,6 +8,17 @@ on:
       - 'package.json'
       - 'capacitor.config.ts'
       - 'scripts/**'
+      - 'index.html'
+      - 'app-core.js'
+      - 'app-cloud.js'
+      - 'styles.css'
+      - 'sw.js'
+      - 'manifest.webmanifest'
+      - 'booking.html'
+      - 'admin.html'
+      - 'admin-upload.html'
+      - 'download.html'
+      - 'icon*.svg'
       - '.github/workflows/android-apk.yml'
 
 permissions:
@@ -83,6 +94,17 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Set Android app version
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('android/app/build.gradle')
+          s = p.read_text()
+          s = re.sub(r'(?m)^(\s*versionCode\s+)\d+', r'\g<1>2', s)
+          s = re.sub(r"""(?m)^(\s*versionName\s+)["'][^"']+["']""", r'\g<1>"1.1.0"', s)
+          p.write_text(s)
+          PY
       - name: Sync Capacitor Android
         run: npx cap sync android
 
