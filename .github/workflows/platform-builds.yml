@@ -8,8 +8,23 @@ on:
       - 'package.json'
       - 'capacitor.config.ts'
       - 'scripts/**'
-      - 'src-tauri/**'
+      - 'index.html'
+      - 'app-core.js'
+      - 'app-cloud.js'
+      - 'styles.css'
+      - 'sw.js'
+      - 'manifest.webmanifest'
+      - 'booking.html'
+      - 'admin.html'
+      - 'admin-upload.html'
+      - 'download.html'
+      - 'icon*.svg'
       - '.github/workflows/platform-builds.yml'
+      - 'src-tauri/**'
+
+concurrency:
+  group: platform-builds-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   android:
@@ -29,6 +44,17 @@ jobs:
       - run: npm install
       - run: npm run prepare:web
       - run: npx cap add android
+      - name: Set Android app version
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('android/app/build.gradle')
+          s = p.read_text()
+          s = re.sub(r'(?m)^(\s*versionCode\s+)\d+', r'\g<1>2', s)
+          s = re.sub(r"""(?m)^(\s*versionName\s+)["'][^"']+["']""", r'\g<1>"1.1.0"', s)
+          p.write_text(s)
+          PY
       - run: npm run cap:sync
       - run: cd android && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
