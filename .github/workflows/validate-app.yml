@@ -26,9 +26,27 @@ jobs:
           test -s icon.svg
           test -s booking.html
           test -s admin.html
-          test -s src-tauri/icons/icon.png
+          test -s scripts/generate-tauri-icon.py
           node -e "JSON.parse(require('fs').readFileSync('manifest.webmanifest','utf8'))"
           node -e "const p=require('./package.json');const t=require('./src-tauri/tauri.conf.json');if(p.version!=='1.1.0'||t.version!==p.version)throw Error('App versions must match at 1.1.0')"
+      - name: Generate and validate native desktop icon
+        run: |
+          python3 scripts/generate-tauri-icon.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct, zlib
+          data = Path('src-tauri/icons/icon.png').read_bytes()
+          assert data.startswith(b'\\x89PNG\\r\\n\\x1a\\n'), 'Invalid PNG signature'
+          offset = 8
+          while offset < len(data):
+              length = struct.unpack('>I', data[offset:offset+4])[0]
+              kind = data[offset+4:offset+8]
+              chunk = data[offset+4:offset+8+length]
+              expected = struct.unpack('>I', data[offset+8+length:offset+12+length])[0]
+              assert (zlib.crc32(chunk) & 0xffffffff) == expected, 'PNG CRC mismatch in '+kind.decode()
+              offset += length + 12
+          print('Native app icon PNG passed CRC validation.')
+          PY
       - name: Validate HTML IDs, page navigation and assets
         run: |
           node <<'NODE'
