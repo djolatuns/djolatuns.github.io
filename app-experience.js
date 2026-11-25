@@ -133,4 +133,36 @@ window.updateSupportStatus=async function(id){
  if(error)alert('Could not update support request: '+error.message);else loadCreatorAnalytics();
 };
 async function checkAppUpdate(){const el=document.getElementById('appUpdateStatus');if(!el)return;el.textContent='Checking for updates…';if(!('serviceWorker'in navigator)){el.textContent='Service-worker updates are not available in this browser.';return}try{const reg=await navigator.serviceWorker.getRegistration('./');if(!reg){el.textContent='App update service is not registered yet.';return}await reg.update();el.textContent=reg.waiting?'An update is ready. Reload the app to use it.':'You are using the latest version available to this device.'}catch(e){el.textContent='Could not check for updates. Please try again when online.'}}
+
+function pushBase64ToBytes(value){
+ const padding='='.repeat((4-value.length%4)%4);
+ const raw=atob((value+padding).replace(/-/g,'+').replace(/_/g,'/'));
+ return Uint8Array.from(raw,c=>c.charCodeAt(0));
+}
+window.enablePushNotifications=async function(){
+ const status=document.getElementById('devicePushStatus'),button=document.getElementById('enablePushButton');
+ if(!cloudUser){if(status)status.textContent='Please sign in first.';return}
+ if(!('serviceWorker' in navigator)||!('PushManager' in window)){if(status)status.textContent='This browser does not support device notifications. Keep in-app notifications enabled instead.';return}
+ if(!('Notification' in window)){if(status)status.textContent='Notifications are not supported by this browser.';return}
+ if(button)button.disabled=true;
+ if(status)status.textContent='Preparing secure notifications…';
+ try{
+  const permission=await Notification.requestPermission();
+  if(permission!=='granted')throw new Error('Notification permission was not granted. Enable notifications in your browser settings and try again.');
+  const registration=await navigator.serviceWorker.ready;
+  const {data:keyData,error:keyError}=await cloud.functions.invoke('member-push',{body:{action:'public-key'}});
+  if(keyError)throw keyError;
+  if(!keyData?.publicKey)throw new Error(keyData?.error||'Push notifications are not configured on the server yet.');
+  let subscription=await registration.pushManager.getSubscription();
+  if(!subscription)subscription=await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:pushBase64ToBytes(keyData.publicKey)});
+  const {data:saveData,error:saveError}=await cloud.functions.invoke('member-push',{body:{action:'subscribe',subscription:subscription.toJSON()}});
+  if(saveError)throw saveError;
+  if(saveData?.error)throw new Error(saveData.error);
+  if(status)status.textContent='Device notifications are enabled on this device.';
+ }catch(error){
+  console.error('Device notification setup failed:',error);
+  if(status)status.textContent=error?.message||'Could not enable device notifications. Please try again.';
+ }finally{if(button)button.disabled=false}
+};
+
 window.addEventListener('online',()=>{if(cloudUser){loadMessages();loadMemberNotifications()}});
