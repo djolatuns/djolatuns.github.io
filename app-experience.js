@@ -8,7 +8,7 @@ async function experienceInit(){
  if(!cloudUser||experienceUserId===cloudUser.id)return;experienceUserId=cloudUser.id;
  await Promise.all([loadMemberNotifications(),loadMessages()]);
  const bind=(id,fn)=>{const el=document.getElementById(id);if(el&&!el.dataset.bound){el.dataset.bound='1';el.addEventListener('submit',fn)}};
- bind('experienceSearchForm',searchExperience);bind('directMessageForm',sendDirectMessage);bind('memberSettingsForm',saveMemberSettings);bind('supportRequestForm',submitSupportRequest);
+ bind('experienceSearchForm',searchExperience);bind('directMessageForm',sendDirectMessage);bind('memberSettingsForm',saveMemberSettings);bind('supportRequestForm',submitSupportRequest);bind('createPlaylistForm',createMixtapePlaylist);
 }
 cloud.auth.onAuthStateChange((event,session)=>{if(session?.user){experienceUserId=null;setTimeout(experienceInit,0)}else{experienceUserId=null;activeConversationId=null;hideExperiencePanels()}});
 cloud.auth.getSession().then(({data})=>{if(data?.session?.user)experienceInit()});
@@ -64,7 +64,48 @@ async function submitSupportRequest(e){e.preventDefault();const subject=document
 async function loadSupportRequests(){if(!cloudUser)return;const el=document.getElementById('supportRequestList');const {data,error}=await cloud.from('support_requests').select('id,subject,status,created_at').eq('user_id',cloudUser.id).order('created_at',{ascending:false}).limit(20);el.innerHTML=error?'<p class="small">Could not load requests.</p>':(data||[]).map(x=>'<div class="card"><b>'+expEsc(x.subject)+'</b><div class="small">'+expEsc(x.status)+' · '+expDate(x.created_at)+'</div></div>').join('')||'<p class="small">No support requests yet.</p>'}
 async function loadTransactions(){if(!cloudUser)return;const el=document.getElementById('transactionList');const {data,error}=await cloud.from('payment_transactions').select('provider,provider_reference,amount_minor,currency,status,created_at').eq('user_id',cloudUser.id).order('created_at',{ascending:false}).limit(50);el.innerHTML=error?'<p class="small">Could not load transactions.</p>':(data||[]).map(x=>'<div class="card"><b>'+expEsc(x.currency)+' '+(Number(x.amount_minor)/100).toLocaleString()+'</b><div class="small">'+expEsc(x.status)+' · '+expEsc(x.provider)+' · '+expDate(x.created_at)+'</div><div class="small">Reference: '+expEsc(x.provider_reference)+'</div></div>').join('')||'<p class="small">No verified transactions yet. Payments are not enabled in this version.</p>'}
 async function requestAccountDeletion(){if(!confirm('Send an account deletion request to the DJ Olatuns team? This will not delete your account immediately.'))return;const {error}=await cloud.from('support_requests').insert({user_id:cloudUser.id,subject:'Account deletion request',message:'Please contact me to confirm and process my account deletion request.'});expMsg('deletionStatus',error?'Could not send request: '+error.message:'Request submitted. Your account remains active until the team processes it.')}
-async function loadSavedMixtapes(){if(!cloudUser)return;const el=document.getElementById('savedMixtapeList');const {data,error}=await cloud.from('user_saved_mixtapes').select('mixtape_id,created_at').eq('user_id',cloudUser.id).order('created_at',{ascending:false});if(error){el.textContent='Could not load saved music.';return}const ids=(data||[]).map(x=>x.mixtape_id);if(!ids.length){el.innerHTML='<p class="small">You have not saved any mixtapes yet.</p>';return}const {data:tracks}=await cloud.from('olatuns_mixtapes').select('id,title,description').in('id',ids);el.innerHTML=(tracks||[]).map(t=>'<div class="experience-result"><div class="result-main"><b>'+expEsc(t.title)+'</b><div class="small">'+expEsc(t.description||'')+'</div></div><button class="btn secondary" onclick="toggleSavedMixtape(\''+t.id+'\')">Remove</button></div>').join('')}
+async function loadSavedMixtapes(){
+ if(!cloudUser)return;
+ const el=document.getElementById('savedMixtapeList');
+ const [{data:saved,error},{data:playlists, error:playlistError}]=await Promise.all([
+  cloud.from('user_saved_mixtapes').select('mixtape_id,created_at').eq('user_id',cloudUser.id).order('created_at',{ascending:false}),
+  cloud.from('mixtape_playlists').select('id,name,created_at').eq('user_id',cloudUser.id).order('created_at',{ascending:false})
+ ]);
+ if(error){el.textContent='Could not load saved music.';return}
+ const ids=(saved||[]).map(x=>x.mixtape_id);
+ const {data:tracks}=ids.length?await cloud.from('olatuns_mixtapes').select('id,title,description').in('id',ids):{data:[]};
+ el.innerHTML=(tracks||[]).map(t=>'<div class="experience-result"><div class="result-main"><b>'+expEsc(t.title)+'</b><div class="small">'+expEsc(t.description||'')+'</div></div><button class="btn secondary" onclick="toggleSavedMixtape(\' '+t.id+'\')">Remove</button></div>').join('')||'<p class="small">You have not saved any mixtapes yet.</p>';
+ const list=document.getElementById('playlistList');
+ list.innerHTML=playlistError?'<p class="small">Could not load playlists.</p>':(playlists||[]).map(p=>'<div class="experience-result"><div class="result-main"><b>'+expEsc(p.name)+'</b></div><button class="btn secondary" onclick="openMixtapePlaylist(\''+p.id+'\')">Open</button></div>').join('')||'<p class="small">Create your first playlist above.</p>';
+}
+async function createMixtapePlaylist(e){
+ e.preventDefault();const input=document.getElementById('newPlaylistName'),name=input.value.trim();if(!name)return;
+ const {error}=await cloud.from('mixtape_playlists').insert({user_id:cloudUser.id,name});
+ if(error){alert('Could not create playlist: '+error.message);return}
+ input.value='';await loadSavedMixtapes();
+}
+window.openMixtapePlaylist=async function(id){
+ const detail=document.getElementById('playlistDetail');
+ const [{data:items,error},{data:saved}]=await Promise.all([
+  cloud.from('mixtape_playlist_items').select('mixtape_id,position').eq('playlist_id',id).eq('user_id',cloudUser.id).order('position'),
+  cloud.from('user_saved_mixtapes').select('mixtape_id').eq('user_id',cloudUser.id)
+ ]);
+ if(error){detail.textContent='Could not load playlist.';return}
+ const ids=(items||[]).map(x=>x.mixtape_id);
+ const {data:tracks}=ids.length?await cloud.from('olatuns_mixtapes').select('id,title').in('id',ids):{data:[]};
+ const savedIds=(saved||[]).map(x=>x.mixtape_id),available=savedIds.filter(x=>!ids.includes(x));
+ const {data:savedTracks}=available.length?await cloud.from('olatuns_mixtapes').select('id,title').in('id',available):{data:[]};
+ detail.innerHTML='<h3>Playlist</h3>'+((tracks||[]).map(t=>'<div class="experience-result"><b class="result-main">'+expEsc(t.title)+'</b><button class="btn secondary" onclick="removePlaylistItem(\''+id+'\',\''+t.id+'\')">Remove</button></div>').join('')||'<p class="small">This playlist is empty.</p>')+(savedTracks?.length?'<div class="field"><label>Add a saved mixtape</label><select id="playlistTrackSelect">'+savedTracks.map(t=>'<option value="'+t.id+'">'+expEsc(t.title)+'</option>').join('')+'</select></div><button class="btn" onclick="addPlaylistItem(\''+id+'\')">Add to playlist</button>':'<p class="small">Save a mixtape first to add it here.</p>');
+};
+window.addPlaylistItem=async function(id){
+ const track=document.getElementById('playlistTrackSelect')?.value;if(!track)return;
+ const {error}=await cloud.from('mixtape_playlist_items').insert({playlist_id:id,user_id:cloudUser.id,mixtape_id:track});
+ if(error)alert('Could not add mixtape: '+error.message);else{await openMixtapePlaylist(id);await loadSavedMixtapes()}
+};
+window.removePlaylistItem=async function(id,track){
+ const {error}=await cloud.from('mixtape_playlist_items').delete().eq('playlist_id',id).eq('user_id',cloudUser.id).eq('mixtape_id',track);
+ if(error)alert('Could not remove mixtape: '+error.message);else{await openMixtapePlaylist(id);await loadSavedMixtapes()}
+};
 window.toggleSavedMixtape=async function(id){const {data,error}=await cloud.from('user_saved_mixtapes').select('mixtape_id').eq('user_id',cloudUser.id).eq('mixtape_id',id).maybeSingle();if(error)return alert('Could not check saved music.');const result=data?await cloud.from('user_saved_mixtapes').delete().eq('user_id',cloudUser.id).eq('mixtape_id',id):await cloud.from('user_saved_mixtapes').insert({user_id:cloudUser.id,mixtape_id:id});if(result.error)alert(result.error.message);else{await loadSavedMixtapes();await loadOlatunsMixtapes()}};
 window.playOlatunsMix=function(id){const src=window.olatunsMixSources?.[id];if(!src)return;const audio=document.getElementById('olatunsAudioPlayer'),panel=document.getElementById('miniPlayer');audio.src=src;panel.hidden=false;document.getElementById('miniPlayerTitle').textContent=window.olatunsMixTitles?.[id]||'DJ Olatuns Mixtape';audio.play().catch(()=>expMsg('miniPlayerTitle','Tap play to start listening.'));if(typeof recordMixtapePlay==='function')recordMixtapePlay(id)};
 async function loadAssistantHistory(){if(!cloudUser)return;const list=document.getElementById('assistantConversationList');const {data,error}=await cloud.from('ai_support_conversations').select('id,title,updated_at').eq('user_id',cloudUser.id).order('updated_at',{ascending:false}).limit(30);list.innerHTML=error?'<p class="small">Could not load AI history.</p>':(data||[]).map(c=>'<button class="card" style="display:block;width:100%;text-align:left" onclick="openAssistantConversation(\''+c.id+'\')">'+expEsc(c.title)+'<div class="small">'+expDate(c.updated_at)+'</div></button>').join('')||'<p class="small">No saved AI conversations yet.</p>'}
