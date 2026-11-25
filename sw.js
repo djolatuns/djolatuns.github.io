@@ -1,5 +1,9 @@
-const CACHE_VERSION = 'olatuns-shell-v1';
-const SHELL_FILES = ['./', './index.html', './styles.css', './app-core.js', './app-cloud.js', './manifest.webmanifest', './icon.svg'];
+const CACHE_VERSION = 'olatuns-shell-v2';
+const SHELL_FILES = [
+  './', './index.html', './styles.css', './app-core.js', './app-cloud.js',
+  './manifest.webmanifest', './icon.svg', './icon-192.svg', './icon-512.svg',
+  './download.html'
+];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
