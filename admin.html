@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<meta name="robots" content="noindex,nofollow">
+<title>DJ Olatuns · Admin Dashboard</title>
+<style>
+:root{--bg:#080808;--panel:#141414;--gold:#d6b257;--text:#f5f2ea;--muted:#aaa49a;--line:#30291d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}.wrap{width:min(100% - 28px,920px);margin:auto;padding:22px 0 48px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:1px}.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#f0d278,#9c6b13);color:#111}.top a{color:var(--gold);text-decoration:none;font-size:13px}
+.hero,.panel,.booking{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#19150e,#101010 65%);padding:18px;margin-top:16px}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(32px,7vw,48px);margin:10px 0}.muted,.small{color:var(--muted);font-size:12px;line-height:1.6}
+.field{margin:12px 0}.field label{display:block;font-size:13px;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;background:#090909;color:#fff;border:1px solid #3b352b;border-radius:10px;padding:11px;font:inherit}.field textarea{min-height:84px;resize:vertical}
+.btn{border:0;border-radius:10px;background:var(--gold);color:#111;font-weight:900;padding:11px 14px;cursor:pointer}.btn.secondary{background:#262626;color:#eee;border:1px solid #3b3b3b}.btn:disabled{opacity:.55}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.status{color:var(--gold);font-size:13px;min-height:20px;margin-top:9px}.booking{background:var(--panel)}.booking-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.booking h3{margin:0 0 6px}.chip{display:inline-block;border:1px solid #55401d;border-radius:20px;padding:4px 9px;color:var(--gold);font-size:11px}.details{white-space:pre-wrap;overflow-wrap:anywhere;color:#d4d0c8;font-size:13px;line-height:1.6}.contact a{color:var(--gold);text-decoration:none}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.stat{border:1px solid var(--line);background:#111;border-radius:13px;padding:12px}.stat b{display:block;font-size:22px;color:var(--gold)}.empty{text-align:center;padding:28px;color:var(--muted)}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.hero,.panel,.booking{padding:15px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="top"><div class="brand"><div class="logo">DJ</div><div>DJ OLATUNS · ADMIN</div></div><div class="actions"><a href="./">Open app</a><a href="admin-upload.html">Mixtape upload ↗</a><button class="btn secondary" id="signOut" type="button" style="display:none">Sign out</button></div></div>
+<section class="hero"><div class="eyebrow">Private control room</div><h1>Booking dashboard.</h1><p class="muted">Review customer requests, update booking status and keep event details organised. Access is controlled by the Supabase administrator list.</p></section>
+<section class="panel" id="loginPanel"><h2>Administrator sign in</h2><form id="loginForm"><div class="field"><label for="email">Email address</label><input id="email" type="email" required autocomplete="username"></div><div class="field"><label for="password">Password</label><input id="password" type="password" required autocomplete="current-password"></div><button class="btn" type="submit">Sign in</button></form><div class="status" id="authStatus" role="status" aria-live="polite"></div></section>
+<section id="dashboard" style="display:none">
+<div class="grid" id="summary"><div class="stat"><b id="totalCount">0</b><span class="small">Total requests</span></div><div class="stat"><b id="newCount">0</b><span class="small">New requests</span></div><div class="stat"><b id="confirmedCount">0</b><span class="small">Confirmed</span></div></div>
+<div class="actions"><button class="btn" id="refreshBookings" type="button">Refresh requests</button><span class="small" id="lastUpdated"></span></div>
+<div id="bookingList"><div class="empty">Loading booking requests…</div></div>
+</section>
+<section class="panel" id="deniedPanel" style="display:none"><h2>Administrator access required</h2><p class="muted">This account is not authorised to manage DJ Olatuns bookings.</p><button class="btn secondary" id="deniedSignOut" type="button">Sign out</button></section>
+<div class="status" id="pageStatus" role="status" aria-live="polite"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL='https://tiqracqtgggoctyvtuqo.supabase.co';
+const SUPABASE_KEY='sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO';
+const cloud=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+const statuses=['new','contacted','quoted','confirmed','completed','declined'];
+let activeUserId=null,isAdmin=false,loading=false;
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function dateLabel(value){if(!value)return'Not specified';const d=new Date(value+'T00:00:00');return Number.isNaN(d.getTime())?esc(value):d.toLocaleDateString()}
+function showLogin(){ $('loginPanel').style.display='block';$('dashboard').style.display='none';$('deniedPanel').style.display='none';$('signOut').style.display='none' }
+async function checkSession(session){
+ const user=session?.user||null;
+ if(!user){activeUserId=null;isAdmin=false;showLogin();return}
+ if(activeUserId===user.id&&isAdmin)return;
+ activeUserId=user.id;
+ $('authStatus').textContent='Checking administrator access…';
+ const {data,error}=await cloud.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();
+ isAdmin=!!data&&!error;
+ $('loginPanel').style.display='none';$('signOut').style.display='inline-block';
+ if(!isAdmin){$('dashboard').style.display='none';$('deniedPanel').style.display='block';$('authStatus').textContent='';return}
+ $('deniedPanel').style.display='none';$('dashboard').style.display='block';
+ await loadBookings();
+}
+cloud.auth.onAuthStateChange((event,session)=>{
+ const id=session?.user?.id||null;
+ if(event==='TOKEN_REFRESHED'&&id===activeUserId)return;
+ checkSession(session);
+});
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('authStatus').textContent='Signing in…';
+ const {error}=await cloud.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+ if(error)$('authStatus').textContent=error.message;
+});
+async function signOut(){await cloud.auth.signOut();activeUserId=null;isAdmin=false;showLogin();$('authStatus').textContent='Signed out.'}
+$('signOut').addEventListener('click',signOut);$('deniedSignOut').addEventListener('click',signOut);
+async function loadBookings(){
+ if(!isAdmin||loading)return;loading=true;
+ $('bookingList').innerHTML='<div class="empty">Loading booking requests…</div>';
+ const {data,error}=await cloud.from('booking_requests').select('id,full_name,email,phone,event_type,event_date,event_time,event_location,budget_range,details,status,admin_notes,created_at').order('created_at',{ascending:false}).limit(100);
+ loading=false;
+ if(error){$('bookingList').innerHTML='<div class="booking">Could not load booking requests. Check the database permissions and refresh.</div>';$('pageStatus').textContent='Request loading failed.';return}
+ const rows=data||[];
+ $('totalCount').textContent=rows.length;
+ $('newCount').textContent=rows.filter(x=>x.status==='new').length;
+ $('confirmedCount').textContent=rows.filter(x=>x.status==='confirmed').length;
+ $('lastUpdated').textContent='Updated '+new Date().toLocaleTimeString();
+ if(!rows.length){$('bookingList').innerHTML='<div class="booking empty">No booking requests yet.</div>';return}
+ $('bookingList').innerHTML=rows.map(b=>{
+  const options=statuses.map(s=>'<option value="'+s+'"'+(b.status===s?' selected':'')+'>'+s.charAt(0).toUpperCase()+s.slice(1)+'</option>').join('');
+  const email=encodeURIComponent(b.email||''),phone=encodeURIComponent(b.phone||'');
+  return '<article class="booking" data-booking="'+esc(b.id)+'"><div class="booking-head"><div><h3>'+esc(b.full_name)+'</h3><span class="chip">'+esc(b.event_type)+'</span></div><span class="small">'+esc(new Date(b.created_at).toLocaleString())+'</span></div><p class="contact"><a href="mailto:'+email+'">'+esc(b.email)+'</a> · <a href="tel:'+phone+'">'+esc(b.phone)+'</a></p><p><b>Event:</b> '+esc(dateLabel(b.event_date))+' · '+esc(b.event_time||'Time not specified')+'<br><b>Location:</b> '+esc(b.event_location)+'<br><b>Budget:</b> '+esc(b.budget_range||'Not specified')+'</p><div class="details">'+esc(b.details||'No extra details provided.')+'</div><div class="field"><label>Booking status</label><select data-status>'+options+'</select></div><div class="field"><label>Private admin notes</label><textarea data-notes maxlength="1500" placeholder="Internal notes for the DJ Olatuns team">'+esc(b.admin_notes||'')+'</textarea></div><div class="actions"><button class="btn" data-save="'+esc(b.id)+'" type="button">Save changes</button></div><div class="status" data-message></div></article>';
+ }).join('');
+}
+$('bookingList').addEventListener('click',async e=>{
+ const button=e.target.closest('[data-save]');if(!button||!isAdmin)return;
+ const card=button.closest('[data-booking]'),id=button.getAttribute('data-save');
+ const status=card.querySelector('[data-status]').value,notes=card.querySelector('[data-notes]').value.trim(),message=card.querySelector('[data-message]');
+ button.disabled=true;message.textContent='Saving…';
+ const {error}=await cloud.from('booking_requests').update({status,admin_notes:notes,updated_at:new Date().toISOString()}).eq('id',id);
+ button.disabled=false;
+ if(error){message.textContent='Could not save changes. Please try again.';return}
+ message.textContent='Booking updated successfully.';
+ $('newCount').textContent=[...document.querySelectorAll('[data-status]')].filter(x=>x.value==='new').length;
+ $('confirmedCount').textContent=[...document.querySelectorAll('[data-status]')].filter(x=>x.value==='confirmed').length;
+});
+$('refreshBookings').addEventListener('click',loadBookings);
+</script>
+</body>
+</html>
