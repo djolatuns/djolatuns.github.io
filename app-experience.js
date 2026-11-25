@@ -74,7 +74,7 @@ async function loadSavedMixtapes(){
  if(error){el.textContent='Could not load saved music.';return}
  const ids=(saved||[]).map(x=>x.mixtape_id);
  const {data:tracks}=ids.length?await cloud.from('olatuns_mixtapes').select('id,title,description').in('id',ids):{data:[]};
- el.innerHTML=(tracks||[]).map(t=>'<div class="experience-result"><div class="result-main"><b>'+expEsc(t.title)+'</b><div class="small">'+expEsc(t.description||'')+'</div></div><button class="btn secondary" onclick="toggleSavedMixtape(\' '+t.id+'\')">Remove</button></div>').join('')||'<p class="small">You have not saved any mixtapes yet.</p>';
+ el.innerHTML=(tracks||[]).map(t=>'<div class="experience-result"><div class="result-main"><b>'+expEsc(t.title)+'</b><div class="small">'+expEsc(t.description||'')+'</div></div><button class="btn secondary" onclick="toggleSavedMixtape(\''+t.id+'\')">Remove</button></div>').join('')||'<p class="small">You have not saved any mixtapes yet.</p>';
  const list=document.getElementById('playlistList');
  list.innerHTML=playlistError?'<p class="small">Could not load playlists.</p>':(playlists||[]).map(p=>'<div class="experience-result"><div class="result-main"><b>'+expEsc(p.name)+'</b></div><button class="btn secondary" onclick="openMixtapePlaylist(\''+p.id+'\')">Open</button></div>').join('')||'<p class="small">Create your first playlist above.</p>';
 }
