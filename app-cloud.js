@@ -360,12 +360,12 @@ async function loadOlatunsMixtapes(){
  const {data:signs,error:signError}=await cloud.storage.from('olatuns-mixtapes').createSignedUrls(paths,3600);
  if(signError){console.warn('Could not create playback URLs:',signError.message);return}
  const signed=new Map();(signs||[]).forEach((s,i)=>{if(s.signedUrl)signed.set(paths[i],s.signedUrl)});
- const {data:follows}=await cloud.from('olatuns_mixtape_follows').select('mixtape_id,user_id');
+ const [{data:follows},{data:savedRows}]=await Promise.all([cloud.from('olatuns_mixtape_follows').select('mixtape_id,user_id'),cloud.from('user_saved_mixtapes').select('mixtape_id').eq('user_id',cloudUser.id)]);const savedIds=new Set((savedRows||[]).map(x=>x.mixtape_id));
  const rows=follows||[],counts={},mine=new Set();
  rows.forEach(x=>{counts[x.mixtape_id]=(counts[x.mixtape_id]||0)+1;if(x.user_id===cloudUser.id)mine.add(x.mixtape_id)});
  const cards=tracks.map(t=>{
   const cover=signed.get(t.cover_path),audio=signed.get(t.audio_path);
-  return '<article class="release">'+(cover?'<img class="postimg" style="width:100%;height:150px;object-fit:cover;margin:0;border-radius:0" src="'+esc(cover)+'" alt="'+esc(t.title)+' artwork">':'<div class="cover">DJ OLATUNS</div>')+'<div class="release-body"><h3>'+esc(t.title)+'</h3><p>'+esc(t.description||'Official DJ Olatuns mixtape')+'</p><audio controls preload="none" controlsList="nodownload noplaybackrate" disablePictureInPicture src="'+esc(audio||'')+'" onplay="recordMixtapePlay(\''+t.id+'\')"></audio><p class="small"><span id="mixplays-'+t.id+'">'+Number(t.play_count||0).toLocaleString()+'</span> plays · <span id="mixfollows-'+t.id+'">'+(counts[t.id]||0)+'</span> followers</p><button class="btn secondary" type="button" onclick="toggleMixtapeFollow(\''+t.id+'\')">'+(mine.has(t.id)?'Following':'Follow mixtape')+'</button></div></article>'
+  return '<article class="release">'+(cover?'<img class="postimg" style="width:100%;height:150px;object-fit:cover;margin:0;border-radius:0" src="'+esc(cover)+'" alt="'+esc(t.title)+' artwork">':'<div class="cover">DJ OLATUNS</div>')+'<div class="release-body"><h3>'+esc(t.title)+'</h3><p>'+esc(t.description||'Official DJ Olatuns mixtape')+'</p><button class="btn" type="button" onclick="playOlatunsMix(\''+t.id+'\')">▶ Play mix</button><button class="btn secondary" type="button" onclick="toggleSavedMixtape(\''+t.id+'\')">'+(savedIds.has(t.id)?'♥ Saved':'♡ Save')+'</button><p class="small"><span id="mixplays-'+t.id+'">'+Number(t.play_count||0).toLocaleString()+'</span> plays · <span id="mixfollows-'+t.id+'">'+(counts[t.id]||0)+'</span> followers</p><button class="btn secondary" type="button" onclick="toggleMixtapeFollow(\''+t.id+'\')">'+(mine.has(t.id)?'Following':'Follow mixtape')+'</button></div></article>'
  });
  const html=cards.join('');
  const mixGrid=document.getElementById('mixGrid'),homeMix=document.getElementById('homeMix');
