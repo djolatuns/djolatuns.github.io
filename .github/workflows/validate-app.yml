@@ -71,7 +71,7 @@ jobs:
           const fs=require('fs'),vm=require('vm');
           for(const file of ['booking.html','admin.html']){
             const html=fs.readFileSync(file,'utf8');
-            const scripts=[...html.matchAll(/<script\\b[^>]*>([\\s\\S]*?)<\\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
+            const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(s=>s.trim());
             if(!scripts.length) throw Error('No inline JavaScript found in '+file);
             scripts.forEach((source,index)=>new vm.Script(source,{filename:file+' inline '+index}));
           }
