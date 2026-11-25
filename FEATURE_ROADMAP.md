@@ -26,7 +26,7 @@ This roadmap tracks the approved upgrade set for the existing GitHub Pages + Sup
 
 - [ ] Connect a private AI provider through a Supabase Edge Function and server-side secret. Do not put an AI API key in browser code.
 - [ ] Connect a payment provider and verified server-side webhook before recording successful payments or showing checkout.
-- [ ] Add push delivery for notifications; the current notification centre is in-app.
+- [x] Add browser push subscription management and service-worker notification handling for supported devices.\n- [x] Deliver push alerts for new bookings to CEO devices, private messages to conversation recipients, and community posts only after admin approval.\n- [ ] Expand push delivery to the remaining in-app notification types (likes, comments and follows).
 - [ ] Expand the music player with queue controls, repeat/shuffle and playlist playback.
 - [ ] Add full member administration tools, including safe account moderation and reporting workflows.
 - [ ] Expand offline support to explicitly saved media where licensing and storage rules permit.
