@@ -101,7 +101,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - run: npm install
       - name: Generate Windows/macOS application icons
-        run: npx tauri icon src-tauri/icons/icon.png --output src-tauri/icons
+        run: python3 scripts/generate-tauri-icon.py
+          npx tauri icon src-tauri/icons/icon.png --output src-tauri/icons
       - run: npm run desktop:build
       - uses: actions/upload-artifact@v4
         with:
@@ -119,7 +120,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - run: npm install
       - name: Generate Windows/macOS application icons
-        run: npx tauri icon src-tauri/icons/icon.png --output src-tauri/icons
+        run: python3 scripts/generate-tauri-icon.py
+          npx tauri icon src-tauri/icons/icon.png --output src-tauri/icons
       - run: npm run desktop:build
       - uses: actions/upload-artifact@v4
         with:
