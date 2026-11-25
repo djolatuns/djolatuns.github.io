@@ -179,7 +179,7 @@ async function loadCloudFeed(){
  cloudLikeIds=new Set(likeRows.filter(x=>x.user_id===cloudUser.id).map(x=>x.post_id));
  const commentsByPost=new Map();
  commentRows.forEach(c=>{if(!commentsByPost.has(c.post_id))commentsByPost.set(c.post_id,[]);commentsByPost.get(c.post_id).push(c)});
- const mediaPaths=cloudPosts.filter(p=>p.media_url&&p.media_type==='image').map(p=>p.media_url);
+ const mediaPaths=cloudPosts.filter(p=>p.media_url&&['image','video'].includes(p.media_type)).map(p=>p.media_url);
  let signedMap=new Map();
  if(mediaPaths.length){const {data:signed}=await cloud.storage.from('community-media').createSignedUrls(mediaPaths,3600);(signed||[]).forEach((item,i)=>{if(item.signedUrl)signedMap.set(mediaPaths[i],item.signedUrl)})}
  feed.innerHTML=cloudPosts.map(p=>{
@@ -190,7 +190,8 @@ async function loadCloudFeed(){
   const status=p.moderation_status==='pending'&&mine?'<span class="chip">Awaiting review</span>':'';
   const commentHtml=comments.map(c=>'<div class="comment-row"><span>'+esc(c.body)+'</span><small>'+esc(displayDate(c.created_at))+'</small></div>').join('');
   const social=p.moderation_status==='published'?'<div class="postfoot"><button type="button" onclick="toggleCloudLike(\''+p.id+'\')">'+(liked?'♥':'♡')+' '+count+' Like</button>'+(mine?'<button type="button" onclick="deleteCloudPost(\''+p.id+'\')">Delete</button>':'')+(!mine?'<button type="button" onclick="toggleCommunityFollow(\''+p.created_by+'\')">'+(following?'Following':'Follow')+' · '+followers+'</button>':'')+'</div><div class="post-comments"><div class="comment-list">'+commentHtml+'</div><form class="comment-form" onsubmit="submitCommunityComment(event,\''+p.id+'\')"><input maxlength="1500" aria-label="Write a comment" placeholder="Write a comment…" required><button type="submit">Send</button></form></div>':'<div class="postfoot"><span class="small">Post is being reviewed</span></div>';
-  return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><b>'+esc(name)+'</b><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+(media?'<img class="postimg" alt="Community post image" src="'+esc(media)+'">':'')+social+'</article>';
+  const mediaHtml=media?(p.media_type==='video'?'<video class="postvideo" controls preload="metadata" playsinline src="'+esc(media)+'"></video>':'<img class="postimg" alt="Community post image" src="'+esc(media)+'">'):'';
+  return '<article class="post"><div class="posthead">'+avatar(name,photo)+'<div><b>'+esc(name)+'</b><div class="small">'+(profile.username?'@'+esc(profile.username)+' · ':'')+esc(displayDate(p.created_at))+'</div></div></div>'+status+'<div class="postbody">'+esc(p.caption||'')+'</div>'+mediaHtml+social+'</article>';
  }).join('');
  const own=cloudPosts.filter(p=>p.created_by===cloudUser.id),ownIds=own.map(p=>p.id);
  document.getElementById('postCount').textContent=own.length;
@@ -220,7 +221,14 @@ async function loadPendingPosts(){
  const ids=[...new Set(data.map(p=>p.created_by))];
  const {data:profiles}=await cloud.from('profiles').select('id,display_name,username').in('id',ids);
  const names=new Map((profiles||[]).map(p=>[p.id,p.display_name||p.username||'Member']));
- el.innerHTML=data.map(p=>'<article class="card"><b>'+esc(names.get(p.created_by)||'Member')+'</b><p>'+esc(p.caption||'Image post')+'</p><div class="small">'+esc(displayDate(p.created_at))+'</div><div class="postfoot"><button class="btn" type="button" onclick="reviewCommunityPost(\''+p.id+'\',\'published\')">Approve</button><button class="btn danger" type="button" onclick="reviewCommunityPost(\''+p.id+'\',\'rejected\')">Reject</button></div></article>').join('');
+ const paths=data.filter(p=>p.media_url).map(p=>p.media_url);
+ const {data:signed}=paths.length?await cloud.storage.from('community-media').createSignedUrls(paths,3600):{data:[]};
+ const mediaMap=new Map();(signed||[]).forEach((item,i)=>{if(item.signedUrl)mediaMap.set(paths[i],item.signedUrl)});
+ el.innerHTML=data.map(p=>{
+  const media=mediaMap.get(p.media_url);
+  const preview=media?(p.media_type==='video'?'<video class="postvideo" controls preload="metadata" playsinline src="'+esc(media)+'"></video>':'<img class="postimg" alt="Pending community post image" src="'+esc(media)+'">'):'';
+  return '<article class="card"><b>'+esc(names.get(p.created_by)||'Member')+'</b><p>'+esc(p.caption||'Media post')+'</p>'+preview+'<div class="small">'+esc(displayDate(p.created_at))+'</div><div class="postfoot"><button class="btn" type="button" onclick="reviewCommunityPost(\''+p.id+'\',\'published\')">Approve</button><button class="btn danger" type="button" onclick="reviewCommunityPost(\''+p.id+'\',\'rejected\')">Reject</button></div></article>';
+ }).join('');
 }
 async function reviewCommunityPost(id,status){
  if(!isOlatunsAdmin)return;
@@ -248,10 +256,20 @@ document.getElementById('postImageFile').addEventListener('change',e=>{
  selectedCommunityFile=e.target.files[0]||null;
  const preview=document.getElementById('postPreview');
  if(!selectedCommunityFile){preview.innerHTML='';return}
- if(!['image/jpeg','image/png','image/webp'].includes(selectedCommunityFile.type)||selectedCommunityFile.size>5*1024*1024){
-  selectedCommunityFile=null;e.target.value='';preview.textContent='Choose a JPG, PNG or WebP image up to 5 MB.';return
+ const type=selectedCommunityFile.type;
+ const imageTypes=['image/jpeg','image/png','image/webp'],videoTypes=['video/mp4','video/webm'];
+ const isImage=imageTypes.includes(type),isVideo=videoTypes.includes(type);
+ const maxSize=isVideo?50*1024*1024:5*1024*1024;
+ if((!isImage&&!isVideo)||selectedCommunityFile.size>maxSize){
+  selectedCommunityFile=null;e.target.value='';
+  preview.textContent='Choose JPG, PNG or WebP up to 5 MB, or MP4/WebM video up to 50 MB.';
+  return
  }
- readImage(e.target.files[0],5*1024*1024,data=>preview.innerHTML='<img class="postimg" alt="Post preview" src="'+data+'">');
+ if(isImage){readImage(selectedCommunityFile,5*1024*1024,data=>preview.innerHTML='<img class="postimg" alt="Post preview" src="'+data+'">')}
+ else{
+  const video=document.createElement('video');video.className='postvideo';video.controls=true;video.playsInline=true;video.preload='metadata';video.src=URL.createObjectURL(selectedCommunityFile);
+  preview.replaceChildren(video);
+ }
 });
 document.getElementById('postForm').addEventListener('submit',async e=>{
  e.preventDefault();if(!cloudUser){safeMessage('postMsg','Please sign in to post.');return}
@@ -261,12 +279,12 @@ document.getElementById('postForm').addEventListener('submit',async e=>{
  try{
   let mediaPath=null;
   if(selectedCommunityFile){
-   const ext=selectedCommunityFile.type.split('/')[1].replace('jpeg','jpg');
+   const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','video/mp4':'mp4','video/webm':'webm'})[selectedCommunityFile.type];
    mediaPath=cloudUser.id+'/'+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
    const {error:uploadError}=await cloud.storage.from('community-media').upload(mediaPath,selectedCommunityFile,{upsert:false,contentType:selectedCommunityFile.type});
    if(uploadError)throw uploadError;
   }
-  const {error}=await cloud.from('community_posts').insert({title:'',caption,media_url:mediaPath,media_type:mediaPath?'image':null,created_by:cloudUser.id,moderation_status:'pending',category:'Member Community'});
+  const {error}=await cloud.from('community_posts').insert({title:'',caption,media_url:mediaPath,media_type:mediaPath?(selectedCommunityFile?.type.startsWith('video/')?'video':'image'):null,created_by:cloudUser.id,moderation_status:'pending',category:'Member Community'});
   if(error){if(mediaPath)await cloud.storage.from('community-media').remove([mediaPath]);throw error}
   e.target.reset();selectedCommunityFile=null;document.getElementById('postPreview').innerHTML='';
   safeMessage('postMsg','Submitted. Your post will appear after approval.');
