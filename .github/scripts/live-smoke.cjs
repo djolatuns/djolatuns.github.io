@@ -22,6 +22,7 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
    const cloudSource=await (await page.request.get('https://djolatuns.github.io/app-cloud.js?smoke='+Date.now())).text();
    if(!cloudSource.includes('resetCloudProfile')||!cloudSource.includes("username_available")) throw new Error('Live account protections are not updated yet');
    if(!cloudSource.includes('submitCommunityComment')||!cloudSource.includes('toggleCommunityFollow')) throw new Error('Live community comments/follows code is not updated yet');
+   if(!cloudSource.includes('video/webm')||!cloudSource.includes('postvideo')) throw new Error('Live community video upload/playback code is not updated yet');
    if(!await page.locator('#followStats').count()) throw new Error('Live profile follower statistics are missing');
    const pages=await page.locator('section.page').evaluateAll(nodes=>nodes.map(n=>n.id));
    const expected=['home','mixtapes','discover','community','profile','about'];
