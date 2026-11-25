@@ -13,6 +13,12 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
    await page.waitForTimeout(1200);
    const title=await page.title();
    if(!/olatuns/i.test(title)) throw new Error('Unexpected page title: '+title);
+   const deepLinkPage=await browser.newPage();
+   await deepLinkPage.goto('https://djolatuns.github.io/?page=community&smoke='+Date.now(),{waitUntil:'domcontentloaded',timeout:45000});
+   await deepLinkPage.waitForTimeout(500);
+   const activePage=await deepLinkPage.locator('section.page.active').getAttribute('id');
+   if(activePage!=='community') throw new Error('Community notification deep link did not open the Community page.');
+   await deepLinkPage.close();
    const body=await page.locator('body').innerText();
    if(/Ideas\. People\. Possibilities\.|YOUR NEW DIGITAL SPACE/i.test(body)) throw new Error('An old starter template is still being served');
    for(const asset of ['styles.css','app-core.js','app-cloud.js','manifest.webmanifest','icon.svg']){
