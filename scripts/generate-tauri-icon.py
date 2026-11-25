@@ -6,13 +6,13 @@ import struct
 import zlib
 
 SIZE = 512
-BLACK = (7, 7, 7)
-GOLD = (214, 178, 87)
+BLACK = (7, 7, 7, 255)
+GOLD = (214, 178, 87, 255)
 pixels = bytearray(BLACK * (SIZE * SIZE))
 
 def set_pixel(x, y, color):
     if 0 <= x < SIZE and 0 <= y < SIZE:
-        offset = (y * SIZE + x) * 3
+        offset = (y * SIZE + x) * 4
         pixels[offset:offset + 3] = bytes(color)
 
 # Circular gold frame.
@@ -23,7 +23,7 @@ for y in range(SIZE):
         if 218 ** 2 <= distance <= 230 ** 2:
             set_pixel(x, y, GOLD)
         elif 204 ** 2 <= distance <= 207 ** 2:
-            set_pixel(x, y, (110, 82, 32))
+            set_pixel(x, y, (110, 82, 32, 255))
 
 # Bold 5x7 bitmap lettering.
 font = {
@@ -69,13 +69,13 @@ def png_chunk(kind, data):
     )
 
 rows = bytearray()
-stride = SIZE * 3
+stride = SIZE * 4
 for y in range(SIZE):
     rows.append(0)
     start = y * stride
     rows.extend(pixels[start:start + stride])
 
-header = struct.pack(">IIBBBBB", SIZE, SIZE, 8, 2, 0, 0, 0)
+header = struct.pack(">IIBBBBB", SIZE, SIZE, 8, 6, 0, 0, 0)
 png = (
     b"\x89PNG\r\n\x1a\n"
     + png_chunk(b"IHDR", header)
