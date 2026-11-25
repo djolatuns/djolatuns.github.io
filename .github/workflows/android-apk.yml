@@ -11,6 +11,7 @@ on:
       - 'index.html'
       - 'app-core.js'
       - 'app-cloud.js'
+      - 'app-experience.js'
       - 'styles.css'
       - 'sw.js'
       - 'manifest.webmanifest'
