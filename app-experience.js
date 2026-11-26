@@ -1,4 +1,4 @@
-let activeConversationId=null,activeAssistantConversationId=null,experienceUserId=null;
+let activeConversationId=null,activeAssistantConversationId=null,experienceUserId=null,activeMessageChannel=null;
 window.showExperiencePanel=function(id){document.querySelectorAll('.experience-panel').forEach(p=>p.hidden=true);const panel=document.getElementById(id);if(panel)panel.hidden=false;};
 window.hideExperiencePanels=function(){document.querySelectorAll('.experience-panel').forEach(p=>p.hidden=true);};
 function expMsg(id,text){const el=document.getElementById(id);if(el)el.textContent=text||''}
@@ -8,7 +8,7 @@ async function experienceInit(){
  if(!cloudUser||experienceUserId===cloudUser.id)return;experienceUserId=cloudUser.id;
  await Promise.all([loadMemberNotifications(),loadMessages()]);
  const bind=(id,fn)=>{const el=document.getElementById(id);if(el&&!el.dataset.bound){el.dataset.bound='1';el.addEventListener('submit',fn)}};
- bind('experienceSearchForm',searchExperience);bind('directMessageForm',sendDirectMessage);bind('memberSettingsForm',saveMemberSettings);bind('supportRequestForm',submitSupportRequest);bind('createPlaylistForm',createMixtapePlaylist);
+ bind('experienceSearchForm',searchExperience);bind('messengerSearchForm',searchMessengerMembers);bind('directMessageForm',sendDirectMessage);bind('memberSettingsForm',saveMemberSettings);bind('supportRequestForm',submitSupportRequest);bind('createPlaylistForm',createMixtapePlaylist);
 }
 cloud.auth.onAuthStateChange((event,session)=>{if(session?.user){experienceUserId=null;setTimeout(experienceInit,0)}else{experienceUserId=null;activeConversationId=null;hideExperiencePanels()}});
 cloud.auth.getSession().then(({data})=>{if(data?.session?.user)experienceInit()});
@@ -27,29 +27,52 @@ window.searchExperience=async function(e){
  const po=(posts||[]).map(p=>'<div class="experience-result"><div class="result-main">'+expEsc(p.caption||'Community post')+'</div><button class="btn secondary" onclick="openMemberProfile(\''+p.created_by+'\')">Author</button></div>').join('');
  out.innerHTML=(ph?'<h3>Members</h3>'+ph:'')+(th?'<h3>Mixtapes</h3>'+th:'')+(po?'<h3>Posts</h3>'+po:'')+(!ph&&!th&&!po?'<p class="small">No results found.</p>':'');
 };
-window.startMemberMessage=async function(id){const {data,error}=await cloud.rpc('start_direct_conversation',{target_user_id:id});if(error){alert(error.message);return}activeConversationId=data;showExperiencePanel('messagesPanel');await loadMessages();await openConversation(data)};
+async function searchMessengerMembers(e){
+ e.preventDefault();if(!cloudUser)return;const input=document.getElementById('messengerSearchInput'),out=document.getElementById('messengerSearchResults');const q=input.value.trim().replace(/[,%()]/g,' ').replace(/\\s+/g,' ');if(q.length<2){out.innerHTML='<p class="small">Enter at least two characters to find a member.</p>';return}
+ out.innerHTML='<p class="small">Finding members…</p>';
+ const {data,error}=await cloud.from('profiles').select('id,display_name,username,avatar_path').or('display_name.ilike.%'+q+'%,username.ilike.%'+q+'%').neq('id',cloudUser.id).limit(12);
+ if(error){out.innerHTML='<p class="small">Member search is unavailable right now.</p>';return}
+ out.innerHTML=(data||[]).map(p=>'<div class="messenger-search-result">'+(p.avatar_path?'<img class="messenger-avatar" src="'+expEsc(p.avatar_path)+'" alt="">':'<div class="messenger-avatar">'+expEsc((p.display_name||p.username||'M').slice(0,1).toUpperCase())+'</div>')+'<div class="result-main"><b>'+expEsc(p.display_name||p.username||'Member')+'</b><div class="small">@'+expEsc(p.username||'member')+'</div></div><button class="btn" type="button" onclick="startMemberMessage(\''+p.id+'\')">Chat</button></div>').join('')||'<p class="small">No members found. Check the spelling or username.</p>';
+}
+window.startMemberMessage=async function(id){if(!cloudUser||!id)return;expMsg('directMessageStatus','Opening private chat…');const {data,error}=await cloud.rpc('start_direct_conversation',{target_user_id:id});if(error){expMsg('directMessageStatus',error.message);return}activeConversationId=data;showExperiencePanel('messagesPanel');await loadMessages();await openConversation(data);document.getElementById('messengerSearchResults').innerHTML='';document.getElementById('messengerSearchInput').value='';};
 async function loadMessages(){
- if(!cloudUser)return;const list=document.getElementById('conversationList');if(!list)return;list.innerHTML='<p class="small">Loading conversations…</p>';
+ if(!cloudUser)return;const list=document.getElementById('conversationList');if(!list)return;list.innerHTML='<p class="small">Loading your chats…</p>';
  const {data:members,error}=await cloud.from('conversation_members').select('conversation_id,user_id').eq('user_id',cloudUser.id);
- if(error){list.innerHTML='<p class="small">Could not load conversations.</p>';return}
- const ids=(members||[]).map(x=>x.conversation_id);if(!ids.length){list.innerHTML='<p class="small">No messages yet. Open a member profile and choose Message to start.</p>';return}
- const [{data:convos},{data:allMembers}]=await Promise.all([cloud.from('conversations').select('id,last_message_at').in('id',ids).order('last_message_at',{ascending:false}),cloud.from('conversation_members').select('conversation_id,user_id').in('conversation_id',ids)]);
- const otherIds=[...new Set((allMembers||[]).filter(x=>x.user_id!==cloudUser.id).map(x=>x.user_id))];const {data:profiles}=otherIds.length?await cloud.from('profiles').select('id,display_name,username').in('id',otherIds):{data:[]};const names=new Map((profiles||[]).map(p=>[p.id,p.display_name||p.username||'Member']));
- list.innerHTML=(convos||[]).map(c=>{const other=(allMembers||[]).find(x=>x.conversation_id===c.id&&x.user_id!==cloudUser.id);return '<button class="card" style="display:block;width:100%;text-align:left" onclick="openConversation(\''+c.id+'\')"><b>'+expEsc(names.get(other?.user_id)||'Member')+'</b><div class="small">'+expDate(c.last_message_at)+'</div></button>'}).join('');
+ if(error){list.innerHTML='<p class="small">Could not load private chats.</p>';return}
+ const ids=(members||[]).map(x=>x.conversation_id);if(!ids.length){list.innerHTML='<div class="messenger-empty compact"><span>✉</span><b>No chats yet</b><p>Search for a member above to start a private conversation.</p></div>';return}
+ const [{data:convos},{data:allMembers},{data:recentMessages}]=await Promise.all([
+  cloud.from('conversations').select('id,last_message_at').in('id',ids).order('last_message_at',{ascending:false}),
+  cloud.from('conversation_members').select('conversation_id,user_id').in('conversation_id',ids),
+  cloud.from('direct_messages').select('id,conversation_id,sender_id,body,created_at,read_at').in('conversation_id',ids).order('created_at',{ascending:false}).limit(120)
+ ]);
+ const otherIds=[...new Set((allMembers||[]).filter(x=>x.user_id!==cloudUser.id).map(x=>x.user_id))];
+ const {data:profiles}=otherIds.length?await cloud.from('profiles').select('id,display_name,username,avatar_path').in('id',otherIds):{data:[]};
+ const profileMap=new Map((profiles||[]).map(p=>[p.id,p]));
+ const latest=new Map(),unread=new Map();
+ (recentMessages||[]).forEach(m=>{if(!latest.has(m.conversation_id))latest.set(m.conversation_id,m);if(m.sender_id!==cloudUser.id&&!m.read_at)unread.set(m.conversation_id,(unread.get(m.conversation_id)||0)+1)});
+ list.innerHTML=(convos||[]).map(c=>{const other=(allMembers||[]).find(x=>x.conversation_id===c.id&&x.user_id!==cloudUser.id),p=profileMap.get(other?.user_id)||{},last=latest.get(c.id),label=p.display_name||p.username||'Member',photo=p.avatar_path?'<img class="messenger-avatar" src="'+expEsc(p.avatar_path)+'" alt="">':'<div class="messenger-avatar">'+expEsc(label.slice(0,1).toUpperCase())+'</div>';return '<button class="messenger-conversation '+(activeConversationId===c.id?'active':'')+'" type="button" onclick="openConversation(\''+c.id+'\')">'+photo+'<span class="messenger-conversation-copy"><b>'+expEsc(label)+'</b><small>'+(last?expEsc(last.sender_id===cloudUser.id?'You: '+last.body:last.body):'No messages yet')+'</small></span>'+(unread.get(c.id)?'<span class="messenger-unread">'+unread.get(c.id)+'</span>':'')+'</button>'}).join('')||'<p class="small">No chats yet.</p>';
 }
 window.openConversation=async function(id){
- activeConversationId=id;const members=await cloud.from('conversation_members').select('user_id').eq('conversation_id',id);const other=(members.data||[]).find(x=>x.user_id!==cloudUser.id);const profile=other?await cloud.from('profiles').select('display_name,username').eq('id',other.user_id).maybeSingle():{data:null};
- document.getElementById('messageThreadTitle').textContent=profile.data?.display_name||profile.data?.username||'Conversation';
- const {data,error}=await cloud.from('direct_messages').select('id,sender_id,body,created_at,read_at').eq('conversation_id',id).order('created_at',{ascending:true}).limit(200);const thread=document.getElementById('messageThread');
- if(error){thread.innerHTML='<p class="small">Could not load messages.</p>';return}
- thread.innerHTML=(data||[]).map(m=>'<div class="message-bubble '+(m.sender_id===cloudUser.id?'mine':'')+'">'+expEsc(m.body)+'<div class="small">'+expDate(m.created_at)+'</div></div>').join('')||'<p class="small">Say hello to start the conversation.</p>';
- const unread=(data||[]).filter(m=>m.sender_id!==cloudUser.id&&!m.read_at).map(m=>m.id);if(unread.length)await cloud.from('direct_messages').update({read_at:new Date().toISOString()}).in('id',unread);thread.scrollTop=thread.scrollHeight;
+ if(!cloudUser||!id)return;activeConversationId=id;
+ if(activeMessageChannel){await cloud.removeChannel(activeMessageChannel);activeMessageChannel=null}
+ const members=await cloud.from('conversation_members').select('user_id').eq('conversation_id',id);const other=(members.data||[]).find(x=>x.user_id!==cloudUser.id);const profile=other?await cloud.from('profiles').select('display_name,username,avatar_path').eq('id',other.user_id).maybeSingle():{data:null};
+ const title=profile.data?.display_name||profile.data?.username||'Private conversation';
+ const head=document.getElementById('messageThreadTitle');head.innerHTML=(profile.data?.avatar_path?'<img class="messenger-avatar" src="'+expEsc(profile.data.avatar_path)+'" alt="">':'<span class="messenger-avatar">'+expEsc(title.slice(0,1).toUpperCase())+'</span>')+'<span><b>'+expEsc(title)+'</b><small>@'+expEsc(profile.data?.username||'member')+' · Private chat</small></span>';
+ const {data,error}=await cloud.from('direct_messages').select('id,sender_id,body,created_at,read_at').eq('conversation_id',id).order('created_at',{ascending:true}).limit(300);const thread=document.getElementById('messageThread');
+ if(error){thread.innerHTML='<p class="small">Could not load this conversation.</p>';return}
+ thread.innerHTML=(data||[]).map(m=>'<div class="message-bubble '+(m.sender_id===cloudUser.id?'mine':'')+'">'+expEsc(m.body)+'<div class="message-meta">'+expDate(m.created_at)+(m.sender_id===cloudUser.id?' · '+(m.read_at?'Read ✓✓':'Sent ✓'):'')+'</div></div>').join('')||'<div class="messenger-empty"><span>✉</span><b>Say hello</b><p>This is the beginning of your private conversation.</p></div>';
+ const unread=(data||[]).filter(m=>m.sender_id!==cloudUser.id&&!m.read_at).map(m=>m.id);
+ if(unread.length)await cloud.from('direct_messages').update({read_at:new Date().toISOString()}).in('id',unread);
+ thread.scrollTop=thread.scrollHeight;document.getElementById('directMessageInput').disabled=false;
+ const status=document.getElementById('messengerConnectionStatus');status.textContent='Private one-to-one conversation';
+ activeMessageChannel=cloud.channel('private-chat-'+id).on('postgres_changes',{event:'INSERT',schema:'public',table:'direct_messages',filter:'conversation_id=eq.'+id},payload=>{if(activeConversationId===id){openConversation(id);loadMessages()}}).on('postgres_changes',{event:'UPDATE',schema:'public',table:'direct_messages',filter:'conversation_id=eq.'+id},payload=>{if(activeConversationId===id)openConversation(id)}).subscribe((state)=>{if(status)status.textContent=state==='SUBSCRIBED'?'Live chat connected':'Connecting to live chat…'});
+ await loadMessages();
 };
 async function sendDirectMessage(e){
- e.preventDefault();if(!activeConversationId)return expMsg('directMessageStatus','Choose a conversation first.');const input=document.getElementById('directMessageInput'),body=input.value.trim();if(!body)return;
+ e.preventDefault();if(!activeConversationId)return expMsg('directMessageStatus','Open a private chat first.');const input=document.getElementById('directMessageInput'),body=input.value.trim();if(!body)return;
  const {data:sentMessage,error}=await cloud.from('direct_messages').insert({conversation_id:activeConversationId,sender_id:cloudUser.id,body}).select('id').single();if(error){expMsg('directMessageStatus',error.message);return}
  try{const {error:pushError}=await cloud.functions.invoke('member-push',{body:{action:'direct-message-created',message_id:sentMessage.id}});if(pushError)console.warn('Message push notification unavailable:',pushError.message)}catch(pushError){console.warn('Message push notification unavailable:',pushError)}
- input.value='';expMsg('directMessageStatus','Sent.');await openConversation(activeConversationId);await loadMessages();
+ input.value='';expMsg('directMessageStatus','Message sent.');await openConversation(activeConversationId);await loadMessages();
 }
 async function loadMemberNotifications(){
  if(!cloudUser)return;const list=document.getElementById('memberNotificationList');if(!list)return;
