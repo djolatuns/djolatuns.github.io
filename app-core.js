@@ -21,8 +21,9 @@ function createExperiencePages(){
 }
 createExperiencePages();
 const requestedPage=new URLSearchParams(window.location.search).get('page');
-if(pageNames.includes(requestedPage))go(requestedPage);
-function go(name){if(!pageNames.includes(name))return;document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
+if(pageNames.includes(requestedPage))go(requestedPage,false);
+function go(name,updateUrl=true){if(!pageNames.includes(name))return;if(updateUrl){const url=new URL(window.location.href);url.searchParams.set('page',name);window.history.pushState({page:name},'',url)}document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
+window.addEventListener('popstate',()=>{const page=new URLSearchParams(window.location.search).get('page');go(pageNames.includes(page)?page:'home',false)});
 function esc(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function read(key,def){try{return JSON.parse(localStorage.getItem(key))??def}catch(e){return def}}
 function save(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch(e){return false}}
