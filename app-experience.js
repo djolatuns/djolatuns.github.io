@@ -1,4 +1,4 @@
-let activeConversationId=null,activeAssistantConversationId=null,experienceUserId=null,activeMessageChannel=null;
+let activeConversationId=null,activeAssistantConversationId=null,experienceUserId=null,activeMessageChannel=null,voiceRecorder=null,voiceStream=null,voiceChunks=[],voiceBlob=null,voiceStartedAt=0,voiceDurationMs=0,voicePreviewUrl=null,voiceStopTimer=null;
 window.showExperiencePanel=function(id){document.querySelectorAll('.experience-panel').forEach(p=>p.hidden=true);const panel=document.getElementById(id);if(panel)panel.hidden=false;};
 window.hideExperiencePanels=function(){document.querySelectorAll('.experience-panel').forEach(p=>p.hidden=true);};
 function expMsg(id,text){const el=document.getElementById(id);if(el)el.textContent=text||''}
@@ -8,7 +8,7 @@ async function experienceInit(){
  if(!cloudUser||experienceUserId===cloudUser.id)return;experienceUserId=cloudUser.id;
  await Promise.all([loadMemberNotifications(),loadMessages()]);
  const bind=(id,fn)=>{const el=document.getElementById(id);if(el&&!el.dataset.bound){el.dataset.bound='1';el.addEventListener('submit',fn)}};
- bind('experienceSearchForm',searchExperience);bind('messengerSearchForm',searchMessengerMembers);bind('directMessageForm',sendDirectMessage);bind('memberSettingsForm',saveMemberSettings);bind('supportRequestForm',submitSupportRequest);bind('createPlaylistForm',createMixtapePlaylist);
+ bind('experienceSearchForm',searchExperience);bind('messengerSearchForm',searchMessengerMembers);bind('directMessageForm',sendDirectMessage);const voiceBind=(id,fn)=>{const el=document.getElementById(id);if(el&&!el.dataset.bound){el.dataset.bound='1';el.addEventListener('click',fn)}};voiceBind('voiceRecordButton',startVoiceRecording);voiceBind('voiceStopButton',stopVoiceRecording);voiceBind('voiceCancelButton',cancelVoiceRecording);voiceBind('voicePreviewCancelButton',cancelVoiceRecording);voiceBind('voiceSendButton',sendVoiceMessage);bind('memberSettingsForm',saveMemberSettings);bind('supportRequestForm',submitSupportRequest);bind('createPlaylistForm',createMixtapePlaylist);
 }
 cloud.auth.onAuthStateChange((event,session)=>{if(session?.user){experienceUserId=null;setTimeout(experienceInit,0)}else{experienceUserId=null;activeConversationId=null;hideExperiencePanels()}});
 cloud.auth.getSession().then(({data})=>{if(data?.session?.user)experienceInit()});
@@ -58,9 +58,9 @@ window.openConversation=async function(id){
  const members=await cloud.from('conversation_members').select('user_id').eq('conversation_id',id);const other=(members.data||[]).find(x=>x.user_id!==cloudUser.id);const profile=other?await cloud.from('profiles').select('display_name,username,avatar_path').eq('id',other.user_id).maybeSingle():{data:null};
  const title=profile.data?.display_name||profile.data?.username||'Private conversation';
  const head=document.getElementById('messageThreadTitle');head.innerHTML=(profile.data?.avatar_path?'<img class="messenger-avatar" src="'+expEsc(profile.data.avatar_path)+'" alt="">':'<span class="messenger-avatar">'+expEsc(title.slice(0,1).toUpperCase())+'</span>')+'<span><b>'+expEsc(title)+'</b><small>@'+expEsc(profile.data?.username||'member')+' · Private chat</small></span>';
- const {data,error}=await cloud.from('direct_messages').select('id,sender_id,body,created_at,read_at').eq('conversation_id',id).order('created_at',{ascending:true}).limit(300);const thread=document.getElementById('messageThread');
+ const {data,error}=await cloud.from('direct_messages').select('id,sender_id,body,message_type,audio_path,audio_mime_type,audio_duration_ms,created_at,read_at').eq('conversation_id',id).order('created_at',{ascending:true}).limit(300);const thread=document.getElementById('messageThread');
  if(error){thread.innerHTML='<p class="small">Could not load this conversation.</p>';return}
- thread.innerHTML=(data||[]).map(m=>'<div class="message-bubble '+(m.sender_id===cloudUser.id?'mine':'')+'">'+expEsc(m.body)+'<div class="message-meta">'+expDate(m.created_at)+(m.sender_id===cloudUser.id?' · '+(m.read_at?'Read ✓✓':'Sent ✓'):'')+'</div></div>').join('')||'<div class="messenger-empty"><span>✉</span><b>Say hello</b><p>This is the beginning of your private conversation.</p></div>';
+ const rendered=await Promise.all((data||[]).map(async m=>{let content=m.message_type==='audio'?'<div class="voice-message"><span class="voice-message-icon">🎙</span><audio controls preload="none" aria-label="Voice message"'+(m.audio_mime_type?' type="'+expEsc(m.audio_mime_type)+'"':'')+' src="'+expEsc((await cloud.storage.from('private-voice-messages').createSignedUrl(m.audio_path,3600)).data?.signedUrl||'')+'"></audio><small>'+formatVoiceDuration(m.audio_duration_ms)+'</small></div>':expEsc(m.body);return '<div class="message-bubble '+(m.sender_id===cloudUser.id?'mine':'')+'">'+content+'<div class="message-meta">'+expDate(m.created_at)+(m.sender_id===cloudUser.id?' · '+(m.read_at?'Read ✓✓':'Sent ✓'):'')+'</div></div>'}));thread.innerHTML=rendered.join('')||'<div class="messenger-empty"><span>✉</span><b>Say hello</b><p>This is the beginning of your private conversation.</p></div>';
  const unread=(data||[]).filter(m=>m.sender_id!==cloudUser.id&&!m.read_at).map(m=>m.id);
  if(unread.length)await cloud.from('direct_messages').update({read_at:new Date().toISOString()}).in('id',unread);
  thread.scrollTop=thread.scrollHeight;document.getElementById('directMessageInput').disabled=false;
@@ -70,9 +70,36 @@ window.openConversation=async function(id){
 };
 async function sendDirectMessage(e){
  e.preventDefault();if(!activeConversationId)return expMsg('directMessageStatus','Open a private chat first.');const input=document.getElementById('directMessageInput'),body=input.value.trim();if(!body)return;
- const {data:sentMessage,error}=await cloud.from('direct_messages').insert({conversation_id:activeConversationId,sender_id:cloudUser.id,body}).select('id').single();if(error){expMsg('directMessageStatus',error.message);return}
- try{const {error:pushError}=await cloud.functions.invoke('member-push',{body:{action:'direct-message-created',message_id:sentMessage.id}});if(pushError)console.warn('Message push notification unavailable:',pushError.message)}catch(pushError){console.warn('Message push notification unavailable:',pushError)}
- input.value='';expMsg('directMessageStatus','Message sent.');await openConversation(activeConversationId);await loadMessages();
+ const {data:sentMessage,error}=await cloud.from('direct_messages').insert({conversation_id:activeConversationId,sender_id:cloudUser.id,body,message_type:'text'}).select('id').single();if(error){expMsg('directMessageStatus',error.message);return}
+ await notifyDirectMessage(sentMessage.id);input.value='';expMsg('directMessageStatus','Message sent.');await openConversation(activeConversationId);await loadMessages();
+}
+function formatVoiceDuration(ms){const s=Math.max(0,Math.floor((ms||0)/1000));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+async function notifyDirectMessage(id){try{const {error}=await cloud.functions.invoke('member-push',{body:{action:'direct-message-created',message_id:id}});if(error)console.warn('Message push notification unavailable:',error.message)}catch(error){console.warn('Message push notification unavailable:',error)}}
+async function startVoiceRecording(){
+ if(!activeConversationId)return expMsg('directMessageStatus','Open a private chat before recording.');
+ if(!navigator.mediaDevices?.getUserMedia||typeof MediaRecorder==='undefined')return expMsg('directMessageStatus','Voice recording is not supported by this browser. Try the latest Chrome browser.');
+ try{
+  voiceStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+  const types=['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4'];const mime=types.find(t=>MediaRecorder.isTypeSupported(t));
+  voiceRecorder=mime?new MediaRecorder(voiceStream,{mimeType:mime}):new MediaRecorder(voiceStream);voiceChunks=[];voiceBlob=null;voiceStartedAt=Date.now();
+  voiceRecorder.ondataavailable=e=>{if(e.data&&e.data.size)voiceChunks.push(e.data)};
+  voiceRecorder.onstop=()=>{voiceDurationMs=Math.min(300000,Date.now()-voiceStartedAt);voiceBlob=new Blob(voiceChunks,{type:voiceRecorder.mimeType||'audio/webm'});voiceStream?.getTracks().forEach(t=>t.stop());voiceStream=null;voiceRecorder=null;clearTimeout(voiceStopTimer);const rec=document.getElementById('voiceRecordingPanel'),preview=document.getElementById('voicePreviewPanel'),audio=document.getElementById('voicePreviewAudio');if(rec)rec.hidden=true;if(preview)preview.hidden=false;if(voicePreviewUrl)URL.revokeObjectURL(voicePreviewUrl);voicePreviewUrl=URL.createObjectURL(voiceBlob);if(audio)audio.src=voicePreviewUrl;expMsg('voicePreviewDuration','Duration '+formatVoiceDuration(voiceDurationMs));expMsg('directMessageStatus','Listen to your recording, then send it or discard it.')};
+  voiceRecorder.start(250);document.getElementById('voiceRecordingPanel').hidden=false;document.getElementById('voicePreviewPanel').hidden=true;document.getElementById('voiceRecordButton').disabled=true;expMsg('voiceRecordingStatus','Recording… 0:00');voiceStopTimer=setTimeout(stopVoiceRecording,300000);
+  const tick=()=>{if(voiceRecorder&&voiceRecorder.state==='recording'){expMsg('voiceRecordingStatus','Recording… '+formatVoiceDuration(Date.now()-voiceStartedAt));setTimeout(tick,1000)}};tick();
+ }catch(error){voiceStream?.getTracks().forEach(t=>t.stop());voiceStream=null;expMsg('directMessageStatus',error.name==='NotAllowedError'?'Microphone permission was denied. Allow microphone access in Chrome site settings.':'Could not start recording: '+error.message)}
+}
+function stopVoiceRecording(){if(voiceRecorder&&voiceRecorder.state==='recording'){voiceRecorder.stop()}const b=document.getElementById('voiceRecordButton');if(b)b.disabled=false}
+function cancelVoiceRecording(){if(voiceRecorder&&voiceRecorder.state==='recording')voiceRecorder.stop();voiceStream?.getTracks().forEach(t=>t.stop());voiceStream=null;voiceRecorder=null;voiceBlob=null;clearTimeout(voiceStopTimer);const rec=document.getElementById('voiceRecordingPanel'),preview=document.getElementById('voicePreviewPanel'),audio=document.getElementById('voicePreviewAudio'),button=document.getElementById('voiceRecordButton');if(rec)rec.hidden=true;if(preview)preview.hidden=true;if(audio){audio.pause();audio.removeAttribute('src');audio.load()}if(voicePreviewUrl)URL.revokeObjectURL(voicePreviewUrl);voicePreviewUrl=null;if(button)button.disabled=false;expMsg('directMessageStatus','Voice recording discarded.')}
+async function sendVoiceMessage(){
+ if(!activeConversationId||!cloudUser||!voiceBlob)return expMsg('directMessageStatus','Record a voice message first.');
+ if(voiceBlob.size>10485760)return expMsg('directMessageStatus','This recording is too large. Please record a shorter message.');
+ const mime=voiceBlob.type||'audio/webm';const ext=mime.includes('ogg')?'ogg':mime.includes('mp4')?'m4a':mime.includes('mpeg')?'mp3':mime.includes('3gpp')?'3gp':mime.includes('wav')?'wav':'webm';
+ const path=activeConversationId+'/'+cloudUser.id+'/'+crypto.randomUUID()+'.'+ext;const send=document.getElementById('voiceSendButton');send.disabled=true;expMsg('directMessageStatus','Uploading your voice message securely…');
+ const {data:upload,error:uploadError}=await cloud.storage.from('private-voice-messages').upload(path,voiceBlob,{contentType:mime,upsert:false,cacheControl:'3600'});
+ if(uploadError){send.disabled=false;expMsg('directMessageStatus','Voice upload failed: '+uploadError.message);return}
+ const {data:sentMessage,error}=await cloud.from('direct_messages').insert({conversation_id:activeConversationId,sender_id:cloudUser.id,body:'',message_type:'audio',audio_path:upload.path,audio_mime_type:mime,audio_duration_ms:Math.max(1,Math.min(300000,voiceDurationMs))}).select('id').single();
+ if(error){await cloud.storage.from('private-voice-messages').remove([path]);send.disabled=false;expMsg('directMessageStatus','Could not send voice message: '+error.message);return}
+ const conversation=activeConversationId;cancelVoiceRecording();await notifyDirectMessage(sentMessage.id);expMsg('directMessageStatus','Voice message sent.');await openConversation(conversation);await loadMessages();
 }
 async function loadMemberNotifications(){
  if(!cloudUser)return;const list=document.getElementById('memberNotificationList');if(!list)return;
