@@ -29,7 +29,7 @@ jobs:
           test -s admin.html
           test -s scripts/generate-tauri-icon.py
           node -e "JSON.parse(require('fs').readFileSync('manifest.webmanifest','utf8'))"
-          node -e "const p=require('./package.json');const t=require('./src-tauri/tauri.conf.json');if(p.version!=='1.1.2'||t.version!==p.version)throw Error('App versions must match at 1.1.1')"
+          node -e "const p=require('./package.json');const t=require('./src-tauri/tauri.conf.json');if(p.version!=='1.1.2'||t.version!==p.version)throw Error('App versions must match at 1.1.2')"
       - name: Generate and validate native desktop icon
         run: |
           python3 scripts/generate-tauri-icon.py
@@ -72,7 +72,7 @@ jobs:
           const core=fs.readFileSync('app-core.js','utf8');
           if(!core.includes('requestedPage')) throw Error('Notification deep links are not supported.');
           const sw=fs.readFileSync('sw.js','utf8');
-          if(!sw.includes('olatuns-shell-v23')||!sw.includes('styles.css?v=11')||!sw.includes('app-core.js?v=7')||!sw.includes('app-cloud.js?v=15')||!sw.includes('app-experience.js?v=7')||!sw.includes('./booking.html')||!sw.includes('./admin.html')) throw Error('Service worker shell cache is stale.');
+          if(!sw.includes('olatuns-shell-v23')||!sw.includes('styles.css?v=11')||!sw.includes('app-core.js?v=9')||!sw.includes('app-cloud.js?v=15')||!sw.includes('app-experience.js?v=8')||!sw.includes('./booking.html')||!sw.includes('./admin.html')) throw Error('Service worker shell cache is stale.');
           if(cloud.indexOf('let isOlatunsAdmin')>cloud.indexOf('cloud.auth.onAuthStateChange')) throw Error('Community state must initialize before auth events.');
           if(!cloud.includes('resetCloudProfile')||!cloud.includes("username_available")) throw Error('Account reset or username availability protection is missing.');
           if(!cloud.includes('video/webm')||!cloud.includes('postvideo')) throw Error('Community video upload or playback is missing.');
