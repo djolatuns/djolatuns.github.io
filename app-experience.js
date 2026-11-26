@@ -43,14 +43,14 @@ async function loadMessages(){
  const [{data:convos},{data:allMembers},{data:recentMessages}]=await Promise.all([
   cloud.from('conversations').select('id,last_message_at').in('id',ids).order('last_message_at',{ascending:false}),
   cloud.from('conversation_members').select('conversation_id,user_id').in('conversation_id',ids),
-  cloud.from('direct_messages').select('id,conversation_id,sender_id,body,created_at,read_at').in('conversation_id',ids).order('created_at',{ascending:false}).limit(120)
+  cloud.from('direct_messages').select('id,conversation_id,sender_id,body,message_type,created_at,read_at').in('conversation_id',ids).order('created_at',{ascending:false}).limit(120)
  ]);
  const otherIds=[...new Set((allMembers||[]).filter(x=>x.user_id!==cloudUser.id).map(x=>x.user_id))];
  const {data:profiles}=otherIds.length?await cloud.from('profiles').select('id,display_name,username,avatar_path').in('id',otherIds):{data:[]};
  const profileMap=new Map((profiles||[]).map(p=>[p.id,p]));
  const latest=new Map(),unread=new Map();
  (recentMessages||[]).forEach(m=>{if(!latest.has(m.conversation_id))latest.set(m.conversation_id,m);if(m.sender_id!==cloudUser.id&&!m.read_at)unread.set(m.conversation_id,(unread.get(m.conversation_id)||0)+1)});
- list.innerHTML=(convos||[]).map(c=>{const other=(allMembers||[]).find(x=>x.conversation_id===c.id&&x.user_id!==cloudUser.id),p=profileMap.get(other?.user_id)||{},last=latest.get(c.id),label=p.display_name||p.username||'Member',photo=p.avatar_path?'<img class="messenger-avatar" src="'+expEsc(p.avatar_path)+'" alt="">':'<div class="messenger-avatar">'+expEsc(label.slice(0,1).toUpperCase())+'</div>';return '<button class="messenger-conversation '+(activeConversationId===c.id?'active':'')+'" type="button" onclick="openConversation(\''+c.id+'\')">'+photo+'<span class="messenger-conversation-copy"><b>'+expEsc(label)+'</b><small>'+(last?expEsc(last.sender_id===cloudUser.id?'You: '+last.body:last.body):'No messages yet')+'</small></span>'+(unread.get(c.id)?'<span class="messenger-unread">'+unread.get(c.id)+'</span>':'')+'</button>'}).join('')||'<p class="small">No chats yet.</p>';
+ list.innerHTML=(convos||[]).map(c=>{const other=(allMembers||[]).find(x=>x.conversation_id===c.id&&x.user_id!==cloudUser.id),p=profileMap.get(other?.user_id)||{},last=latest.get(c.id),label=p.display_name||p.username||'Member',photo=p.avatar_path?'<img class="messenger-avatar" src="'+expEsc(p.avatar_path)+'" alt="">':'<div class="messenger-avatar">'+expEsc(label.slice(0,1).toUpperCase())+'</div>';return '<button class="messenger-conversation '+(activeConversationId===c.id?'active':'')+'" type="button" onclick="openConversation(\''+c.id+'\')">'+photo+'<span class="messenger-conversation-copy"><b>'+expEsc(label)+'</b><small>'+(last?expEsc(last.message_type==='audio'?(last.sender_id===cloudUser.id?'You: 🎙 Voice message':'🎙 Voice message'):(last.sender_id===cloudUser.id?'You: '+last.body:last.body)):'No messages yet')+'</small></span>'+(unread.get(c.id)?'<span class="messenger-unread">'+unread.get(c.id)+'</span>':'')+'</button>'}).join('')||'<p class="small">No chats yet.</p>';
 }
 window.openConversation=async function(id){
  if(!cloudUser||!id)return;activeConversationId=id;
