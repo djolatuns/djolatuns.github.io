@@ -134,7 +134,8 @@ window.updateSupportStatus=async function(id){
  const {error}=await cloud.from('support_requests').update({status,updated_at:new Date().toISOString()}).eq('id',id);
  if(error)alert('Could not update support request: '+error.message);else loadCreatorAnalytics();
 };
-async function checkAppUpdate(){const el=document.getElementById('appUpdateStatus');if(!el)return;el.textContent='Checking for updates…';if(!('serviceWorker'in navigator)){el.textContent='Service-worker updates are not available in this browser.';return}try{const reg=await navigator.serviceWorker.getRegistration('./');if(!reg){el.textContent='App update service is not registered yet.';return}await reg.update();el.textContent=reg.waiting?'An update is ready. Reload the app to use it.':'You are using the latest version available to this device.'}catch(e){el.textContent='Could not check for updates. Please try again when online.'}}
+const OLATUNS_APP_VERSION='2026.11.26.1';
+async function checkAppUpdate(){const el=document.getElementById('appUpdateStatus');if(!el)return;el.textContent='DJ OLATUNS App version '+OLATUNS_APP_VERSION+'. Checking for updates…';if(!('serviceWorker'in navigator)){el.textContent='Service-worker updates are not available in this browser.';return}try{const reg=await navigator.serviceWorker.getRegistration('./');if(!reg){el.textContent='App update service is not registered yet.';return}await reg.update();el.textContent='DJ OLATUNS App version '+OLATUNS_APP_VERSION+'. '+(reg.waiting?'An update is ready. Reload the app to use it.':'You are using the latest version available to this device.')}catch(e){el.textContent='Could not check for updates. Please try again when online.'}}
 
 function pushBase64ToBytes(value){
  const padding='='.repeat((4-value.length%4)%4);
