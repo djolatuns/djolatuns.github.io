@@ -22,7 +22,7 @@ function createExperiencePages(){
 createExperiencePages();
 const requestedPage=new URLSearchParams(window.location.search).get('page');
 if(pageNames.includes(requestedPage))go(requestedPage,false);
-function go(name,updateUrl=true){if(!pageNames.includes(name))return;if(updateUrl){const url=new URL(window.location.href);url.searchParams.set('page',name);window.history.pushState({page:name},'',url)}document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
+function go(name,updateUrl=true){if(!pageNames.includes(name))return;if(name.endsWith('Page')){document.querySelectorAll('.experience-panel').forEach(panel=>panel.hidden=true);const targetPanel=document.getElementById(name.slice(0,-4));if(targetPanel)targetPanel.hidden=false}if(updateUrl){const url=new URL(window.location.href);url.searchParams.set('page',name);window.history.pushState({page:name},'',url)}document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
 window.addEventListener('popstate',()=>{const page=new URLSearchParams(window.location.search).get('page');go(pageNames.includes(page)?page:'home',false)});
 function esc(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
 function read(key,def){try{return JSON.parse(localStorage.getItem(key))??def}catch(e){return def}}
