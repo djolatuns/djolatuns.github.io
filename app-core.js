@@ -1,4 +1,24 @@
 const pageNames=['home','mixtapes','discover','community','profile','about'];
+let experienceReturnPage='home';
+function createExperiencePages(){
+ const main=document.querySelector('main');
+ document.querySelectorAll('.experience-panel').forEach(panel=>{
+  const id=panel.id+'Page';
+  if(document.getElementById(id))return;
+  const page=document.createElement('section');
+  page.className='page experience-route';
+  page.id=id;
+  const back=document.createElement('button');
+  back.type='button';back.className='btn secondary experience-back';
+  back.textContent='← Back';
+  back.addEventListener('click',()=>go(experienceReturnPage));
+  page.appendChild(back);
+  page.appendChild(panel);
+  main.appendChild(page);
+  pageNames.push(id);
+ });
+}
+createExperiencePages();
 const requestedPage=new URLSearchParams(window.location.search).get('page');
 if(pageNames.includes(requestedPage))go(requestedPage);
 function go(name){if(!pageNames.includes(name))return;document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id===name));document.querySelectorAll('.nav button').forEach(el=>el.classList.toggle('active',el.dataset.page===name));window.scrollTo(0,0)}
@@ -25,5 +45,15 @@ updateProfileUI();
 
 function toggleAppMenu(open){const drawer=document.getElementById('appDrawer'),scrim=document.getElementById('drawerScrim'),trigger=document.querySelector('.menu-trigger');if(!drawer||!scrim)return;const show=typeof open==='boolean'?open:!drawer.classList.contains('open');drawer.classList.toggle('open',show);drawer.setAttribute('aria-hidden',String(!show));scrim.hidden=!show;if(trigger)trigger.setAttribute('aria-expanded',String(show));document.body.classList.toggle('menu-open',show)}
 function drawerGo(page){toggleAppMenu(false);hideExperiencePanels?.();go(page)}
-function drawerPanel(panel,loader){toggleAppMenu(false);go(panel==='notificationsPanel'?'community':'profile');showExperiencePanel(panel);if(typeof window[loader]==='function')window[loader]()}
+function drawerPanel(panel,loader){toggleAppMenu(false);experienceReturnPage=document.querySelector('.page.active')?.id||'home';const target=panel+'Page';if(pageNames.includes(target))go(target);if(typeof window[loader]==='function')window[loader]()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleAppMenu(false)});
+window.addEventListener('load',()=>{
+ const originalShow=window.showExperiencePanel;
+ window.showExperiencePanel=function(id){
+  experienceReturnPage=document.querySelector('.page.active')?.id||'home';
+  document.querySelectorAll('.experience-panel').forEach(p=>p.hidden=true);
+  const panel=document.getElementById(id);if(panel)panel.hidden=false;
+  const target=id+'Page';if(pageNames.includes(target))go(target);
+  else if(typeof originalShow==='function')originalShow(id);
+ };
+});
