@@ -93,7 +93,7 @@ function cancelVoiceRecording(){if(voiceRecorder&&voiceRecorder.state==='recordi
 async function sendVoiceMessage(){
  if(!activeConversationId||!cloudUser||!voiceBlob)return expMsg('directMessageStatus','Record a voice message first.');
  if(voiceBlob.size>10485760)return expMsg('directMessageStatus','This recording is too large. Please record a shorter message.');
- const mime=voiceBlob.type||'audio/webm';const ext=mime.includes('ogg')?'ogg':mime.includes('mp4')?'m4a':mime.includes('mpeg')?'mp3':mime.includes('3gpp')?'3gp':mime.includes('wav')?'wav':'webm';
+ const mime=(voiceBlob.type||'audio/webm').split(';')[0];const ext=mime.includes('ogg')?'ogg':mime.includes('mp4')?'m4a':mime.includes('mpeg')?'mp3':mime.includes('3gpp')?'3gp':mime.includes('wav')?'wav':'webm';
  const path=activeConversationId+'/'+cloudUser.id+'/'+crypto.randomUUID()+'.'+ext;const send=document.getElementById('voiceSendButton');send.disabled=true;expMsg('directMessageStatus','Uploading your voice message securely…');
  const {data:upload,error:uploadError}=await cloud.storage.from('private-voice-messages').upload(path,voiceBlob,{contentType:mime,upsert:false,cacheControl:'3600'});
  if(uploadError){send.disabled=false;expMsg('directMessageStatus','Voice upload failed: '+uploadError.message);return}
