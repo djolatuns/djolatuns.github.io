@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'olatuns-shell-v24';
+const CACHE_VERSION = 'olatuns-shell-v25';
 const SHELL_FILES = [
   './', './index.html', './styles.css?v=12', './app-core.js?v=9',
   './app-cloud.js?v=16','./app-experience.js?v=8', './manifest.webmanifest', './icon.svg',
