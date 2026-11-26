@@ -12,6 +12,7 @@ function createExperiencePages(){
   back.type='button';back.className='btn secondary experience-back';
   back.textContent='← Back';
   back.addEventListener('click',()=>go(experienceReturnPage));
+  back.style.margin='0 0 12px';
   page.appendChild(back);
   page.appendChild(panel);
   main.appendChild(page);
@@ -49,6 +50,8 @@ function drawerPanel(panel,loader){toggleAppMenu(false);experienceReturnPage=doc
 document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleAppMenu(false)});
 window.addEventListener('load',()=>{
  const originalShow=window.showExperiencePanel;
+ const originalHide=window.hideExperiencePanels;
+ window.hideExperiencePanels=function(){if(typeof originalHide==='function')originalHide();if(document.querySelector('.page.active')?.classList.contains('experience-route'))go(experienceReturnPage)};
  window.showExperiencePanel=function(id){
   experienceReturnPage=document.querySelector('.page.active')?.id||'home';
   document.querySelectorAll('.experience-panel').forEach(p=>p.hidden=true);
