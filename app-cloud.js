@@ -1,6 +1,6 @@
 const SUPABASE_URL='https://tiqracqtgggoctyvtuqo.supabase.co';
 const SUPABASE_KEY='sb_publishable_9UYttF-UC-2xgb6KBYBvLQ_4rCob3LO';
-const cloud=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const cloud=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storage:window.localStorage}});
 let cloudUser=null,cloudProfile=null,coverSelected=null,profileFileSelected=null;
 let isOlatunsAdmin=false,cloudPosts=[],cloudLikeIds=new Set(),selectedCommunityFile=null;
 function authMsg(t){document.getElementById('authMessage').textContent=t||''}
@@ -123,8 +123,10 @@ async function loadCloudProfile(){
  const followerButtonCount=document.getElementById('followersCount');if(followerButtonCount)followerButtonCount.textContent=followerTotal;
  const followingButtonCount=document.getElementById('followingCount');if(followingButtonCount)followingButtonCount.textContent=followingTotal;
 }
-function showApp(){document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity();loadOlatunsMixtapes()}
+function finishStartup(){const splash=document.getElementById('appStartup');if(splash)splash.style.display='none'}
+function showApp(){finishStartup();document.body.classList.remove('locked');document.getElementById('authGate').style.display='none';loadCloudProfile();loadCommunity();loadOlatunsMixtapes()}
 cloud.auth.onAuthStateChange((event,session)=>{
+ finishStartup();
  const previousId=cloudUser?.id||null;
  cloudUser=session?.user||null;
  if(cloudUser){
