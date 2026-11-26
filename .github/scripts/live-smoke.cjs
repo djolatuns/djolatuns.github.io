@@ -29,7 +29,7 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
    const swSource=await (await page.request.get('https://djolatuns.github.io/sw.js?smoke='+Date.now())).text();
    if(!body.includes('DJ OLATUNS')||!await page.locator('#appStartup img').count()) throw new Error('Branded startup screen/icon is missing');
    if(!experienceSource.includes("const OLATUNS_APP_VERSION='2026.11.26.1'")) throw new Error('App version label is missing or stale');
-   if(!swSource.includes('olatuns-shell-v24')||!swSource.includes('app-core.js?v=9')||!swSource.includes('app-experience.js?v=8')) throw new Error('Service worker cache references are stale');
+   if(!swSource.includes('olatuns-shell-v25')||!swSource.includes('app-core.js?v=9')||!swSource.includes('app-experience.js?v=8')) throw new Error('Service worker cache references are stale');
    const cloudSource=await (await page.request.get('https://djolatuns.github.io/app-cloud.js?smoke='+Date.now())).text();
    if(!cloudSource.includes('persistSession:true')||!cloudSource.includes('autoRefreshToken:true')) throw new Error('Persistent sign-in session configuration is missing');
    if(!cloudSource.includes('resetCloudProfile')||!cloudSource.includes("username_available")) throw new Error('Live account protections are not updated yet');
