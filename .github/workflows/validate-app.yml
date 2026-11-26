@@ -71,6 +71,9 @@ jobs:
           if(!html.includes('id="appStartup"')||!html.includes('icon-512.svg')) throw Error('Branded app startup screen or launch icon is missing.');
           if(!cloud.includes('persistSession:true')||!cloud.includes('autoRefreshToken:true')) throw Error('Persistent Supabase auth session is not enabled.');
           if(!html.includes('booking.html')) throw Error('Public booking link is missing.');
+          if(!html.includes('id="messagesPanel"')||!html.includes('id="messengerSearchForm"')||!html.includes('id="conversationList"')||!html.includes('id="messageThread"')||html.includes('assistantPanel')||html.includes('OLATUNS AI')) throw Error('Private Messenger UI is missing or AI mode remains visible.');
+          const experience=fs.readFileSync('app-experience.js','utf8');
+          if(!experience.includes('searchMessengerMembers')||!experience.includes("'postgres_changes'")||!experience.includes('start_direct_conversation')) throw Error('Private chat search, conversation creation or realtime delivery is missing.');
           const core=fs.readFileSync('app-core.js','utf8');
           if(!core.includes('requestedPage')) throw Error('Notification deep links are not supported.');
           const sw=fs.readFileSync('sw.js','utf8');
