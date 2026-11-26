@@ -25,6 +25,11 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     const res=await page.request.get('https://djolatuns.github.io/'+asset+'?smoke='+Date.now());
     if(!res.ok()) throw new Error('Required asset failed: '+asset+' HTTP '+res.status());
    }
+   const coreSource=await (await page.request.get('https://djolatuns.github.io/app-core.js?smoke='+Date.now())).text();
+   const experienceSource=await (await page.request.get('https://djolatuns.github.io/app-experience.js?smoke='+Date.now())).text();
+   const swSource=await (await page.request.get('https://djolatuns.github.io/sw.js?smoke='+Date.now())).text();
+   if(!experienceSource.includes("const OLATUNS_APP_VERSION='2026.11.26.1'")) throw new Error('App version label is missing or stale');
+   if(!swSource.includes('olatuns-shell-v23')||!swSource.includes('app-core.js?v=9')||!swSource.includes('app-experience.js?v=8')) throw new Error('Service worker cache references are stale');
    const cloudSource=await (await page.request.get('https://djolatuns.github.io/app-cloud.js?smoke='+Date.now())).text();
    if(!cloudSource.includes('resetCloudProfile')||!cloudSource.includes("username_available")) throw new Error('Live account protections are not updated yet');
    if(!cloudSource.includes('submitCommunityComment')||!cloudSource.includes('toggleCommunityFollow')) throw new Error('Live community comments/follows code is not updated yet');
@@ -33,6 +38,15 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
    const pages=await page.locator('section.page').evaluateAll(nodes=>nodes.map(n=>n.id));
    const expected=['home','mixtapes','discover','community','profile','about'];
    for(const id of expected) if(!pages.includes(id)) throw new Error('Missing app page: '+id);
+   const panelIds=await page.locator('.experience-panel').evaluateAll(nodes=>nodes.map(n=>n.id));
+   for(const id of panelIds){
+    const route=id+'Page';
+    await deepLinkPage.goto('https://djolatuns.github.io/?page='+encodeURIComponent(route)+'&smoke='+Date.now(),{waitUntil:'domcontentloaded',timeout:45000});
+    await deepLinkPage.waitForTimeout(150);
+    const active=await deepLinkPage.locator('section.page.active').getAttribute('id');
+    if(active!==route) throw new Error('Dedicated page failed to open: '+route+' (active: '+active+')');
+   }
+   await deepLinkPage.close();
    const css=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
    if(!css||css==='rgba(0, 0, 0, 0)'||css==='rgb(255, 255, 255)') throw new Error('App stylesheet did not apply a dark background: '+css);
    const bookingResponse=await page.request.get('https://djolatuns.github.io/booking.html?smoke='+Date.now());
