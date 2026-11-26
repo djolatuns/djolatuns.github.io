@@ -74,7 +74,7 @@ async function sendDirectMessage(e){
  await notifyDirectMessage(sentMessage.id);input.value='';expMsg('directMessageStatus','Message sent.');await openConversation(activeConversationId);await loadMessages();
 }
 function formatVoiceDuration(ms){const s=Math.max(0,Math.floor((ms||0)/1000));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
-async function notifyDirectMessage(id){try{const {error}=await cloud.functions.invoke('member-push',{body:{action:'direct-message-created',message_id:id}});if(error)console.warn('Message push notification unavailable:',error.message)}catch(error){console.warn('Message push notification unavailable:',error)}}
+async function notifyDirectMessage(id){try{const {error}=await cloud.functions.invoke('member-push',{body:{action:'direct-message-created',message_id:id}});if(error){console.warn('Message push notification unavailable:',error.message);expMsg('directMessageStatus','Message sent. Push notification could not be delivered: '+error.message)}}catch(error){console.warn('Message push notification unavailable:',error)}}
 async function startVoiceRecording(){
  if(!activeConversationId)return expMsg('directMessageStatus','Open a private chat before recording.');
  if(!navigator.mediaDevices?.getUserMedia||typeof MediaRecorder==='undefined')return expMsg('directMessageStatus','Voice recording is not supported by this browser. Try the latest Chrome browser.');
